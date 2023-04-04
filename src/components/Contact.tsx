@@ -27,11 +27,11 @@ function Contact({}: Props) {
       className="h-screen w-screen md:w-auto flex relative flex-col text-center md:text-left md:flex-row
     max-w-7xl px-10 justify-evenly mx-auto items-center"
     >
-      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Contact
       </h3>
-      <div className="absolute top-36 flex flex-col space-y-10 px-2">
-        <h4 className="text-2xl font-semibold text-center">
+      <div className="flex flex-col space-y-10 px-2">
+        <h4 className="text-xl md:text-2xl font-semibold text-center">
           Request your free, no-obligation consultation.{" "}
           <span className="decoration-[#00FF6A]/50 underline">Lets Talk.</span>
         </h4>
@@ -39,7 +39,7 @@ function Contact({}: Props) {
         <div className="space-y-5">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-[#00FF6A] h-7 w-7 animate-pulse " />
-            <p className="text-xl">
+            <p className="text-sm md:text-xl">
               Call Bec on{" "}
               <span className="decoration-[#00FF6A]/50 underline">
                 0417 307 658
@@ -51,22 +51,20 @@ function Contact({}: Props) {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-2 w-fit mx-auto"
+          className="flex flex-col space-y-2 w-full mx-auto"
         >
-          <div className="flex space-x-2">
-            <input
-              {...register("name")}
-              placeholder="Name"
-              className="contactInput"
-              type="text"
-            />
-            <input
-              {...register("email")}
-              placeholder="Email"
-              className="contactInput"
-              type="email"
-            />
-          </div>
+          <input
+            {...register("name")}
+            placeholder="Name"
+            className="contactInput"
+            type="text"
+          />
+          <input
+            {...register("email")}
+            placeholder="Email"
+            className="contactInput"
+            type="email"
+          />
           <input
             {...register("subject")}
             placeholder="Subject"
