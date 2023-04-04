@@ -21,7 +21,7 @@ function Projects({}: Props) {
 
       <div
         className="w-full flex overflow-x-auto snap-x
-      snap-mandatory z-20 scrollbar-track-gray-400/20 scrollbar-thumb-[#00FF6A] scrollbar"
+      snap-mandatory z-20 scrollbar-track-gray-400/20 scrollbar-thumb-[#00FF6A] scrollbar-thin"
       >
         <div
           className="flex flex-col items-center space-y-4 flex-shrink-0 
