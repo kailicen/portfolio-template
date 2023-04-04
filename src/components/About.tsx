@@ -16,7 +16,7 @@ function About({}: Props) {
         About
       </h3>
 
-      <div className="absolute top-36 space-y-10 px-0 md:px-10">
+      <div className="space-y-10 px-0 md:px-10">
         <h4 className="text-4xl font-semibold">
           What is a{" "}
           <span className="underline decoration-[#00FF6A]/50">
