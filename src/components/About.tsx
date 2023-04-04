@@ -16,7 +16,7 @@ function About({}: Props) {
         About
       </h3>
 
-      <div className="space-y-10 px-0 md:px-10">
+      <div className="absolute top-36 space-y-10 px-0 md:px-10">
         <h4 className="text-4xl font-semibold">
           What is a{" "}
           <span className="underline decoration-[#00FF6A]/50">
@@ -24,7 +24,7 @@ function About({}: Props) {
           </span>{" "}
           to home funeral?
         </h4>
-        <p className="text-base">
+        <p className="text-xs md:text-base">
           In a family led approach to Home Funerals the family, friends and/or
           community of the person who has died remain in control of as much or
           as little of the decisions and happenings as they are comfortable

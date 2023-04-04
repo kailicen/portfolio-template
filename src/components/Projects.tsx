@@ -20,7 +20,7 @@ function Projects({}: Props) {
       </h3>
 
       <div
-        className="absolute top-100 w-full flex overflow-x-auto snap-x
+        className="absolute top-36 w-full flex overflow-x-auto snap-x
       snap-mandatory z-20 scrollbar-track-gray-400/20 scrollbar-thumb-[#00FF6A] scrollbar"
       >
         <div
