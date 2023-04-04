@@ -31,7 +31,7 @@ function Contact({}: Props) {
         Contact
       </h3>
       <div className="flex flex-col space-y-10 px-2">
-        <h4 className="text-xl md:text-2xl font-semibold text-center">
+        <h4 className="hidden md:block text-xl md:text-2xl font-semibold text-center">
           Request your free, no-obligation consultation.{" "}
           <span className="decoration-[#00FF6A]/50 underline">Lets Talk.</span>
         </h4>
@@ -78,7 +78,7 @@ function Contact({}: Props) {
           ></textarea>
           <button
             type="submit"
-            className="bg-[#00FF6A] py-5 px-10 rounded-md text-black font-bold text-lg"
+            className="bg-[#00FF6A] py-3 px-10 rounded-md text-black font-bold text-lg"
           >
             Submit
           </button>
