@@ -29,24 +29,19 @@ function Header({}: Props) {
       >
         {/* Social icons */}
         <SocialIcon
-          url="https://www.linkedin.com/in/kaili-cen-1975b4197/"
-          fgColor="gray"
-          bgColor="transparent"
+          url="https://www.linkedin.com/in/rebecca-lyons-52304339/"
+          fgColor="black"
+          bgColor="rgba(255,255,255,0.5)"
         />
         <SocialIcon
-          url="https://www.instagram.com/kailicen1/"
-          fgColor="gray"
-          bgColor="transparent"
+          url="https://www.instagram.com/you_n_taboo/"
+          fgColor="black"
+          bgColor="rgba(255,255,255,0.5)"
         />
         <SocialIcon
-          url="https://www.facebook.com/kailicen/"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://medium.com/@kailicen226"
-          fgColor="gray"
-          bgColor="transparent"
+          url="https://www.facebook.com/yountaboo"
+          fgColor="black"
+          bgColor="rgba(255,255,255,0.5)"
         />
       </motion.div>
 
@@ -66,15 +61,10 @@ function Header({}: Props) {
           transition={{
             duration: 1.5,
           }}
-          className="flex flex-row items-center text-white cursor-pointer"
+          className="flex flex-row items-center bg-[#fff]/50 rounded-full"
         >
-          <SocialIcon
-            className="cursor-pointer"
-            network="email"
-            fgColor="gray"
-            bgColor="transparent"
-          />
-          <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
+          <SocialIcon network="email" fgColor="black" bgColor="transparent" />
+          <p className="uppercase hidden md:inline-flex md:pr-3 text-sm text-black font-bold">
             Get In Touch
           </p>
         </motion.div>

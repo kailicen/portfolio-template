@@ -7,16 +7,16 @@ import Projects from "@/components/Projects";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   return (
     <div
-      className="bg-[#002A12] text-white h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0 scrollbar-track-gray-500/20 
-    scrollbar-thumb-[#00FF6A] scrollbar-thin"
+      className="bg-[#001B0B] text-white h-screen snap-y snap-mandatory 
+    overflow-y-scroll overflow-x-hidden z-0 scrollBar"
     >
       <Head>
-        <title>Portfolio template</title>
+        <title>Solace - End of Life Services</title>
       </Head>
 
       <Header />
@@ -44,13 +44,11 @@ export default function Home() {
       </section>
 
       <Link href="#hero">
-        <footer className="sticky bottom-5 w-full cursor-pointer">
-          <div className="flex items-center justify-center">
-            <div className="bg-[#00FF6A]/20 p-3 rounded-full hover:bg-[#00FF6A]/50">
-              You n&apos; Taboo logo
-            </div>
+        <div className="sticky bottom-5 w-full cursor-pointer">
+          <div className="flex items-center justify-end">
+            <ArrowUpIcon className=" bottom-5 mr-5 md:mr-20 items-end w-12 h-12 bg-[#fff]/50 rounded-full text-black p-2" />
           </div>
-        </footer>
+        </div>
       </Link>
     </div>
   );
