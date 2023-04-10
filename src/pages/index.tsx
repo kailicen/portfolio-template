@@ -7,7 +7,6 @@ import Projects from "@/components/Projects";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   return (
@@ -44,9 +43,9 @@ export default function Home() {
       </section>
 
       <Link href="#hero">
-        <div className="sticky bottom-5 w-full cursor-pointer">
-          <div className="flex items-center justify-end">
-            <ArrowUpIcon className=" bottom-5 mr-5 md:mr-20 items-end w-12 h-12 bg-[#fff]/50 rounded-full text-black p-2" />
+        <div className="sticky bottom-5 w-full cursor-pointer flex items-center justify-center">
+          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#fff]/50 p-2 text-black font-bold">
+            Solace
           </div>
         </div>
       </Link>

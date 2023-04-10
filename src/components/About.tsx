@@ -19,7 +19,7 @@ function About({}: Props) {
       </h3>
 
       <div className="absolute top-36 flex flex-col space-y-10 px-3 md:px-10">
-        <div className="flex flex-row justify-start items-center space-x-5 h-72 md:h-64">
+        <div className="flex flex-row justify-start items-center space-x-5 h-64">
           <Image
             className="w-32 h-32 md:w-60 md:h-60 rounded"
             src="/img/edwin.jpg"
@@ -28,7 +28,7 @@ function About({}: Props) {
             height={280}
           />
           <div
-            className="flex flex-col space-y-5 h-72 md:h-60 text-sm md:text-base p-3 rounded bg-green-950
+            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-green-950
           overflow-y-scroll overscroll-contain scrollBar"
           >
             <p>
@@ -59,9 +59,9 @@ function About({}: Props) {
             </p>
           </div>
         </div>
-        <div className="flex flex-row justify-start items-center space-x-5 h-72 md:h-64">
+        <div className="flex flex-row justify-start items-center space-x-5 h-64">
           <div
-            className="flex flex-col space-y-5 h-72 md:h-60 text-sm md:text-base p-3 rounded bg-green-950
+            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-green-950
           overflow-y-scroll overscroll-contain scrollBar"
           >
             <p className="text-xs md:text-base">
