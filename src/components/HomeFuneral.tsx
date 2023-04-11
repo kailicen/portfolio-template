@@ -26,7 +26,7 @@ function HomeFuneral({}: Props) {
           alt="home-1"
           width={300}
           height={300}
-          className="z-20"
+          className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20"
         />
         <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-lg z-20">
           <h2 className="text-lg md:text-xl">
@@ -36,7 +36,7 @@ function HomeFuneral({}: Props) {
             </span>{" "}
             TO HOME FUNERALS?
           </h2>
-          <p>
+          <p className="hidden md:block">
             Choosing to spend time with a person who has died and the option of
             keeping their body at home allows for a home vigil. This is whether
             the person’s body is kept at home right up until the point of burial
@@ -44,7 +44,12 @@ function HomeFuneral({}: Props) {
             your person’s body in a familiar setting can make a huge difference.
             It provides the opportunity for a gentler approach to ‘letting go’.
           </p>
-          <p>
+          <p className="block md:hidden">
+            Choosing to spend time with a person who has died and the option of
+            keeping their body at home allows for a home vigil. It provides the
+            opportunity for a gentler approach to ‘letting go’.
+          </p>
+          <p className="hidden md:block">
             Click the learn more button to see more about Home Funeral in
             Tasmania.
           </p>

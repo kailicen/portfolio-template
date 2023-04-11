@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";

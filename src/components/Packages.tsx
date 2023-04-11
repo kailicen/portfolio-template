@@ -22,11 +22,11 @@ function Packages({}: Props) {
 
       <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center">
         <Image
+          className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20"
           src="/img/pricing-1.jpg"
           alt="sue-1"
           width={300}
           height={300}
-          className="z-20"
         />
         <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-lg z-20">
           <h2 className="text-lg md:text-xl">
@@ -41,7 +41,7 @@ function Packages({}: Props) {
             the care of their person, the planning and all decision making as
             much as they are able and content to do so.
           </p>
-          <p>
+          <p className="hidden md:block">
             Click the learn more button to see our prices in their individual
             components and together as packages of services.
           </p>

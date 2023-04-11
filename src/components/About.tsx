@@ -18,7 +18,7 @@ function About({}: Props) {
         About
       </h3>
 
-      <div className="absolute top-36 flex flex-col space-y-10 px-3 md:px-10">
+      <div className="absolute top-36 flex flex-col apace-y-3 md:space-y-10 px-3 md:px-10">
         <div className="flex flex-row justify-start items-center space-x-5 h-64">
           <Image
             className="w-32 h-32 md:w-60 md:h-60 rounded"
@@ -32,7 +32,7 @@ function About({}: Props) {
           overflow-y-scroll overscroll-contain scrollBar"
           >
             <p>
-              <span className="decoration-green-400 underline text-lg">
+              <span className="decoration-green-400 underline text-lg md:text-base">
                 Edwin Quilliam
               </span>
               , father of three, was born and bred on the North-West coast of
@@ -64,8 +64,8 @@ function About({}: Props) {
             className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
           overflow-y-scroll overscroll-contain scrollBar"
           >
-            <p className="text-xs md:text-base">
-              <span className="decoration-green-400 underline text-lg">
+            <p>
+              <span className="decoration-green-400 underline text-lg md:text-base">
                 Rebecca Lyons
               </span>
               , mother of one, hails from the Blue Mountains in NSW. She started
@@ -74,26 +74,26 @@ function About({}: Props) {
               real estate until she found her path into the funeral industry
               through a set of fortuitous circumstances.
             </p>
-            <p className="text-xs md:text-base">
+            <p>
               She made the move out of working for the Industry early in 2017
               and moved on to new adventures, in doing so it has provided her
               the opportunity to advance the mission of You n’ Taboo.
             </p>
-            <p className="text-xs md:text-base">
+            <p>
               She trained as an End of Life Doula and then applied and was
               granted regulated business status in Tasmania to handle human
               remains which allows her the unique position of being able to
               offer additional independent funeral directing services to her
               local community.
             </p>
-            <p className="text-xs md:text-base">
+            <p>
               In her spare time, she enjoys reading, writing, photography,
               camping and travel but what makes her most contented is time
               together as a family. The subject of death and dying is her
               passion and she loves being out in the community raising awareness
               and promoting good honest conversations.
             </p>
-            <p className="text-xs md:text-base">
+            <p>
               <ul>
                 <li>
                   <Link
