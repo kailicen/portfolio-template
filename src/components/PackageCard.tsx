@@ -7,7 +7,7 @@ function PackageCard({}: Props) {
   return (
     <article
       className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-900 p-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 p-5 md:p-10 
     hover:opacity-100 opacity-70 cursor-pointer transition-opacity duration-200 overflow-hidden"
     >
       <div className="px-0 md:px-10">

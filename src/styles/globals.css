@@ -3,18 +3,19 @@
 @tailwind utilities;
 
 @layer components {
-  .heroButton {
-    @apply bg-[#001B0B]/80 
-    px-6 py-2 border border-gray-700 rounded-full uppercase text-sm
-        tracking-widest text-gray-100 transition-all hover:border-[#00FF6A]/80 hover:text-[#00FF6A]/80;
+  .button {
+    @apply bg-green-500 
+    px-6 py-2  rounded-full uppercase text-sm 
+        tracking-widest text-gray-100 transition-all 
+        hover:bg-green-600;
   }
 
   .contactInput {
     @apply outline-none bg-slate-400/10 rounded-sm border-b px-6 py-4 border-[#242424]
-    text-gray-500 placeholder-gray-500 transition-all focus:border-[#00FF6A]/40
-    focus:text-[#00FF6A]/40 hover:border-[#00FF6A]/40;
+    text-gray-500 placeholder-gray-500 transition-all focus:border-green-400/40
+    focus:text-green-400/40 hover:border-green-400/40;
   }
   .scrollBar {
-    @apply scrollbar-track-gray-500/20 scrollbar-thumb-[#00FF6A] scrollbar-thin;
+    @apply scrollbar-track-gray-500/20 scrollbar-thumb-green-400 scrollbar-thin;
   }
 }

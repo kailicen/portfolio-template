@@ -14,7 +14,7 @@ function About({}: Props) {
       className="flex flex-col relative h-screen text-left
    max-w-6xl px-10 justify-evenly mx-auto items-center scroll-smooth"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-300 text-2xl">
+      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         About
       </h3>
 
@@ -28,11 +28,11 @@ function About({}: Props) {
             height={280}
           />
           <div
-            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-green-950
+            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
           overflow-y-scroll overscroll-contain scrollBar"
           >
             <p>
-              <span className="decoration-[#00FF6A]/50 underline text-lg">
+              <span className="decoration-green-400 underline text-lg">
                 Edwin Quilliam
               </span>
               , father of three, was born and bred on the North-West coast of
@@ -61,11 +61,11 @@ function About({}: Props) {
         </div>
         <div className="flex flex-row justify-start items-center space-x-5 h-64">
           <div
-            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-green-950
+            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
           overflow-y-scroll overscroll-contain scrollBar"
           >
             <p className="text-xs md:text-base">
-              <span className="decoration-[#00FF6A]/50 underline text-lg">
+              <span className="decoration-green-400 underline text-lg">
                 Rebecca Lyons
               </span>
               , mother of one, hails from the Blue Mountains in NSW. She started
@@ -98,7 +98,7 @@ function About({}: Props) {
                 <li>
                   <Link
                     href="https://ndan.com.au/"
-                    className="underline text-gray-200 hover:text-[#00FF6A]"
+                    className="underline text-gray-800 hover:text-green-500"
                   >
                     - President of Australia&apos;s Natural Death Advocacy
                     Network
@@ -107,7 +107,7 @@ function About({}: Props) {
                 <li>
                   <Link
                     href="https://www.ahfa.org.au/"
-                    className="underline text-gray-200 hover:text-[#00FF6A]"
+                    className="underline text-gray-800 hover:text-green-500"
                   >
                     - Chair of the Australian Home Funeral Alliance
                   </Link>
@@ -115,7 +115,7 @@ function About({}: Props) {
                 <li>
                   <Link
                     href="https://yountaboo.com/a-heartfelt-undertaking/"
-                    className="underline text-gray-200 hover:text-[#00FF6A]"
+                    className="underline text-gray-800 hover:text-green-500"
                   >
                     - Author of A Heartfelt Undertaking
                   </Link>
@@ -124,7 +124,7 @@ function About({}: Props) {
             </p>
           </div>
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 rounded border-8 border-white"
+            className="w-32 h-32 md:w-60 md:h-60 rounded-lg"
             src="/img/bec.jpg"
             alt="Bec"
             width={200}

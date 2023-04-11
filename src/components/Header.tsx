@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 
 type Props = {};
 
 function Header({}: Props) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <header
-      className="sticky top-0 p-5 flex items-start justify-between 
-    max-w-6xl mx-auto z-20 xl:items-center "
-    >
+    <header className="sticky top-0 p-5 flex justify-between bg-gray-300/50 mx-auto z-20 items-center">
       <motion.div
         initial={{
           x: -500,
@@ -27,48 +32,111 @@ function Header({}: Props) {
         }}
         className="flex flex-row items-center"
       >
-        {/* Social icons */}
-        <SocialIcon
-          url="https://www.linkedin.com/in/rebecca-lyons-52304339/"
-          fgColor="black"
-          bgColor="rgba(255,255,255,0.5)"
-        />
-        <SocialIcon
-          url="https://www.instagram.com/you_n_taboo/"
-          fgColor="black"
-          bgColor="rgba(255,255,255,0.5)"
-        />
-        <SocialIcon
-          url="https://www.facebook.com/yountaboo"
-          fgColor="black"
-          bgColor="rgba(255,255,255,0.5)"
-        />
+        {/* logo */}
+        <Link href="/">
+          <Image
+            src="/img/solace-white.png"
+            alt="solance logo"
+            width={100}
+            height={50}
+          />
+        </Link>
       </motion.div>
 
-      <Link href="#contact">
-        {/* Get in touch */}
+      <motion.div
+        initial={{
+          x: 500,
+          opacity: 0,
+          scale: 0.5,
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+          scale: 1,
+        }}
+        transition={{
+          duration: 1.5,
+        }}
+        className="hidden lg:flex flex-row items-center justify-center space-x-8 text-xl"
+      >
+        <Link className="hover:underline" href="/#about">
+          About
+        </Link>
+        <Link className="hover:underline" href="/pricing">
+          Pricing
+        </Link>
+        <Link className="hover:underline" href="/planning-a-funeral">
+          Planning a Funeral
+        </Link>
+        <Link className="hover:underline" href="/home-funerals-in-tasmania">
+          Home Funerals in Tasmania
+        </Link>
+        <Link className="hover:underline" href="/book">
+          Book
+        </Link>
+        <Link className="hover:underline" href="/#contact">
+          Contact
+        </Link>
+      </motion.div>
+
+      <Bars3Icon
+        onClick={toggleMenu}
+        className="block lg:hidden h-8 w-8 text-black cursor-pointer"
+      />
+      {isMenuOpen && (
         <motion.div
           initial={{
-            x: 500,
             opacity: 0,
-            scale: 0.5,
           }}
           animate={{
-            x: 0,
             opacity: 1,
-            scale: 1,
           }}
-          transition={{
-            duration: 1.5,
-          }}
-          className="flex flex-row items-center bg-[#fff]/50 rounded-full"
+          className="absolute top-20 right-0 w-full p-4 bg-white z-20 flex flex-col items-end"
         >
-          <SocialIcon network="email" fgColor="black" bgColor="transparent" />
-          <p className="uppercase hidden md:inline-flex md:pr-3 text-sm text-black font-bold">
-            Get In Touch
-          </p>
+          <Link
+            className="block py-2 px-4 hover:underline"
+            href="/#about"
+            onClick={toggleMenu}
+          >
+            About
+          </Link>
+          <Link
+            className="block py-2 px-4 hover:underline"
+            href="/pricing"
+            onClick={toggleMenu}
+          >
+            Pricing
+          </Link>
+          <Link
+            className="block py-2 px-4 hover:underline"
+            href="/planning-a-funeral"
+            onClick={toggleMenu}
+          >
+            Planning a Funeral
+          </Link>
+          <Link
+            className="block py-2 px-4 hover:underline"
+            href="/home-funerals-in-tasmania"
+            onClick={toggleMenu}
+          >
+            Home Funerals in Tasmania
+          </Link>
+          <Link
+            className="block py-2 px-4 hover:underline"
+            href="/book"
+            onClick={toggleMenu}
+          >
+            Book
+          </Link>
+          <Link
+            className="block py-2 px-4 hover:underline"
+            href="/#contact"
+            onClick={toggleMenu}
+          >
+            Contact
+          </Link>
         </motion.div>
-      </Link>
+      )}
     </header>
   );
 }
