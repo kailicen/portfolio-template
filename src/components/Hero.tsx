@@ -21,7 +21,10 @@ function Hero({}: Props) {
           width={700}
           height={300}
         />
-        <h2 className="text-xl md:text-2xl font-extrabold uppercase text-black bg-white/80 rounded-full py-2 px-5 tracking-[15px]">
+        <h2
+          className="text-xl md:text-2xl font-bold md:font-extrabold uppercase 
+        text-black bg-white/80 rounded-full py-2 px-5 tracking-[15px]"
+        >
           End of Life Services
         </h2>
       </div>

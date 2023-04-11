@@ -32,7 +32,7 @@ function Header({}: Props) {
         className="flex flex-row items-center"
       >
         {/* logo */}
-        <Link href="/">
+        <Link href="/#hero">
           <Image
             src="/img/solace-white.png"
             alt="solance logo"

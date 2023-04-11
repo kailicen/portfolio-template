@@ -16,6 +16,7 @@
     focus:text-green-400/40 hover:border-green-400/40;
   }
   .scrollBar {
-    @apply scrollbar-track-gray-500/20 scrollbar-thumb-green-400 scrollbar-thin;
+    @apply scrollbar-track-gray-500/20 scrollbar-thumb-green-400 scrollbar-thin 
+    scrollbar-thumb-rounded-full;
   }
 }
