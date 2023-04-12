@@ -3,18 +3,23 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Bars3Icon } from "@heroicons/react/24/solid";
+import { useRouter } from "next/router";
 
 type Props = {};
 
 function Header({}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="sticky top-0 p-5 flex justify-between bg-gray-300/90 mx-auto z-20 items-center">
+    <header
+      className="sticky top-0 p-5 flex justify-between bg-gray-300/90 
+    mx-auto z-20 items-center shadow-md"
+    >
       <motion.div
         initial={{
           x: -500,
@@ -42,41 +47,35 @@ function Header({}: Props) {
         </Link>
       </motion.div>
 
-      <motion.div
-        initial={{
-          x: 500,
-          opacity: 0,
-          scale: 0.5,
-        }}
-        animate={{
-          x: 0,
-          opacity: 1,
-          scale: 1,
-        }}
-        transition={{
-          duration: 1.5,
-        }}
-        className="hidden lg:flex flex-row items-center justify-center space-x-8 text-xl"
+      <div
+        className="hidden lg:flex flex-row items-center justify-center space-x-8 
+        text-lg"
       >
-        <Link className="hover:underline" href="/#about">
+        <Link className="hover:text-green-500 font-semibold" href="/#about">
           About
         </Link>
-        <Link className="hover:underline" href="/pricing">
+        <Link className="hover:text-green-500 font-semibold" href="/pricing">
           Pricing
         </Link>
-        <Link className="hover:underline" href="/planning-a-funeral">
+        <Link
+          className="hover:text-green-500 font-semibold"
+          href="/planning-a-funeral"
+        >
           Planning a Funeral
         </Link>
-        <Link className="hover:underline" href="/home-funerals-in-tasmania">
+        <Link
+          className="hover:text-green-500 font-semibold"
+          href="/home-funerals-in-tasmania"
+        >
           Home Funerals in Tasmania
         </Link>
-        <Link className="hover:underline" href="/book">
+        <Link className="hover:text-green-500 font-semibold" href="/book">
           Book
         </Link>
-        <Link className="hover:underline" href="/#contact">
+        <Link className="hover:text-green-500 font-semibold" href="/#contact">
           Contact
         </Link>
-      </motion.div>
+      </div>
 
       <Bars3Icon
         onClick={toggleMenu}

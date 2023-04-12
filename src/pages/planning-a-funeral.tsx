@@ -13,6 +13,18 @@ function PlanningAFuneral({}: Props) {
     overflow-y-scroll overflow-x-hidden z-0 scrollBar"
     >
       <Header />
+      <div className="relative">
+        <Image
+          src="/img/planning-b.jpg"
+          alt="planning-b"
+          width={2000}
+          height={300}
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex justify-center items-center text-white">
+          <h1 className="text-xl md:text-4xl font-bold">PLANNING A FUNERAL</h1>
+        </div>
+      </div>
       <div className="max-w-6xl mx-auto">
         {/* outer info */}
         <div
@@ -22,7 +34,7 @@ function PlanningAFuneral({}: Props) {
           <p>
             One of the best things you can do when considering funeral planning
             is to think about all the possibilities and write down your wishes.
-            A good place to start is by completing a wishes booklet.
+            A good place to start is by completing a wishes booklet.{" "}
             <Link
               href="/wishes-booklet.pdf"
               target="_blank"
@@ -30,7 +42,19 @@ function PlanningAFuneral({}: Props) {
             >
               Click here
             </Link>{" "}
-            to download the booklet! (booklets attached)
+            to download the booklet!
+          </p>
+          <p>
+            The Natural Death Centre UK have provided a list of questions to ask
+            your funeral Director.{" "}
+            <Link
+              href="http://www.naturaldeath.org.uk/uploads/Forms/Questions%20to%20ask%20a%20funeral%20director.pdf"
+              target="_blank"
+              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+            >
+              Click here
+            </Link>{" "}
+            for the list!
           </p>
           <p>
             The following is taken from the Natural Death Advocacy Network
