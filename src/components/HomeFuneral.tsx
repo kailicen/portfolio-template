@@ -54,7 +54,7 @@ function HomeFuneral({}: Props) {
             Tasmania.
           </p>
           <button
-            onClick={() => router.push("/home-funeral-in-tasmania")}
+            onClick={() => router.push("/home-funerals-in-tasmania")}
             className="button"
           >
             Learn More

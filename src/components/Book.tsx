@@ -43,10 +43,7 @@ function Book({}: Props) {
           <p className="hidden md:block">
             Click the learn more button to know more about Bec&apos;s book.
           </p>
-          <button
-            onClick={() => router.push("/planning-a-funeral")}
-            className="button"
-          >
+          <button onClick={() => router.push("/book")} className="button">
             Learn More
           </button>
         </div>

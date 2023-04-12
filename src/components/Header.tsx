@@ -14,7 +14,7 @@ function Header({}: Props) {
   };
 
   return (
-    <header className="sticky top-0 p-5 flex justify-between bg-gray-300/50 mx-auto z-20 items-center">
+    <header className="sticky top-0 p-5 flex justify-between bg-gray-300/90 mx-auto z-20 items-center">
       <motion.div
         initial={{
           x: -500,

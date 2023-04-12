@@ -1,5 +1,5 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import PackageCard from "@/components/PackageCard";
 import Image from "next/image";
 import React from "react";
 
@@ -12,7 +12,7 @@ function Pricing({}: Props) {
     overflow-y-scroll overflow-x-hidden z-0 scrollBar"
     >
       <Header />
-      <div className="max-w-6xl mx-auto scrollBar">
+      <div className="max-w-6xl mx-auto">
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
@@ -314,6 +314,7 @@ function Pricing({}: Props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
