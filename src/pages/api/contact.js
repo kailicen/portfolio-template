@@ -34,7 +34,7 @@ const handler = async (req, res) => {
         ...mailOptions,
         ...generateEmailContent(data),
         subject: data.subject,
-        html: "<h1>Test Title</h1><p>Some body text</p>",
+        html: html,
       });
 
       return res.status(200).json({ success: true });
