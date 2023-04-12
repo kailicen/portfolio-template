@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { motion } from "framer-motion";
@@ -33,17 +33,45 @@ function Contact({}: Props) {
     formState: { errors },
   } = useForm<Inputs>();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
-    try {
-      await sendContactForm(formData);
-      setIsSuccess(true);
-    } catch (error) {
-      console.log(error);
+    if (isChecked) {
+      setIsSubmitting(true);
+      try {
+        await sendContactForm(formData);
+        setIsSuccess(true);
+      } catch (error) {
+        console.log(error);
+      }
+      setIsSubmitting(false);
+    } else {
+      // show an error message or alert the user to check the checkbox
+      alert("Please check the captcha checkbox before submitting the form.");
     }
+
     // window.location.href = `mailto:kailicen226@gmail?subject={formData.subject
     //   &body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})}`;
   };
+
+  useEffect(() => {
+    let timeoutId: any;
+    if (isSuccess) {
+      timeoutId = setTimeout(() => {
+        setIsSuccess(false);
+      }, 8000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isSuccess]);
+
   return (
     <div
       className="h-screen w-screen md:w-auto flex relative flex-col text-center md:text-left md:flex-row
@@ -57,7 +85,7 @@ function Contact({}: Props) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col space-y-10 px-2"
+        className="flex flex-col space-y-10 px-2 items-center justify-center"
       >
         <h4 className="hidden md:block text-xl md:text-2xl text-center">
           TIME SENSITIVE? DON&apos;T WAIT.{" "}
@@ -116,15 +144,38 @@ function Contact({}: Props) {
           {errors.message && (
             <span className="text-red-500">This field is required</span>
           )}
+
+          {/* captcha */}
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="captcha"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+              className="mr-2"
+            />
+            <label htmlFor="captcha">I am not a robot</label>
+          </div>
+
           <button
             type="submit"
-            className="bg-green-400 py-3 px-10 rounded-md text-black font-bold text-lg"
+            className={`bg-green-400 py-3 px-10 rounded-md text-black font-bold text-lg ${
+              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={isSubmitting}
           >
-            Submit
+            {isSubmitting ? <div className="spinner"></div> : "Submit"}
           </button>
         </form>
         {isSuccess && (
-          <p className="text-green-500">Your message has been sent!</p>
+          <motion.div
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="fixed top-10 w-[350px] md:w-[480px] bg-green-500 rounded-md text-white py-3 px-4 text-center"
+          >
+            Your message has been sent!
+          </motion.div>
         )}
       </motion.div>
     </div>
