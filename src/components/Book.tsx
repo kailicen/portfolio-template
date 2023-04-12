@@ -23,7 +23,7 @@ function Book({}: Props) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center"
+        className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center z-20"
       >
         <Image
           src="/img/book-2.jpg"
