@@ -1,6 +1,8 @@
 import React from "react";
-import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { PhoneIcon } from "@heroicons/react/24/solid";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { motion } from "framer-motion";
+import { heroVariants } from "./Hero";
 
 type Inputs = {
   name: string;
@@ -30,7 +32,13 @@ function Contact({}: Props) {
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Contact
       </h3>
-      <div className="flex flex-col space-y-10 px-2">
+      <motion.div
+        variants={heroVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="flex flex-col space-y-10 px-2"
+      >
         <h4 className="hidden md:block text-xl md:text-2xl text-center">
           TIME SENSITIVE? DON&apos;T WAIT.{" "}
           <span className="decoration-green-400 underline">Lets Talk.</span>
@@ -83,7 +91,7 @@ function Contact({}: Props) {
             Submit
           </button>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

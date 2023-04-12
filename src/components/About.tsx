@@ -5,12 +5,39 @@ import Link from "next/link";
 
 type Props = {};
 
+const aboutLeftVariants = {
+  hidden: {
+    opacity: 0,
+    x: -100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.5,
+      duration: 1.5,
+    },
+  },
+};
+
+const aboutRightVariants = {
+  hidden: {
+    opacity: 0,
+    x: 100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.5,
+      duration: 1.5,
+    },
+  },
+};
+
 function About({}: Props) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+    <div
       className="flex flex-col relative h-screen text-left
    max-w-6xl px-10 justify-evenly mx-auto items-center scroll-smooth"
     >
@@ -19,7 +46,14 @@ function About({}: Props) {
       </h3>
 
       <div className="absolute top-36 flex flex-col apace-y-3 md:space-y-10 px-3 md:px-10">
-        <div className="flex flex-row justify-start items-center space-x-5 h-64">
+        {/* Edwin */}
+        <motion.div
+          variants={aboutLeftVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-row justify-start items-center space-x-5 h-64"
+        >
           <Image
             className="w-32 h-32 md:w-60 md:h-60 rounded"
             src="/img/edwin.jpg"
@@ -58,8 +92,16 @@ function About({}: Props) {
               death and dying.
             </p>
           </div>
-        </div>
-        <div className="flex flex-row justify-start items-center space-x-5 h-64">
+        </motion.div>
+
+        {/* Bec */}
+        <motion.div
+          variants={aboutRightVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-row justify-start items-center space-x-5 h-64"
+        >
           <div
             className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
           overflow-y-scroll overscroll-contain scrollBar"
@@ -130,9 +172,9 @@ function About({}: Props) {
             width={200}
             height={300}
           />
-        </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

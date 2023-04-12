@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { heroVariants } from "./Hero";
 
 type Props = {};
 
@@ -9,10 +10,7 @@ function Packages({}: Props) {
   const router = useRouter();
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+    <div
       className="h-screen flex relative overflow-hidden flex-col text-left md:flex-row
      px-2 md:px-24 justify-evenly mx-auto items-center"
     >
@@ -20,7 +18,13 @@ function Packages({}: Props) {
         Pricing
       </h3>
 
-      <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center">
+      <motion.div
+        variants={heroVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center"
+      >
         <Image
           className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20"
           src="/img/pricing-1.jpg"
@@ -49,9 +53,9 @@ function Packages({}: Props) {
             Learn More
           </button>
         </div>
-      </div>
+      </motion.div>
       <div className="w-full absolute top-[30%] bg-green-400/10 left-0 h-[500px] skew-y-12 z-0" />
-    </motion.div>
+    </div>
   );
 }
 

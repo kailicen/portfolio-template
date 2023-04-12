@@ -1,10 +1,24 @@
 import React from "react";
-import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundCircles from "./BackgroundCircles";
-import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 type Props = {};
+
+export const heroVariants = {
+  hidden: {
+    opacity: 0,
+    y: -50,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+      duration: 1,
+    },
+  },
+};
 
 function Hero({}: Props) {
   return (
@@ -14,7 +28,12 @@ function Hero({}: Props) {
     text-center overflow-hidden"
     >
       <BackgroundCircles />
-      <div className="flex flex-col items-center">
+      <motion.div
+        variants={heroVariants}
+        initial="hidden"
+        animate="visible"
+        className="flex flex-col items-center"
+      >
         <Image
           src="/img/solace-logo.png"
           alt="solance logo"
@@ -27,7 +46,7 @@ function Hero({}: Props) {
         >
           End of Life Services
         </h2>
-      </div>
+      </motion.div>
     </div>
   );
 }
