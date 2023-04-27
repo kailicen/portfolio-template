@@ -43,7 +43,7 @@ function PlanningAFuneral({}: Props) {
             <Link
               href="/wishes-booklet.pdf"
               target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+              className="bg-emerald-100 hover:text-emerald-500 rounded-lg px-1 pb-1"
             >
               Click here
             </Link>{" "}
@@ -55,7 +55,7 @@ function PlanningAFuneral({}: Props) {
             <Link
               href="http://www.naturaldeath.org.uk/uploads/Forms/Questions%20to%20ask%20a%20funeral%20director.pdf"
               target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+              className="bg-emerald-100 hover:text-emerald-500 rounded-lg px-1 pb-1"
             >
               Click here
             </Link>{" "}
@@ -67,7 +67,7 @@ function PlanningAFuneral({}: Props) {
             <Link
               href="https://ndan.com.au/resources/funeral-planning"
               target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+              className="bg-emerald-100 hover:text-emerald-500 rounded-lg px-1 pb-1"
             >
               https://ndan.com.au/resources/funeral-planning
             </Link>
@@ -80,7 +80,7 @@ function PlanningAFuneral({}: Props) {
         >
           <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base">
             <h2 className="text-xl md:text-2xl">
-              <span className="decoration-green-400 underline">
+              <span className="decoration-emerald-400 underline">
                 FUNERAL PLANNING
               </span>{" "}
             </h2>
@@ -96,7 +96,7 @@ function PlanningAFuneral({}: Props) {
               <Link
                 href="https://ndan.com.au/images/Factsheets/INFO_SHEET_2_Funeral_Planning.pdf"
                 target="_blank"
-                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+                className="bg-emerald-100 hover:text-emerald-500 rounded-lg px-1 pb-1"
               >
                 factsheet
               </Link>{" "}
@@ -111,7 +111,7 @@ function PlanningAFuneral({}: Props) {
               <Link
                 href="https://ndan.com.au/resources/family-led-funerals"
                 target="_blank"
-                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+                className="bg-emerald-100 hover:text-emerald-500 rounded-lg px-1 pb-1"
               >
                 Family Led Funerals
               </Link>{" "}
