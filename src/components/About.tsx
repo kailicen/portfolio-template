@@ -114,11 +114,11 @@ function About({}: Props) {
           whileInView="visible"
           viewport={{ once: true }}
           className="flex flex-row justify-start items-center space-x-5 h-64
-          2xl:h-[100px]"
+          2xl:h-[120px]"
         >
           <div
             className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
-          2xl:h-96 2xl:text-lg 2xl:p-5
+          2xl:h-[100px] 2xl:text-lg 2xl:p-5
             overflow-y-scroll overscroll-contain"
           >
             <p>
