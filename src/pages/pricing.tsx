@@ -9,7 +9,7 @@ function Pricing({}: Props) {
   return (
     <div
       className="bg-white text-black h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0 scrollBar"
+    overflow-y-scroll overflow-x-hidden z-0"
     >
       <Header />
       <div className="relative">
@@ -32,7 +32,7 @@ function Pricing({}: Props) {
           <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base">
             <h2 className="text-xl md:text-2xl">
               HOW MUCH DO{" "}
-              <span className="decoration-green-400 underline">
+              <span className="decoration-emerald-600 underline">
                 FAMILY LED HOME
               </span>{" "}
               FUNERALS COST?​
@@ -70,17 +70,17 @@ function Pricing({}: Props) {
         py-5 md:py-10 px-2 md:px-5"
         >
           <h2 className="text-xl md:text-2xl">
-            <span className="decoration-green-400 underline">
+            <span className="decoration-emerald-600 underline">
               INDIVIDUAL COMPONENTS
             </span>
           </h2>
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       scrollBar p-3 md:p-5"
+       p-3 md:p-5"
           >
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <table className="w-auto md:w-[500px]">
@@ -124,7 +124,7 @@ function Pricing({}: Props) {
             </article>
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <table className="w-auto md:w-[500px]">
@@ -170,15 +170,15 @@ function Pricing({}: Props) {
         py-5 md:py-10 px-2 md:px-5"
         >
           <h2 className="text-xl md:text-2xl">
-            <span className="decoration-green-400 underline">PACKAGES</span>
+            <span className="decoration-emerald-600 underline">PACKAGES</span>
           </h2>
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       scrollBar p-3 md:p-5"
+       p-3 md:p-5"
           >
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <div className="px-0 md:px-10">
@@ -204,7 +204,7 @@ function Pricing({}: Props) {
             </article>
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <div className="px-0 md:px-10">
@@ -232,7 +232,7 @@ function Pricing({}: Props) {
             </article>
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <div className="px-0 md:px-10">
@@ -263,7 +263,7 @@ function Pricing({}: Props) {
             </article>
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <div className="px-0 md:px-10">
@@ -293,7 +293,7 @@ function Pricing({}: Props) {
             </article>
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-green-100 px-3 py-5 md:p-10 
+    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
     hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
             >
               <div className="px-0 md:px-10">

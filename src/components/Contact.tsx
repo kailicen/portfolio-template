@@ -166,7 +166,8 @@ function Contact({}: Props) {
 
           <button
             type="submit"
-            className={`bg-emerald-600 text-white py-3 px-10 rounded-md font-bold text-lg ${
+            className={`bg-emerald-600 text-white py-3 px-10 rounded-md font-bold 
+            hover:bg-emerald-700 text-lg ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isSubmitting}
