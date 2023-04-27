@@ -8,24 +8,29 @@ type Props = {};
 
 function PlanningAFuneral({}: Props) {
   return (
-    <div
-      className="bg-white text-black h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0 scrollBar"
-    >
+    <div className="bg-white text-black">
       <Header />
       <div className="relative">
         <Image
           src="/img/planning-b.jpg"
           alt="planning-b"
-          width={2000}
+          width={2300}
           height={300}
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold">PLANNING A FUNERAL</h1>
+          <h1
+            className="text-xl md:text-4xl font-bold
+          tracking-[20px]"
+          >
+            PLANNING A FUNERAL
+          </h1>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto">
+      <div
+        className="max-w-6xl mx-auto
+      2xl:max-w-7xl"
+      >
         {/* outer info */}
         <div
           className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base

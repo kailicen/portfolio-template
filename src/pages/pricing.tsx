@@ -187,7 +187,7 @@ function Pricing({}: Props) {
           </h2>
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       p-3 md:p-5 text-base 2xl:text-lg"
+       p-3 md:p-5 text-sm md:text-base 2xl:text-lg"
           >
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
@@ -201,13 +201,13 @@ function Pricing({}: Props) {
                 <p className="font-bold text-xl md:text-2xl mt-5">
                   $2,495.00 +GST
                 </p>
-                <p className="text-sm md:text-base my-3">
+                <p className="my-3">
                   Transport from home or place of death to crematorium,
                   shrouding/dressing, cremation, return of ashes, prepare permit
                   and obtain record of death, shroud carrier or cardboard coffin
                   for cremation, doctors authorisation.
                 </p>
-                <p className="text-sm md:text-base italic">
+                <p className="italic">
                   (this does not include transport from place of death to home
                   if required, and home vigil or death care and external costs
                   such as material for shroud, newspaper advertising, coffin in
@@ -227,7 +227,7 @@ function Pricing({}: Props) {
                 <p className="font-bold text-xl md:text-2xl mt-5">
                   $4,540.00 +GST
                 </p>
-                <p className="text-sm md:text-base my-3">
+                <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
                   (3 days), provide after death care (natural) including
                   shrouding/dressing, transport from home to crematorium,
@@ -235,7 +235,7 @@ function Pricing({}: Props) {
                   of death, shroud carrier or cardboard coffin for cremation,
                   doctor’s authorisation.
                 </p>
-                <p className="text-sm md:text-base italic">
+                <p className="italic">
                   (this does not include transport from place of death to home
                   if required and external costs such as material for shroud,
                   newspaper advertising, coffin in place of shroud carrier or
@@ -255,7 +255,7 @@ function Pricing({}: Props) {
                 <p className="font-bold text-xl md:text-2xl mt-5">
                   $6,185.00 +GST
                 </p>
-                <p className="text-sm md:text-base my-3">
+                <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
                   (3 days), provide after death care (natural) including
                   shrouding/dressing, transfer from home to place of service and
@@ -265,7 +265,7 @@ function Pricing({}: Props) {
                   cardboard coffin for cremation, cremation, return of ashes,
                   doctor’s authorisation.
                 </p>
-                <p className="text-sm md:text-base italic">
+                <p className="italic">
                   (this does not include transport from place of death to home
                   if required and external costs such as material for shroud,
                   newspaper advertising, order of service design and printing,
@@ -286,7 +286,7 @@ function Pricing({}: Props) {
                 <p className="font-bold text-xl md:text-2xl mt-5">
                   $4,420.00 +GST
                 </p>
-                <p className="text-sm md:text-base my-3">
+                <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
                   (3 days), provide after death care (natural) including
                   shrouding/dressing, transport from home to cemetery within a
@@ -294,7 +294,7 @@ function Pricing({}: Props) {
                   graveside committal, prepare permit and obtain record of
                   death, shroud carrier or cardboard coffin for burial.
                 </p>
-                <p className="text-sm md:text-base italic">
+                <p className="italic">
                   (this does not include transport from place of death to home
                   if required prior to burial, excess travel over 50km radius
                   and external costs such as material for shroud, newspaper
@@ -316,7 +316,7 @@ function Pricing({}: Props) {
                 <p className="font-bold text-xl md:text-2xl mt-5">
                   $5,800.00 +GST
                 </p>
-                <p className="text-sm md:text-base my-3">
+                <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
                   (3 days), provide after death care (natural) including
                   shrouding/dressing, transport from home to place of service
@@ -326,7 +326,7 @@ function Pricing({}: Props) {
                   co-ordination, full celebrant service, multimedia production
                   (30-50 photos).
                 </p>
-                <p className="text-sm md:text-base italic">
+                <p className="italic">
                   (this does not include transport from place of death to home
                   if required, excess travel over 50km radius and external costs
                   such as material for shroud, newspaper advertising, order of
