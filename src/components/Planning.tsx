@@ -62,7 +62,8 @@ function Planning({}: Props) {
           </p>
           <button
             onClick={() => router.push("/planning-a-funeral")}
-            className="button"
+            className="button
+            text-lg"
           >
             Learn More
           </button>

@@ -60,7 +60,11 @@ function Packages({}: Props) {
             Click the learn more button to see our prices in their individual
             components and together as packages of services.
           </p>
-          <button onClick={() => router.push("/pricing")} className="button">
+          <button
+            onClick={() => router.push("/pricing")}
+            className="button
+          text-lg"
+          >
             Learn More
           </button>
         </div>
