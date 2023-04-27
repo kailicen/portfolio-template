@@ -20,7 +20,7 @@ function Pricing({}: Props) {
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1
             className="text-xl md:text-4xl font-bold 
-          tracking-[20px]"
+          tracking-[20px] 2xl:text-7xl"
           >
             PRICING
           </h1>
@@ -189,7 +189,9 @@ function Pricing({}: Props) {
           </h2>
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       p-3 md:p-5 text-sm md:text-base 2xl:text-lg"
+       p-3 md:p-5 text-sm md:text-base 2xl:text-lg
+       scrollbar scrollbar-h-5 scrollbar-track-gray-200 scrollbar-thumb-rounded-full
+       scrollbar-thumb-emerald-600"
           >
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
