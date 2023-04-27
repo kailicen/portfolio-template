@@ -51,7 +51,7 @@ function About({}: Props) {
 
       <div
         className="absolute top-36 flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-      2xl:relative 2xl:h-[90%] 2xl:justify-evenly 2xl:w-full 2xl:px-16"
+      2xl:relative 2xl:h-[90%] 2xl:justify-evenly 2xl:w-full 2xl:px-16 2xl:border 2xl:border-red-500"
       >
         {/* Edwin */}
         <motion.div
