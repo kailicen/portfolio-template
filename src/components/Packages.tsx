@@ -12,7 +12,8 @@ function Packages({}: Props) {
   return (
     <div
       className="h-screen flex relative overflow-hidden flex-col text-left md:flex-row
-     px-2 md:px-24 justify-evenly mx-auto items-center"
+     px-2 md:px-24 justify-evenly mx-auto items-center 
+     max-w-6xl"
     >
       <h3
         className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl
@@ -30,7 +31,7 @@ function Packages({}: Props) {
       >
         <Image
           className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20
-          2xl:w-[300px] 2xl:h-[300px]"
+          2xl:w-auto 2xl:h-[300px]"
           src="/img/pricing-1.jpg"
           alt="sue-1"
           width={300}
