@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div
       className="bg-white text-black h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0 scrollBar"
+    overflow-y-scroll overflow-x-hidden z-0"
     >
       <Head>
         <title>Solace - End of Life Services</title>

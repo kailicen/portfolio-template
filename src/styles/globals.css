@@ -15,10 +15,6 @@
     text-gray-500 placeholder-gray-500 transition-all focus:border-green-400/40
      hover:border-green-400/40;
   }
-  .scrollBar {
-    @apply scrollbar-track-gray-500/20 scrollbar-thumb-green-400 scrollbar-thin 
-    scrollbar-thumb-rounded-full;
-  }
 }
 
 .spinner {

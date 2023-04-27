@@ -55,18 +55,18 @@ function About({}: Props) {
           className="flex flex-row justify-start items-center space-x-5 h-64"
         >
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 rounded"
+            className="w-32 h-32 md:w-60 md:h-60 xl:w-80 xl:h-80 rounded"
             src="/img/edwin.jpg"
             alt="Edwin"
             width={190}
             height={280}
           />
           <div
-            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
-          overflow-y-scroll overscroll-contain scrollBar"
+            className="flex flex-col space-y-5 h-60 xl:h-96 text-sm md:text-base xl:text-lg p-3 rounded bg-gray-100
+          overflow-y-scroll overscroll-contain"
           >
             <p>
-              <span className="decoration-green-400 underline text-lg md:text-base">
+              <span className="decoration-green-400 underline text-lg xl:text-xl">
                 Edwin Quilliam
               </span>
               , father of three, was born and bred on the North-West coast of
@@ -103,11 +103,11 @@ function About({}: Props) {
           className="flex flex-row justify-start items-center space-x-5 h-64"
         >
           <div
-            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
-          overflow-y-scroll overscroll-contain scrollBar"
+            className="flex flex-col space-y-5 h-60 xl:h-96 text-sm md:text-base xl:text-lg p-3 rounded bg-gray-100
+          overflow-y-scroll overscroll-contain"
           >
             <p>
-              <span className="decoration-green-400 underline text-lg md:text-base">
+              <span className="decoration-green-400 underline text-lg xl:text-xl">
                 Rebecca Lyons
               </span>
               , mother of one, hails from the Blue Mountains in NSW. She started
@@ -166,7 +166,7 @@ function About({}: Props) {
             </p>
           </div>
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 rounded-lg"
+            className="w-32 h-32 md:w-60 md:h-60 xl:w-80 xl:h-80 rounded-lg"
             src="/img/bec.jpg"
             alt="Bec"
             width={200}
