@@ -27,7 +27,7 @@ function Packages({}: Props) {
         whileInView="visible"
         viewport={{ once: true }}
         className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center z-20
-        max-w-7xl"
+        max-w-7xl 2xl:flex-row 2xl:space-x-16"
       >
         <Image
           className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20
