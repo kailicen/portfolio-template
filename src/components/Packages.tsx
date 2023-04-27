@@ -12,8 +12,7 @@ function Packages({}: Props) {
   return (
     <div
       className="h-screen flex relative overflow-hidden flex-col text-left md:flex-row
-     px-2 md:px-24 justify-evenly mx-auto items-center 
-     max-w-6xl"
+     px-2 md:px-24 justify-evenly mx-auto items-center"
     >
       <h3
         className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl
@@ -27,7 +26,8 @@ function Packages({}: Props) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center z-20"
+        className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center z-20
+        max-w-7xl"
       >
         <Image
           className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20
