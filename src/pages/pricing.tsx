@@ -89,7 +89,7 @@ function Pricing({}: Props) {
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
        p-3 md:p-5 text-base 2xl:text-lg 
-       scrollbar scrollbar-h-10 scrollbar-track-gray-500 scrollbar-thumb-rounded-full
+       scrollbar scrollbar-h-5 scrollbar-track-gray-200 scrollbar-thumb-rounded-full
        scrollbar-thumb-emerald-600"
           >
             <article
