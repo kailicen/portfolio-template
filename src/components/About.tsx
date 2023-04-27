@@ -51,7 +51,7 @@ function About({}: Props) {
 
       <div
         className="absolute top-36 flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-      2xl:abosolute 2xl:h-[90%] 2xl:justify-evenly 2xl:w-full 2xl:px-16"
+      2xl:absolute 2xl:h-[90%] 2xl:justify-evenly 2xl:w-full 2xl:px-16"
       >
         {/* Edwin */}
         <motion.div
@@ -114,11 +114,11 @@ function About({}: Props) {
           whileInView="visible"
           viewport={{ once: true }}
           className="flex flex-row justify-start items-center space-x-5 h-64
-          2xl:h-[120px]"
+          2xl:h-[100px]"
         >
           <div
             className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
-          2xl:h-[100px] 2xl:text-lg 2xl:p-5
+          2xl:h-96 2xl:text-lg 2xl:p-5
             overflow-y-scroll overscroll-contain"
           >
             <p>
