@@ -9,7 +9,7 @@ function Pricing({}: Props) {
   return (
     <div className="bg-white text-black">
       <Header />
-      <div className="">
+      <div className="absolute">
         <Image
           src="/img/pricing-b.jpg"
           alt="pricing-b"
