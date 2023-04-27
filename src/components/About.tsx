@@ -50,7 +50,7 @@ function About({}: Props) {
 
       <div
         className="absolute top-36 flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-      2xl:absolute 2xl:top-48 2xl:space-y-20 2xl:px-16"
+      2xl:absolute 2xl:top-48 2xl:flex 2xl:flex-col 2xl:space-y-20 2xl:px-16"
       >
         {/* Edwin */}
         <motion.div
