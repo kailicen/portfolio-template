@@ -40,7 +40,9 @@ function Footer({}: Props) {
             className="col-span-2 md:col-span-1"
           />
         </div>
-        <div className="py-5">2023 SOLACE. ALL RIGHTS RESERVED.</div>
+        <div className="py-5">
+          © {new Date().getFullYear()} SOLACE. ALL RIGHTS RESERVED.
+        </div>
       </div>
     </div>
   );
