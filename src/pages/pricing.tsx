@@ -7,30 +7,38 @@ type Props = {};
 
 function Pricing({}: Props) {
   return (
-    <div
-      className="bg-white text-black h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0"
-    >
+    <div className="bg-white text-black">
       <Header />
-      <div className="relative">
+      <div className="">
         <Image
           src="/img/pricing-b.jpg"
           alt="pricing-b"
-          width={2000}
+          width={2300}
           height={300}
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold">PRICING</h1>
+          <h1 className="text-xl md:text-4xl font-bold tracking-[20px]">
+            PRICING
+          </h1>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto">
+      <div
+        className="max-w-6xl mx-auto
+      2xl:max-w-7xl"
+      >
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
         >
-          <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base">
-            <h2 className="text-xl md:text-2xl">
+          <div
+            className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
+          2xl:text-lg"
+          >
+            <h2
+              className="text-xl md:text-2xl
+            2xl:text-3xl"
+            >
               HOW MUCH DO{" "}
               <span className="decoration-emerald-600 underline">
                 FAMILY LED HOME
@@ -58,7 +66,8 @@ function Pricing({}: Props) {
             </p>
           </div>
           <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg"
+            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
+            2xl:h-[400px] 2xl:w-auto"
             src="/img/pricing-3.jpg"
             alt="sue-1"
             width={400}
