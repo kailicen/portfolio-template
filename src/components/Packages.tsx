@@ -46,7 +46,7 @@ function Packages({}: Props) {
           2xl:text-3xl"
           >
             HOW MUCH DO{" "}
-            <span className="decoration-green-400 underline">
+            <span className="decoration-emerald-600 underline">
               FAMILY LED HOME
             </span>{" "}
             FUNERALS COST?​
@@ -69,7 +69,7 @@ function Packages({}: Props) {
           </button>
         </div>
       </motion.div>
-      <div className="w-full absolute top-[30%] bg-green-400/10 left-0 h-[500px] skew-y-12 z-0" />
+      <div className="w-full absolute top-[30%] bg-emerald-600/10 left-0 h-[500px] skew-y-12 z-0" />
     </div>
   );
 }

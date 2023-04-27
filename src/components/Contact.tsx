@@ -77,7 +77,10 @@ function Contact({}: Props) {
       className="h-screen w-screen md:w-auto flex relative flex-col text-center md:text-left md:flex-row
     max-w-7xl px-10 mx-auto items-center justify-center"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3
+        className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl
+      2xl:text-4xl 2xl:top-36"
+      >
         Contact
       </h3>
       <motion.div
@@ -85,19 +88,23 @@ function Contact({}: Props) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col space-y-10 px-2 items-center justify-center"
+        className="flex flex-col space-y-10 px-2 items-center justify-center
+        max-w-7xl"
       >
-        <h4 className="hidden md:block text-xl md:text-2xl text-center">
+        <h4
+          className="hidden md:block text-xl text-center
+        2xl:text-3xl"
+        >
           TIME SENSITIVE? DON&apos;T WAIT.{" "}
-          <span className="decoration-green-400 underline">Lets Talk.</span>
+          <span className="decoration-emerald-600 underline">Lets Talk.</span>
         </h4>
 
         <div className="space-y-5">
           <div className="flex items-center space-x-5 justify-center">
-            <PhoneIcon className="text-green-400 h-7 w-7 animate-pulse " />
+            <PhoneIcon className="text-emerald-600 h-7 w-7 animate-pulse " />
             <p className="text-sm md:text-xl">
               Call Bec on{" "}
-              <span className="decoration-green-400 underline">
+              <span className="decoration-emerald-600 underline">
                 0417 307 658
               </span>{" "}
               for immediate support.
@@ -159,7 +166,7 @@ function Contact({}: Props) {
 
           <button
             type="submit"
-            className={`bg-green-400 py-3 px-10 rounded-md text-black font-bold text-lg ${
+            className={`bg-emerald-600 text-white py-3 px-10 rounded-md font-bold text-lg ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isSubmitting}
@@ -172,7 +179,7 @@ function Contact({}: Props) {
             variants={heroVariants}
             initial="hidden"
             animate="visible"
-            className="fixed top-10 w-[350px] md:w-[480px] bg-green-500 rounded-md text-white py-3 px-4 text-center"
+            className="fixed top-10 w-[350px] md:w-[480px] bg-emerald-600 rounded-md text-white py-3 px-4 text-center"
           >
             Your message has been sent!
           </motion.div>
