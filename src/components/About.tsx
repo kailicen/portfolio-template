@@ -50,7 +50,7 @@ function About({}: Props) {
 
       <div
         className="absolute top-36 flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-      2xl:top-48"
+      2xl:top-48 2xl:space-y-20 2xl:px-16"
       >
         {/* Edwin */}
         <motion.div
@@ -62,18 +62,23 @@ function About({}: Props) {
           2xl:h-[100px]"
         >
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 2xl:w-80 2xl:h-80 rounded"
+            className="w-32 h-32 md:w-60 md:h-60 rounded
+            2xl:w-80 2xl:h-80"
             src="/img/edwin.jpg"
             alt="Edwin"
             width={190}
             height={280}
           />
           <div
-            className="flex flex-col space-y-5 h-60 2xl:h-96 text-sm md:text-base 2xl:text-lg p-3 rounded bg-gray-100
-          overflow-y-scroll overscroll-contain"
+            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
+          2xl:h-96 2xl:text-lg 2xl:p-5
+            overflow-y-scroll overscroll-contain"
           >
             <p>
-              <span className="decoration-emerald-600 underline text-lg 2xl:text-2xl">
+              <span
+                className="decoration-emerald-600 underline text-lg 
+              2xl:text-2xl"
+              >
                 Edwin Quilliam
               </span>
               , father of three, was born and bred on the North-West coast of
@@ -111,11 +116,15 @@ function About({}: Props) {
           2xl:h-[100px]"
         >
           <div
-            className="flex flex-col space-y-5 h-60 2xl:h-96 text-sm md:text-base 2xl:text-lg p-3 rounded bg-gray-100
-          overflow-y-scroll overscroll-contain"
+            className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
+          2xl:h-96 2xl:text-lg 2xl:p-5
+            overflow-y-scroll overscroll-contain"
           >
             <p>
-              <span className="decoration-emerald-600 underline text-lg 2xl:text-2xl">
+              <span
+                className="decoration-emerald-600 underline text-lg 
+              2xl:text-2xl"
+              >
                 Rebecca Lyons
               </span>
               , mother of one, hails from the Blue Mountains in NSW. She started
@@ -174,7 +183,8 @@ function About({}: Props) {
             </p>
           </div>
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 2xl:w-80 2xl:h-80 rounded-lg"
+            className="w-32 h-32 md:w-60 md:h-60 rounded-lg
+            2xl:w-80 2xl:h-80"
             src="/img/bec.jpg"
             alt="Bec"
             width={200}
