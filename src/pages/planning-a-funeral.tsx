@@ -33,7 +33,7 @@ function PlanningAFuneral({}: Props) {
       >
         {/* outer info */}
         <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base 2xl:text-lg
+          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
         py-5 md:pt-10 px-2 md:px-5
         2xl:text-lg"
         >

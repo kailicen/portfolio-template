@@ -30,8 +30,14 @@ function HomeFuneralsInTas({}: Props) {
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
         >
-          <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base">
-            <h2 className="text-xl md:text-2xl">
+          <div
+            className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
+          2xl:text-lg"
+          >
+            <h2
+              className="text-xl md:text-2xl
+            2xl:text-3xl"
+            >
               WHY SHOULD YOU CONSIDER A{" "}
               <span className="decoration-green-400 underline">
                 FAMILY LED APPROACH
