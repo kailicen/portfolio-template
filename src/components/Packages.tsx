@@ -14,7 +14,10 @@ function Packages({}: Props) {
       className="h-screen flex relative overflow-hidden flex-col text-left md:flex-row
      px-2 md:px-24 justify-evenly mx-auto items-center"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3
+        className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl
+      2xl:text-4xl 2xl:top-36"
+      >
         Pricing
       </h3>
 
@@ -26,14 +29,21 @@ function Packages({}: Props) {
         className="flex flex-col space-y-5 md:flex-row md:space-x-5 items-center justify-center z-20"
       >
         <Image
-          className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20"
+          className="w-60 h-auto md:w-auto md:h-auto rounded-lg z-20
+          2xl:w-[300px] 2xl:h-[300px]"
           src="/img/pricing-1.jpg"
           alt="sue-1"
           width={300}
           height={300}
         />
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-lg z-20">
-          <h2 className="text-lg md:text-xl">
+        <div
+          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-lg z-20
+        2xl:text-2xl"
+        >
+          <h2
+            className="text-lg md:text-xl
+          2xl:text-3xl"
+          >
             HOW MUCH DO{" "}
             <span className="decoration-green-400 underline">
               FAMILY LED HOME
