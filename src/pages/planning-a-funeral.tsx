@@ -120,7 +120,8 @@ function PlanningAFuneral({}: Props) {
             </p>
           </div>
           <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg"
+            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
+            2xl:h-[400px] 2xl:w-auto"
             src="/img/planning-3.jpg"
             alt="planning-3"
             width={400}

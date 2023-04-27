@@ -8,21 +8,24 @@ type Props = {};
 
 function Book({}: Props) {
   return (
-    <div
-      className="bg-white text-black h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0 scrollBar"
-    >
+    <div className="bg-white text-black">
       <Header />
       <div className="relative">
-        <Image src="/img/book-b.jpg" alt="book-b" width={2000} height={300} />
+        <Image src="/img/book-b.jpg" alt="book-b" width={2300} height={300} />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold">
+          <h1
+            className="text-xl md:text-4xl font-bold
+          tracking-[20px] 2xl:text-7xl"
+          >
             BOOK: A HEARTFELT UNDERTAKING
           </h1>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto">
+      <div
+        className="max-w-6xl mx-auto
+      2xl:max-w-7xl"
+      >
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
