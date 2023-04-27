@@ -40,7 +40,7 @@ function About({}: Props) {
     <div
       className="flex flex-col relative h-screen text-left
    max-w-6xl px-10 justify-evenly mx-auto items-center scroll-smooth
-   2xl:max-w-[1024px]"
+   2xl:max-w-7xl"
     >
       <h3
         className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl 
@@ -51,7 +51,7 @@ function About({}: Props) {
 
       <div
         className="absolute top-36 flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-      2xl:relative 2xl:h-[80vh] 2xl:justify-between 2xl:px-16"
+      2xl:relative 2xl:h-[60vh] 2xl:w-full 2xl:justify-between 2xl:px-16"
       >
         {/* Edwin */}
         <motion.div
