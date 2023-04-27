@@ -51,28 +51,28 @@ function Header({}: Props) {
         className="hidden lg:flex flex-row items-center justify-center space-x-8 
         text-lg"
       >
-        <Link className="hover:text-green-500 font-semibold" href="/#about">
+        <Link className="hover:text-emerald-600 font-semibold" href="/#about">
           About
         </Link>
-        <Link className="hover:text-green-500 font-semibold" href="/pricing">
+        <Link className="hover:text-emerald-600 font-semibold" href="/pricing">
           Pricing
         </Link>
         <Link
-          className="hover:text-green-500 font-semibold"
+          className="hover:text-emerald-600 font-semibold"
           href="/planning-a-funeral"
         >
           Planning a Funeral
         </Link>
         <Link
-          className="hover:text-green-500 font-semibold"
+          className="hover:text-emerald-600 font-semibold"
           href="/home-funerals-in-tasmania"
         >
           Home Funerals in Tasmania
         </Link>
-        <Link className="hover:text-green-500 font-semibold" href="/book">
+        <Link className="hover:text-emerald-600 font-semibold" href="/book">
           Book
         </Link>
-        <Link className="hover:text-green-500 font-semibold" href="/#contact">
+        <Link className="hover:text-emerald-600 font-semibold" href="/#contact">
           Contact
         </Link>
       </div>

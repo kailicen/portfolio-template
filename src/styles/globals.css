@@ -4,16 +4,16 @@
 
 @layer components {
   .button {
-    @apply bg-green-500 
+    @apply bg-emerald-600 
     px-6 py-2  rounded-full uppercase text-sm 
         tracking-widest text-gray-100 transition-all 
-        hover:bg-green-600;
+        hover:bg-emerald-700;
   }
 
   .contactInput {
     @apply outline-none bg-gray-200 rounded-sm border-b px-6 py-4 border-gray-300
-    text-gray-500 placeholder-gray-500 transition-all focus:border-green-400/40
-     hover:border-green-400/40;
+    text-gray-500 placeholder-gray-500 transition-all focus:border-emerald-400/40
+     hover:border-emerald-400/40;
   }
 }
 

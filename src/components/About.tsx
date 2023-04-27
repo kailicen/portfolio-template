@@ -41,32 +41,39 @@ function About({}: Props) {
       className="flex flex-col relative h-screen text-left
    max-w-6xl px-10 justify-evenly mx-auto items-center scroll-smooth"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3
+        className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl 
+      2xl:text-4xl 2xl:top-36"
+      >
         About
       </h3>
 
-      <div className="absolute top-36 flex flex-col apace-y-3 md:space-y-10 px-3 md:px-10">
+      <div
+        className="absolute top-36 flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
+      2xl:top-48"
+      >
         {/* Edwin */}
         <motion.div
           variants={aboutLeftVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-row justify-start items-center space-x-5 h-64"
+          className="flex flex-row justify-start items-center space-x-5 h-64
+          2xl:h-[100px]"
         >
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 xl:w-80 xl:h-80 rounded"
+            className="w-32 h-32 md:w-60 md:h-60 2xl:w-80 2xl:h-80 rounded"
             src="/img/edwin.jpg"
             alt="Edwin"
             width={190}
             height={280}
           />
           <div
-            className="flex flex-col space-y-5 h-60 xl:h-96 text-sm md:text-base xl:text-lg p-3 rounded bg-gray-100
+            className="flex flex-col space-y-5 h-60 2xl:h-96 text-sm md:text-base 2xl:text-lg p-3 rounded bg-gray-100
           overflow-y-scroll overscroll-contain"
           >
             <p>
-              <span className="decoration-green-400 underline text-lg xl:text-xl">
+              <span className="decoration-emerald-600 underline text-lg 2xl:text-2xl">
                 Edwin Quilliam
               </span>
               , father of three, was born and bred on the North-West coast of
@@ -100,14 +107,15 @@ function About({}: Props) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-row justify-start items-center space-x-5 h-64"
+          className="flex flex-row justify-start items-center space-x-5 h-64
+          2xl:h-[100px]"
         >
           <div
-            className="flex flex-col space-y-5 h-60 xl:h-96 text-sm md:text-base xl:text-lg p-3 rounded bg-gray-100
+            className="flex flex-col space-y-5 h-60 2xl:h-96 text-sm md:text-base 2xl:text-lg p-3 rounded bg-gray-100
           overflow-y-scroll overscroll-contain"
           >
             <p>
-              <span className="decoration-green-400 underline text-lg xl:text-xl">
+              <span className="decoration-emerald-600 underline text-lg 2xl:text-2xl">
                 Rebecca Lyons
               </span>
               , mother of one, hails from the Blue Mountains in NSW. She started
@@ -140,7 +148,7 @@ function About({}: Props) {
                 <li>
                   <Link
                     href="https://ndan.com.au/"
-                    className="underline text-gray-800 hover:text-green-500"
+                    className="underline text-gray-800 hover:text-emerald-600"
                   >
                     - President of Australia&apos;s Natural Death Advocacy
                     Network
@@ -149,7 +157,7 @@ function About({}: Props) {
                 <li>
                   <Link
                     href="https://www.ahfa.org.au/"
-                    className="underline text-gray-800 hover:text-green-500"
+                    className="underline text-gray-800 hover:text-emerald-600"
                   >
                     - Chair of the Australian Home Funeral Alliance
                   </Link>
@@ -157,7 +165,7 @@ function About({}: Props) {
                 <li>
                   <Link
                     href="https://yountaboo.com/a-heartfelt-undertaking/"
-                    className="underline text-gray-800 hover:text-green-500"
+                    className="underline text-gray-800 hover:text-emerald-600"
                   >
                     - Author of A Heartfelt Undertaking
                   </Link>
@@ -166,7 +174,7 @@ function About({}: Props) {
             </p>
           </div>
           <Image
-            className="w-32 h-32 md:w-60 md:h-60 xl:w-80 xl:h-80 rounded-lg"
+            className="w-32 h-32 md:w-60 md:h-60 2xl:w-80 2xl:h-80 rounded-lg"
             src="/img/bec.jpg"
             alt="Bec"
             width={200}
