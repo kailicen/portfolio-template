@@ -164,7 +164,8 @@ function HomeFuneralsInTas({}: Props) {
         items-center justify-center"
         >
           <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg"
+            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
+            2xl:h-[400px] 2xl:w-auto"
             src="/img/home-3.jpg"
             alt="home-3"
             width={400}
