@@ -29,13 +29,12 @@ function PlanningAFuneral({}: Props) {
       </div>
       <div
         className="max-w-6xl mx-auto
-      2xl:max-w-7xl"
+      2xl:max-w-7xl md:text-base 2xl:text-lg"
       >
         {/* outer info */}
         <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-        py-5 md:pt-10 px-2 md:px-5
-        2xl:text-lg"
+          className="flex flex-col space-y-3 md:space-y-5 items-start
+        py-5 md:pt-10 px-2 md:px-5"
         >
           <p>
             One of the best things you can do when considering funeral planning
@@ -79,8 +78,11 @@ function PlanningAFuneral({}: Props) {
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
         >
-          <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base 2xl:text-lg">
-            <h2 className="text-xl md:text-2xl">
+          <div className="flex flex-col space-y-3 md:space-y-5 items-start">
+            <h2
+              className="text-xl md:text-2xl
+            2xl:text-3xl"
+            >
               <span className="decoration-emerald-400 underline">
                 FUNERAL PLANNING
               </span>{" "}
@@ -129,7 +131,7 @@ function PlanningAFuneral({}: Props) {
           />
         </div>
         <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base 2xl:text-lg
+          className="flex flex-col space-y-3 md:space-y-5 items-start
         py-5 md:pt-10 px-2 md:px-5"
         >
           <h2 className="text-lg md:text-xl">FUNERAL CHECKLIST</h2>

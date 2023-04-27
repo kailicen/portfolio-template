@@ -23,15 +23,15 @@ function HomeFuneralsInTas({}: Props) {
         </div>
       </div>
       <div
-        className="max-w-6xl mx-auto
-      2xl:max-w-7xl"
+        className="max-w-6xl mx-auto md:text-base
+      2xl:max-w-7xl 2xl:text-lg"
       >
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
         >
           <div
-            className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
+            className="flex flex-col space-y-3 md:space-y-5 items-start
           2xl:text-lg"
           >
             <h2
@@ -60,7 +60,8 @@ function HomeFuneralsInTas({}: Props) {
             </p>
           </div>
           <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg"
+            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
+            2xl:h-[400px] 2xl:w-auto"
             src="/img/home-2.jpg"
             alt="home-2"
             width={400}
@@ -104,8 +105,11 @@ function HomeFuneralsInTas({}: Props) {
           </div>
         </div>
 
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base py-3 md:py-5 px-2 md:px-5">
-          <h2 className="text-xl md:text-2xl">
+        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-5">
+          <h2
+            className="text-xl md:text-2xl
+          2xl:text-3xl"
+          >
             WHAT&apos;S INVOLVED IN A FAMILY LED HOME FUNERAL?{" "}
           </h2>
           <p>In a Home Funeral, you are in control with what happens.</p>
@@ -166,8 +170,11 @@ function HomeFuneralsInTas({}: Props) {
             width={400}
             height={400}
           />
-          <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base">
-            <h2 className="text-xl md:text-2xl">
+          <div className="flex flex-col space-y-3 md:space-y-5 items-start">
+            <h2
+              className="text-xl md:text-2xl
+            2xl:text-3xl"
+            >
               A FAMILY LED HOME FUNERAL DOESN&apos;T MEAN YOU&apos;RE ALONE!
             </h2>
             <p>
@@ -210,7 +217,7 @@ function HomeFuneralsInTas({}: Props) {
         </div>
 
         {/*  Australian Home Funeral Alliance */}
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base py-3 md:py-5 px-2 md:px-5">
+        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-5">
           <p className="font-bold italic">
             The following is taken from the Australian Home Funeral Alliance -{" "}
             <Link

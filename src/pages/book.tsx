@@ -24,16 +24,13 @@ function Book({}: Props) {
       </div>
       <div
         className="max-w-6xl mx-auto
-      2xl:max-w-7xl"
+      2xl:max-w-7xl 2xl:text-lg md:text-base"
       >
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"
         >
-          <div
-            className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-          2xl:text-lg"
-          >
+          <div className="flex flex-col space-y-3 md:space-y-5 items-start">
             <h2
               className="text-xl md:text-2xl
             2xl:text-3xl"
@@ -72,7 +69,7 @@ function Book({}: Props) {
           />
         </div>
         <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
+          className="flex flex-col space-y-3 md:space-y-5 items-start
         px-2 md:px-5"
         >
           <p>
