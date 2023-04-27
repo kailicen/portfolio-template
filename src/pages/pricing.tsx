@@ -18,7 +18,10 @@ function Pricing({}: Props) {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold tracking-[20px]">
+          <h1
+            className="text-xl md:text-4xl font-bold 
+          tracking-[20px]"
+          >
             PRICING
           </h1>
         </div>
@@ -85,12 +88,13 @@ function Pricing({}: Props) {
           </h2>
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       p-3 md:p-5"
+       p-3 md:p-5 text-base 2xl:text-lg"
           >
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
     w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
+    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden
+"
             >
               <table className="w-auto md:w-[500px]">
                 <tr>
@@ -183,7 +187,7 @@ function Pricing({}: Props) {
           </h2>
           <div
             className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       p-3 md:p-5"
+       p-3 md:p-5 text-base 2xl:text-lg"
           >
             <article
               className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
