@@ -521,7 +521,7 @@ function HomeFuneralsInTas({}: Props) {
               target="_blank"
               className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
             >
-              https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-050
+              Burial and Cremation Act 2019
             </Link>
           </p>
           <p>
@@ -530,7 +530,7 @@ function HomeFuneralsInTas({}: Props) {
               target="_blank"
               className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
             >
-              https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2015-033
+              Burial and Cremation Regulations 2015
             </Link>
           </p>
           <h2 className="text-lg md:text-xl pt-3 font-semibold">
