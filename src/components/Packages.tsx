@@ -54,11 +54,11 @@ function Packages({}: Props) {
           <p>
             We encourage families, friends and communities to be as involved in
             the care of their person, the planning and all decision making as
-            much as they are able and content to do so.
+            much as they are able and content to do.
           </p>
           <p className="hidden md:block">
-            Click the learn more button to see our prices in their individual
-            components and together as packages of services.
+            Click the &apos;learn more&apos; button to see our prices in their
+            individual components and together as packages of services.
           </p>
           <button
             onClick={() => router.push("/pricing")}

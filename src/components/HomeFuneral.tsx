@@ -52,12 +52,13 @@ function HomeFuneral({}: Props) {
             TO HOME FUNERALS?
           </h2>
           <p className="hidden md:block">
-            Choosing to spend time with a person who has died and the option of
+            Choosing to spend time with a person who has died, and the option of
             keeping their body at home allows for a home vigil. This is whether
             the person’s body is kept at home right up until the point of burial
-            or cremation or for a shorter time; even just a few hours spent with
-            your person’s body in a familiar setting can make a huge difference.
-            It provides the opportunity for a gentler approach to ‘letting go’.
+            or cremation, or for a shorter time; even just a few hours spent
+            with your person in a familiar setting can facilitate your grief
+            journey. It provides the opportunity for a gentler approach to
+            ‘letting go’.
           </p>
           <p className="block md:hidden">
             Choosing to spend time with a person who has died and the option of
@@ -65,8 +66,8 @@ function HomeFuneral({}: Props) {
             opportunity for a gentler approach to ‘letting go’.
           </p>
           <p className="hidden md:block">
-            Click the learn more button to see more about Home Funeral in
-            Tasmania.
+            Click the &apos;learn more&apos; button to see more about Home
+            Funeral in Tasmania.
           </p>
           <button
             onClick={() => router.push("/home-funerals-in-tasmania")}

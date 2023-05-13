@@ -84,10 +84,9 @@ function About({}: Props) {
               </span>
               , father of three, was born and bred on the North-West coast of
               Tasmania. A country boy at heart he worked building and farming
-              until he eventually made the move to Hobart to follow a path of
-              helping others. He studied counselling for a while and through
-              that fell into the funeral industry. That was 12 years ago and
-              where he met Bec.
+              until he eventually made the move to Hobart in 2005 to follow a
+              path of helping others. He studied counselling for a while and
+              through that fell into the funeral industry where he met Bec.
             </p>
             <p>
               Edwin is now semi-retired but still works casually and enjoys the
@@ -129,26 +128,26 @@ function About({}: Props) {
                 Rebecca Lyons
               </span>
               , mother of one, hails from the Blue Mountains in NSW. She started
-              her working career in Sydney before making the move to Tasmania 11
-              years ago. She had worked in various industries from finance to
-              real estate until she found her path into the funeral industry
-              through a set of fortuitous circumstances.
+              her working career in Sydney before making the move to Tasmania in
+              2006. She had worked in various industries from finance to real
+              estate until she found her path into the funeral industry through
+              a set of fortuitous circumstances.
             </p>
             <p>
-              She made the move out of working for the Industry early in 2017
-              and moved on to new adventures, in doing so it has provided her
+              She made the move out of working for the industry early in 2017
+              and moved on to new adventures. In doing so it has provided her
               the opportunity to advance the mission of You n’ Taboo.
             </p>
             <p>
               She trained as an End of Life Doula and then applied and was
               granted regulated business status in Tasmania to handle human
-              remains which allows her the unique position of being able to
+              remains which allows her the unique privilege of being able to
               offer additional independent funeral directing services to her
               local community.
             </p>
             <p>
               In her spare time, she enjoys reading, writing, photography,
-              camping and travel but what makes her most contented is time
+              camping and travel, but what makes her most contented is time
               together as a family. The subject of death and dying is her
               passion and she loves being out in the community raising awareness
               and promoting good honest conversations.

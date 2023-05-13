@@ -54,11 +54,12 @@ function Planning({}: Props) {
           <p>
             One of the best things you can do when considering funeral planning
             is to think about all the possibilities and write down your wishes.
-            A good place to start is by completing a wishes booklet.
+            A good place to start is by completing a Wishes Booklet.
           </p>
           <p className="hidden md:block">
-            Click the learn more button to download the booklet and see more
-            funeral planning from Natural Death Advocacy Network (NDAN).
+            Click the &apos;learn more&apos; button to download the booklet and
+            see more funeral planning from Natural Death Advocacy Network
+            (NDAN).
           </p>
           <button
             onClick={() => router.push("/planning-a-funeral")}

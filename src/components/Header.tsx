@@ -51,7 +51,7 @@ function Header({}: Props) {
         className="hidden lg:flex flex-row items-center justify-center space-x-8 
         text-lg"
       >
-        <Link className="hover:text-emerald-600 font-semibold" href="/#about">
+        <Link className="hover:text-emerald-600 font-semibold" href="/about">
           About
         </Link>
         <Link className="hover:text-emerald-600 font-semibold" href="/pricing">
@@ -72,7 +72,7 @@ function Header({}: Props) {
         <Link className="hover:text-emerald-600 font-semibold" href="/book">
           Book
         </Link>
-        <Link className="hover:text-emerald-600 font-semibold" href="/#contact">
+        <Link className="hover:text-emerald-600 font-semibold" href="/contact">
           Contact
         </Link>
       </div>
@@ -93,7 +93,7 @@ function Header({}: Props) {
         >
           <Link
             className="block py-2 px-4 hover:underline"
-            href="/#about"
+            href="/about"
             onClick={toggleMenu}
           >
             About
@@ -128,7 +128,7 @@ function Header({}: Props) {
           </Link>
           <Link
             className="block py-2 px-4 hover:underline"
-            href="/#contact"
+            href="/contact"
             onClick={toggleMenu}
           >
             Contact

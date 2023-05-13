@@ -50,18 +50,19 @@ function Pricing({}: Props) {
             </h2>
             <p>
               Our prices in their individual components and together as packages
-              of services are listed below.
+              of services are listed below. All prices are plus GST.
             </p>
             <p>
               We approach our work with the hope that we can empower and skill
               families to care for their person. We encourage families, friends
               and communities to be as involved in the care of their person, the
               planning and all decision making as much as they are able and
-              content to do so. All Packages outlined below include our
-              Professional fee component, giving you 24 hour support, the
-              initial consultation and up to three home visits (these visits are
-              not included in the cremation only option). The transport costs
-              included below encompass travel within a 50km radius of Hobart.
+              content to do. All Packages outlined below include our
+              Professional Fee component, giving you 24 hour support, the
+              initial consultation, and up to three home visits (these visits
+              are not included in the cremation only option). The transport
+              costs included below encompass travel within a 50km radius of
+              Hobart.
             </p>
             <p>
               We are happy to meet with you for an initial consultation and

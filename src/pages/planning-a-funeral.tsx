@@ -39,7 +39,7 @@ function PlanningAFuneral({}: Props) {
           <p>
             One of the best things you can do when considering funeral planning
             is to think about all the possibilities and write down your wishes.
-            A good place to start is by completing a wishes booklet.{" "}
+            A good place to start is by completing a Wishes Booklet.{" "}
             <Link
               href="/wishes-booklet.pdf"
               target="_blank"
@@ -90,8 +90,8 @@ function PlanningAFuneral({}: Props) {
             <p>
               NDAN is committed to providing you with information which will
               help in the making of informed choices regarding your funeral
-              options. From coffins, transport, celebrancy and interment we
-              endeavour to outline the options for traditional and contemporary
+              options. From coffins, transport, celebrancy and interment NDAN
+              endeavours to outline the options for traditional and contemporary
               funeral choices.
             </p>
             <p>
@@ -141,7 +141,7 @@ function PlanningAFuneral({}: Props) {
             when engaging with contemporary funeral businesses.
           </p>
           <p className="font-bold">
-            For a family-led funeral, there are some mandatory decisions or
+            For a Family-Led Funeral, there are some mandatory decisions or
             components in the process. They are as follows:
           </p>
           <ul className="list-disc pl-10">
@@ -152,17 +152,18 @@ function PlanningAFuneral({}: Props) {
             <li>Registration of death</li>
             <li>Permit for burial or cremation</li>
             <li>
-              Coffin selection – traditional hardwood, particle board, home
-              made, woven, no coffin (A body may be required to be transported
-              into a cemetery in a coffin but this does not mean it must be
-              buried or cremated in one)
+              Coffin selection – traditional hardwood, particle board, or woven,
+              including home-made. No coffin is required is the body is shrouded
+              (A body may be required to be transported into a cemetery in a
+              coffin but this does not mean it must be buried or cremated in
+              one)
             </li>
             <li>
               Transportation of coffin (A coffin will not fit into most cars but
               vans, utes with canopies or a hearse are suitable)
             </li>
             <li>
-              Pallbearers (A body is heavy and to safely transport one in a
+              Pallbearers (A body is heavy, and to safely transport one in a
               coffin/shroud will require multiple people. To lower a coffin into
               a grave will require a MINIMUM of 4 people and 1 to direct.)
             </li>
@@ -191,10 +192,6 @@ function PlanningAFuneral({}: Props) {
               yourself)
             </li>
             <li>
-              Celebrant/clergy to take the ceremony (or you can take it
-              yourself)
-            </li>
-            <li>
               Memorial sheets/signing sheets for attendees and other stationary
             </li>
             <li>Booklet/order of service/bookmark/postcard</li>
@@ -203,12 +200,7 @@ function PlanningAFuneral({}: Props) {
               Care of the body – home based or with a funeral director -
               dressing/make up/jewellery
             </li>
-            <li>
-              Care of the body – home based or with a funeral director -
-              dressing/make up/jewellery
-            </li>
             <li>Religious rites</li>
-            <li>Vigil or viewing times</li>
             <li>Vigil or viewing times</li>
             <li>Organist/pianist/singers/live music</li>
             <li>Gifts for attendees</li>
