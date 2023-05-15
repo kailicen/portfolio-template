@@ -74,11 +74,11 @@ function Contact({}: Props) {
 
   return (
     <div
-      className="h-screen w-screen md:w-auto flex relative flex-col text-center md:text-left md:flex-row
+      className="min-h-screen w-screen md:w-auto flex flex-col text-center md:text-left
     max-w-7xl px-10 mx-auto items-center justify-center"
     >
       <h3
-        className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl
+        className="mb-10 uppercase tracking-[20px] text-gray-500 text-2xl
       2xl:text-4xl 2xl:top-36"
       >
         Contact

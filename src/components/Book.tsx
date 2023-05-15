@@ -11,11 +11,11 @@ function Book({}: Props) {
 
   return (
     <div
-      className="h-screen flex relative overflow-hidden flex-col text-left md:flex-row
+      className="min-h-screen flex overflow-hidden flex-col text-left
      px-2 md:px-24 justify-evenly mx-auto items-center scroll-smooth"
     >
       <h3
-        className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl text-center
+        className="mb-5 uppercase tracking-[20px] text-gray-500 text-2xl text-center
       2xl:text-4xl 2xl:top-36"
       >
         Book
@@ -67,8 +67,6 @@ function Book({}: Props) {
           </button>
         </div>
       </motion.div>
-
-      <div className="w-full absolute top-[30%] bg-[#00FF6A]/10 left-0 h-[500px] -skew-y-12 z-0" />
     </div>
   );
 }

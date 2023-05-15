@@ -12,44 +12,43 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div
-      className="bg-white text-black h-screen snap-y snap-mandatory 
-    overflow-y-scroll overflow-x-hidden z-0"
-    >
+    <div className="min-h-screen z-0">
       <Head>
         <title>Solace - End of Life Services</title>
       </Head>
 
       <Header />
 
-      <section id="hero" className="snap-start">
-        <Hero />
-      </section>
+      <div className="flex flex-col space-y-20">
+        <section id="hero">
+          <Hero />
+        </section>
 
-      <section id="about" className="snap-center">
-        <About />
-      </section>
+        <section id="about">
+          <About />
+        </section>
 
-      {/* Pricing */}
-      <section id="packages" className="snap-center">
-        <Packages />
-      </section>
+        {/* Pricing */}
+        <section id="packages">
+          <Packages />
+        </section>
 
-      <section id="planning" className="snap-start">
-        <Planning />
-      </section>
+        <section id="planning">
+          <Planning />
+        </section>
 
-      <section id="home" className="snap-start">
-        <HomeFuneral />
-      </section>
+        <section id="home">
+          <HomeFuneral />
+        </section>
 
-      <section id="book" className="snap-start">
-        <Book />
-      </section>
+        <section id="book">
+          <Book />
+        </section>
 
-      <section id="contact" className="snap-start">
-        <Contact />
-      </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </div>
 
       <Link href="#hero">
         <div className="sticky bottom-5 mb-5 w-full cursor-pointer flex items-center justify-center">
@@ -59,7 +58,7 @@ export default function Home() {
         </div>
       </Link>
 
-      <section className="snap-start">
+      <section>
         <Footer />
       </section>
     </div>
