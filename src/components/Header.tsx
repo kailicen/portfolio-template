@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Bars3Icon } from "@heroicons/react/24/solid";
-import { useRouter } from "next/router";
 
 type Props = {};
 
 function Header({}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,14 +38,14 @@ function Header({}: Props) {
         className="flex flex-row items-center"
       >
         {/* logo */}
-        <Link href="/#hero">
-          <Image
-            src="/img/solace-white.png"
-            alt="solance logo"
-            width={100}
-            height={50}
-          />
-        </Link>
+        <Image
+          src="/img/solace-white.png"
+          alt="solance logo"
+          width={100}
+          height={50}
+          onClick={scrollToTop}
+          className="cursor-pointer"
+        />
       </motion.div>
 
       <div
