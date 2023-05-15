@@ -11,6 +11,10 @@ import Head from "next/head";
 import Link from "next/link";
 
 export default function Home() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen z-0">
       <Head>
@@ -50,13 +54,14 @@ export default function Home() {
         </section>
       </div>
 
-      <Link href="#hero">
-        <div className="sticky bottom-5 mb-5 w-full cursor-pointer flex items-center justify-center">
-          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gray-300/50 p-2 text-black font-bold">
-            Solace
-          </div>
+      <div className="sticky bottom-5 mb-5 w-full cursor-pointer flex items-center justify-center">
+        <div
+          className="flex items-center justify-center w-16 h-16 rounded-full bg-gray-300/50 p-2 text-black font-bold"
+          onClick={scrollToTop}
+        >
+          Solace
         </div>
-      </Link>
+      </div>
 
       <section>
         <Footer />
