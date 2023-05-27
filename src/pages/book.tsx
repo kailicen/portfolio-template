@@ -62,46 +62,59 @@ function Book({}: Props) {
           <Image
             className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
             2xl:h-[400px] 2xl:w-auto"
-            src="/img/book-2.jpg"
+            src="/img/book-award.jpg"
             alt="book-1"
             width={400}
             height={400}
           />
         </div>
         <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start
-        px-2 md:px-5"
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:pb-10 px-2 md:px-5
+        items-center md:items-start justify-start"
         >
-          <p>
-            Link for reviews -{" "}
-            <Link
-              href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              Goodreads
-            </Link>
-          </p>
-          <p>
-            Buy on Booktopia -{" "}
-            <Link
-              href="https://www.booktopia.com.au/a-heartfelt-undertaking-rebecca-j-lyons/book/9780645408508.html"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              Booktopia
-            </Link>
-          </p>
-          <p>
-            Buy on Amazon -{" "}
-            <Link
-              href="https://www.amazon.com.au/Heartfelt-Undertaking-Rebecca-J-Lyons/dp/0645408506/ref=sr_1_5?keywords=rebecca+lyons&sr=8-5"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              Amazon
-            </Link>
-          </p>
+          <Image
+            className="w-auto h-auto md:w-[200px] md:h-auto rounded-lg
+          2xl:h-[200px] 2xl:w-auto"
+            src="/img/book-2.jpg"
+            alt="book-1"
+            width={200}
+            height={200}
+          />
+          <div
+            className="flex flex-col space-y-3 md:space-y-5 items-start
+        px-2 md:px-5"
+          >
+            <p>
+              Link for reviews -{" "}
+              <Link
+                href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
+                target="_blank"
+                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+              >
+                Goodreads
+              </Link>
+            </p>
+            <p>
+              Buy on Booktopia -{" "}
+              <Link
+                href="https://www.booktopia.com.au/a-heartfelt-undertaking-rebecca-j-lyons/book/9780645408508.html"
+                target="_blank"
+                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+              >
+                Booktopia
+              </Link>
+            </p>
+            <p>
+              Buy on Amazon -{" "}
+              <Link
+                href="https://www.amazon.com.au/Heartfelt-Undertaking-Rebecca-J-Lyons/dp/0645408506/ref=sr_1_5?keywords=rebecca+lyons&sr=8-5"
+                target="_blank"
+                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
+              >
+                Amazon
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
       <Footer />

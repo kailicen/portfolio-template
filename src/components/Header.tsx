@@ -40,7 +40,7 @@ function Header({}: Props) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 p-5 flex justify-between ${headerBgColor}
+      className={`sticky md:fixed top-0 left-0 right-0 p-5 flex justify-between ${headerBgColor}
     mx-auto z-20 items-center`}
     >
       <motion.div
