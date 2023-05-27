@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +8,8 @@ type Props = {};
 
 function Header({}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [headerBgColor, setHeaderBgColor] = useState("");
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -16,10 +18,30 @@ function Header({}: Props) {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const threshold = 20; // Adjust this value as needed
+
+      if (scrollTop > threshold) {
+        setHeaderBgColor("bg-white");
+      } else {
+        setHeaderBgColor("bg-gray-200/80");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <header
-      className="sticky top-0 p-5 flex justify-between bg-gray-300/90 
-    mx-auto z-20 items-center shadow-md"
+      className={`fixed top-0 left-0 right-0 p-5 flex justify-between ${headerBgColor}
+    mx-auto z-20 items-center`}
     >
       <motion.div
         initial={{
@@ -38,14 +60,16 @@ function Header({}: Props) {
         className="flex flex-row items-center"
       >
         {/* logo */}
-        <Image
-          src="/img/solace-white.png"
-          alt="solance logo"
-          width={100}
-          height={50}
-          onClick={scrollToTop}
-          className="cursor-pointer"
-        />
+        <Link href="/">
+          <Image
+            src="/img/solace-white.png"
+            alt="solance logo"
+            width={100}
+            height={50}
+            onClick={scrollToTop}
+            className="cursor-pointer"
+          />
+        </Link>
       </motion.div>
 
       <div

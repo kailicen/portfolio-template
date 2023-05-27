@@ -8,7 +8,6 @@ import HomeFuneral from "@/components/HomeFuneral";
 import Packages from "@/components/Packages";
 import Planning from "@/components/Planning";
 import Head from "next/head";
-import Link from "next/link";
 
 export default function Home() {
   const scrollToTop = () => {

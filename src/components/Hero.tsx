@@ -24,7 +24,7 @@ function Hero({}: Props) {
   return (
     <div
       className="bg-hero-background bg-cover bg-center
-      h-[90vh] flex flex-col space-y-8 items-center justify-center 
+      min-h-screen flex flex-col space-y-8 items-center justify-center 
     text-center overflow-hidden"
     >
       <BackgroundCircles />

@@ -31,10 +31,7 @@ function About({}: Props) {
         items-center justify-center"
         >
           {/* Edwin */}
-          <div
-            className="flex flex-row justify-start items-center space-x-5 h-64
-          2xl:h-[100px]"
-          >
+          <div className="flex flex-row justify-start items-center space-x-5">
             <Image
               className="w-32 h-32 md:w-60 md:h-60 rounded
             2xl:w-80 2xl:h-80"
@@ -44,9 +41,8 @@ function About({}: Props) {
               height={280}
             />
             <div
-              className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
-          2xl:h-96 2xl:text-lg 2xl:p-5
-            overflow-y-scroll overscroll-contain"
+              className="flex flex-col space-y-5 text-sm md:text-base p-3 rounded bg-gray-100
+           2xl:text-lg 2xl:p-5"
             >
               <p>
                 <span
@@ -80,14 +76,10 @@ function About({}: Props) {
           </div>
 
           {/* Bec */}
-          <div
-            className="flex flex-row justify-start items-center space-x-5 h-64
-          2xl:h-[100px]"
-          >
+          <div className="flex flex-row justify-start items-center space-x-5">
             <div
-              className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
-          2xl:h-96 2xl:text-lg 2xl:p-5
-            overflow-y-scroll overscroll-contain"
+              className="flex flex-col space-y-5 text-sm md:text-base p-3 rounded bg-gray-100
+           2xl:text-lg 2xl:p-5"
             >
               <p>
                 <span
