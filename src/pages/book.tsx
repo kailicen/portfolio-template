@@ -58,6 +58,11 @@ function Book({}: Props) {
               insight into what is possible at end of life, what options are
               emerging and how they fit into an Australian context.
             </p>
+            <p>
+              Awarded a Silver Medal in the 2023 Independent Publisher Book
+              Awards in the Australia/New Zealand – Best Regional Non-Fiction
+              Category.
+            </p>
           </div>
           <Image
             className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
