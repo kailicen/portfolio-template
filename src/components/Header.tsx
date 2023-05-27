@@ -8,7 +8,7 @@ type Props = {};
 
 function Header({}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [headerBgColor, setHeaderBgColor] = useState("");
+  const [headerBgColor, setHeaderBgColor] = useState("bg-gray-200/80");
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
