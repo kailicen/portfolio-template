@@ -7,7 +7,7 @@ function Footer({}: Props) {
   return (
     <div className="flex w-full bg-gray-100 items-center justify-center py-5 px-3 mt-10">
       <div className="max-w-6xl divide-y flex flex-col space-y-3">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 items-center">
           <Image
             src="/img/footer-1.png"
             alt="footer-1"
@@ -37,7 +37,12 @@ function Footer({}: Props) {
             alt="footer-5"
             width={500}
             height={500}
-            className="col-span-2 md:col-span-1"
+          />
+          <Image
+            src="/img/footer-7.jpg"
+            alt="footer-7"
+            width={500}
+            height={500}
           />
         </div>
         <div className="py-5">
