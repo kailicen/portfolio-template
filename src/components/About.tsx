@@ -38,8 +38,8 @@ const aboutRightVariants = {
 function About({}: Props) {
   return (
     <div
-      className="flex flex-col text-left
-   max-w-6xl px-10 mx-auto items-center 
+      className="flex flex-col min-h-screen text-left
+   max-w-6xl px-10 justify-evenly mx-auto items-center 
    2xl:max-w-[80%]"
     >
       <h3
@@ -51,7 +51,7 @@ function About({}: Props) {
 
       <div
         className="flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-       2xl:justify-evenly 2xl:w-full 2xl:px-16"
+       2xl:space-y-16 2xl:w-full 2xl:px-16"
       >
         {/* Edwin */}
         <motion.div
