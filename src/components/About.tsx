@@ -59,8 +59,8 @@ function About({}: Props) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-row justify-start items-center space-x-5 h-64
-          2xl:h-[100px]"
+          className="flex flex-row justify-start items-start space-x-5 h-auto
+  2xl:h-auto"
         >
           <Image
             className="w-32 h-32 md:w-60 md:h-60 rounded
@@ -112,8 +112,8 @@ function About({}: Props) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-row justify-start items-center space-x-5 h-64
-          2xl:h-[100px]"
+          className="flex flex-row justify-start items-start space-x-5 h-auto
+  2xl:h-auto"
         >
           <div
             className="flex flex-col space-y-5 h-60 text-sm md:text-base p-3 rounded bg-gray-100
