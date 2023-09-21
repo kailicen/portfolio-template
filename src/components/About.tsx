@@ -40,7 +40,7 @@ function About({}: Props) {
     <div
       className="flex flex-col min-h-screen text-left
    max-w-6xl px-10 justify-evenly mx-auto items-center 
-   2xl:max-w-[80%]"
+   2xl:max-w-[80%] border border-blue-500"
     >
       <h3
         className="mb-10 uppercase tracking-[20px] text-gray-500 text-2xl 
@@ -51,7 +51,7 @@ function About({}: Props) {
 
       <div
         className="flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-       2xl:space-y-16 2xl:w-full 2xl:px-16"
+        border border-red-500"
       >
         {/* Edwin */}
         <motion.div
