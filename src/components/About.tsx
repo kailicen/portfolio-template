@@ -44,7 +44,7 @@ function About({}: Props) {
     >
       <h3
         className="mb-10 uppercase tracking-[20px] text-gray-500 text-2xl 
-      2xl:text-4xl 2xl:top-36"
+      2xl:text-4xl"
       >
         About
       </h3>
