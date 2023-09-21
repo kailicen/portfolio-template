@@ -49,10 +49,7 @@ function About({}: Props) {
         About
       </h3>
 
-      <div
-        className="flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-   flex-grow flex-shrink-0"
-      >
+      <div className="flex flex-col space-y-3 md:space-y-10 px-3 md:px-10 h-auto">
         {/* Edwin */}
         <motion.div
           variants={aboutLeftVariants}
