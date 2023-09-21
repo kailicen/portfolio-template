@@ -38,8 +38,8 @@ const aboutRightVariants = {
 function About({}: Props) {
   return (
     <div
-      className="flex flex-col min-h-screen text-left
-   max-w-6xl px-10 justify-evenly mx-auto items-center 
+      className="flex flex-col text-left
+   max-w-6xl px-10 mx-auto items-center 
    2xl:max-w-[80%]"
     >
       <h3

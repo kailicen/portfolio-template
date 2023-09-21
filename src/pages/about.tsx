@@ -42,7 +42,7 @@ function About({}: Props) {
             />
             <div
               className="flex flex-col space-y-5 text-sm md:text-base p-3 rounded bg-gray-100
-           2xl:text-lg 2xl:p-5"
+           2xl:text-lg 2xl:p-5 2xl:my-10"
             >
               <p>
                 <span
