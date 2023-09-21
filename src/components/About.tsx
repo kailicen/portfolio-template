@@ -51,7 +51,7 @@ function About({}: Props) {
 
       <div
         className="flex flex-col space-y-3 md:space-y-10 px-3 md:px-10
-        border border-red-500 h-auto"
+  border border-red-500 flex-grow flex-shrink-0"
       >
         {/* Edwin */}
         <motion.div
