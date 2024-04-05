@@ -56,7 +56,7 @@ function Book({}: Props) {
             huge effort and this book is the result.
           </p>
           <p className="hidden md:block">
-            Click the learn more button to know more about Bec&apos;s book.
+            Click the learn more button to read reviews about Bec&apos;s book.
           </p>
           <button
             onClick={() => router.push("/book")}

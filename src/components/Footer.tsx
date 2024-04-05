@@ -7,13 +7,13 @@ function Footer({}: Props) {
   return (
     <div className="flex w-full bg-gray-100 items-center justify-center py-5 px-3 mt-10">
       <div className="max-w-6xl divide-y flex flex-col space-y-3">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 items-center">
-          <Image
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">
+          {/* <Image
             src="/img/footer-1.png"
             alt="footer-1"
             width={300}
             height={300}
-          />
+          /> */}
           <Image
             src="/img/footer-2.jpe"
             alt="footer-2"
