@@ -102,23 +102,19 @@ function Pricing({}: Props) {
               <table className="w-auto md:w-[500px]">
                 <tr>
                   <td>Professional Service</td>
-                  <td>$1,980.00</td>
+                  <td>$1,995.00</td>
                 </tr>
                 <tr>
                   <td>Transfer Home from place of death</td>
-                  <td>$260.00</td>
+                  <td>$275.00</td>
                 </tr>
                 <tr>
-                  <td>Hire Techniice - 3 days</td>
+                  <td>Hire Techniice and/or table - 3 days</td>
                   <td>$390.00</td>
                 </tr>
                 <tr>
-                  <td>Hire Table - 3 days</td>
-                  <td>$160.00</td>
-                </tr>
-                <tr>
                   <td>Viewing in our viewing room</td>
-                  <td>$150.00</td>
+                  <td>$175.00</td>
                 </tr>
                 <tr>
                   <td>Natural Preparation (inc. shrouding)</td>
@@ -130,11 +126,11 @@ function Pricing({}: Props) {
                 </tr>
                 <tr>
                   <td>Doctors Authorisation</td>
-                  <td>$120.00</td>
+                  <td>$125.00</td>
                 </tr>
                 <tr>
                   <td>Prepare Permit, inc. Record of Death</td>
-                  <td>$75.00</td>
+                  <td>$70.00</td>
                 </tr>
               </table>
             </article>
@@ -158,23 +154,23 @@ function Pricing({}: Props) {
                 </tr>
                 <tr>
                   <td>Multimedia Production</td>
-                  <td>$215.00</td>
+                  <td>$230.00</td>
                 </tr>
                 <tr>
                   <td>Transfer to Burial/Cremation</td>
-                  <td>$260.00</td>
+                  <td>$275.00</td>
                 </tr>
                 <tr>
                   <td>Cremation</td>
-                  <td>$800.00</td>
+                  <td>$775.00</td>
                 </tr>
                 <tr>
                   <td>Shroud Carrier</td>
-                  <td>$200.00</td>
+                  <td>$210.00</td>
                 </tr>
                 <tr>
                   <td>Design of Order of Service (up to 8 pages)</td>
-                  <td>$130.00</td>
+                  <td>$150.00</td>
                 </tr>
               </table>
             </article>
@@ -204,7 +200,7 @@ function Pricing({}: Props) {
                   Cremation only Package
                 </h4>
                 <p className="font-bold text-xl md:text-2xl mt-5">
-                  $2,495.00 +GST
+                  $2,525.00 +GST
                 </p>
                 <p className="my-3">
                   Transport from home or place of death to crematorium,
@@ -230,7 +226,7 @@ function Pricing({}: Props) {
                   Cremation and Home Vigil Package
                 </h4>
                 <p className="font-bold text-xl md:text-2xl mt-5">
-                  $4,540.00 +GST
+                  $4,570.00 +GST
                 </p>
                 <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
@@ -258,7 +254,7 @@ function Pricing({}: Props) {
                   Cremation, Home Vigil and Ceremony Package
                 </h4>
                 <p className="font-bold text-xl md:text-2xl mt-5">
-                  $6,185.00 +GST
+                  $6,215.00 +GST
                 </p>
                 <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
@@ -289,7 +285,7 @@ function Pricing({}: Props) {
                   Burial and Home Vigil Package
                 </h4>
                 <p className="font-bold text-xl md:text-2xl mt-5">
-                  $4,420.00 +GST
+                  $4,450.00 +GST
                 </p>
                 <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
@@ -319,7 +315,7 @@ function Pricing({}: Props) {
                   Burial, Home Vigil and Ceremony Package
                 </h4>
                 <p className="font-bold text-xl md:text-2xl mt-5">
-                  $5,800.00 +GST
+                  $5,830.00 +GST
                 </p>
                 <p className="my-3">
                   Family supported to vigil at home, hire of Techniice and table
