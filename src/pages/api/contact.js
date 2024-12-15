@@ -31,7 +31,7 @@ const handler = async (req, res) => {
 
       // Send email using Resend
       await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL, // Your verified email/domain
+        from: process.env.RESEND_FROM_EMAIL,
         to: process.env.RESEND_TO_EMAIL, // The email where messages are sent
         subject: `Contact Form: ${subject}`,
         html,
@@ -39,7 +39,7 @@ const handler = async (req, res) => {
 
       return res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending email:", error.response?.data || error.message);
       return res.status(500).json({ message: "Failed to send email", error: error.message });
     }
   }
