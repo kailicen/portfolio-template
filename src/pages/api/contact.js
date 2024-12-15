@@ -1,4 +1,6 @@
-import { mailOptions, transporter } from "../../config/nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const CONTACT_MESSAGE_FIELDS = {
   name: "Name",
@@ -8,43 +10,41 @@ const CONTACT_MESSAGE_FIELDS = {
 };
 
 const generateEmailContent = (data) => {
-  const stringData = Object.entries(data).reduce((str, [key, val]) => {
-    return (str += `${CONTACT_MESSAGE_FIELDS[key]}:\n${val}\n\n}`);
-  }, "");
-
   const htmlData = Object.entries(data).reduce((str, [key, val]) => {
-    return (str += `<h1>${CONTACT_MESSAGE_FIELDS[key]}</h1><p>${val}</p>`);
+    return (str += `<h3>${CONTACT_MESSAGE_FIELDS[key]}:</h3><p>${val}</p>`);
   }, "");
 
-  return {
-    text: stringData,
-    html: htmlData,
-  };
+  return { html: htmlData };
 };
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const data = req.body;
-    if (!data.name || !data.email || !data.subject || !data.message) {
-      return res.status(400).json({ message: "Bad request" });
+    const { name, email, subject, message } = req.body;
+
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ message: "All fields are required." });
     }
 
     try {
-      await transporter.sendMail({
-        ...mailOptions,
-        ...generateEmailContent(data),
-        subject: data.subject,
-        html: `<p>Message: ${data.message}</p><hr><p>by ${data.name} - ${data.email}</p>`,
+      // Generate email content
+      const { html } = generateEmailContent({ name, email, subject, message });
+
+      // Send email using Resend
+      await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL, // Your verified email/domain
+        to: "kailicen226@gmail.com", // The email where messages are sent
+        subject: `Contact Form: ${subject}`,
+        html,
       });
 
-      return res.status(200).json({ success: true });
+      return res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
-      console.log(error);
-      return res.status(400).json({ message: error.message });
+      console.error("Error sending email:", error);
+      return res.status(500).json({ message: "Failed to send email", error: error.message });
     }
   }
 
-  return res.status(400).json({ message: "Bad request" });
+  return res.status(405).json({ message: "Method not allowed" });
 };
 
 export default handler;
