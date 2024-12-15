@@ -32,7 +32,7 @@ const handler = async (req, res) => {
       // Send email using Resend
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL, // Your verified email/domain
-        to: "kailicen226@gmail.com", // The email where messages are sent
+        to: process.env.RESEND_TO_EMAIL, // The email where messages are sent
         subject: `Contact Form: ${subject}`,
         html,
       });
