@@ -39,7 +39,7 @@ const handler = async (req, res) => {
 
       return res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending email:", error.message);
       return res.status(500).json({ message: "Failed to send email", error: error.message });
     }
   }
