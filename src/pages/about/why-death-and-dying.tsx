@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import Image from "next/image";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 function WhyDeathAndDying() {
   return (
@@ -215,12 +216,12 @@ function WhyDeathAndDying() {
             </p>
 
             <div className="mt-6">
-              <a
+              <Link
                 href="/community-education/education-advocacy"
                 className="inline-block rounded-lg border border-white px-6 py-3 text-sm md:text-base font-medium tracking-wide uppercase text-white transition hover:bg-white hover:text-emerald-700"
               >
                 Find out how we can help you
-              </a>
+              </Link>
             </div>
           </div>
         </div>

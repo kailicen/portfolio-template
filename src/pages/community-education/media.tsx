@@ -6,7 +6,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { GetStaticProps } from "next";
 import { getMediaAppearances, isContentfulConfigured } from "@/lib/contentful";
-import { Main } from "next/document";
 
 // Fallback media data when Contentful is not configured
 const fallbackMediaAppearances = [
