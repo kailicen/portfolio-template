@@ -17,6 +17,7 @@ function PlanningAFuneral({}: Props) {
           alt="planning-b"
           width={2300}
           height={300}
+          className="w-full h-48 md:h-80 object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
@@ -36,7 +37,7 @@ function PlanningAFuneral({}: Props) {
         {/* outer info */}
         <div
           className="flex flex-col space-y-3 md:space-y-5 items-start
-        py-5 md:pt-10 px-2 md:px-5"
+        py-5 md:pt-10 px-2 md:px-10"
         >
           <p>
             One of the best things you can do when considering funeral planning
@@ -77,7 +78,7 @@ function PlanningAFuneral({}: Props) {
         </div>
         {/* start with funeral planning: info + img */}
         <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
         items-center justify-center"
         >
           <div className="flex flex-col space-y-3 md:space-y-5 items-start">
@@ -134,7 +135,7 @@ function PlanningAFuneral({}: Props) {
         </div>
         <div
           className="flex flex-col space-y-3 md:space-y-5 items-start
-        py-5 md:pt-10 px-2 md:px-5"
+        py-5 md:pt-10 px-2 md:px-10"
         >
           <h2 className="text-lg md:text-xl">FUNERAL CHECKLIST</h2>
           <p>

@@ -3,11 +3,14 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { motion, AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import { getFAQs, isContentfulConfigured, renderRichText } from "@/lib/contentful";
+import { getFAQs, isContentfulConfigured } from "@/lib/contentful";
+import Image from "next/image";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES, Document } from "@contentful/rich-text-types";
 
 // Fallback FAQ data when Contentful is not configured
 const fallbackFAQs = [
@@ -23,77 +26,67 @@ const fallbackFAQs = [
     answer:
       "No, you do not need a traditional coffin. There are many alternatives including shrouds, wicker baskets, cardboard containers, or even a simple sheet. Coffins used for viewing at funeral homes are not reused - this is a common misconception. Each family receives a new coffin for their loved one.",
   },
-  {
-    id: "3",
-    question: "WHAT IS A NATURAL BURIAL, HOW DOES IT WORK?",
-    answer:
-      "A natural burial is an environmentally-friendly burial option where the body is returned to the earth in a way that allows for natural decomposition. This typically means no embalming, using biodegradable containers or shrouds, and burial in a natural setting that may become a conservation area.",
-  },
-  {
-    id: "4",
-    question: "WHAT CAN I DO MYSELF TOWARDS A FUNERAL?",
-    answer:
-      "You can do as much or as little as you feel comfortable with. This includes washing and dressing your loved one, keeping them at home, providing your own coffin or container, transporting them yourself, planning and conducting the ceremony, and engaging crematorium or cemetery services directly.",
-  },
-  {
-    id: "5",
-    question: "CAN I DIE AT HOME?",
-    answer:
-      "Yes, dying at home is absolutely possible with proper planning and support. Many people prefer to spend their final days in familiar surroundings with loved ones. Palliative care services can provide support to make this a comfortable and peaceful experience.",
-  },
-  {
-    id: "6",
-    question: "WHAT DO I DO WHEN MY LOVED ONE DIES?",
-    answer:
-      "There is no rush. You can take time to be with your loved one, call family and friends, and make decisions when you are ready. You are not legally required to call anyone immediately. When you are ready, you may need to have a doctor certify the death and then you can begin making arrangements.",
-  },
-  {
-    id: "7",
-    question: "WHAT DO WE DO WITH THE CHILDREN?",
-    answer:
-      "Children can be included in the death and dying process as much as the family feels is appropriate. Being honest with children about death, in age-appropriate ways, can help them process grief. Many families find that including children in saying goodbye can be healing for everyone involved.",
-  },
-  {
-    id: "8",
-    question: "WHO HAS THE FINAL SAY OVER MY END OF LIFE DECISIONS?",
-    answer:
-      "In Tasmania, you can document your wishes through an Advance Care Directive. It's important to discuss your wishes with family and appoint someone you trust to make decisions on your behalf if you become unable to do so. Having clear documentation helps ensure your wishes are respected.",
-  },
-  {
-    id: "9",
-    question: "WHEN IS THE BEST TIME TO START CONSIDERING DEATH AND DYING?",
-    answer:
-      "The best time is now, while you are healthy and able to have clear conversations. Planning ahead takes the burden off your loved ones and ensures your wishes are known and can be carried out. It's never too early to start the conversation.",
-  },
-  {
-    id: "10",
-    question: "WHAT IS A SHROUD AND CAN THEY BE USED FOR BURIALS AND CREMATIONS?",
-    answer:
-      "A shroud is a piece of cloth used to wrap the body. Shrouds can be used for both burials and cremations and are a beautiful, simple, and environmentally-friendly alternative to coffins. They can be plain or decorated, and some families choose to make their own.",
-  },
-  {
-    id: "11",
-    question: "HOW DOES ORGAN DONATION AND BODY BEQUEST WORK?",
-    answer:
-      "Organ donation is arranged through DonateLife and decisions are made at the time of death in consultation with family. Body bequest is donating your body to medical science for teaching and research. This requires registration with a specific program before death.",
-  },
-  {
-    id: "12",
-    question: "HOW DO I CONTACT YOU N' TABOO?",
-    answer:
-      "You can reach us through our contact page or email us directly. We're here to answer your questions and help you navigate the death and dying conversation in a way that feels comfortable for you.",
-  },
 ];
 
 interface FAQItem {
   id: string;
   question: string;
-  answer: string;
+  answer: string | Document | null;
 }
 
 interface Props {
   faqs: FAQItem[];
   isUsingContentful: boolean;
+}
+
+const richTextOptions = {
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (_node: any, children: ReactNode) => (
+      <p className="text-gray-600 leading-relaxed mb-4">{children}</p>
+    ),
+    [BLOCKS.UL_LIST]: (_node: any, children: ReactNode) => (
+      <ul className="list-disc pl-6 space-y-2 mb-4 text-gray-600">
+        {children}
+      </ul>
+    ),
+    [BLOCKS.OL_LIST]: (_node: any, children: ReactNode) => (
+      <ol className="list-decimal pl-6 space-y-2 mb-4 text-gray-600">
+        {children}
+      </ol>
+    ),
+    [BLOCKS.LIST_ITEM]: (_node: any, children: ReactNode) => (
+      <li>{children}</li>
+    ),
+    [BLOCKS.QUOTE]: (_node: any, children: ReactNode) => (
+      <blockquote className="border-l-4 border-emerald-600 pl-4 py-2 my-4 bg-gray-50 italic text-gray-700 rounded-r-lg">
+        {children}
+      </blockquote>
+    ),
+    [INLINES.HYPERLINK]: (node: any, children: ReactNode) => (
+      <a
+        href={node.data.uri}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-emerald-600 hover:underline"
+      >
+        {children}
+      </a>
+    ),
+  },
+};
+
+function FAQAnswer({ answer }: { answer: string | Document | null }) {
+  if (!answer) return null;
+
+  if (typeof answer === "string") {
+    return <p className="text-gray-600 leading-relaxed">{answer}</p>;
+  }
+
+  return (
+    <div className="text-gray-600">
+      {documentToReactComponents(answer, richTextOptions)}
+    </div>
+  );
 }
 
 function FAQItemComponent({
@@ -103,12 +96,12 @@ function FAQItemComponent({
   onToggle,
 }: {
   question: string;
-  answer: string;
+  answer: string | Document | null;
   isOpen: boolean;
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-gray-200 last:border-b-0">
       <button
         onClick={onToggle}
         className="w-full py-5 flex items-center justify-between text-left hover:text-emerald-600 transition-colors"
@@ -120,19 +113,19 @@ function FAQItemComponent({
           }`}
         />
       </button>
-      <AnimatePresence>
+
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <div 
-              className="pb-5 text-gray-600"
-              dangerouslySetInnerHTML={{ __html: answer }}
-            />
+            <div className="pb-5">
+              <FAQAnswer answer={answer} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -141,7 +134,7 @@ function FAQItemComponent({
 }
 
 export default function FAQ({ faqs, isUsingContentful }: Props) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <>
@@ -152,9 +145,27 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
           content="Frequently asked questions about death, dying, funerals, and your rights in Tasmania."
         />
       </Head>
+
       <Header />
-      <main className="pt-10 md:pt-28 min-h-screen bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 md:px-5">
+
+      <div className="relative">
+        <Image
+          src="/img/about-b.jpg"
+          alt="Community Education"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex justify-center items-center text-white">
+          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
+            FAQ
+          </h1>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
               { label: "Community Education", href: "/community-education" },
@@ -166,53 +177,53 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="py-10"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-              Frequently Asked Questions
-            </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mb-12">
-              We believe in open, honest conversations about death and dying.
-              Here are answers to some common questions. If you can&apos;t find
-              what you&apos;re looking for, please contact us.
-            </p>
-
-            <div className="bg-white rounded-lg shadow-sm">
-              {faqs.map((item, index) => (
-                <FAQItemComponent
-                  key={item.id}
-                  question={item.question}
-                  answer={item.answer}
-                  isOpen={openIndex === index}
-                  onToggle={() =>
-                    setOpenIndex(openIndex === index ? null : index)
-                  }
-                />
-              ))}
-            </div>
-
-            <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
-              <p className="text-gray-700 mb-4">
-                Can&apos;t find the answer you&apos;re looking for?
+            <div className="px-4 md:px-10 py-8">
+              <p className="text-lg text-gray-600 max-w-3xl mb-12">
+                We believe in open, honest conversations about death and dying.
+                Here are answers to some common questions. If you can&apos;t
+                find what you&apos;re looking for, please contact us.
               </p>
-              <Link
-                href="/contact"
-                className="inline-block px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
-              >
-                Contact Us
-              </Link>
-            </div>
 
-            {!isUsingContentful && (
-              <div className="mt-6 p-4 bg-gray-100 rounded-lg text-center">
-                <p className="text-sm text-gray-500">
-                  Showing sample content. Connect Contentful to manage FAQs dynamically.
-                </p>
+              <div className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+                {faqs.map((item, index) => (
+                  <FAQItemComponent
+                    key={item.id}
+                    question={item.question}
+                    answer={item.answer}
+                    isOpen={openIndex === index}
+                    onToggle={() =>
+                      setOpenIndex(openIndex === index ? null : index)
+                    }
+                  />
+                ))}
               </div>
-            )}
+
+              <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
+                <p className="text-gray-700 mb-4">
+                  Can&apos;t find the answer you&apos;re looking for?
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-block px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </div>
+
+              {!isUsingContentful && (
+                <div className="mt-6 p-4 bg-gray-100 rounded-lg text-center">
+                  <p className="text-sm text-gray-500">
+                    Showing sample content. Connect Contentful to manage FAQs
+                    dynamically.
+                  </p>
+                </div>
+              )}
+            </div>
           </motion.div>
         </div>
-      </main>
+      </div>
+
       <Footer />
     </>
   );
@@ -220,17 +231,18 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const isConfigured = isContentfulConfigured();
-  
+
   if (isConfigured) {
     try {
       const contentfulFAQs = await getFAQs();
+
       if (contentfulFAQs.length > 0) {
         return {
           props: {
             faqs: contentfulFAQs.map((faq) => ({
               id: faq.id,
               question: faq.question,
-              answer: faq.answer ? renderRichText(faq.answer) : "",
+              answer: faq.answer ?? null,
             })),
             isUsingContentful: true,
           },
@@ -241,8 +253,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       console.error("Error fetching from Contentful:", error);
     }
   }
-  
-  // Fallback to static data
+
   return {
     props: {
       faqs: fallbackFAQs,

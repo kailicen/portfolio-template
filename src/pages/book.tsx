@@ -83,7 +83,13 @@ function Book({}: Props) {
     <div className="bg-white text-black">
       <Header />
       <div className="relative">
-        <Image src="/img/book-b.jpg" alt="book-b" width={2300} height={300} />
+        <Image
+          src="/img/book-b.jpg"
+          alt="book-b"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1
@@ -100,7 +106,7 @@ function Book({}: Props) {
       >
         <Breadcrumb items={[{ label: "Book" }]} />
         <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
         items-center justify-center"
         >
           <div className="flex flex-col space-y-3 md:space-y-5 items-start">
@@ -147,7 +153,7 @@ function Book({}: Props) {
           />
         </div>
         <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:pb-10 px-2 md:px-5
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:pb-10 px-2 md:px-10
         items-center md:items-start justify-start"
         >
           <Image
@@ -160,7 +166,7 @@ function Book({}: Props) {
           />
           <div
             className="flex flex-col space-y-3 md:space-y-5 items-start
-        px-2 md:px-5"
+        px-2 md:px-10"
           >
             <p>
               Link for reviews -{" "}
@@ -195,7 +201,7 @@ function Book({}: Props) {
           </div>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto px-2 md:px-5 py-5">
+      <div className="max-w-6xl mx-auto px-2 md:px-10 py-5">
         <h2 className="text-2xl font-semibold my-5">Reader Reviews</h2>
         {reviews.map((review) => (
           <ReviewCard key={review.id} review={review} />

@@ -12,7 +12,13 @@ function HomeFuneralsInTas({}: Props) {
     <div className="bg-white text-black">
       <Header />
       <div className="relative">
-        <Image src="/img/home-b.jpg" alt="home-b" width={2300} height={300} />
+        <Image
+          src="/img/home-b.jpg"
+          alt="home-b"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1
@@ -29,7 +35,7 @@ function HomeFuneralsInTas({}: Props) {
       >
         <Breadcrumb items={[{ label: "Home Funerals in Tasmania" }]} />
         <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
         items-center justify-center"
         >
           <div
@@ -72,7 +78,7 @@ function HomeFuneralsInTas({}: Props) {
         </div>
 
         {/* three benefits */}
-        <div className="grid md:grid-cols-3 gap-3 px-2 md:px-5">
+        <div className="grid md:grid-cols-3 gap-3 px-2 md:px-10">
           <div className="flex flex-col space-y-3 bg-green-100 rounded-lg p-5 w-auto md:max-w-[500px]">
             <h3 className="text-lg font-semibold">EMOTIONAL EMPOWERMENT</h3>
             <p>
@@ -106,7 +112,7 @@ function HomeFuneralsInTas({}: Props) {
           </div>
         </div>
 
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-5">
+        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-10">
           <h2
             className="text-xl md:text-2xl
           2xl:text-3xl"
@@ -143,7 +149,8 @@ function HomeFuneralsInTas({}: Props) {
             Certificate and register the death with the Registry of Births,
             Deaths and Marriages, or you can ask a Funeral Director to do it for
             you. This and the Application for Search (which produces the Record
-            of Death for you) can be completed and lodged at Service Tasmania.{" "}
+            of Death for you) can be completed and lodged at Service
+            Tasmania.{" "}
           </p>
           <p>
             You will also be required to complete a Burial and Cremation Permit
@@ -160,7 +167,7 @@ function HomeFuneralsInTas({}: Props) {
         </div>
 
         <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-3 md:pb-5 px-2 md:px-5
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-3 md:pb-5 px-2 md:px-10
         items-center justify-center"
         >
           <Image
@@ -218,7 +225,7 @@ function HomeFuneralsInTas({}: Props) {
         </div>
 
         {/*  Australian Home Funeral Alliance */}
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-5">
+        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-10">
           <p className="font-bold italic">
             The following is taken from the Australian Home Funeral Alliance -{" "}
             <Link

@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^17.1.6",
+    "@contentful/rich-text-react-renderer": "^16.1.6",
+    "@contentful/rich-text-types": "^17.2.5",
     "@heroicons/react": "^2.0.17",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",

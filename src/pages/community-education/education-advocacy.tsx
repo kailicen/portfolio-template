@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   "Offer a safe space in which to talk about every aspect of death and dying",
@@ -26,27 +27,38 @@ export default function EducationAdvocacy() {
         />
       </Head>
       <Header />
-      <main className="pt-10 md:pt-28 min-h-screen bg-gray-50">
-        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
-          <Breadcrumb
-            items={[
-              { label: "Community Education", href: "/community-education" },
-              { label: "Education & Advocacy" },
-            ]}
-          />
+      <div className="relative">
+        <Image
+          src="/img/about-b.jpg"
+          alt="Community Education"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex justify-center items-center text-white">
+          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
+            EDUCATION & ADVOCACY
+          </h1>
+        </div>
+      </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="py-10"
-          >
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
-              Education & Advocacy
-            </h1>
+      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+        <Breadcrumb
+          items={[
+            { label: "Community Education", href: "/community-education" },
+            { label: "Education & Advocacy" },
+          ]}
+        />
 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="px-4 md:px-10 py-8">
             <div className="prose prose-lg max-w-none">
-              <div className="bg-white rounded-lg p-8 shadow-sm mb-8">
+              <div className="mb-8">
                 <p className="text-xl text-emerald-700 font-medium mb-6">
                   Have you ever thought, if only I knew someone to ask...?
                 </p>
@@ -66,7 +78,7 @@ export default function EducationAdvocacy() {
                 </p>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-sm mb-8">
+              <div className="mb-8">
                 <p className="text-gray-600 mb-6">
                   We will make the time to share our experiences with you and
                   discuss any questions you have, we can provide whatever
@@ -122,7 +134,7 @@ export default function EducationAdvocacy() {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-sm mb-8">
+              <div className="mb-8">
                 <p className="text-gray-600 mb-6">
                   We want everyone to know that there are alternatives out
                   there, that they don&apos;t ever have to just accept what is
@@ -148,9 +160,9 @@ export default function EducationAdvocacy() {
                 </Link>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </main>
+          </div>
+        </motion.div>
+      </div>
       <Footer />
     </>
   );

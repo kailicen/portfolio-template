@@ -46,7 +46,7 @@ function AboutIndex() {
           alt="About Solace"
           width={2300}
           height={300}
-          className="w-full h-48 md:h-64 object-cover"
+          className="w-full h-48 md:h-80 object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">

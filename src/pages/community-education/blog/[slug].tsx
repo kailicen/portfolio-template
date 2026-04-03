@@ -5,10 +5,20 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { getBlogPosts, getBlogPostBySlug, isContentfulConfigured, renderRichText } from "@/lib/contentful";
+import {
+  getBlogPosts,
+  getBlogPostBySlug,
+  isContentfulConfigured,
+} from "@/lib/contentful";
+import Image from "next/image";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 // Fallback blog data when Contentful is not configured
-const fallbackBlogPosts: Record<string, { title: string; publishedDate: string; content: string; excerpt: string }> = {
+const fallbackBlogPosts: Record<
+  string,
+  { title: string; publishedDate: string; content: string; excerpt: string }
+> = {
   "role-of-end-of-life-doula": {
     title: "The Role of The End of Life Doula in Australia",
     publishedDate: "2025-05-20",
@@ -24,7 +34,8 @@ const fallbackBlogPosts: Record<string, { title: string; publishedDate: string; 
   "reimagining-death-care": {
     title: "Reimagining Death Care for our Ageing Population",
     publishedDate: "2024-08-20",
-    excerpt: "What are the policy considerations for integrating medical and social care?",
+    excerpt:
+      "What are the policy considerations for integrating medical and social care?",
     content: `
       <h2>What are the policy considerations for integrating medical and social care?</h2>
       <p>As Australia's population ages, we face unprecedented challenges and opportunities in how we care for people at the end of their lives. The traditional model of death care—largely medicalized and institutionalized—is being questioned.</p>
@@ -35,19 +46,102 @@ const fallbackBlogPosts: Record<string, { title: string; publishedDate: string; 
   },
 };
 
+type ContentfulAsset = {
+  fields?: {
+    title?: string;
+    file?: {
+      url?: string;
+      contentType?: string;
+      fileName?: string;
+      details?: {
+        image?: {
+          width?: number;
+          height?: number;
+        };
+      };
+    };
+  };
+};
+
 interface BlogPost {
   title: string;
   publishedDate: string;
-  content: string;
   excerpt: string;
+  content: any;
+  featuredImage?: ContentfulAsset | null;
 }
 
 interface Props {
   post: BlogPost | null;
   slug: string;
+  isFallbackHtml?: boolean;
 }
 
-export default function BlogPost({ post, slug }: Props) {
+const richTextOptions = {
+  renderNode: {
+    [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
+      <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-10 mb-4">
+        {children}
+      </h2>
+    ),
+    [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
+      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mt-8 mb-4">
+        {children}
+      </h3>
+    ),
+    [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
+      <p className="text-gray-600 leading-relaxed mb-5">{children}</p>
+    ),
+    [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
+      <ul className="list-disc pl-6 space-y-2 mb-6 text-gray-600">
+        {children}
+      </ul>
+    ),
+    [BLOCKS.OL_LIST]: (_node: any, children: React.ReactNode) => (
+      <ol className="list-decimal pl-6 space-y-2 mb-6 text-gray-600">
+        {children}
+      </ol>
+    ),
+    [BLOCKS.LIST_ITEM]: (_node: any, children: React.ReactNode) => (
+      <li>{children}</li>
+    ),
+    [BLOCKS.QUOTE]: (_node: any, children: React.ReactNode) => (
+      <blockquote className="border-l-4 border-emerald-600 pl-6 py-2 my-8 italic text-gray-700 bg-gray-50 rounded-r-lg">
+        {children}
+      </blockquote>
+    ),
+    [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
+      <a
+        href={node.data.uri}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-emerald-600 hover:underline"
+      >
+        {children}
+      </a>
+    ),
+    [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+      const file = node?.data?.target?.fields?.file;
+      const title = node?.data?.target?.fields?.title || "Embedded image";
+
+      if (!file?.url) return null;
+
+      return (
+        <div className="my-8">
+          <Image
+            src={`https:${file.url}`}
+            alt={title}
+            width={1200}
+            height={700}
+            className="w-full h-auto rounded-lg object-cover"
+          />
+        </div>
+      );
+    },
+  },
+};
+
+export default function BlogPost({ post }: Props) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-AU", {
       year: "numeric",
@@ -60,7 +154,23 @@ export default function BlogPost({ post, slug }: Props) {
     return (
       <>
         <Header />
-        <main className="pt-10 md:pt-28 min-h-screen bg-gray-50">
+        <div className="relative">
+          <Image
+            src="/img/about-b.jpg"
+            alt="Community Education"
+            width={2300}
+            height={300}
+            className="w-full h-48 md:h-80 object-cover"
+          />
+          <div className="absolute inset-0 bg-black opacity-50" />
+          <div className="absolute inset-0 flex justify-center items-center text-white">
+            <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
+              BLOG
+            </h1>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
           <div className="max-w-4xl mx-auto px-4 md:px-5 py-20 text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">
               Post not found
@@ -72,7 +182,7 @@ export default function BlogPost({ post, slug }: Props) {
               Return to Blog
             </Link>
           </div>
-        </main>
+        </div>
         <Footer />
       </>
     );
@@ -84,9 +194,27 @@ export default function BlogPost({ post, slug }: Props) {
         <title>{post.title} - Solace Blog</title>
         <meta name="description" content={post.excerpt} />
       </Head>
+
       <Header />
-      <main className="pt-10 md:pt-28 min-h-screen bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 md:px-5">
+
+      <div className="relative">
+        <Image
+          src="/img/about-b.jpg"
+          alt="Community Education"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex justify-center items-center text-white">
+          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
+            BLOG
+          </h1>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
               { label: "Community Education", href: "/community-education" },
@@ -99,31 +227,79 @@ export default function BlogPost({ post, slug }: Props) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="py-10"
           >
-            <time className="text-sm text-emerald-600 font-medium">
-              {formatDate(post.publishedDate)}
-            </time>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-8">
-              {post.title}
-            </h1>
+            <div className="px-4 md:px-10 py-8">
+              <time className="text-sm text-emerald-600 font-medium">
+                {formatDate(post.publishedDate)}
+              </time>
 
-            <div
-              className="prose prose-lg max-w-none prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-emerald-600"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-8">
+                {post.title}
+              </h1>
 
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <Link
-                href="/community-education/blog"
-                className="text-emerald-600 hover:underline"
-              >
-                &larr; Back to Blog
-              </Link>
+              {(() => {
+                const file = post.featuredImage?.fields?.file;
+                const title = post.featuredImage?.fields?.title || post.title;
+                const url = file?.url ? `https:${file.url}` : null;
+                const contentType = file?.contentType || "";
+
+                if (!url) return null;
+
+                if (contentType.startsWith("image/")) {
+                  return (
+                    <div className="mb-8">
+                      <Image
+                        src={url}
+                        alt={title}
+                        width={file?.details?.image?.width || 1200}
+                        height={file?.details?.image?.height || 700}
+                        className="w-full h-auto rounded-lg object-cover"
+                      />
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
+                    <p className="text-gray-700 mb-2">
+                      Featured media: {title}
+                    </p>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-emerald-600 hover:underline"
+                    >
+                      Open file
+                    </a>
+                  </div>
+                );
+              })()}
+
+              {typeof post.content === "string" ? (
+                <div
+                  className="prose prose-lg max-w-none prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-emerald-600"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
+              ) : (
+                <div className="max-w-none">
+                  {documentToReactComponents(post.content, richTextOptions)}
+                </div>
+              )}
+
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <Link
+                  href="/community-education/blog"
+                  className="text-emerald-600 hover:underline"
+                >
+                  &larr; Back to Blog
+                </Link>
+              </div>
             </div>
           </motion.article>
         </div>
-      </main>
+      </div>
+
       <Footer />
     </>
   );
@@ -131,7 +307,7 @@ export default function BlogPost({ post, slug }: Props) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const isConfigured = isContentfulConfigured();
-  
+
   if (isConfigured) {
     try {
       const posts = await getBlogPosts();
@@ -147,8 +323,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       console.error("Error fetching paths from Contentful:", error);
     }
   }
-  
-  // Fallback paths
+
   return {
     paths: Object.keys(fallbackBlogPosts).map((slug) => ({
       params: { slug },
@@ -160,18 +335,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug as string;
   const isConfigured = isContentfulConfigured();
-  
+
   if (isConfigured) {
     try {
       const contentfulPost = await getBlogPostBySlug(slug);
+
       if (contentfulPost) {
         return {
           props: {
             post: {
               title: contentfulPost.title,
               publishedDate: contentfulPost.publishedDate,
-              content: contentfulPost.content ? renderRichText(contentfulPost.content) : "",
               excerpt: contentfulPost.excerpt,
+              content: contentfulPost.content ?? null,
+              featuredImage: contentfulPost.featuredImage ?? null,
             },
             slug,
           },
@@ -182,13 +359,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       console.error("Error fetching post from Contentful:", error);
     }
   }
-  
-  // Fallback to static data
+
   const fallbackPost = fallbackBlogPosts[slug];
-  
+
   return {
     props: {
-      post: fallbackPost || null,
+      post: fallbackPost
+        ? {
+            ...fallbackPost,
+            featuredImage: null,
+          }
+        : null,
       slug,
     },
   };

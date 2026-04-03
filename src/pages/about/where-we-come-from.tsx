@@ -9,7 +9,9 @@ function WhereWeComeFrom() {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
       <Head>
-        <title>Where Have We Come From? - About - Solace End of Life Services</title>
+        <title>
+          Where Have We Come From? - About - Solace End of Life Services
+        </title>
         <meta
           name="description"
           content="Our journey from compassion and frustration to advocacy for better death care practices in Australia."
@@ -24,7 +26,7 @@ function WhereWeComeFrom() {
           alt="About - Where We Come From"
           width={2300}
           height={300}
-          className="w-full h-48 md:h-64 object-cover"
+          className="w-full h-48 md:h-80 object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white px-4">
@@ -34,7 +36,7 @@ function WhereWeComeFrom() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto w-full 2xl:max-w-5xl flex-1">
+      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl 2xl:text-lg md:text-base flex-1">
         <Breadcrumb
           items={[
             { label: "About", href: "/about" },

@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getResources, isContentfulConfigured } from "@/lib/contentful";
+import Image from "next/image";
 
 // Fallback resources data when Contentful is not configured
 const fallbackResources = [
@@ -136,8 +137,14 @@ interface Resource {
   name: string;
   trainer?: string | null;
   location?: string | null;
-  link: string;
+  link?: string | null;
   category: string;
+  file?: {
+    url: string;
+    title?: string | null;
+    fileName?: string | null;
+    contentType?: string | null;
+  } | null;
 }
 
 interface Props {
@@ -146,10 +153,12 @@ interface Props {
 }
 
 export default function Resources({ resources, isUsingContentful }: Props) {
-  const [activeCategory, setActiveCategory] = useState("end-of-life-training");
+  const [activeCategory, setActiveCategory] = useState("australia");
 
   const categories = Object.keys(categoryLabels);
-  const activeResources = resources.filter((r) => r.category === activeCategory);
+  const activeResources = resources.filter(
+    (r) => r.category === activeCategory,
+  );
 
   return (
     <>
@@ -161,7 +170,22 @@ export default function Resources({ resources, isUsingContentful }: Props) {
         />
       </Head>
       <Header />
-      <main className="pt-10 md:pt-28 min-h-screen bg-gray-50">
+      <div className="relative">
+        <Image
+          src="/img/about-b.jpg"
+          alt="Community Education"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex justify-center items-center text-white">
+          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
+            RESOURCES
+          </h1>
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
@@ -174,93 +198,113 @@ export default function Resources({ resources, isUsingContentful }: Props) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="py-10"
+            className="px-5"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-              Resources
-            </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mb-12">
-              A curated collection of end of life training providers,
-              legislation references, and helpful tools to support your journey.
-            </p>
+            <div className="px-4 md:px-10 py-8">
+              <p className="text-lg text-gray-600 max-w-3xl mb-12">
+                A curated collection of end of life training providers,
+                legislation references, and helpful tools to support your
+                journey.
+              </p>
 
-            <div className="flex flex-col md:flex-row gap-8">
-              {/* Category Sidebar */}
-              <nav className="md:w-64 flex-shrink-0">
-                <ul className="space-y-1">
-                  {categories.map((category) => (
-                    <li key={category}>
-                      <button
-                        onClick={() => setActiveCategory(category)}
-                        className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                          activeCategory === category
-                            ? "bg-emerald-600 text-white font-medium"
-                            : "text-gray-700 hover:bg-gray-100"
-                        }`}
-                      >
-                        {categoryLabels[category]}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-
-              {/* Resources List */}
-              <div className="flex-1">
-                <div className="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
-                  {activeResources.length > 0 ? (
-                    activeResources.map((resource, index) => (
-                      <motion.div
-                        key={resource.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                        className="p-6"
-                      >
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                          {resource.name}
-                        </h3>
-                        {resource.trainer && (
-                          <p className="text-gray-600 mb-1">
-                            <span className="font-medium">Trainer:</span>{" "}
-                            {resource.trainer}
-                          </p>
-                        )}
-                        {resource.location && (
-                          <p className="text-gray-600 mb-3">
-                            <span className="font-medium">Location:</span>{" "}
-                            <em>{resource.location}</em>
-                          </p>
-                        )}
-                        <a
-                          href={resource.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-emerald-600 hover:underline"
+              <div className="flex flex-col md:flex-row gap-8">
+                {/* Category Sidebar */}
+                <nav className="md:w-64 flex-shrink-0">
+                  <ul className="space-y-1">
+                    {categories.map((category) => (
+                      <li key={category}>
+                        <button
+                          onClick={() => setActiveCategory(category)}
+                          className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
+                            activeCategory === category
+                              ? "bg-emerald-600 text-white font-medium"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
                         >
-                          {resource.link}
-                        </a>
-                      </motion.div>
-                    ))
-                  ) : (
-                    <div className="p-6 text-center text-gray-500">
-                      No resources found in this category.
-                    </div>
-                  )}
+                          {categoryLabels[category]}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+
+                {/* Resources List */}
+                <div className="flex-1">
+                  <div className="bg-gray-50 rounded-lg shadow-sm divide-y divide-gray-300 border border-gray-200">
+                    {activeResources.length > 0 ? (
+                      activeResources.map((resource, index) => (
+                        <motion.div
+                          key={resource.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
+                          className="p-6"
+                        >
+                          <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                            {resource.name}
+                          </h3>
+                          {resource.trainer && (
+                            <p className="text-gray-600 mb-1">
+                              <span className="font-medium">Trainer:</span>{" "}
+                              {resource.trainer}
+                            </p>
+                          )}
+                          {resource.location && (
+                            <p className="text-gray-600 mb-3">
+                              <span className="font-medium">Location:</span>{" "}
+                              <em>{resource.location}</em>
+                            </p>
+                          )}
+                          {resource.link ? (
+                            <a
+                              href={resource.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-emerald-600 hover:underline break-all"
+                            >
+                              {resource.link}
+                            </a>
+                          ) : resource.file?.url ? (
+                            <a
+                              href={resource.file.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-emerald-600 hover:underline"
+                            >
+                              {resource.file.contentType === "application/pdf"
+                                ? `Open PDF${resource.file.fileName ? ` - ${resource.file.fileName}` : ""}`
+                                : resource.file.title ||
+                                  resource.file.fileName ||
+                                  "Open file"}
+                            </a>
+                          ) : (
+                            <p className="text-gray-400 italic">
+                              No link or file provided
+                            </p>
+                          )}
+                        </motion.div>
+                      ))
+                    ) : (
+                      <div className="p-6 text-center text-gray-500">
+                        No resources found in this category.
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {!isUsingContentful && (
-              <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
-                <p className="text-gray-600">
-                  Showing sample content. Connect Contentful to manage resources dynamically.
-                </p>
-              </div>
-            )}
+              {!isUsingContentful && (
+                <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
+                  <p className="text-gray-600">
+                    Showing sample content. Connect Contentful to manage
+                    resources dynamically.
+                  </p>
+                </div>
+              )}
+            </div>
           </motion.div>
         </div>
-      </main>
+      </div>
       <Footer />
     </>
   );
@@ -268,7 +312,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const isConfigured = isContentfulConfigured();
-  
+
   if (isConfigured) {
     try {
       const contentfulResources = await getResources();
@@ -280,8 +324,16 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
               name: resource.name,
               trainer: resource.trainer || null,
               location: resource.location || null,
-              link: resource.link,
+              link: resource.link || null,
               category: resource.category,
+              file: resource.file?.fields?.file?.url
+                ? {
+                    url: `https:${resource.file.fields.file.url}`,
+                    title: resource.file.fields.title ?? null,
+                    fileName: resource.file.fields.file.fileName ?? null,
+                    contentType: resource.file.fields.file.contentType ?? null,
+                  }
+                : null,
             })),
             isUsingContentful: true,
           },
@@ -292,7 +344,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       console.error("Error fetching from Contentful:", error);
     }
   }
-  
+
   // Fallback to static data
   return {
     props: {

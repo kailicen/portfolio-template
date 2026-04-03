@@ -9,7 +9,9 @@ function WhyDeathAndDying() {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
       <Head>
-        <title>Why Death and Dying? - About - Solace End of Life Services</title>
+        <title>
+          Why Death and Dying? - About - Solace End of Life Services
+        </title>
         <meta
           name="description"
           content="Making the conversation about death and dying just another part of life. Learn why we are passionate about death care advocacy."
@@ -24,7 +26,7 @@ function WhyDeathAndDying() {
           alt="About - Why Death and Dying"
           width={2300}
           height={300}
-          className="w-full h-48 md:h-64 object-cover"
+          className="w-full h-48 md:h-80 object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white px-4">
@@ -34,7 +36,7 @@ function WhyDeathAndDying() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto w-full 2xl:max-w-5xl flex-1">
+      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl 2xl:text-lg md:text-base flex-1">
         <Breadcrumb
           items={[
             { label: "About", href: "/about" },
@@ -68,12 +70,13 @@ function WhyDeathAndDying() {
               transparency within the industry and the greater community
             </li>
             <li>Educating people about their rights and choices</li>
+            <li>Providing a hub of conversation, connection and information</li>
             <li>
-              Providing a hub of conversation, connection and information
+              Advocating for change in how death is thought about and handled
             </li>
-            <li>Advocating for change in how death is thought about and handled</li>
             <li>
-              Promoting natural, sustainable options of death care and management
+              Promoting natural, sustainable options of death care and
+              management
             </li>
           </ul>
 
@@ -96,7 +99,10 @@ function WhyDeathAndDying() {
             but also about the social and emotional circumstances as well.
           </p>
 
-          <p>We can have as much or as little a say as we like about things such as:</p>
+          <p>
+            We can have as much or as little a say as we like about things such
+            as:
+          </p>
 
           <ul className="list-disc pl-6 space-y-2 my-6">
             <li>
@@ -191,6 +197,33 @@ function WhyDeathAndDying() {
             standard route - or their only choice.
           </p>
         </motion.article>
+
+        <div className="px-4 md:px-10">
+          <div className="rounded-2xl bg-emerald-700 text-white px-6 py-8 md:px-10 md:py-12 shadow-sm">
+            <h3 className="text-2xl md:text-3xl font-semibold uppercase leading-tight">
+              Our aim is to hand some of that power back to families by
+              providing them with the opportunity to make truly informed
+              decisions.
+            </h3>
+
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-emerald-50 max-w-4xl">
+              What is right for you is always going to be a personal choice, and
+              if it is right for you, it is right. We are working towards
+              building our collective community knowledge base to a point where
+              people will no longer find themselves saying &quot;I wish I&apos;d
+              known that was possible...&quot;
+            </p>
+
+            <div className="mt-6">
+              <a
+                href="/community-education/education-advocacy"
+                className="inline-block rounded-lg border border-white px-6 py-3 text-sm md:text-base font-medium tracking-wide uppercase text-white transition hover:bg-white hover:text-emerald-700"
+              >
+                Find out how we can help you
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Footer />

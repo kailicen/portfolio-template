@@ -1,27 +1,33 @@
-import { createClient, Entry, EntrySkeletonType } from "contentful";
+import { createClient } from "contentful";
 
-// Initialize Contentful client
+// Main delivery client
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID || "",
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || "",
 });
 
-// Preview client for draft content
-const previewClient = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID || "",
-  accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN || "",
-  host: "preview.contentful.com",
-});
+// Lazy preview client so local dev does not explode if preview token is missing
+export const getClient = (preview = false) => {
+  if (preview) {
+    if (!process.env.CONTENTFUL_PREVIEW_TOKEN) {
+      throw new Error("Missing CONTENTFUL_PREVIEW_TOKEN");
+    }
 
-// Get the appropriate client based on preview mode
-export const getClient = (preview = false) => (preview ? previewClient : client);
+    return createClient({
+      space: process.env.CONTENTFUL_SPACE_ID || "",
+      accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
+      host: "preview.contentful.com",
+    });
+  }
 
-// Type definitions for Contentful content types
+  return client;
+};
+
 export interface BlogPostFields {
   title: string;
   slug: string;
   excerpt: string;
-  content: any; // Rich text
+  content: any;
   featuredImage?: {
     fields: {
       file: {
@@ -40,7 +46,7 @@ export interface MediaAppearanceFields {
   source: string;
   excerpt: string;
   externalUrl?: string;
-  content?: any; // Rich text
+  content?: any;
   publishedDate: string;
   featuredImage?: {
     fields: {
@@ -54,7 +60,7 @@ export interface MediaAppearanceFields {
 
 export interface FAQFields {
   question: string;
-  answer: any; // Rich text
+  answer: any;
   order: number;
   category?: string;
 }
@@ -63,23 +69,38 @@ export interface ResourceFields {
   name: string;
   trainer?: string;
   location?: string;
-  link: string;
-  description?: any; // Rich text
-  category: "australia" | "overseas" | "tasmanian-legislation" | "end-of-life-training" | "end-of-life-tools";
+  link?: string;
+  description?: any;
+  category:
+    | "australia"
+    | "overseas"
+    | "tasmanian-legislation"
+    | "end-of-life-training"
+    | "end-of-life-tools";
   order: number;
+  file?: {
+    fields: {
+      file: {
+        url: string;
+        fileName?: string;
+        contentType?: string;
+      };
+      title?: string;
+    };
+  };
 }
 
-// Fetch functions
 export async function getBlogPosts(preview = false) {
   const client = getClient(preview);
-  
+
   try {
     const entries = await client.getEntries({
       content_type: "blogPost",
       order: ["-fields.publishedDate"],
+      include: 2,
     });
-    
-    return entries.items.map((item) => ({
+
+    return entries.items.map((item: any) => ({
       ...item.fields,
       id: item.sys.id,
     })) as (BlogPostFields & { id: string })[];
@@ -91,17 +112,19 @@ export async function getBlogPosts(preview = false) {
 
 export async function getBlogPostBySlug(slug: string, preview = false) {
   const client = getClient(preview);
-  
+
   try {
     const entries = await client.getEntries({
       content_type: "blogPost",
       "fields.slug": slug,
       limit: 1,
+      include: 2,
     });
-    
+
     if (entries.items.length === 0) return null;
-    
-    const item = entries.items[0];
+
+    const item: any = entries.items[0];
+
     return {
       ...item.fields,
       id: item.sys.id,
@@ -114,14 +137,15 @@ export async function getBlogPostBySlug(slug: string, preview = false) {
 
 export async function getMediaAppearances(preview = false) {
   const client = getClient(preview);
-  
+
   try {
     const entries = await client.getEntries({
       content_type: "mediaAppearance",
       order: ["-fields.publishedDate"],
+      include: 2,
     });
-    
-    return entries.items.map((item) => ({
+
+    return entries.items.map((item: any) => ({
       ...item.fields,
       id: item.sys.id,
     })) as (MediaAppearanceFields & { id: string })[];
@@ -133,14 +157,15 @@ export async function getMediaAppearances(preview = false) {
 
 export async function getFAQs(preview = false) {
   const client = getClient(preview);
-  
+
   try {
     const entries = await client.getEntries({
       content_type: "faq",
       order: ["fields.order"],
+      include: 2,
     });
-    
-    return entries.items.map((item) => ({
+
+    return entries.items.map((item: any) => ({
       ...item.fields,
       id: item.sys.id,
     })) as (FAQFields & { id: string })[];
@@ -152,14 +177,15 @@ export async function getFAQs(preview = false) {
 
 export async function getResources(preview = false) {
   const client = getClient(preview);
-  
+
   try {
     const entries = await client.getEntries({
       content_type: "resource",
       order: ["fields.order"],
+      include: 2,
     });
-    
-    return entries.items.map((item) => ({
+
+    return entries.items.map((item: any) => ({
       ...item.fields,
       id: item.sys.id,
     })) as (ResourceFields & { id: string })[];
@@ -169,39 +195,8 @@ export async function getResources(preview = false) {
   }
 }
 
-// Helper to render rich text (basic implementation)
-export function renderRichText(document: any): string {
-  if (!document || !document.content) return "";
-  
-  return document.content
-    .map((node: any) => {
-      if (node.nodeType === "paragraph") {
-        return node.content
-          .map((child: any) => {
-            if (child.nodeType === "text") return child.value;
-            if (child.nodeType === "hyperlink") {
-              return `<a href="${child.data.uri}" class="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">${child.content.map((c: any) => c.value).join("")}</a>`;
-            }
-            return "";
-          })
-          .join("");
-      }
-      if (node.nodeType === "unordered-list") {
-        return `<ul class="list-disc pl-5 space-y-1">${node.content
-          .map((li: any) => `<li>${li.content.map((p: any) => p.content.map((c: any) => c.value || "").join("")).join("")}</li>`)
-          .join("")}</ul>`;
-      }
-      if (node.nodeType === "ordered-list") {
-        return `<ol class="list-decimal pl-5 space-y-1">${node.content
-          .map((li: any) => `<li>${li.content.map((p: any) => p.content.map((c: any) => c.value || "").join("")).join("")}</li>`)
-          .join("")}</ol>`;
-      }
-      return "";
-    })
-    .join("<br/>");
-}
-
-// Check if Contentful is configured
 export function isContentfulConfigured(): boolean {
-  return !!(process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN);
+  return !!(
+    process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN
+  );
 }

@@ -16,6 +16,7 @@ function Pricing({}: Props) {
           alt="pricing-b"
           width={2300}
           height={300}
+          className="w-full h-48 md:h-80 object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
@@ -33,7 +34,7 @@ function Pricing({}: Props) {
       >
         <Breadcrumb items={[{ label: "Pricing" }]} />
         <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
+          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
         items-center justify-center"
         >
           <div
@@ -82,7 +83,7 @@ function Pricing({}: Props) {
         </div>
         <div
           className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-        py-5 md:py-10 px-2 md:px-5"
+        py-5 md:py-10 px-2 md:px-10"
         >
           <h2 className="text-xl md:text-2xl">
             <span className="decoration-emerald-600 underline">
@@ -181,7 +182,7 @@ function Pricing({}: Props) {
 
         <div
           className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-        py-5 md:py-10 px-2 md:px-5"
+        py-5 md:py-10 px-2 md:px-10"
         >
           <h2 className="text-xl md:text-2xl">
             <span className="decoration-emerald-600 underline">PACKAGES</span>
