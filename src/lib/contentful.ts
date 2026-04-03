@@ -42,20 +42,10 @@ export interface BlogPostFields {
 
 export interface MediaAppearanceFields {
   title: string;
-  slug: string;
   source: string;
-  excerpt: string;
+  content: string;
   externalUrl?: string;
-  content?: any;
   publishedDate: string;
-  featuredImage?: {
-    fields: {
-      file: {
-        url: string;
-      };
-      title: string;
-    };
-  };
 }
 
 export interface FAQFields {

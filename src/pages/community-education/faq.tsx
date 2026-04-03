@@ -9,8 +9,7 @@ import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getFAQs, isContentfulConfigured } from "@/lib/contentful";
 import Image from "next/image";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES, Document } from "@contentful/rich-text-types";
+import RichContent from "@/components/RichContent";
 
 // Fallback FAQ data when Contentful is not configured
 const fallbackFAQs = [
@@ -31,62 +30,12 @@ const fallbackFAQs = [
 interface FAQItem {
   id: string;
   question: string;
-  answer: string | Document | null;
+  answer: string | null;
 }
 
 interface Props {
   faqs: FAQItem[];
   isUsingContentful: boolean;
-}
-
-const richTextOptions = {
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (_node: any, children: ReactNode) => (
-      <p className="text-gray-600 leading-relaxed mb-4">{children}</p>
-    ),
-    [BLOCKS.UL_LIST]: (_node: any, children: ReactNode) => (
-      <ul className="list-disc pl-6 space-y-2 mb-4 text-gray-600">
-        {children}
-      </ul>
-    ),
-    [BLOCKS.OL_LIST]: (_node: any, children: ReactNode) => (
-      <ol className="list-decimal pl-6 space-y-2 mb-4 text-gray-600">
-        {children}
-      </ol>
-    ),
-    [BLOCKS.LIST_ITEM]: (_node: any, children: ReactNode) => (
-      <li>{children}</li>
-    ),
-    [BLOCKS.QUOTE]: (_node: any, children: ReactNode) => (
-      <blockquote className="border-l-4 border-emerald-600 pl-4 py-2 my-4 bg-gray-50 italic text-gray-700 rounded-r-lg">
-        {children}
-      </blockquote>
-    ),
-    [INLINES.HYPERLINK]: (node: any, children: ReactNode) => (
-      <a
-        href={node.data.uri}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-emerald-600 hover:underline"
-      >
-        {children}
-      </a>
-    ),
-  },
-};
-
-function FAQAnswer({ answer }: { answer: string | Document | null }) {
-  if (!answer) return null;
-
-  if (typeof answer === "string") {
-    return <p className="text-gray-600 leading-relaxed">{answer}</p>;
-  }
-
-  return (
-    <div className="text-gray-600">
-      {documentToReactComponents(answer, richTextOptions)}
-    </div>
-  );
 }
 
 function FAQItemComponent({
@@ -96,7 +45,7 @@ function FAQItemComponent({
   onToggle,
 }: {
   question: string;
-  answer: string | Document | null;
+  answer: string | null;
   isOpen: boolean;
   onToggle: () => void;
 }) {
@@ -124,7 +73,7 @@ function FAQItemComponent({
             className="overflow-hidden"
           >
             <div className="pb-5">
-              <FAQAnswer answer={answer} />
+              <RichContent content={answer} variant="compact" />
             </div>
           </motion.div>
         )}

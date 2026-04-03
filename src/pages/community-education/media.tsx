@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { GetStaticProps } from "next";
 import { getMediaAppearances, isContentfulConfigured } from "@/lib/contentful";
+import RichContent from "@/components/RichContent";
 
 // Fallback media data when Contentful is not configured
 const fallbackMediaAppearances = [
@@ -15,7 +16,7 @@ const fallbackMediaAppearances = [
       "How 'death planning parties' are shifting the taboo around funeral planning",
     source: "ABC Australia News",
     publishedDate: "2024-07-16",
-    excerpt:
+    content:
       'A group of friends have gathered for a "death-planning party" to make plans for their funerals and fill out the documents together, to make it a less "daunting" experience. Organiser Dee Stokes says she wants people to be prepared so loved ones aren\'t left with all the decisions, following the "confronting and scary" task of organising her twin sister\'s funeral. Independent funeral director Bec Lyons, who provides information about funerals to the party attendees, says she is flooded with messages about people wanting a similar party.',
     externalUrl: "#",
   },
@@ -25,7 +26,7 @@ const fallbackMediaAppearances = [
       "Australia's first all-natural burial cemetery, Walawaani Way in Bodalla, aims to reforest disused farmland",
     source: "ABC News",
     publishedDate: "2024-06-27",
-    excerpt:
+    content:
       "As a part of NDAN and the advocacy work, Bec Lyons has been consulting with Fiona from Bodalla in NSW as she is setting up what looks to be the first stand alone natural burial site in Australia. She has put years of work and negotiations into this to be able to launch and Bec is heading to see it in person next month!",
     externalUrl: "#",
   },
@@ -36,7 +37,7 @@ interface MediaAppearance {
   title: string;
   source: string;
   publishedDate: string;
-  excerpt: string;
+  content: any;
   externalUrl?: string;
 }
 
@@ -125,7 +126,11 @@ export default function MediaAppearances({
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">
                       {item.title}
                     </h2>
-                    <p className="text-gray-600 mb-4">{item.excerpt}</p>
+                    <RichContent
+                      content={item.content}
+                      className="mb-4"
+                      variant="article"
+                    />
                     {item.externalUrl && item.externalUrl !== "#" && (
                       <a
                         href={item.externalUrl}
@@ -171,7 +176,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
               title: item.title,
               source: item.source,
               publishedDate: item.publishedDate,
-              excerpt: item.excerpt,
+              content: item.content,
               externalUrl: item.externalUrl || undefined,
             })),
             isUsingContentful: true,

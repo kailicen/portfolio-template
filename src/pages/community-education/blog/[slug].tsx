@@ -11,8 +11,7 @@ import {
   isContentfulConfigured,
 } from "@/lib/contentful";
 import Image from "next/image";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import RichContent from "@/components/RichContent";
 
 // Fallback blog data when Contentful is not configured
 const fallbackBlogPosts: Record<
@@ -76,70 +75,6 @@ interface Props {
   slug: string;
   isFallbackHtml?: boolean;
 }
-
-const richTextOptions = {
-  renderNode: {
-    [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
-      <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-10 mb-4">
-        {children}
-      </h2>
-    ),
-    [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
-      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mt-8 mb-4">
-        {children}
-      </h3>
-    ),
-    [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-      <p className="text-gray-600 leading-relaxed mb-5">{children}</p>
-    ),
-    [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
-      <ul className="list-disc pl-6 space-y-2 mb-6 text-gray-600">
-        {children}
-      </ul>
-    ),
-    [BLOCKS.OL_LIST]: (_node: any, children: React.ReactNode) => (
-      <ol className="list-decimal pl-6 space-y-2 mb-6 text-gray-600">
-        {children}
-      </ol>
-    ),
-    [BLOCKS.LIST_ITEM]: (_node: any, children: React.ReactNode) => (
-      <li>{children}</li>
-    ),
-    [BLOCKS.QUOTE]: (_node: any, children: React.ReactNode) => (
-      <blockquote className="border-l-4 border-emerald-600 pl-6 py-2 my-8 italic text-gray-700 bg-gray-50 rounded-r-lg">
-        {children}
-      </blockquote>
-    ),
-    [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
-      <a
-        href={node.data.uri}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-emerald-600 hover:underline"
-      >
-        {children}
-      </a>
-    ),
-    [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
-      const file = node?.data?.target?.fields?.file;
-      const title = node?.data?.target?.fields?.title || "Embedded image";
-
-      if (!file?.url) return null;
-
-      return (
-        <div className="my-8">
-          <Image
-            src={`https:${file.url}`}
-            alt={title}
-            width={1200}
-            height={700}
-            className="w-full h-auto rounded-lg object-cover"
-          />
-        </div>
-      );
-    },
-  },
-};
 
 export default function BlogPost({ post }: Props) {
   const formatDate = (dateString: string) => {
@@ -276,16 +211,7 @@ export default function BlogPost({ post }: Props) {
                 );
               })()}
 
-              {typeof post.content === "string" ? (
-                <div
-                  className="prose prose-lg max-w-none prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-emerald-600"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-              ) : (
-                <div className="max-w-none">
-                  {documentToReactComponents(post.content, richTextOptions)}
-                </div>
-              )}
+              <RichContent content={post.content} variant="article" />
 
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <Link
