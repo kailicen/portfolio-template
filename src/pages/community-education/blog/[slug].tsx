@@ -3,17 +3,16 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { getBlogPosts, getBlogPostBySlug, isContentfulConfigured, renderRichText } from "@/lib/contentful";
 
-// Sample blog data - will be replaced with Contentful integration
-const blogPosts: Record<
-  string,
-  { title: string; date: string; content: string }
-> = {
+// Fallback blog data when Contentful is not configured
+const fallbackBlogPosts: Record<string, { title: string; publishedDate: string; content: string; excerpt: string }> = {
   "role-of-end-of-life-doula": {
     title: "The Role of The End of Life Doula in Australia",
-    date: "May 20, 2025",
+    publishedDate: "2025-05-20",
+    excerpt: "Challenges and opportunities in a modern landscape.",
     content: `
       <h2>Challenges and opportunities in a modern landscape</h2>
       <p>It's time for a difficult conversation. We are good at that aren't we? This was a challenging piece to write and I imagine it will be challenging to read. Challenge isn't always bad, it is hard, but good things can come from hard conversations.</p>
@@ -24,7 +23,8 @@ const blogPosts: Record<
   },
   "reimagining-death-care": {
     title: "Reimagining Death Care for our Ageing Population",
-    date: "August 20, 2024",
+    publishedDate: "2024-08-20",
+    excerpt: "What are the policy considerations for integrating medical and social care?",
     content: `
       <h2>What are the policy considerations for integrating medical and social care?</h2>
       <p>As Australia's population ages, we face unprecedented challenges and opportunities in how we care for people at the end of their lives. The traditional model of death care—largely medicalized and institutionalized—is being questioned.</p>
@@ -35,11 +35,26 @@ const blogPosts: Record<
   },
 };
 
-export default function BlogPost() {
-  const router = useRouter();
-  const { slug } = router.query;
+interface BlogPost {
+  title: string;
+  publishedDate: string;
+  content: string;
+  excerpt: string;
+}
 
-  const post = slug ? blogPosts[slug as string] : null;
+interface Props {
+  post: BlogPost | null;
+  slug: string;
+}
+
+export default function BlogPost({ post, slug }: Props) {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-AU", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   if (!post) {
     return (
@@ -67,7 +82,7 @@ export default function BlogPost() {
     <>
       <Head>
         <title>{post.title} - Solace Blog</title>
-        <meta name="description" content={post.title} />
+        <meta name="description" content={post.excerpt} />
       </Head>
       <Header />
       <main className="pt-10 md:pt-28 min-h-screen bg-gray-50">
@@ -87,7 +102,7 @@ export default function BlogPost() {
             className="py-10"
           >
             <time className="text-sm text-emerald-600 font-medium">
-              {post.date}
+              {formatDate(post.publishedDate)}
             </time>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-8">
               {post.title}
@@ -113,3 +128,68 @@ export default function BlogPost() {
     </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const isConfigured = isContentfulConfigured();
+  
+  if (isConfigured) {
+    try {
+      const posts = await getBlogPosts();
+      if (posts.length > 0) {
+        return {
+          paths: posts.map((post) => ({
+            params: { slug: post.slug },
+          })),
+          fallback: "blocking",
+        };
+      }
+    } catch (error) {
+      console.error("Error fetching paths from Contentful:", error);
+    }
+  }
+  
+  // Fallback paths
+  return {
+    paths: Object.keys(fallbackBlogPosts).map((slug) => ({
+      params: { slug },
+    })),
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params?.slug as string;
+  const isConfigured = isContentfulConfigured();
+  
+  if (isConfigured) {
+    try {
+      const contentfulPost = await getBlogPostBySlug(slug);
+      if (contentfulPost) {
+        return {
+          props: {
+            post: {
+              title: contentfulPost.title,
+              publishedDate: contentfulPost.publishedDate,
+              content: contentfulPost.content ? renderRichText(contentfulPost.content) : "",
+              excerpt: contentfulPost.excerpt,
+            },
+            slug,
+          },
+          revalidate: 60,
+        };
+      }
+    } catch (error) {
+      console.error("Error fetching post from Contentful:", error);
+    }
+  }
+  
+  // Fallback to static data
+  const fallbackPost = fallbackBlogPosts[slug];
+  
+  return {
+    props: {
+      post: fallbackPost || null,
+      slug,
+    },
+  };
+};

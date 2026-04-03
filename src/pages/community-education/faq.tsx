@@ -6,72 +6,97 @@ import Head from "next/head";
 import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { GetStaticProps } from "next";
+import { getFAQs, isContentfulConfigured, renderRichText } from "@/lib/contentful";
 
-// Sample FAQ data - will be replaced with Contentful integration
-const faqItems = [
+// Fallback FAQ data when Contentful is not configured
+const fallbackFAQs = [
   {
+    id: "1",
     question: "DO WE NEED A FUNERAL DIRECTOR?",
     answer:
       "Short answer, No! For too long there has been an air of mystery surrounding the process of what happens when a person dies. The entire subject has become quite taboo within the western world and people no longer feel comfortable to ask the questions that they have. You can keep a person at home with you. You can wash and dress your loved one. You can provide your own coffin or container and transport your loved one to a cemetery or crematorium yourself.",
   },
   {
+    id: "2",
     question: "DO WE NEED A COFFIN AND ARE THEY REALLY REUSED?",
     answer:
       "No, you do not need a traditional coffin. There are many alternatives including shrouds, wicker baskets, cardboard containers, or even a simple sheet. Coffins used for viewing at funeral homes are not reused - this is a common misconception. Each family receives a new coffin for their loved one.",
   },
   {
+    id: "3",
     question: "WHAT IS A NATURAL BURIAL, HOW DOES IT WORK?",
     answer:
       "A natural burial is an environmentally-friendly burial option where the body is returned to the earth in a way that allows for natural decomposition. This typically means no embalming, using biodegradable containers or shrouds, and burial in a natural setting that may become a conservation area.",
   },
   {
+    id: "4",
     question: "WHAT CAN I DO MYSELF TOWARDS A FUNERAL?",
     answer:
       "You can do as much or as little as you feel comfortable with. This includes washing and dressing your loved one, keeping them at home, providing your own coffin or container, transporting them yourself, planning and conducting the ceremony, and engaging crematorium or cemetery services directly.",
   },
   {
+    id: "5",
     question: "CAN I DIE AT HOME?",
     answer:
       "Yes, dying at home is absolutely possible with proper planning and support. Many people prefer to spend their final days in familiar surroundings with loved ones. Palliative care services can provide support to make this a comfortable and peaceful experience.",
   },
   {
+    id: "6",
     question: "WHAT DO I DO WHEN MY LOVED ONE DIES?",
     answer:
       "There is no rush. You can take time to be with your loved one, call family and friends, and make decisions when you are ready. You are not legally required to call anyone immediately. When you are ready, you may need to have a doctor certify the death and then you can begin making arrangements.",
   },
   {
+    id: "7",
     question: "WHAT DO WE DO WITH THE CHILDREN?",
     answer:
       "Children can be included in the death and dying process as much as the family feels is appropriate. Being honest with children about death, in age-appropriate ways, can help them process grief. Many families find that including children in saying goodbye can be healing for everyone involved.",
   },
   {
+    id: "8",
     question: "WHO HAS THE FINAL SAY OVER MY END OF LIFE DECISIONS?",
     answer:
       "In Tasmania, you can document your wishes through an Advance Care Directive. It's important to discuss your wishes with family and appoint someone you trust to make decisions on your behalf if you become unable to do so. Having clear documentation helps ensure your wishes are respected.",
   },
   {
+    id: "9",
     question: "WHEN IS THE BEST TIME TO START CONSIDERING DEATH AND DYING?",
     answer:
       "The best time is now, while you are healthy and able to have clear conversations. Planning ahead takes the burden off your loved ones and ensures your wishes are known and can be carried out. It's never too early to start the conversation.",
   },
   {
+    id: "10",
     question: "WHAT IS A SHROUD AND CAN THEY BE USED FOR BURIALS AND CREMATIONS?",
     answer:
       "A shroud is a piece of cloth used to wrap the body. Shrouds can be used for both burials and cremations and are a beautiful, simple, and environmentally-friendly alternative to coffins. They can be plain or decorated, and some families choose to make their own.",
   },
   {
+    id: "11",
     question: "HOW DOES ORGAN DONATION AND BODY BEQUEST WORK?",
     answer:
       "Organ donation is arranged through DonateLife and decisions are made at the time of death in consultation with family. Body bequest is donating your body to medical science for teaching and research. This requires registration with a specific program before death.",
   },
   {
+    id: "12",
     question: "HOW DO I CONTACT YOU N' TABOO?",
     answer:
       "You can reach us through our contact page or email us directly. We're here to answer your questions and help you navigate the death and dying conversation in a way that feels comfortable for you.",
   },
 ];
 
-function FAQItem({
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQItem[];
+  isUsingContentful: boolean;
+}
+
+function FAQItemComponent({
   question,
   answer,
   isOpen,
@@ -104,7 +129,10 @@ function FAQItem({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-gray-600">{answer}</p>
+            <div 
+              className="pb-5 text-gray-600"
+              dangerouslySetInnerHTML={{ __html: answer }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -112,7 +140,7 @@ function FAQItem({
   );
 }
 
-export default function FAQ() {
+export default function FAQ({ faqs, isUsingContentful }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -150,9 +178,9 @@ export default function FAQ() {
             </p>
 
             <div className="bg-white rounded-lg shadow-sm">
-              {faqItems.map((item, index) => (
-                <FAQItem
-                  key={index}
+              {faqs.map((item, index) => (
+                <FAQItemComponent
+                  key={item.id}
                   question={item.question}
                   answer={item.answer}
                   isOpen={openIndex === index}
@@ -174,6 +202,14 @@ export default function FAQ() {
                 Contact Us
               </Link>
             </div>
+
+            {!isUsingContentful && (
+              <div className="mt-6 p-4 bg-gray-100 rounded-lg text-center">
+                <p className="text-sm text-gray-500">
+                  Showing sample content. Connect Contentful to manage FAQs dynamically.
+                </p>
+              </div>
+            )}
           </motion.div>
         </div>
       </main>
@@ -181,3 +217,36 @@ export default function FAQ() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const isConfigured = isContentfulConfigured();
+  
+  if (isConfigured) {
+    try {
+      const contentfulFAQs = await getFAQs();
+      if (contentfulFAQs.length > 0) {
+        return {
+          props: {
+            faqs: contentfulFAQs.map((faq) => ({
+              id: faq.id,
+              question: faq.question,
+              answer: faq.answer ? renderRichText(faq.answer) : "",
+            })),
+            isUsingContentful: true,
+          },
+          revalidate: 60,
+        };
+      }
+    } catch (error) {
+      console.error("Error fetching from Contentful:", error);
+    }
+  }
+  
+  // Fallback to static data
+  return {
+    props: {
+      faqs: fallbackFAQs,
+      isUsingContentful: false,
+    },
+  };
+};

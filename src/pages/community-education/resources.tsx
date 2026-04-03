@@ -4,142 +4,152 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { useState } from "react";
+import { GetStaticProps } from "next";
+import { getResources, isContentfulConfigured } from "@/lib/contentful";
 
-// Sample resources data - will be replaced with Contentful integration
-const resourceCategories = [
+// Fallback resources data when Contentful is not configured
+const fallbackResources = [
   {
-    id: "australia",
-    name: "Australia",
-    resources: [
-      {
-        name: "End of Life Education Centre",
-        trainer: "Belinda Brooks",
-        location: "Australia",
-        link: "https://www.endoflifetraining.com/",
-      },
-      {
-        name: "Preparing The Way",
-        trainer: "Helen Callanan",
-        location: "Australia/NZ – in person & online",
-        link: "https://preparingtheway.com.au",
-      },
-      {
-        name: "End of Life Consultant",
-        trainer: "Denise Love",
-        location: "Australia – in person & online",
-        link: "https://www.deniselove.net/about2",
-      },
-      {
-        name: "Gentle Death Education and Training",
-        trainer: "Dr Annetta Mallon",
-        location: "Australia/International – in person & online",
-        link: "https://www.gdep.com.au/trainingandworkshops",
-      },
-      {
-        name: "Death Walker",
-        trainer: "Zenith Virago",
-        location: "Australia – in person & online",
-        link: "https://www.deathwalker.com.au/",
-      },
-    ],
+    id: "1",
+    name: "End of Life Education Centre",
+    trainer: "Belinda Brooks",
+    location: "Australia",
+    link: "https://www.endoflifetraining.com/",
+    category: "australia" as const,
   },
   {
-    id: "overseas",
-    name: "Overseas",
-    resources: [
-      {
-        name: "International End of Life Doula Association",
-        trainer: "Various",
-        location: "International – online",
-        link: "https://www.inelda.org/",
-      },
-      {
-        name: "Sacred Crossings",
-        trainer: "Olivia Bareham",
-        location: "USA – in person & online",
-        link: "https://www.sacredcrossings.com/",
-      },
-    ],
+    id: "2",
+    name: "Preparing The Way",
+    trainer: "Helen Callanan",
+    location: "Australia/NZ – in person & online",
+    link: "https://preparingtheway.com.au",
+    category: "australia" as const,
   },
   {
-    id: "legislation",
-    name: "Tasmanian Legislation",
-    resources: [
-      {
-        name: "Tasmanian Legislation - Burials and Cremations",
-        trainer: null,
-        location: "Tasmania",
-        link: "https://www.legislation.tas.gov.au/",
-      },
-      {
-        name: "Department of Health Tasmania",
-        trainer: null,
-        location: "Tasmania",
-        link: "https://www.health.tas.gov.au/",
-      },
-    ],
+    id: "3",
+    name: "End of Life Consultant",
+    trainer: "Denise Love",
+    location: "Australia – in person & online",
+    link: "https://www.deniselove.net/about2",
+    category: "australia" as const,
   },
   {
-    id: "training",
-    name: "End of Life Training",
-    resources: [
-      {
-        name: "End of Life Education Centre",
-        trainer: "Belinda Brooks",
-        location: "Australia",
-        link: "https://www.endoflifetraining.com/",
-      },
-      {
-        name: "Preparing The Way",
-        trainer: "Helen Callanan",
-        location: "Australia/NZ – in person & online",
-        link: "https://preparingtheway.com.au",
-      },
-      {
-        name: "End of Life Consultant",
-        trainer: "Denise Love",
-        location: "Australia – in person & online",
-        link: "https://www.deniselove.net/about2",
-      },
-      {
-        name: "Gentle Death Education and Training",
-        trainer: "Dr Annetta Mallon",
-        location: "Australia/International – in person & online",
-        link: "https://www.gdep.com.au/trainingandworkshops",
-      },
-    ],
+    id: "4",
+    name: "Gentle Death Education and Training",
+    trainer: "Dr Annetta Mallon",
+    location: "Australia/International – in person & online",
+    link: "https://www.gdep.com.au/trainingandworkshops",
+    category: "australia" as const,
   },
   {
-    id: "tools",
-    name: "End of Life Tools",
-    resources: [
-      {
-        name: "Advance Care Planning Australia",
-        trainer: null,
-        location: "Australia",
-        link: "https://www.advancecareplanning.org.au/",
-      },
-      {
-        name: "The Groundswell Project",
-        trainer: null,
-        location: "Australia",
-        link: "https://www.thegroundswellproject.com/",
-      },
-      {
-        name: "Dying to Know Day",
-        trainer: null,
-        location: "Australia",
-        link: "https://www.dyingtoknowday.org/",
-      },
-    ],
+    id: "5",
+    name: "Death Walker",
+    trainer: "Zenith Virago",
+    location: "Australia – in person & online",
+    link: "https://www.deathwalker.com.au/",
+    category: "australia" as const,
+  },
+  {
+    id: "6",
+    name: "International End of Life Doula Association",
+    trainer: "Various",
+    location: "International – online",
+    link: "https://www.inelda.org/",
+    category: "overseas" as const,
+  },
+  {
+    id: "7",
+    name: "Sacred Crossings",
+    trainer: "Olivia Bareham",
+    location: "USA – in person & online",
+    link: "https://www.sacredcrossings.com/",
+    category: "overseas" as const,
+  },
+  {
+    id: "8",
+    name: "Tasmanian Legislation - Burials and Cremations",
+    trainer: null,
+    location: "Tasmania",
+    link: "https://www.legislation.tas.gov.au/",
+    category: "tasmanian-legislation" as const,
+  },
+  {
+    id: "9",
+    name: "Department of Health Tasmania",
+    trainer: null,
+    location: "Tasmania",
+    link: "https://www.health.tas.gov.au/",
+    category: "tasmanian-legislation" as const,
+  },
+  {
+    id: "10",
+    name: "End of Life Education Centre",
+    trainer: "Belinda Brooks",
+    location: "Australia",
+    link: "https://www.endoflifetraining.com/",
+    category: "end-of-life-training" as const,
+  },
+  {
+    id: "11",
+    name: "Preparing The Way",
+    trainer: "Helen Callanan",
+    location: "Australia/NZ – in person & online",
+    link: "https://preparingtheway.com.au",
+    category: "end-of-life-training" as const,
+  },
+  {
+    id: "12",
+    name: "Advance Care Planning Australia",
+    trainer: null,
+    location: "Australia",
+    link: "https://www.advancecareplanning.org.au/",
+    category: "end-of-life-tools" as const,
+  },
+  {
+    id: "13",
+    name: "The Groundswell Project",
+    trainer: null,
+    location: "Australia",
+    link: "https://www.thegroundswellproject.com/",
+    category: "end-of-life-tools" as const,
+  },
+  {
+    id: "14",
+    name: "Dying to Know Day",
+    trainer: null,
+    location: "Australia",
+    link: "https://www.dyingtoknowday.org/",
+    category: "end-of-life-tools" as const,
   },
 ];
 
-export default function Resources() {
-  const [activeCategory, setActiveCategory] = useState("training");
+const categoryLabels: Record<string, string> = {
+  australia: "Australia",
+  overseas: "Overseas",
+  "tasmanian-legislation": "Tasmanian Legislation",
+  "end-of-life-training": "End of Life Training",
+  "end-of-life-tools": "End of Life Tools",
+};
 
-  const activeResources =
-    resourceCategories.find((cat) => cat.id === activeCategory)?.resources || [];
+interface Resource {
+  id: string;
+  name: string;
+  trainer?: string | null;
+  location?: string | null;
+  link: string;
+  category: string;
+}
+
+interface Props {
+  resources: Resource[];
+  isUsingContentful: boolean;
+}
+
+export default function Resources({ resources, isUsingContentful }: Props) {
+  const [activeCategory, setActiveCategory] = useState("end-of-life-training");
+
+  const categories = Object.keys(categoryLabels);
+  const activeResources = resources.filter((r) => r.category === activeCategory);
 
   return (
     <>
@@ -178,17 +188,17 @@ export default function Resources() {
               {/* Category Sidebar */}
               <nav className="md:w-64 flex-shrink-0">
                 <ul className="space-y-1">
-                  {resourceCategories.map((category) => (
-                    <li key={category.id}>
+                  {categories.map((category) => (
+                    <li key={category}>
                       <button
-                        onClick={() => setActiveCategory(category.id)}
+                        onClick={() => setActiveCategory(category)}
                         className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                          activeCategory === category.id
+                          activeCategory === category
                             ? "bg-emerald-600 text-white font-medium"
                             : "text-gray-700 hover:bg-gray-100"
                         }`}
                       >
-                        {category.name}
+                        {categoryLabels[category]}
                       </button>
                     </li>
                   ))}
@@ -198,47 +208,56 @@ export default function Resources() {
               {/* Resources List */}
               <div className="flex-1">
                 <div className="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
-                  {activeResources.map((resource, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="p-6"
-                    >
-                      <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                        {resource.name}
-                      </h3>
-                      {resource.trainer && (
-                        <p className="text-gray-600 mb-1">
-                          <span className="font-medium">Trainer:</span>{" "}
-                          {resource.trainer}
-                        </p>
-                      )}
-                      <p className="text-gray-600 mb-3">
-                        <span className="font-medium">Location:</span>{" "}
-                        <em>{resource.location}</em>
-                      </p>
-                      <a
-                        href={resource.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-emerald-600 hover:underline"
+                  {activeResources.length > 0 ? (
+                    activeResources.map((resource, index) => (
+                      <motion.div
+                        key={resource.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="p-6"
                       >
-                        {resource.link}
-                      </a>
-                    </motion.div>
-                  ))}
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                          {resource.name}
+                        </h3>
+                        {resource.trainer && (
+                          <p className="text-gray-600 mb-1">
+                            <span className="font-medium">Trainer:</span>{" "}
+                            {resource.trainer}
+                          </p>
+                        )}
+                        {resource.location && (
+                          <p className="text-gray-600 mb-3">
+                            <span className="font-medium">Location:</span>{" "}
+                            <em>{resource.location}</em>
+                          </p>
+                        )}
+                        <a
+                          href={resource.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-emerald-600 hover:underline"
+                        >
+                          {resource.link}
+                        </a>
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="p-6 text-center text-gray-500">
+                      No resources found in this category.
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
-              <p className="text-gray-600">
-                More resources coming soon. Content will be managed through
-                Contentful.
-              </p>
-            </div>
+            {!isUsingContentful && (
+              <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
+                <p className="text-gray-600">
+                  Showing sample content. Connect Contentful to manage resources dynamically.
+                </p>
+              </div>
+            )}
           </motion.div>
         </div>
       </main>
@@ -246,3 +265,39 @@ export default function Resources() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const isConfigured = isContentfulConfigured();
+  
+  if (isConfigured) {
+    try {
+      const contentfulResources = await getResources();
+      if (contentfulResources.length > 0) {
+        return {
+          props: {
+            resources: contentfulResources.map((resource) => ({
+              id: resource.id,
+              name: resource.name,
+              trainer: resource.trainer || null,
+              location: resource.location || null,
+              link: resource.link,
+              category: resource.category,
+            })),
+            isUsingContentful: true,
+          },
+          revalidate: 60,
+        };
+      }
+    } catch (error) {
+      console.error("Error fetching from Contentful:", error);
+    }
+  }
+  
+  // Fallback to static data
+  return {
+    props: {
+      resources: fallbackResources,
+      isUsingContentful: false,
+    },
+  };
+};
