@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Breadcrumb from "@/components/Breadcrumb";
 import Image from "next/image";
 import React from "react";
 
@@ -30,6 +31,7 @@ function Pricing({}: Props) {
         className="max-w-6xl mx-auto
       2xl:max-w-7xl"
       >
+        <Breadcrumb items={[{ label: "Pricing" }]} />
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"

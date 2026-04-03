@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/24/solid";
 
 type Props = {};
 
+const aboutSubPages = [
+  { title: "Who Are We?", href: "/about/who-we-are" },
+  { title: "Where Have We Come From?", href: "/about/where-we-come-from" },
+  { title: "Why Death and Dying?", href: "/about/why-death-and-dying" },
+];
+
 function Header({}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
   const [headerBgColor, setHeaderBgColor] = useState("bg-gray-200/80");
 
   const scrollToTop = () => {
@@ -76,9 +84,45 @@ function Header({}: Props) {
         className="hidden lg:flex flex-row items-center justify-center space-x-8 
         text-lg"
       >
-        <Link className="hover:text-emerald-600 font-semibold" href="/about">
-          About
-        </Link>
+        {/* About Dropdown */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsAboutOpen(true)}
+          onMouseLeave={() => setIsAboutOpen(false)}
+        >
+          <Link
+            href="/about"
+            className="hover:text-emerald-600 font-semibold flex items-center gap-1"
+          >
+            About
+            <ChevronDownIcon
+              className={`w-4 h-4 transition-transform ${
+                isAboutOpen ? "rotate-180" : ""
+              }`}
+            />
+          </Link>
+          <AnimatePresence>
+            {isAboutOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-30"
+              >
+                {aboutSubPages.map((page) => (
+                  <Link
+                    key={page.href}
+                    href={page.href}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors"
+                  >
+                    {page.title}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
         <Link className="hover:text-emerald-600 font-semibold" href="/pricing">
           Pricing
         </Link>
@@ -116,13 +160,49 @@ function Header({}: Props) {
           }}
           className="absolute top-20 right-0 w-full p-4 bg-white z-20 flex flex-col items-end"
         >
-          <Link
-            className="block py-2 px-4 hover:underline"
-            href="/about"
-            onClick={toggleMenu}
-          >
-            About
-          </Link>
+          {/* Mobile About Dropdown */}
+          <div className="w-full">
+            <button
+              className="flex items-center justify-end w-full py-2 px-4 hover:underline"
+              onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
+            >
+              About
+              <ChevronDownIcon
+                className={`w-4 h-4 ml-1 transition-transform ${
+                  isMobileAboutOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <AnimatePresence>
+              {isMobileAboutOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <Link
+                    className="block py-2 px-8 text-sm text-gray-600 hover:text-emerald-600"
+                    href="/about"
+                    onClick={toggleMenu}
+                  >
+                    Overview
+                  </Link>
+                  {aboutSubPages.map((page) => (
+                    <Link
+                      key={page.href}
+                      className="block py-2 px-8 text-sm text-gray-600 hover:text-emerald-600"
+                      href={page.href}
+                      onClick={toggleMenu}
+                    >
+                      {page.title}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <Link
             className="block py-2 px-4 hover:underline"
             href="/pricing"

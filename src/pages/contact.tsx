@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import React, { useEffect, useState } from "react";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -96,6 +97,7 @@ function Contact({}: Props) {
         className="max-w-6xl mx-auto
       2xl:max-w-7xl 2xl:text-lg md:text-base"
       >
+        <Breadcrumb items={[{ label: "Contact Us" }]} />
         <div
           className="flex flex-col space-y-5 py-5 px-2
         items-center justify-center"

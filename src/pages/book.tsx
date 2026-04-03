@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 
 type Props = {};
 
@@ -97,6 +98,7 @@ function Book({}: Props) {
         className="max-w-6xl mx-auto
       2xl:max-w-7xl 2xl:text-lg md:text-base"
       >
+        <Breadcrumb items={[{ label: "Book" }]} />
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-5
         items-center justify-center"

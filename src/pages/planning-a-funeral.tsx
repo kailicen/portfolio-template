@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 
 type Props = {};
 
@@ -31,6 +32,7 @@ function PlanningAFuneral({}: Props) {
         className="max-w-6xl mx-auto
       2xl:max-w-7xl md:text-base 2xl:text-lg"
       >
+        <Breadcrumb items={[{ label: "Planning a Funeral" }]} />
         {/* outer info */}
         <div
           className="flex flex-col space-y-3 md:space-y-5 items-start
