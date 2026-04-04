@@ -71,6 +71,8 @@ interface Props {
 }
 
 export default function BlogPost({ post, slug }: Props) {
+  const [copied, setCopied] = useState(false);
+
   if (!post) {
     return (
       <>
@@ -114,8 +116,6 @@ export default function BlogPost({ post, slug }: Props) {
   const encodedUrl = encodeURIComponent(postUrl);
   const encodedTitle = encodeURIComponent(post?.title);
   const encodedExcerpt = encodeURIComponent(post?.excerpt || "");
-
-  const [copied, setCopied] = useState(false);
 
   return (
     <>
