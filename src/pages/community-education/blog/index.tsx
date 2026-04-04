@@ -6,11 +6,12 @@ import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import {
-  getBlogPosts,
+  getPaginatedBlogPosts,
   isContentfulConfigured,
-  BlogPostFields,
 } from "@/lib/contentful";
 import Image from "next/image";
+import { formatDateOnly } from "@/lib/date";
+import { useRef, useState } from "react";
 
 // Fallback blog data when Contentful is not configured
 const fallbackBlogPosts = [
@@ -41,17 +42,48 @@ interface BlogPost {
 }
 
 interface Props {
-  posts: BlogPost[];
+  initialPosts: BlogPost[];
+  totalItems: number;
   isUsingContentful: boolean;
 }
 
-export default function BlogIndex({ posts, isUsingContentful }: Props) {
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-AU", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+export default function BlogIndex({
+  initialPosts,
+  totalItems,
+  isUsingContentful,
+}: Props) {
+  const ITEMS_PER_PAGE = 10;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [posts, setPosts] = useState(initialPosts);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+  const listTopRef = useRef<HTMLDivElement | null>(null);
+
+  const goToPage = async (page: number) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `/api/blog?page=${page}&limit=${ITEMS_PER_PAGE}`,
+      );
+      const data = await response.json();
+
+      setPosts(data.items || []);
+      setCurrentPage(page);
+
+      listTopRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } catch (error) {
+      console.error("Failed to fetch blog page:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -74,8 +106,8 @@ export default function BlogIndex({ posts, isUsingContentful }: Props) {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
-            BLOG
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Blog
           </h1>
         </div>
       </div>
@@ -95,6 +127,8 @@ export default function BlogIndex({ posts, isUsingContentful }: Props) {
             transition={{ duration: 0.6 }}
           >
             <div className="px-4 md:px-10 py-8">
+              <div ref={listTopRef} />
+
               <p className="text-lg text-gray-600 max-w-3xl mb-12">
                 Insights, stories, and discussions about end of life care,
                 advocacy, and the movement to bring death and dying back into
@@ -102,6 +136,12 @@ export default function BlogIndex({ posts, isUsingContentful }: Props) {
               </p>
 
               <div className="space-y-8">
+                {isLoading && (
+                  <div className="mb-6 text-center text-gray-500">
+                    Loading...
+                  </div>
+                )}
+
                 {posts.map((post, index) => (
                   <motion.article
                     key={post.id}
@@ -112,7 +152,7 @@ export default function BlogIndex({ posts, isUsingContentful }: Props) {
                   >
                     <Link href={`/community-education/blog/${post.slug}`}>
                       <time className="text-sm text-emerald-600 font-medium">
-                        {formatDate(post.publishedDate)}
+                        {formatDateOnly(post.publishedDate)}
                       </time>
                       <h2 className="text-2xl font-semibold text-gray-800 mt-2 mb-4 hover:text-emerald-600 transition-colors">
                         {post.title}
@@ -125,6 +165,45 @@ export default function BlogIndex({ posts, isUsingContentful }: Props) {
                   </motion.article>
                 ))}
               </div>
+
+              {totalPages > 1 && (
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => goToPage(currentPage - 1)}
+                    disabled={isLoading || currentPage === 1}
+                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-emerald-500 hover:text-emerald-600 transition"
+                  >
+                    Previous
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (page) => (
+                      <button
+                        key={page}
+                        type="button"
+                        onClick={() => goToPage(page)}
+                        className={`px-4 py-2 rounded-lg border transition ${
+                          currentPage === page
+                            ? "bg-emerald-600 text-white border-emerald-600"
+                            : "bg-white text-gray-700 border-gray-300 hover:border-emerald-500 hover:text-emerald-600"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ),
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => goToPage(currentPage + 1)}
+                    disabled={isLoading || currentPage === totalPages}
+                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-emerald-500 hover:text-emerald-600 transition"
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
 
               {!isUsingContentful && (
                 <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
@@ -145,23 +224,26 @@ export default function BlogIndex({ posts, isUsingContentful }: Props) {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const isConfigured = isContentfulConfigured();
+  const ITEMS_PER_PAGE = 6;
 
   if (isConfigured) {
     try {
-      const contentfulPosts = await getBlogPosts();
-      if (contentfulPosts.length > 0) {
+      const result = await getPaginatedBlogPosts(false, 0, ITEMS_PER_PAGE);
+
+      if (result.items.length > 0) {
         return {
           props: {
-            posts: contentfulPosts.map((post) => ({
+            initialPosts: result.items.map((post) => ({
               id: post.id,
               slug: post.slug,
               title: post.title,
               publishedDate: post.publishedDate,
               excerpt: post.excerpt,
             })),
+            totalItems: result.total,
             isUsingContentful: true,
           },
-          revalidate: 60, // Revalidate every 60 seconds
+          revalidate: 60,
         };
       }
     } catch (error) {
@@ -169,10 +251,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     }
   }
 
-  // Fallback to static data
   return {
     props: {
-      posts: fallbackBlogPosts,
+      initialPosts: fallbackBlogPosts,
+      totalItems: fallbackBlogPosts.length,
       isUsingContentful: false,
     },
   };

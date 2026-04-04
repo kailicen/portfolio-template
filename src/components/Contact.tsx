@@ -78,7 +78,7 @@ function Contact({}: Props) {
     max-w-7xl px-10 mx-auto items-center justify-center"
     >
       <h3
-        className="mb-10 uppercase tracking-[20px] text-gray-500 text-2xl
+        className="mb-10 uppercase tracking-[10px] text-gray-500 text-2xl
       2xl:text-4xl 2xl:top-36"
       >
         Contact

@@ -15,7 +15,7 @@ function Packages({}: Props) {
      px-2 md:px-24 justify-evenly mx-auto items-center"
     >
       <h3
-        className="mb-5 uppercase tracking-[20px] text-gray-500 text-2xl
+        className="mb-5 uppercase tracking-[10px] text-gray-500 text-2xl
       2xl:text-4xl 2xl:top-36"
       >
         Pricing

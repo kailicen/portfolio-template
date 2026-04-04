@@ -31,8 +31,8 @@ function WhyDeathAndDying() {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white px-4">
-          <h1 className="text-xl md:text-4xl font-bold tracking-[10px] md:tracking-[20px] 2xl:text-7xl text-center">
-            WHY DEATH AND DYING?
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Why Death and Dying?
           </h1>
         </div>
       </div>

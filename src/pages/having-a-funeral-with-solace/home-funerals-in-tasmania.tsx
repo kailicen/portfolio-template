@@ -4,12 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import Head from "next/head";
 
 type Props = {};
 
 function HomeFuneralsInTas({}: Props) {
   return (
     <div className="bg-white text-black">
+      <Head>
+        <title>Home Funerals in Tasmania | Solace</title>
+        <meta
+          name="description"
+          content="Learn about family-led home funerals in Tasmania, including practical guidance, legal considerations, burial and cremation options, transport, shrouds, and paperwork."
+        />
+      </Head>
       <Header />
       <div className="relative">
         <Image
@@ -21,11 +29,8 @@ function HomeFuneralsInTas({}: Props) {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1
-            className="text-xl md:text-4xl font-bold
-          tracking-[20px] 2xl:text-7xl"
-          >
-            HOME FUNERALS IN TAS
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Home Funerals in Tas
           </h1>
         </div>
       </div>
@@ -33,7 +38,15 @@ function HomeFuneralsInTas({}: Props) {
         className="max-w-6xl mx-auto md:text-base
       2xl:max-w-7xl 2xl:text-lg"
       >
-        <Breadcrumb items={[{ label: "Home Funerals in Tasmania" }]} />
+        <Breadcrumb
+          items={[
+            {
+              label: "Having a Funeral with Solace",
+              href: "/having-a-funeral-with-solace",
+            },
+            { label: "Home Funerals in Tasmania" },
+          ]}
+        />
         <div
           className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
         items-center justify-center"

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getResources, isContentfulConfigured } from "@/lib/contentful";
 import Image from "next/image";
+import RichContent from "@/components/RichContent";
 
 // Fallback resources data when Contentful is not configured
 const fallbackResources = [
@@ -139,6 +140,7 @@ interface Resource {
   location?: string | null;
   link?: string | null;
   category: string;
+  description?: string | null;
   file?: {
     url: string;
     title?: string | null;
@@ -180,8 +182,8 @@ export default function Resources({ resources, isUsingContentful }: Props) {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl">
-            RESOURCES
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Resources
           </h1>
         </div>
       </div>
@@ -282,6 +284,12 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                               No link or file provided
                             </p>
                           )}
+                          {resource.description && (
+                            <RichContent
+                              content={resource.description}
+                              variant="compact"
+                            />
+                          )}
                         </motion.div>
                       ))
                     ) : (
@@ -326,6 +334,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
               location: resource.location || null,
               link: resource.link || null,
               category: resource.category,
+              description: resource.description || null,
               file: resource.file?.fields?.file?.url
                 ? {
                     url: `https:${resource.file.fields.file.url}`,

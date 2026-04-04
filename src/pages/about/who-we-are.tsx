@@ -29,8 +29,8 @@ function WhoWeAre() {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-xl md:text-4xl font-bold tracking-[20px] 2xl:text-7xl text-center">
-            WHO ARE WE?
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Who Are We?
           </h1>
         </div>
       </div>

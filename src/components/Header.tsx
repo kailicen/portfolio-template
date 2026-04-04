@@ -13,19 +13,35 @@ const aboutSubPages = [
 ];
 
 const educationSubPages = [
-  { title: "Education & Advocacy", href: "/community-education/education-advocacy" },
+  {
+    title: "Education & Advocacy",
+    href: "/community-education/education-advocacy",
+  },
   { title: "Blog", href: "/community-education/blog" },
   { title: "Media Appearances", href: "/community-education/media" },
   { title: "FAQ", href: "/community-education/faq" },
   { title: "Resources", href: "/community-education/resources" },
 ];
 
+const funeralSubPages = [
+  {
+    title: "Planning a Funeral",
+    href: "/having-a-funeral-with-solace/planning-a-funeral",
+  },
+  {
+    title: "Home Funerals in Tasmania",
+    href: "/having-a-funeral-with-solace/home-funerals-in-tasmania",
+  },
+];
+
 function Header({}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isEducationOpen, setIsEducationOpen] = useState(false);
+  const [isFuneralOpen, setIsFuneralOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
   const [isMobileEducationOpen, setIsMobileEducationOpen] = useState(false);
+  const [isMobileFuneralOpen, setIsMobileFuneralOpen] = useState(false);
   const [headerBgColor, setHeaderBgColor] = useState("bg-gray-200/80");
 
   const scrollToTop = () => {
@@ -58,8 +74,7 @@ function Header({}: Props) {
 
   return (
     <header
-      className={`sticky md:fixed top-0 left-0 right-0 p-5 flex justify-between ${headerBgColor}
-    mx-auto z-20 items-center`}
+      className={`sticky top-0 inset-x-0 w-full p-5 flex justify-between ${headerBgColor} z-20 items-center`}
     >
       <motion.div
         initial={{
@@ -173,23 +188,53 @@ function Header({}: Props) {
             )}
           </AnimatePresence>
         </div>
+
+        {/* Having a Funeral Dropdown */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsFuneralOpen(true)}
+          onMouseLeave={() => setIsFuneralOpen(false)}
+        >
+          <Link
+            href="/having-a-funeral-with-solace"
+            className="hover:text-emerald-600 font-semibold flex items-center gap-1"
+          >
+            Having a Funeral with Solace
+            <ChevronDownIcon
+              className={`w-4 h-4 transition-transform ${
+                isFuneralOpen ? "rotate-180" : ""
+              }`}
+            />
+          </Link>
+
+          <AnimatePresence>
+            {isFuneralOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-30"
+              >
+                {funeralSubPages.map((page) => (
+                  <Link
+                    key={page.href}
+                    href={page.href}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors"
+                  >
+                    {page.title}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
         <Link className="hover:text-emerald-600 font-semibold" href="/pricing">
           Pricing
         </Link>
-        <Link
-          className="hover:text-emerald-600 font-semibold"
-          href="/planning-a-funeral"
-        >
-          Planning a Funeral
-        </Link>
-        <Link
-          className="hover:text-emerald-600 font-semibold"
-          href="/home-funerals-in-tasmania"
-        >
-          Home Funerals in Tasmania
-        </Link>
         <Link className="hover:text-emerald-600 font-semibold" href="/book">
-          Book
+          Our Book
         </Link>
         <Link className="hover:text-emerald-600 font-semibold" href="/contact">
           Contact
@@ -208,7 +253,7 @@ function Header({}: Props) {
           animate={{
             opacity: 1,
           }}
-          className="absolute top-20 right-0 w-full p-4 bg-white z-20 flex flex-col items-end"
+          className="absolute top-20 right-0 w-full p-4 z-20 flex flex-col items-end bg-gray-100"
         >
           {/* Mobile About Dropdown */}
           <div className="w-full">
@@ -230,10 +275,10 @@ function Header({}: Props) {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="overflow-hidden"
+                  className="overflow-hidden flex flex-col items-end"
                 >
                   <Link
-                    className="block py-2 px-8 text-sm text-gray-600 hover:text-emerald-600"
+                    className="block w-full py-2 px-8 text-sm text-gray-600 hover:text-emerald-600 text-right"
                     href="/about"
                     onClick={toggleMenu}
                   >
@@ -242,7 +287,7 @@ function Header({}: Props) {
                   {aboutSubPages.map((page) => (
                     <Link
                       key={page.href}
-                      className="block py-2 px-8 text-sm text-gray-600 hover:text-emerald-600"
+                      className="block w-full py-2 px-8 text-sm text-gray-600 hover:text-emerald-600 text-right"
                       href={page.href}
                       onClick={toggleMenu}
                     >
@@ -274,10 +319,10 @@ function Header({}: Props) {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="overflow-hidden"
+                  className="overflow-hidden flex flex-col items-end"
                 >
                   <Link
-                    className="block py-2 px-8 text-sm text-gray-600 hover:text-emerald-600"
+                    className="block w-full py-2 px-8 text-sm text-gray-600 hover:text-emerald-600 text-right"
                     href="/community-education"
                     onClick={toggleMenu}
                   >
@@ -286,7 +331,7 @@ function Header({}: Props) {
                   {educationSubPages.map((page) => (
                     <Link
                       key={page.href}
-                      className="block py-2 px-8 text-sm text-gray-600 hover:text-emerald-600"
+                      className="block w-full py-2 px-8 text-sm text-gray-600 hover:text-emerald-600 text-right"
                       href={page.href}
                       onClick={toggleMenu}
                     >
@@ -297,6 +342,53 @@ function Header({}: Props) {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Mobile Having a Funeral Dropdown */}
+          <div className="w-full">
+            <button
+              className="flex items-center justify-end w-full py-2 px-4 hover:underline"
+              onClick={() => setIsMobileFuneralOpen(!isMobileFuneralOpen)}
+            >
+              Having a Funeral with Solace
+              <ChevronDownIcon
+                className={`w-4 h-4 ml-1 transition-transform ${
+                  isMobileFuneralOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            <AnimatePresence>
+              {isMobileFuneralOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden flex flex-col items-end"
+                >
+                  <Link
+                    className="block w-full py-2 px-8 text-sm text-gray-600 hover:text-emerald-600 text-right"
+                    href="/having-a-funeral-with-solace"
+                    onClick={toggleMenu}
+                  >
+                    Overview
+                  </Link>
+
+                  {funeralSubPages.map((page) => (
+                    <Link
+                      key={page.href}
+                      className="block w-full py-2 px-8 text-sm text-gray-600 hover:text-emerald-600 text-right"
+                      href={page.href}
+                      onClick={toggleMenu}
+                    >
+                      {page.title}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <Link
             className="block py-2 px-4 hover:underline"
             href="/pricing"
@@ -306,24 +398,10 @@ function Header({}: Props) {
           </Link>
           <Link
             className="block py-2 px-4 hover:underline"
-            href="/planning-a-funeral"
-            onClick={toggleMenu}
-          >
-            Planning a Funeral
-          </Link>
-          <Link
-            className="block py-2 px-4 hover:underline"
-            href="/home-funerals-in-tasmania"
-            onClick={toggleMenu}
-          >
-            Home Funerals in Tasmania
-          </Link>
-          <Link
-            className="block py-2 px-4 hover:underline"
             href="/book"
             onClick={toggleMenu}
           >
-            Book
+            Our Book
           </Link>
           <Link
             className="block py-2 px-4 hover:underline"

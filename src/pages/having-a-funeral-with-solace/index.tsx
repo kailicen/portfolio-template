@@ -6,35 +6,31 @@ import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
 
-const aboutPages = [
+const funeralPages = [
   {
-    title: "Who Are We?",
-    href: "/about/who-we-are",
+    title: "Planning a Funeral",
+    href: "/planning-a-funeral",
     description:
-      "Meet Edwin and Bec, the founders of Solace End of Life Services.",
+      "Practical funeral planning guidance, checklists, wishes resources, and information to help you make informed choices.",
   },
   {
-    title: "Where Have We Come From?",
-    href: "/about/where-we-come-from",
+    title: "Home Funerals in Tasmania",
+    href: "/home-funerals-in-tasmania",
     description:
-      "Our journey from compassion and frustration to advocacy and change.",
-  },
-  {
-    title: "Why Death and Dying?",
-    href: "/about/why-death-and-dying",
-    description:
-      "Making the conversation about death and dying just another part of life.",
+      "Learn about family-led home funerals in Tasmania, including practical guidance, options, and legal considerations.",
   },
 ];
 
-function AboutIndex() {
+function HavingAFuneralWithSolace() {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
       <Head>
-        <title>About - Solace End of Life Services</title>
+        <title>
+          Having a Funeral with Solace | Solace End of Life Services
+        </title>
         <meta
           name="description"
-          content="Learn about Solace End of Life Services, our founders Edwin and Bec, and our mission to change how we approach death and dying."
+          content="Explore funeral planning support from Solace, including planning a funeral and family-led home funerals in Tasmania."
         />
       </Head>
 
@@ -42,32 +38,33 @@ function AboutIndex() {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
-          alt="About Solace"
+          src="/img/planning-b.jpg"
+          alt="Having a Funeral with Solace"
           width={2300}
           height={300}
           className="w-full h-48 md:h-80 object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
+        <div className="absolute inset-0 flex justify-center items-center text-white px-4">
           <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            About
+            Having a Funeral with Solace
           </h1>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <Breadcrumb items={[{ label: "About" }]} />
+        <Breadcrumb items={[{ label: "Having a Funeral with Solace" }]} />
 
         <div className="px-4 md:px-10 py-8">
           <p className="text-lg text-gray-700 mb-10 max-w-3xl">
-            We come from a place of compassion, honesty, and transparency. Learn
-            more about who we are, our journey, and why we are passionate about
-            changing the conversation around death and dying.
+            Whether you are planning ahead or navigating a death right now, we
+            want to help you understand your options clearly. Explore practical
+            guidance on funeral planning and learn more about family-led home
+            funerals in Tasmania.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {aboutPages.map((page, index) => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {funeralPages.map((page, index) => (
               <motion.div
                 key={page.href}
                 initial={{ opacity: 0, y: 20 }}
@@ -94,4 +91,4 @@ function AboutIndex() {
   );
 }
 
-export default AboutIndex;
+export default HavingAFuneralWithSolace;

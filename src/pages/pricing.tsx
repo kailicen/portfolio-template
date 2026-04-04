@@ -3,12 +3,20 @@ import Header from "@/components/Header";
 import Breadcrumb from "@/components/Breadcrumb";
 import Image from "next/image";
 import React from "react";
+import Head from "next/head";
 
 type Props = {};
 
 function Pricing({}: Props) {
   return (
     <div className="bg-white text-black">
+      <Head>
+        <title>Pricing | Solace Family Led Funerals</title>
+        <meta
+          name="description"
+          content="View pricing for family led funerals in Hobart, including individual service components, cremation packages, burial packages, and home vigil options."
+        />
+      </Head>
       <Header />
       <div className="relative">
         <Image
@@ -20,11 +28,8 @@ function Pricing({}: Props) {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1
-            className="text-xl md:text-4xl font-bold 
-          tracking-[20px] 2xl:text-7xl"
-          >
-            PRICING
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Pricing
           </h1>
         </div>
       </div>

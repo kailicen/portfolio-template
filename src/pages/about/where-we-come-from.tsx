@@ -30,8 +30,8 @@ function WhereWeComeFrom() {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white px-4">
-          <h1 className="text-xl md:text-4xl font-bold tracking-[10px] md:tracking-[20px] 2xl:text-7xl text-center">
-            WHERE HAVE WE COME FROM?
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Where Have We Come From?
           </h1>
         </div>
       </div>
@@ -88,6 +88,26 @@ function WhereWeComeFrom() {
             with the knowledge available in modern society it is easier now than
             before in many ways.
           </p>
+
+          <div className="my-10">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
+              Three steps into the heart of home funeral
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Watch Rebecca Lyons&apos; TEDxHobart talk on home funerals.
+            </p>
+
+            <div className="relative w-full overflow-hidden rounded-xl shadow-lg bg-black pt-[56.25%]">
+              <iframe
+                className="absolute top-0 left-0 h-full w-full"
+                src="https://www.youtube-nocookie.com/embed/_oQz_8v52a0"
+                title="Three steps into the heart of home funeral | Rebecca Lyons | TEDxHobart"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
 
           <blockquote className="border-l-4 border-emerald-600 pl-6 py-4 my-8 bg-gray-50 rounded-r-lg">
             <p className="text-lg italic text-gray-800">

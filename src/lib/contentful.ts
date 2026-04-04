@@ -23,29 +23,39 @@ export const getClient = (preview = false) => {
   return client;
 };
 
+export type ContentfulAsset = {
+  fields?: {
+    title?: string;
+    file?: {
+      url?: string;
+      contentType?: string;
+      fileName?: string;
+      details?: {
+        image?: {
+          width?: number;
+          height?: number;
+        };
+      };
+    };
+  };
+};
+
 export interface BlogPostFields {
   title: string;
   slug: string;
   excerpt: string;
   content: any;
-  featuredImage?: {
-    fields: {
-      file: {
-        url: string;
-      };
-      title: string;
-    };
-  };
+  featuredImages?: ContentfulAsset[];
   publishedDate: string;
-  author?: string;
 }
 
 export interface MediaAppearanceFields {
   title: string;
   source: string;
-  content: string;
+  content: any;
   externalUrl?: string;
   publishedDate: string;
+  mediaFile?: ContentfulAsset;
 }
 
 export interface FAQFields {
@@ -67,7 +77,6 @@ export interface ResourceFields {
     | "tasmanian-legislation"
     | "end-of-life-training"
     | "end-of-life-tools";
-  order: number;
   file?: {
     fields: {
       file: {
@@ -100,6 +109,38 @@ export async function getBlogPosts(preview = false) {
   }
 }
 
+export async function getPaginatedBlogPosts(
+  preview = false,
+  skip = 0,
+  limit = 6,
+) {
+  const client = getClient(preview);
+
+  try {
+    const entries = await client.getEntries({
+      content_type: "blogPost",
+      order: ["-fields.publishedDate"],
+      include: 2,
+      skip,
+      limit,
+    });
+
+    return {
+      items: entries.items.map((item: any) => ({
+        ...item.fields,
+        id: item.sys.id,
+      })) as (BlogPostFields & { id: string })[],
+      total: entries.total,
+    };
+  } catch (error) {
+    console.error("Error fetching paginated blog posts:", error);
+    return {
+      items: [],
+      total: 0,
+    };
+  }
+}
+
 export async function getBlogPostBySlug(slug: string, preview = false) {
   const client = getClient(preview);
 
@@ -125,7 +166,11 @@ export async function getBlogPostBySlug(slug: string, preview = false) {
   }
 }
 
-export async function getMediaAppearances(preview = false) {
+export async function getMediaAppearances(
+  preview = false,
+  skip = 0,
+  limit = 6,
+) {
   const client = getClient(preview);
 
   try {
@@ -133,15 +178,23 @@ export async function getMediaAppearances(preview = false) {
       content_type: "mediaAppearance",
       order: ["-fields.publishedDate"],
       include: 2,
+      skip,
+      limit,
     });
 
-    return entries.items.map((item: any) => ({
-      ...item.fields,
-      id: item.sys.id,
-    })) as (MediaAppearanceFields & { id: string })[];
+    return {
+      items: entries.items.map((item: any) => ({
+        ...item.fields,
+        id: item.sys.id,
+      })) as (MediaAppearanceFields & { id: string })[],
+      total: entries.total,
+    };
   } catch (error) {
     console.error("Error fetching media appearances:", error);
-    return [];
+    return {
+      items: [],
+      total: 0,
+    };
   }
 }
 
@@ -171,7 +224,7 @@ export async function getResources(preview = false) {
   try {
     const entries = await client.getEntries({
       content_type: "resource",
-      order: ["fields.order"],
+      order: ["fields.name"],
       include: 2,
     });
 

@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import React, { useEffect, useState } from "react";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Head from "next/head";
 
 type Inputs = {
   name: string;
@@ -75,6 +76,13 @@ function Contact({}: Props) {
   }, [isSuccess]);
   return (
     <div className="bg-white text-black">
+      <Head>
+        <title>Contact Us | Solace</title>
+        <meta
+          name="description"
+          content="Contact Solace for immediate support, funeral guidance, end-of-life care assistance, or general enquiries using our contact form or phone number."
+        />
+      </Head>
       <Header />
       <div className="relative">
         <Image
@@ -86,11 +94,8 @@ function Contact({}: Props) {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1
-            className="text-xl md:text-4xl font-bold
-          tracking-[20px] 2xl:text-7xl"
-          >
-            CONTACT US
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Contact Us
           </h1>
         </div>
       </div>

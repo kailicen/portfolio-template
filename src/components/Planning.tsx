@@ -15,7 +15,7 @@ function Planning({}: Props) {
      px-2 md:px-24 justify-evenly mx-auto items-center scroll-smooth"
     >
       <h3
-        className="mb-5 uppercase tracking-[20px] text-gray-500 text-2xl text-center
+        className="mb-5 uppercase tracking-[10px] text-gray-500 text-2xl text-center
       2xl:text-4xl 2xl:top-36"
       >
         planning a funeral
@@ -62,7 +62,9 @@ function Planning({}: Props) {
             (NDAN).
           </p>
           <button
-            onClick={() => router.push("/planning-a-funeral")}
+            onClick={() =>
+              router.push("/having-a-funeral-with-solace/planning-a-funeral")
+            }
             className="button
             text-lg"
           >
