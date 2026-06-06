@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { motion, AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import { useState, ReactNode } from "react";
+import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { GetStaticProps } from "next";

@@ -1,356 +1,303 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Breadcrumb from "@/components/Breadcrumb";
+import RichContent from "@/components/RichContent";
+import {
+  getPricingComponents,
+  getPricingPackages,
+  isContentfulConfigured,
+  PricingComponentEntry,
+  PricingPackageEntry,
+} from "@/lib/contentful";
 import Image from "next/image";
-import React from "react";
 import Head from "next/head";
+import Link from "next/link";
+import type { GetStaticProps } from "next";
 
-type Props = {};
+interface PricingProps {
+  components: PricingComponentEntry[];
+  packages: PricingPackageEntry[];
+  isUsingContentful: boolean;
+}
 
-function Pricing({}: Props) {
+function formatCurrency(price: number): string {
+  return new Intl.NumberFormat("en-AU", {
+    style: "currency",
+    currency: "AUD",
+    minimumFractionDigits: 2,
+  }).format(price);
+}
+
+export default function Pricing({
+  components,
+  packages,
+  isUsingContentful,
+}: PricingProps) {
   return (
     <div className="bg-white text-black">
       <Head>
         <title>Pricing | Solace Family Led Funerals</title>
+
         <meta
           name="description"
-          content="View pricing for family led funerals in Hobart, including individual service components, cremation packages, burial packages, and home vigil options."
+          content="View pricing for family led funerals in Hobart, including individual service components, cremation packages, burial packages and home vigil options."
         />
       </Head>
+
       <Header />
-      <div className="relative">
-        <Image
-          src="/img/pricing-b.jpg"
-          alt="pricing-b"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Pricing
-          </h1>
-        </div>
-      </div>
-      <div
-        className="max-w-6xl mx-auto
-      2xl:max-w-7xl"
-      >
-        <Breadcrumb items={[{ label: "Pricing" }]} />
-        <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
-        items-center justify-center"
-        >
-          <div
-            className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-          2xl:text-lg"
-          >
-            <h2
-              className="text-xl md:text-2xl
-            2xl:text-3xl"
-            >
-              HOW MUCH DO{" "}
-              <span className="decoration-emerald-600 underline">
-                FAMILY LED HOME
-              </span>{" "}
-              FUNERALS COST?​
-            </h2>
-            <p>
-              Our prices in their individual components and together as packages
-              of services are listed below. All prices are plus GST.
-            </p>
-            <p>
-              We approach our work with the hope that we can empower and skill
-              families to care for their person. We encourage families, friends
-              and communities to be as involved in the care of their person, the
-              planning and all decision making as much as they are able and
-              content to do. All Packages outlined below include our
-              Professional Fee component, giving you 24 hour support, the
-              initial consultation, and up to three home visits (these visits
-              are not included in the cremation only option). The transport
-              costs included below encompass travel within a 50km radius of
-              Hobart.
-            </p>
-            <p>
-              We are happy to meet with you for an initial consultation and
-              create a tailored service for you.
-            </p>
-          </div>
+
+      <main>
+        <div className="relative">
           <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
-            2xl:h-[400px] 2xl:w-auto"
-            src="/img/pricing-3.jpg"
-            alt="sue-1"
-            width={400}
-            height={400}
+            src="/img/pricing-b.jpg"
+            alt="Solace funeral services"
+            width={2300}
+            height={300}
+            priority
+            className="h-48 w-full object-cover md:h-80"
           />
-        </div>
-        <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-        py-5 md:py-10 px-2 md:px-10"
-        >
-          <h2 className="text-xl md:text-2xl">
-            <span className="decoration-emerald-600 underline">
-              INDIVIDUAL COMPONENTS
-            </span>
-          </h2>
-          <div
-            className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       p-3 md:p-5 text-base 2xl:text-lg 
-       scrollbar scrollbar-h-5 scrollbar-track-gray-200 scrollbar-thumb-rounded-full
-       scrollbar-thumb-emerald-600"
-          >
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden
-"
-            >
-              <table className="w-auto md:w-[500px]">
-                <tr>
-                  <td>Professional Service</td>
-                  <td>$1,995.00</td>
-                </tr>
-                <tr>
-                  <td>Transfer Home from place of death</td>
-                  <td>$275.00</td>
-                </tr>
-                <tr>
-                  <td>Hire Techniice and/or table - 3 days</td>
-                  <td>$390.00</td>
-                </tr>
-                <tr>
-                  <td>Viewing in our viewing room</td>
-                  <td>$195.00</td>
-                </tr>
-                <tr>
-                  <td>Natural Preparation (inc. shrouding)</td>
-                  <td>$295.00</td>
-                </tr>
-                <tr>
-                  <td>Traditional Preparation</td>
-                  <td>$580.00</td>
-                </tr>
-                <tr>
-                  <td>Doctors Authorisation</td>
-                  <td>$132.00</td>
-                </tr>
-                <tr>
-                  <td>Prepare Permit, inc. Record of Death</td>
-                  <td>$80.00</td>
-                </tr>
-              </table>
-            </article>
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
-            >
-              <table className="w-auto md:w-[500px]">
-                <tr>
-                  <td>Funeral Co-ordination/conducting</td>
-                  <td>$800.00</td>
-                </tr>
-                <tr>
-                  <td>Celebrant, full service</td>
-                  <td>$500.00</td>
-                </tr>
-                <tr>
-                  <td>Celebrant Consultancy - 2hrs</td>
-                  <td>$200.00</td>
-                </tr>
-                <tr>
-                  <td>Multimedia Production</td>
-                  <td>$245.00</td>
-                </tr>
-                <tr>
-                  <td>Transfer to Burial/Cremation</td>
-                  <td>$275.00</td>
-                </tr>
-                <tr>
-                  <td>Cremation</td>
-                  <td>$864.00</td>
-                </tr>
-                <tr>
-                  <td>Shroud Carrier</td>
-                  <td>$225.00</td>
-                </tr>
-                <tr>
-                  <td>Design of Order of Service (up to 8 pages)</td>
-                  <td>$175.00</td>
-                </tr>
-              </table>
-            </article>
+
+          <div className="absolute inset-0 bg-black/50" />
+
+          <div className="absolute inset-0 flex items-center justify-center text-white">
+            <h1 className="px-4 text-center text-2xl font-semibold uppercase tracking-[10px] md:text-5xl 2xl:text-7xl">
+              Pricing
+            </h1>
           </div>
         </div>
 
-        <div
-          className="flex flex-col space-y-3 md:space-y-5 items-start md:text-base
-        py-5 md:py-10 px-2 md:px-10"
-        >
-          <h2 className="text-xl md:text-2xl">
-            <span className="decoration-emerald-600 underline">PACKAGES</span>
-          </h2>
-          <div
-            className="w-full flex space-x-5 overflow-x-scroll snap-x snap-mandatory
-       p-3 md:p-5 text-sm md:text-base 2xl:text-lg
-       scrollbar scrollbar-h-5 scrollbar-track-gray-200 scrollbar-thumb-rounded-full
-       scrollbar-thumb-emerald-600"
-          >
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
-            >
-              <div className="px-0 md:px-10">
-                <h4 className="text-2xl md:text-4xl font-light">
-                  Cremation only Package
-                </h4>
-                <p className="font-bold text-xl md:text-2xl mt-5">
-                  $2,725.00 +GST
-                </p>
-                <p className="my-3">
-                  Transport from home or place of death to crematorium,
-                  shrouding/dressing, cremation, return of ashes, prepare permit
-                  and obtain record of death, shroud carrier or cardboard coffin
-                  for cremation, doctors authorisation.
-                </p>
-                <p className="italic">
-                  (this does not include transport from place of death to home
-                  if required, and home vigil or death care and external costs
-                  such as material for shroud, newspaper advertising, coffin in
-                  place of shroud carrier or flowers)
-                </p>
+        <div className="mx-auto max-w-6xl px-4 2xl:max-w-7xl">
+          <Breadcrumb items={[{ label: "Pricing" }]} />
+
+          <section className="grid items-center gap-8 py-10 md:grid-cols-[1fr_400px] md:py-16">
+            <div className="space-y-5 text-base leading-7 text-gray-700 2xl:text-lg">
+              <h2 className="text-2xl leading-tight text-gray-900 md:text-3xl">
+                HOW MUCH DO{" "}
+                <span className="underline decoration-emerald-600 underline-offset-4">
+                  FAMILY LED HOME
+                </span>{" "}
+                FUNERALS COST?
+              </h2>
+
+              <p>
+                Our prices in their individual components and together as
+                packages of services are listed below. All prices are plus GST.
+              </p>
+
+              <p>
+                We approach our work with the hope that we can empower and skill
+                families to care for their person. We encourage families,
+                friends and communities to be as involved in the care of their
+                person, the planning and all decision making as much as they are
+                able and content to do.
+              </p>
+
+              <p>
+                All packages include our Professional Fee component, giving you
+                24-hour support, the initial consultation and up to three home
+                visits. These visits are not included in the cremation-only
+                option.
+              </p>
+
+              <p>
+                Transport costs included below cover travel within a 50km radius
+                of Hobart.
+              </p>
+
+              <p>
+                We are happy to meet with you for an initial consultation and
+                create a tailored service for you.
+              </p>
+            </div>
+
+            <Image
+              src="/img/pricing-3.jpg"
+              alt="Solace family-led funeral support"
+              width={400}
+              height={400}
+              className="h-auto w-full rounded-lg object-cover"
+            />
+          </section>
+
+          <section className="py-10">
+            <div className="mb-6">
+              <h2 className="text-2xl text-gray-900 md:text-3xl">
+                <span className="underline decoration-emerald-600 underline-offset-4">
+                  Individual Components
+                </span>
+              </h2>
+
+              <p className="mt-3 text-gray-600">
+                Select the individual services your family needs.
+              </p>
+            </div>
+
+            {components.length > 0 ? (
+              <div className="overflow-hidden rounded-xl border border-gray-200">
+                <table className="w-full border-collapse">
+                  <thead className="bg-emerald-700 text-white">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-4 py-4 text-left font-semibold md:px-6"
+                      >
+                        Service
+                      </th>
+
+                      <th
+                        scope="col"
+                        className="px-4 py-4 text-right font-semibold md:px-6"
+                      >
+                        Price
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody className="divide-y divide-gray-200">
+                    {components.map((component) => (
+                      <tr
+                        key={component.id}
+                        className="odd:bg-white even:bg-gray-50"
+                      >
+                        <td className="px-4 py-4 text-gray-800 md:px-6">
+                          {component.name}
+                        </td>
+
+                        <td className="whitespace-nowrap px-4 py-4 text-right font-semibold text-gray-900 md:px-6">
+                          {formatCurrency(component.price)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </article>
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
-            >
-              <div className="px-0 md:px-10">
-                <h4 className="text-2xl md:text-4xl font-light">
-                  Cremation and Home Vigil Package
-                </h4>
-                <p className="font-bold text-xl md:text-2xl mt-5">
-                  $4,650.00 +GST
-                </p>
-                <p className="my-3">
-                  Family supported to vigil at home, hire of Techniice and table
-                  (3 days), provide after death care (natural) including
-                  shrouding/dressing, transport from home to crematorium,
-                  cremation, return of ashes, prepare permit and obtain record
-                  of death, shroud carrier or cardboard coffin for cremation,
-                  doctor’s authorisation.
-                </p>
-                <p className="italic">
-                  (this does not include transport from place of death to home
-                  if required and external costs such as material for shroud,
-                  newspaper advertising, coffin in place of shroud carrier or
-                  flowers)
-                </p>
+            ) : (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-gray-600">
+                Individual pricing is currently being updated. Please contact us
+                for current prices.
               </div>
-            </article>
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
-            >
-              <div className="px-0 md:px-10">
-                <h4 className="text-2xl md:text-4xl font-light">
-                  Cremation, Home Vigil and Ceremony Package
-                </h4>
-                <p className="font-bold text-xl md:text-2xl mt-5">
-                  $6,315.00 +GST
-                </p>
-                <p className="my-3">
-                  Family supported to vigil at home, hire of Techniice and table
-                  (3 days), provide after death care (natural) including
-                  shrouding/dressing, transfer from home to place of service and
-                  place of cremation, prepare permit and obtain record of death,
-                  funeral arranging and co-ordination, full celebrant service,
-                  multimedia production (30-50 photos), shroud carrier or
-                  cardboard coffin for cremation, cremation, return of ashes,
-                  doctor’s authorisation.
-                </p>
-                <p className="italic">
-                  (this does not include transport from place of death to home
-                  if required and external costs such as material for shroud,
-                  newspaper advertising, order of service design and printing,
-                  coffin in place of shroud carrier, flowers, catering, venue or
-                  equipment hire)
-                </p>
+            )}
+          </section>
+
+          <section className="py-10 md:py-16">
+            <div className="mb-8">
+              <h2 className="text-2xl text-gray-900 md:text-3xl">
+                <span className="underline decoration-emerald-600 underline-offset-4">
+                  Packages
+                </span>
+              </h2>
+
+              <p className="mt-3 max-w-3xl text-gray-600">
+                Our packages combine commonly requested services. We can also
+                tailor a service to your family&apos;s needs.
+              </p>
+            </div>
+
+            {packages.length > 0 ? (
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {packages.map((pricingPackage) => (
+                  <article
+                    key={pricingPackage.id}
+                    className="flex h-full flex-col rounded-xl border border-emerald-100 bg-emerald-50/60 p-6 md:p-8"
+                  >
+                    <h3 className="text-2xl font-medium leading-tight text-gray-900">
+                      {pricingPackage.name}
+                    </h3>
+
+                    <p className="mt-4 text-3xl font-semibold text-emerald-700">
+                      {formatCurrency(pricingPackage.price)}
+
+                      <span className="ml-2 text-sm font-normal text-gray-600">
+                        + GST
+                      </span>
+                    </p>
+
+                    <div className="mt-6 flex-1 leading-7 text-gray-700">
+                      <RichContent
+                        content={pricingPackage.description}
+                        variant="compact"
+                      />
+                    </div>
+                  </article>
+                ))}
               </div>
-            </article>
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
-            >
-              <div className="px-0 md:px-10">
-                <h4 className="text-2xl md:text-4xl font-light">
-                  Burial and Home Vigil Package
-                </h4>
-                <p className="font-bold text-xl md:text-2xl mt-5">
-                  $4,500.00 +GST
-                </p>
-                <p className="my-3">
-                  Family supported to vigil at home, hire of Techniice and table
-                  (3 days), provide after death care (natural) including
-                  shrouding/dressing, transport from home to cemetery within a
-                  50km radius of Hobart, conduct of burial including small
-                  graveside committal, prepare permit and obtain record of
-                  death, shroud carrier or cardboard coffin for burial.
-                </p>
-                <p className="italic">
-                  (this does not include transport from place of death to home
-                  if required prior to burial, excess travel over 50km radius
-                  and external costs such as material for shroud, newspaper
-                  advertising, coffin in place of shroud carrier, cost of grave
-                  and digging, hire of pallbearers if required, any formal
-                  funeral ceremony or flowers)
-                </p>
+            ) : (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-gray-600">
+                Package pricing is currently being updated. Please contact us
+                for current options.
               </div>
-            </article>
-            <article
-              className="flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 
-    w-[350px] md:w-[600px] xl:w-[800px] snap-center bg-emerald-100 px-3 py-5 md:p-10 
-    hover:opacity-100 opacity-80 transition-opacity duration-200 overflow-hidden"
+            )}
+          </section>
+
+          <section className="mb-16 rounded-xl bg-emerald-700 px-6 py-10 text-center text-white md:px-10">
+            <h2 className="text-2xl font-semibold md:text-3xl">
+              Need a tailored service?
+            </h2>
+
+            <p className="mx-auto mt-3 max-w-2xl text-emerald-50">
+              Every family&apos;s situation is different. Contact us to discuss
+              the support and services that suit you.
+            </p>
+
+            <Link
+              href="/contact"
+              className="mt-6 inline-block rounded-lg bg-white px-6 py-3 font-semibold text-emerald-700 transition-colors hover:bg-emerald-50"
             >
-              <div className="px-0 md:px-10">
-                <h4 className="text-2xl md:text-4xl font-light">
-                  Burial, Home Vigil and Ceremony Package
-                </h4>
-                <p className="font-bold text-xl md:text-2xl mt-5">
-                  $5,900.00 +GST
-                </p>
-                <p className="my-3">
-                  Family supported to vigil at home, hire of Techniice and table
-                  (3 days), provide after death care (natural) including
-                  shrouding/dressing, transport from home to place of service
-                  and then to cemetery within a 50km radius of Hobart, burial,
-                  prepare permit and obtain record of death, shroud carrier or
-                  cardboard coffin for burial, funeral arranging and
-                  co-ordination, full celebrant service, multimedia production
-                  (30-50 photos).
-                </p>
-                <p className="italic">
-                  (this does not include transport from place of death to home
-                  if required, excess travel over 50km radius and external costs
-                  such as material for shroud, newspaper advertising, order of
-                  service design and printing, coffin in place of shroud
-                  carrier, flowers, catering, cost of grave and digging, venue
-                  or equipment hire)
-                </p>
-              </div>
-            </article>
-          </div>
+              Contact Us
+            </Link>
+          </section>
+
+          {!isUsingContentful && (
+            <div className="mb-8 rounded-lg bg-amber-50 p-4 text-center text-sm text-amber-800">
+              Pricing content could not be loaded from Contentful.
+            </div>
+          )}
         </div>
-      </div>
+      </main>
+
       <Footer />
     </div>
   );
 }
 
-export default Pricing;
+export const getStaticProps: GetStaticProps<PricingProps> = async () => {
+  const isConfigured = isContentfulConfigured();
+
+  if (!isConfigured) {
+    return {
+      props: {
+        components: [],
+        packages: [],
+        isUsingContentful: false,
+      },
+      revalidate: 60,
+    };
+  }
+
+  try {
+    const [components, packages] = await Promise.all([
+      getPricingComponents(),
+      getPricingPackages(),
+    ]);
+
+    return {
+      props: {
+        components,
+        packages,
+        isUsingContentful: components.length > 0 || packages.length > 0,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error loading pricing content:", error);
+
+    return {
+      props: {
+        components: [],
+        packages: [],
+        isUsingContentful: false,
+      },
+      revalidate: 60,
+    };
+  }
+};
