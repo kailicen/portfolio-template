@@ -73,9 +73,7 @@ function Header({}: Props) {
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 inset-x-0 w-full p-5 flex justify-between ${headerBgColor} z-20 items-center`}
-    >
+    <header className="sticky top-0 z-50 flex min-h-[90px] w-full items-center justify-between bg-white px-5 py-4 shadow-sm">
       <motion.div
         initial={{
           x: -500,
