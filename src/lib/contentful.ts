@@ -71,12 +71,7 @@ export interface ResourceFields {
   location?: string;
   link?: string;
   description?: any;
-  category:
-    | "australia"
-    | "overseas"
-    | "tasmanian-legislation"
-    | "end-of-life-training"
-    | "end-of-life-tools";
+  category: "tasmania" | "australia" | "overseas";
   file?: {
     fields: {
       file: {

@@ -126,11 +126,9 @@ const fallbackResources = [
 ];
 
 const categoryLabels: Record<string, string> = {
+  tasmania: "Tasmania",
   australia: "Australia",
   overseas: "Overseas",
-  "tasmanian-legislation": "Tasmanian Legislation",
-  "end-of-life-training": "End of Life Training",
-  "end-of-life-tools": "End of Life Tools",
 };
 
 interface Resource {
@@ -155,7 +153,7 @@ interface Props {
 }
 
 export default function Resources({ resources, isUsingContentful }: Props) {
-  const [activeCategory, setActiveCategory] = useState("australia");
+  const [activeCategory, setActiveCategory] = useState("tasmania");
 
   const categories = Object.keys(categoryLabels);
   const activeResources = resources.filter(
@@ -168,7 +166,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
         <title>Resources - Solace</title>
         <meta
           name="description"
-          content="End of life resources including training providers, legislation, and tools for death and dying in Australia."
+          content="Explore trusted end-of-life resources from Tasmania, Australia, and overseas, including organisations, education, services, and practical information."
         />
       </Head>
       <Header />
@@ -204,9 +202,8 @@ export default function Resources({ resources, isUsingContentful }: Props) {
           >
             <div className="px-4 md:px-10 py-8">
               <p className="text-lg text-gray-600 max-w-3xl mb-12">
-                A curated collection of end of life training providers,
-                legislation references, and helpful tools to support your
-                journey.
+                A curated collection of trusted end-of-life resources from
+                Tasmania, Australia, and overseas.
               </p>
 
               <div className="flex flex-col md:flex-row gap-8">
