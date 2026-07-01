@@ -13,6 +13,8 @@ import Image from "next/image";
 import { formatDateOnly } from "@/lib/date";
 import { useRef, useState } from "react";
 
+const ITEMS_PER_PAGE = 6;
+
 // Fallback blog data when Contentful is not configured
 const fallbackBlogPosts = [
   {
@@ -52,8 +54,6 @@ export default function BlogIndex({
   totalItems,
   isUsingContentful,
 }: Props) {
-  const ITEMS_PER_PAGE = 10;
-
   const [currentPage, setCurrentPage] = useState(1);
   const [posts, setPosts] = useState(initialPosts);
   const [isLoading, setIsLoading] = useState(false);
@@ -70,6 +70,7 @@ export default function BlogIndex({
       const response = await fetch(
         `/api/blog?page=${page}&limit=${ITEMS_PER_PAGE}`,
       );
+
       const data = await response.json();
 
       setPosts(data.items || []);
@@ -89,13 +90,15 @@ export default function BlogIndex({
   return (
     <>
       <Head>
-        <title>Blog - Solace</title>
+        <title>Blog | Solace</title>
         <meta
           name="description"
           content="Insights, stories, and discussions about end of life care in Australia."
         />
       </Head>
+
       <Header />
+
       <div className="relative">
         <Image
           src="/img/about-b.jpg"
@@ -112,7 +115,7 @@ export default function BlogIndex({
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
@@ -126,19 +129,27 @@ export default function BlogIndex({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="px-4 md:px-10 py-8">
+            <section className="px-4 md:px-10 py-8">
               <div ref={listTopRef} />
 
-              <p className="text-lg text-gray-600 max-w-3xl mb-12">
-                Insights, stories, and discussions about end of life care,
+              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
+                Community Education
+              </p>
+
+              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
+                Stories, reflections, and conversations about end-of-life care.
+              </h2>
+
+              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
+                Insights, stories, and discussions about end-of-life care,
                 advocacy, and the movement to bring death and dying back into
                 community hands.
               </p>
 
               <div className="space-y-8">
                 {isLoading && (
-                  <div className="mb-6 text-center text-gray-500">
-                    Loading...
+                  <div className="rounded-lg bg-gray-50 p-6 text-gray-500 border border-gray-200">
+                    Loading posts...
                   </div>
                 )}
 
@@ -148,16 +159,24 @@ export default function BlogIndex({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gray-50 rounded-lg p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                    className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
                   >
-                    <Link href={`/community-education/blog/${post.slug}`}>
+                    <Link
+                      href={`/community-education/blog/${post.slug}`}
+                      className="block"
+                    >
                       <time className="text-sm text-emerald-600 font-medium">
                         {formatDateOnly(post.publishedDate)}
                       </time>
-                      <h2 className="text-2xl font-semibold text-gray-800 mt-2 mb-4 hover:text-emerald-600 transition-colors">
+
+                      <h3 className="text-2xl font-semibold text-gray-800 mt-2 mb-4 hover:text-emerald-600 transition-colors">
                         {post.title}
-                      </h2>
-                      <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                      </h3>
+
+                      <p className="text-gray-600 mb-5 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+
                       <span className="text-emerald-600 font-medium hover:underline">
                         Read More
                       </span>
@@ -167,7 +186,7 @@ export default function BlogIndex({
               </div>
 
               {totalPages > 1 && (
-                <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+                <div className="mt-10 flex flex-wrap items-center gap-2">
                   <button
                     type="button"
                     onClick={() => goToPage(currentPage - 1)}
@@ -183,6 +202,7 @@ export default function BlogIndex({
                         key={page}
                         type="button"
                         onClick={() => goToPage(page)}
+                        disabled={isLoading}
                         className={`px-4 py-2 rounded-lg border transition ${
                           currentPage === page
                             ? "bg-emerald-600 text-white border-emerald-600"
@@ -206,17 +226,18 @@ export default function BlogIndex({
               )}
 
               {!isUsingContentful && (
-                <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
+                <div className="mt-12 bg-emerald-50 rounded-lg p-6 md:p-8 border border-emerald-100">
                   <p className="text-gray-600">
                     Showing sample content. Connect Contentful to manage blog
                     posts dynamically.
                   </p>
                 </div>
               )}
-            </div>
+            </section>
           </motion.div>
         </div>
-      </div>
+      </main>
+
       <Footer />
     </>
   );
@@ -224,7 +245,6 @@ export default function BlogIndex({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const isConfigured = isContentfulConfigured();
-  const ITEMS_PER_PAGE = 6;
 
   if (isConfigured) {
     try {

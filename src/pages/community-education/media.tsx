@@ -14,6 +14,8 @@ import RichContent from "@/components/RichContent";
 import { formatDateOnly } from "@/lib/date";
 import { useRef, useState } from "react";
 
+const ITEMS_PER_PAGE = 6;
+
 // Fallback media data when Contentful is not configured
 const fallbackMediaAppearances = [
   {
@@ -59,13 +61,12 @@ export default function MediaAppearances({
   totalItems,
   isUsingContentful,
 }: Props) {
-  const ITEMS_PER_PAGE = 10;
-
   const [currentPage, setCurrentPage] = useState(1);
   const [mediaItems, setMediaItems] = useState(initialMediaItems);
   const [isLoading, setIsLoading] = useState(false);
 
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+  const listTopRef = useRef<HTMLDivElement | null>(null);
 
   const getExternalLinkLabel = (url?: string) => {
     if (!url) return "Open";
@@ -100,10 +101,12 @@ export default function MediaAppearances({
       const response = await fetch(
         `/api/media?page=${page}&limit=${ITEMS_PER_PAGE}`,
       );
+
       const data = await response.json();
 
       setMediaItems(data.items || []);
       setCurrentPage(page);
+
       listTopRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -115,18 +118,18 @@ export default function MediaAppearances({
     }
   };
 
-  const listTopRef = useRef<HTMLDivElement | null>(null);
-
   return (
     <>
       <Head>
-        <title>Media Appearances - Solace</title>
+        <title>Media Appearances | Solace</title>
         <meta
           name="description"
           content="Featured articles, interviews, and news coverage of Solace's work in end of life services."
         />
       </Head>
+
       <Header />
+
       <div className="relative">
         <Image
           src="/img/about-b.jpg"
@@ -138,11 +141,12 @@ export default function MediaAppearances({
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Media Appearances
+            Media
           </h1>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
@@ -156,96 +160,110 @@ export default function MediaAppearances({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <main className="px-4 md:px-10 py-8">
-              {/* <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-                Media Appearances
-              </h1> */}
+            <section className="px-4 md:px-10 py-8">
               <div ref={listTopRef} />
 
-              <p className="text-lg text-gray-600 max-w-3xl mb-12">
-                Featured articles, interviews, and news coverage highlighting
-                our work in end of life services and death positive advocacy.
+              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
+                Community Education
               </p>
 
-              <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
+                Articles, interviews, and conversations featuring Solace.
+              </h2>
+
+              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
+                Featured articles, interviews, and news coverage highlighting
+                our work in end-of-life services, family-led funerals, and death
+                positive advocacy.
+              </p>
+
+              <div className="space-y-8">
                 {isLoading && (
-                  <div className="mb-6 text-center text-gray-500">
-                    Loading...
+                  <div className="rounded-lg bg-gray-50 p-6 text-gray-500 border border-gray-200">
+                    Loading media appearances...
                   </div>
                 )}
-                {mediaItems.map((item, index) => (
-                  <motion.article
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gray-50 rounded-lg p-8 shadow-sm border border-gray-200"
-                  >
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full">
-                        {item.source}
-                      </span>
-                      <time className="text-sm text-gray-500">
-                        {formatDateOnly(item.publishedDate)}
-                      </time>
-                    </div>
-                    <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                      {item.title}
-                    </h2>
-                    <RichContent
-                      content={item.content}
-                      className="mb-4"
-                      variant="article"
-                    />
-                    {(() => {
-                      const file = item.mediaFile?.fields?.file;
-                      const title = item.mediaFile?.fields?.title || item.title;
-                      const url = file?.url ? `https:${file.url}` : null;
-                      const contentType = file?.contentType || "";
 
-                      if (!url) return null;
+                {mediaItems.map((item, index) => {
+                  const file = item.mediaFile?.fields?.file;
+                  const mediaTitle =
+                    item.mediaFile?.fields?.title || item.title;
+                  const mediaUrl = file?.url ? `https:${file.url}` : null;
+                  const contentType = file?.contentType || "";
 
-                      if (contentType.startsWith("audio/")) {
-                        return (
-                          <div className="mb-4">
-                            <p className="text-sm text-gray-500 mb-2">
-                              {title}
-                            </p>
-                            <audio controls className="w-full">
-                              <source src={url} type={contentType} />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </div>
-                        );
-                      }
+                  return (
+                    <motion.article
+                      key={item.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                    >
+                      <div className="flex flex-wrap items-center gap-3 mb-4">
+                        <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full">
+                          {item.source}
+                        </span>
 
-                      return (
-                        <a
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-emerald-600 font-medium hover:underline"
-                        >
-                          Open Media File &rarr;
-                        </a>
-                      );
-                    })()}
-                    {item.externalUrl && item.externalUrl !== "#" && (
-                      <a
-                        href={item.externalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-emerald-600 font-medium hover:underline"
-                      >
-                        {getExternalLinkLabel(item.externalUrl)} &rarr;
-                      </a>
-                    )}
-                  </motion.article>
-                ))}
+                        <time className="text-sm text-gray-500">
+                          {formatDateOnly(item.publishedDate)}
+                        </time>
+                      </div>
+
+                      <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                        {item.title}
+                      </h3>
+
+                      <div className="text-gray-600 leading-relaxed">
+                        <RichContent
+                          content={item.content}
+                          className="mb-5"
+                          variant="article"
+                        />
+                      </div>
+
+                      {mediaUrl && contentType.startsWith("audio/") && (
+                        <div className="mt-6 rounded-lg border border-gray-200 bg-white p-4">
+                          <p className="text-sm text-gray-500 mb-3">
+                            {mediaTitle}
+                          </p>
+
+                          <audio controls className="w-full">
+                            <source src={mediaUrl} type={contentType} />
+                            Your browser does not support the audio element.
+                          </audio>
+                        </div>
+                      )}
+
+                      <div className="mt-5 flex flex-wrap gap-4">
+                        {mediaUrl && !contentType.startsWith("audio/") && (
+                          <a
+                            href={mediaUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-emerald-600 font-medium hover:underline"
+                          >
+                            Open Media File &rarr;
+                          </a>
+                        )}
+
+                        {item.externalUrl && item.externalUrl !== "#" && (
+                          <a
+                            href={item.externalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-emerald-600 font-medium hover:underline"
+                          >
+                            {getExternalLinkLabel(item.externalUrl)} &rarr;
+                          </a>
+                        )}
+                      </div>
+                    </motion.article>
+                  );
+                })}
               </div>
 
               {totalPages > 1 && (
-                <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+                <div className="mt-10 flex flex-wrap items-center gap-2">
                   <button
                     type="button"
                     onClick={() => goToPage(currentPage - 1)}
@@ -261,6 +279,7 @@ export default function MediaAppearances({
                         key={page}
                         type="button"
                         onClick={() => goToPage(page)}
+                        disabled={isLoading}
                         className={`px-4 py-2 rounded-lg border transition ${
                           currentPage === page
                             ? "bg-emerald-600 text-white border-emerald-600"
@@ -284,17 +303,18 @@ export default function MediaAppearances({
               )}
 
               {!isUsingContentful && (
-                <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
+                <div className="mt-12 bg-emerald-50 rounded-lg p-6 md:p-8 border border-emerald-100">
                   <p className="text-gray-600">
                     Showing sample content. Connect Contentful to manage media
                     appearances dynamically.
                   </p>
                 </div>
               )}
-            </main>
+            </section>
           </motion.div>
         </div>
-      </div>
+      </main>
+
       <Footer />
     </>
   );
@@ -302,7 +322,6 @@ export default function MediaAppearances({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const isConfigured = isContentfulConfigured();
-  const ITEMS_PER_PAGE = 6;
 
   if (isConfigured) {
     try {

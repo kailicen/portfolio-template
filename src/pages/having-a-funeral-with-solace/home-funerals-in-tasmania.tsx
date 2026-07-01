@@ -5,39 +5,64 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import Head from "next/head";
+import { motion } from "framer-motion";
 
-type Props = {};
+const benefits = [
+  {
+    title: "Emotional empowerment",
+    text: "We have no say over when someone will die and those who live on can feel even more powerless by handing everything over to a business. The Family Led approach gives that power back to the family and allows them to be an integral part of the process rather than consigning it to an industry that may provide a beautiful, professional service but is less personal and has reduced family involvement.",
+  },
+  {
+    title: "More options",
+    text: "Family Led Funerals provide many more options for every aspect of the funeral process, where contemporary funeral homes often have a limited range of predetermined options. Make sure to ask what all your options are.",
+  },
+  {
+    title: "Lower cost",
+    text: "A Family Led process allows family and friends to be involved and the opportunity to cut expenses. While financial concerns are not always the case for everyone, increasingly people are feeling the strain and a family directed approach to end of life can reduce the cost of funeral processes and ceremonies.",
+  },
+];
 
-function HomeFuneralsInTas({}: Props) {
+const supportItems = [
+  "Consultation, planning, advocacy and support before death",
+  "Vigil and compassionate family assistance during the dying process",
+  "Assist with natural after-death care including cooling, washing, dressing",
+  "Offering ceremony options and organisation",
+  "Connection with service providers for burial and cremation",
+  "Help you honour your cultural or spiritual requirements",
+  "You can engage us to help you through the whole process or to do any one part of it for you",
+  "Our goal is to leave you with the knowledge of what to do next time – in our perfect world, you’ll only need to engage us once",
+];
+
+export default function HomeFuneralsInTas() {
   return (
-    <div className="bg-white text-black">
+    <div className="bg-white text-black min-h-screen flex flex-col">
       <Head>
-        <title>Home Funerals in Tasmania | Solace</title>
+        <title>Home Funerals in Tasmania | Solace End of Life Services</title>
         <meta
           name="description"
-          content="Learn about family-led home funerals in Tasmania, including practical guidance, legal considerations, burial and cremation options, transport, shrouds, and paperwork."
+          content="Learn about family-led home funerals in Tasmania, how Solace supports families, and how home-based death care can offer more time, choice and connection."
         />
       </Head>
+
       <Header />
+
       <div className="relative">
         <Image
           src="/img/home-b.jpg"
-          alt="home-b"
+          alt="Home funerals in Tasmania"
           width={2300}
           height={300}
           className="w-full h-48 md:h-80 object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Home Funerals in Tas
+            Home Funerals in Tasmania
           </h1>
         </div>
       </div>
-      <div
-        className="max-w-6xl mx-auto md:text-base
-      2xl:max-w-7xl 2xl:text-lg"
-      >
+
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl md:text-base 2xl:text-lg flex-1">
         <Breadcrumb
           items={[
             {
@@ -47,537 +72,305 @@ function HomeFuneralsInTas({}: Props) {
             { label: "Home Funerals in Tasmania" },
           ]}
         />
-        <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
-        items-center justify-center"
-        >
-          <div
-            className="flex flex-col space-y-3 md:space-y-5 items-start
-          2xl:text-lg"
+
+        <div className="px-4 md:px-10 py-8 md:py-12">
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mb-12"
           >
-            <h2
-              className="text-xl md:text-2xl
-            2xl:text-3xl"
-            >
-              WHY SHOULD YOU CONSIDER A{" "}
-              <span className="decoration-green-400 underline">
-                FAMILY LED APPROACH
-              </span>{" "}
-              TO HOME FUNERALS?
+            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+              A funeral with Solace
+            </p>
+
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+              Supporting families to honour their person in a way that feels
+              authentic.
             </h2>
-            <p>
-              Choosing to spend time with a person who has died and the option
-              of keeping their body at home allows for a home vigil. This is
-              whether the person’s body is kept at home right up until the point
-              of burial or cremation, or for a shorter time; even just a few
-              hours spent with your person in a familiar setting can facilitate
-              your grief journey. It provides the opportunity for a gentler
-              approach to ‘letting go’.
-            </p>
-            <p>
-              This time spent can also allow for the family and community
-              members to gather together, grieve, share stories and memories,
-              comfort each other and if you so choose, plan a farewell.
-            </p>
-          </div>
-          <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
-            2xl:h-[400px] 2xl:w-auto"
-            src="/img/home-2.jpg"
-            alt="home-2"
-            width={400}
-            height={400}
-          />
-        </div>
 
-        {/* three benefits */}
-        <div className="grid md:grid-cols-3 gap-3 px-2 md:px-10">
-          <div className="flex flex-col space-y-3 bg-green-100 rounded-lg p-5 w-auto md:max-w-[500px]">
-            <h3 className="text-lg font-semibold">EMOTIONAL EMPOWERMENT</h3>
-            <p>
-              We have little to no say over when someone will die, and those
-              living on are made even more powerless by handing everything over
-              to a business. The Family Led approach gives that power back to
-              the family, and allows them to be an integral part of the process
-              rather than consigning it to an industry that may provide a
-              beautiful, professional service less-personal, and with reduced
-              family involvement.
-            </p>
-          </div>
-          <div className="flex flex-col space-y-3 bg-green-100 rounded-lg p-5 w-auto md:max-w-[500px]">
-            <h3 className="text-lg font-semibold">MORE OPTIONS</h3>
-            <p>
-              Family Led Funerals provide many more options for every aspect of
-              the funeral process, where contemporary funeral homes often have a
-              limited range of predetermined options. Make sure to ask what all
-              your options are.
-            </p>
-          </div>
-          <div className="flex flex-col space-y-3 bg-green-100 rounded-lg p-5 w-auto md:max-w-[500px]">
-            <h3 className="text-lg font-semibold">LOWER COST</h3>
-            <p>
-              A Family Led process allows family and friends to be involved and
-              the opportunity to cut expenses. While financial concerns are not
-              always the case for everyone, increasingly people are feeling the
-              strain and a family directed approach to end of life can reduce
-              the cost of funeral processes and ceremony.
-            </p>
-          </div>
-        </div>
+            <div className="mt-6 space-y-5 text-lg text-gray-700 leading-relaxed">
+              <p>
+                At Solace, we make a point of working with families and
+                communities to help them find the best way to honor their
+                person, support their grief and bereavement. We believe that
+                grief and bereavement is always best served when the
+                arrangements made are authentic and honour the life of the
+                person who has died. And none of this should cost the earth.
+              </p>
 
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-10">
-          <h2
-            className="text-xl md:text-2xl
-          2xl:text-3xl"
-          >
-            WHAT&apos;S INVOLVED IN A FAMILY LED HOME FUNERAL?{" "}
-          </h2>
-          <p>In a Home Funeral, you are in control of what happens.</p>
-          <p>
-            There are legislative requirements which govern certain elements of
-            the Home Funeral process, but you will find that you have much more
-            control than you may have with a traditional funeral home
-            experience. Often, your person will spend time at home with you and
-            this could be for a few hours or a few days.
-          </p>
-          <p>
-            Home does not necessarily mean your home however. A Family Led
-            approach to Home Funeral could mean working with a funeral director
-            who will allow you to go to their premises to wash and dress your
-            person, spending time there, perhaps even placing them in a coffin
-            or wrapping them in a shroud.
-          </p>
-          <p>
-            If you do chose to be at your home or the home of your person after
-            a death, it allows time for the organisation of the other more
-            practical and legislative requirements and processes in a more
-            gentle and familiar surroundings.
-          </p>
-          <p>
-            When a Funeral Director is responsible for all these arrangements it
-            can seem rather hurriedly done in a relatively short interview.
-          </p>
-          <p>
-            With a Home Funeral you can organise a Medical Cause of Death
-            Certificate and register the death with the Registry of Births,
-            Deaths and Marriages, or you can ask a Funeral Director to do it for
-            you. This and the Application for Search (which produces the Record
-            of Death for you) can be completed and lodged at Service
-            Tasmania.{" "}
-          </p>
-          <p>
-            You will also be required to complete a Burial and Cremation Permit
-            (which may be available to you from the Crematorium or Cemetery
-            Management) and then to make a booking for either Burial or
-            Cremation and eventually transport the body to that place. Again,
-            you can do this yourself or ask a Funeral Director to do it for you.
-          </p>
-          <p>
-            With a Family Led Funeral you remain in control of – and responsible
-            for – this entire process, including what components you ask others
-            to do on your behalf.
-          </p>
-        </div>
+              <p>
+                We are happy to work with people to support their decisions,
+                guide them where needed and co create something special to help
+                them bring their wishes to fruition.
+              </p>
 
-        <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-3 md:pb-5 px-2 md:px-10
-        items-center justify-center"
-        >
-          <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
-            2xl:h-[400px] 2xl:w-auto"
-            src="/img/home-3.jpg"
-            alt="home-3"
-            width={400}
-            height={400}
-          />
-          <div className="flex flex-col space-y-3 md:space-y-5 items-start">
-            <h2
-              className="text-xl md:text-2xl
-            2xl:text-3xl"
-            >
-              A FAMILY LED HOME FUNERAL DOESN&apos;T MEAN YOU&apos;RE ALONE!
+              <p>
+                We believe in honest communication and transparent pricing; all
+                our costs are listed on the website. If there is something you
+                are not sure about, please reach out and we will be happy to
+                chat.
+              </p>
+            </div>
+          </motion.section>
+
+          <section className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 mb-12 items-center">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+                Family-led home funerals
+              </p>
+
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+                Why should you consider a family-led approach to home funerals?
+              </h2>
+
+              <div className="mt-6 space-y-5 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  First and foremost,{" "}
+                  <span className="font-medium text-gray-900">
+                    a home funeral is more about service than it is about place
+                  </span>
+                  . What does that mean? It means that you get the space and the
+                  time to decide what feels right and you get to be in control
+                  as much as you wish.
+                </p>
+
+                <p>
+                  This could mean that you want to be with your person when they
+                  die and not feel rushed after their death. It could be making
+                  sure that they have their favourite boots on or someone&apos;s
+                  hair is curled the right way.
+                </p>
+
+                <p>
+                  Maybe you want to have your person at home for some time;
+                  hours or even days. They can stay until the time of a
+                  ceremony, burial or cremation.
+                </p>
+
+                <p>
+                  Choosing to keep the body of your loved one at home allows for
+                  a home vigil. This provides the opportunity for a gentler
+                  approach to ‘letting go’. It also allows time for the family
+                  and community members to gather together, grieve, share
+                  stories and memories, comfort each other and if you so choose,
+                  plan a farewell.
+                </p>
+
+                <p>
+                  All these things are acts of service and they can happen in
+                  the viewing room of a funeral home, a nursing home, hospital
+                  bed or hospice ward. Whatever your choices, we can work with
+                  you and support you throughout the journey.
+                </p>
+              </div>
+            </div>
+
+            <Image
+              src="/img/home-2.jpg"
+              alt="Family-led home funeral support"
+              width={500}
+              height={500}
+              className="w-full rounded-2xl object-cover shadow-sm border border-gray-200"
+            />
+          </section>
+
+          <section className="grid md:grid-cols-3 gap-5 mb-12">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6"
+              >
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {benefit.title}
+                </h3>
+
+                <p className="mt-4 text-gray-700 leading-relaxed">
+                  {benefit.text}
+                </p>
+              </motion.div>
+            ))}
+          </section>
+
+          <section className="mb-12 bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-8">
+            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+              What is involved?
+            </p>
+
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+              What&apos;s involved in a family-led home funeral?
             </h2>
-            <p>
-              If you like the idea of a Family Led Funeral but need some help,
-              we offer an affordable End of Life service where we can be engaged
-              before or after death, and we can help you with the practical
-              assistance, emotional support and technical know-how to make your
-              choices a reality.
-            </p>
-            <p>
-              We provide a peaceful presence, and are able to guide you through
-              the process of creating your own Family Led Funeral. Some of the
-              things we can do —
-            </p>
-            <ul className="list-disc pl-10">
-              <li>Consultation, planning, advocacy and support before death</li>
-              <li>
-                Vigil and compassionate family assistance and support during the
-                dying process
-              </li>
-              <li>
-                Assist with natural after-death care including cooling, washing,
-                dressing
-              </li>
-              <li>Offering ceremony options and organisation</li>
-              <li>
-                Connection with service providers for burial and cremation
-              </li>
-              <li>Help you honour your cultural or spiritual requirements</li>
-              <li>
-                You can engage us to help you through the whole process or to do
-                any one part of it for you
-              </li>
-              <li>
-                Our goal is to leave you with the knowledge of what to do next
-                time – in our perfect world, you’ll only need to engage us once
-              </li>
+
+            <div className="mt-6 space-y-5 text-lg text-gray-700 leading-relaxed">
+              <p className="font-medium text-gray-900">
+                In a Home Funeral, you are in control of what happens.
+              </p>
+              <p>
+                There are legislative requirements which govern certain elements
+                of the Home Funeral process but you will find that you have much
+                more control than you may have with a traditional funeral home
+                experience.
+              </p>
+
+              <p>
+                If you are considering caring for your person, please know that
+                home does not necessarily mean your home. A Family Led approach
+                to Home Funeral could mean working with a funeral director who
+                will allow you to go to their premises to wash and dress your
+                person, spending time there, perhaps even placing them in a
+                coffin or wrapping them in a shroud.
+              </p>
+
+              <p>
+                If you choose to keep your loved one in your home, or their own
+                home, after death, it allows time to consider and organise the
+                practical and legislative requirements in a gentler way and in
+                familiar surroundings.
+              </p>
+
+              <p>
+                If you do choose to have your loved one kept in yours or their
+                own home after death, it allows time for the consideration and
+                organisation of the more practical and legislative requirements
+                and processes in a more gentle way and in familiar surroundings.
+              </p>
+
+              <p>
+                When a Funeral Director is responsible for all these
+                arrangements it can seem rather hurried in a relatively short
+                interview.
+              </p>
+
+              <p>
+                With a Home Funeral you can organise a Medical Cause of Death
+                Certificate and register the death with the Registry of Births,
+                Deaths and Marriages, or you can ask a Funeral Director to do it
+                for you. This and the Application for Search (which produces the
+                Record of Death for you) can be completed and lodged at Service
+                Tasmania.
+              </p>
+
+              <p>
+                You will also be required to complete a Burial and Cremation
+                Permit (which may be available to you from the Crematorium or
+                Cemetery Management) and then to make a booking for either
+                Burial or Cremation and eventually transport the body to that
+                place. Again, you can do this yourself or ask a Funeral Director
+                to do it for you.
+              </p>
+
+              <p className="font-medium text-gray-900">
+                With a Family Led Funeral you remain in control of, and
+                responsible for this entire process.
+              </p>
+            </div>
+          </section>
+
+          <section className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 mb-12 items-center">
+            <Image
+              src="/img/home-3.jpg"
+              alt="Support for family-led home funerals"
+              width={500}
+              height={500}
+              className="w-full rounded-2xl object-cover shadow-sm border border-gray-200"
+            />
+
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+                You are not alone
+              </p>
+
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+                A family-led home funeral does&apos;t mean you&apos;re alone!
+              </h2>
+
+              <div className="mt-6 space-y-5 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  If you like the idea of a family led and community based
+                  approach but need some help, we offer an affordable End of
+                  Life service where we can be engaged before or after death,
+                  and we can help you with the practical assistance, emotional
+                  support and technical know-how to make your choices a reality.
+                </p>
+
+                <p>
+                  We provide a peaceful presence, and are able to guide you
+                  through the process of creating your own Family Led Funeral.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="mb-12 bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
+              Some of the things we can do:
+            </h2>
+
+            <ul className="grid md:grid-cols-2 gap-4">
+              {supportItems.map((item, index) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.35, delay: index * 0.04 }}
+                  className="flex items-start gap-3 bg-white border border-emerald-100 rounded-xl p-4"
+                >
+                  <span className="text-emerald-600 mt-1 shrink-0">
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+
+                  <span className="text-gray-700 leading-relaxed">{item}</span>
+                </motion.li>
+              ))}
             </ul>
-          </div>
-        </div>
+          </section>
 
-        {/*  Australian Home Funeral Alliance */}
-        <div className="flex flex-col space-y-3 md:space-y-5 items-start py-3 md:py-5 px-2 md:px-10">
-          <p className="font-bold italic">
-            The following is taken from the Australian Home Funeral Alliance -{" "}
-            <Link
-              href="https://www.ahfa.org.au/tasmania"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              https://www.ahfa.org.au/tasmania
-            </Link>
-          </p>
-          <p>
-            A Home Funeral is possible in Tasmania. A person is required to
-            register the death and generally to have completed the disposition
-            of the body within 30 days. A home funeral can be where you live,
-            but it does not have to be.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">
-            FAMILY LED FUNERALS
-          </h2>
-          <p>
-            If your person dies at home and a doctor agrees to complete a
-            ‘Medical Cause of Death Certificate’ (MCOD), your person can stay at
-            home. If the death occurs outside the home and a doctor agrees to
-            complete a MCOD, your person can be transported home once either a
-            ‘Declaration of Life Extinct’ (DOLE) form or a MCOD is complete. If
-            it is a DOLE form, the doctor will then complete the MCOD within 48
-            hours.
-          </p>
-          <p>
-            Whether you are at home with your person or spending time with them
-            at their place of death, e.g., a nursing home, you are able to
-            provide the after-death care for your person, washing and dressing,
-            shrouding or encoffining them, etc. If at home, you can keep your
-            person with you in your home for several days. In Tasmania, there is
-            no prescribed length of time. General consensus in the Home Funeral
-            movement suggests that 3-5 days is a reasonable time to keep a body
-            at home without any outward signs of decomposition being present,
-            depending on the manner of death.
-          </p>
-          <p>
-            Sometimes, a family may want to spend time with their person but not
-            want to conduct the logistical and administrative functions or the
-            hands-on care of their loved one. All of this is possible. It is
-            important to note that families and communities can be involved in
-            all of these processes as little or as much as they feel
-            comfortable.
-          </p>
-          <p>
-            There is a requirement under Tasmanian Burial and Cremation
-            Regulations 2015 to maintain the temperature of the body at 5
-            degrees Celsius or lower. This is perfectly possible in a home
-            setting, and there are various options available to do so. The use
-            of a cooling bed or blanket, a cuddle cot for a child, ice packs,
-            dry ice or Techniice, in conjunction with portable air conditioners
-            where necessary to assist in keeping room temperature cool, are all
-            options available to Tasmanians. If this cool temperature is
-            maintained, then you are not required to place the care of your
-            loved one into the hands of a mortuary or into refrigeration.
-          </p>
-          <p>
-            You will be required to register the death with the Registry of
-            Births, Deaths and Marriages. This and the Application for Search
-            (which produces the Record of Death for you) can be completed and
-            lodged at Service Tasmania. You will also be required to complete a
-            Burial and Cremation Permit (which may be available to you from the
-            Crematorium Management) and then to make a booking for either burial
-            or cremation and eventually transport the body to that place.
-          </p>
-          <p>
-            Regardless of how much time you would like to spend with your person
-            or the type of care you would like to give, there are Home Funeral
-            friendly funeral directors in Tasmania willing to work with you in a
-            flexible way to ensure your wishes are fulfilled.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">
-            BURIAL AND CREMATION IN TASMANIA
-          </h2>
-          <p>
-            One of the choices people are often faced with when planning their
-            end of life, or indeed making the funeral arrangements for a loved
-            one, is a choice between burial and cremation. Traditionally, this
-            has always been done in a coffin, however, that isn’t a requirement.
-            There is also the option of shroud burial or shroud cremation.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">CREMATION</h2>
-          <p>
-            In general, cremation can be a cost effective option compared to a
-            burial, however, that is not the only consideration; location,
-            memorialisation wishes and personal preference will play a role in
-            the decision making.
-          </p>
-          <p>
-            In Tasmania, many funeral homes have their own cremation facilities.
-            Families are able to deal with them directly to organise a cremation
-            for their person, even if they want to do the ceremony themselves
-            without using a funeral director for the service.
-          </p>
-          <p>
-            There is specific paperwork required before a cremation can occur.
-            You are able to complete this yourself or through the assistance of
-            a funeral home. The management of a crematorium must be satisfied
-            with the identity of the deceased. They must have the signed
-            Cremation Permit and the coffin or shroud bearer needs to display
-            the name of the deceased in the form of a name plate – in all cases
-            the management must be certain there are no discrepancies.
-          </p>
-          <p>
-            It is of particular note that an independent doctor, who is not a
-            relative of the deceased and who has never treated the deceased, is
-            required to sight the body and sign a declaration and consent for
-            the cremation to take place. Not all doctors may choose to do this,
-            and those that do may charge a fee. The management of your chosen
-            crematorium is able to organise this for you; however, any doctor in
-            Tasmania, specialist or general practitioner, is able to sign the
-            form as long as they fit the requirements. In signing, they are
-            required to take responsibility that the identification of the
-            deceased is correct, and all other documentation is in order and
-            correct.
-          </p>
-          <p>
-            A family can request to be present to witness the cremation process,
-            but it is at the discretion of the crematorium management. However,
-            the Burial and Cremation Act 2019 in Division 2, 81(2) does
-            stipulate that: “A crematorium manager must permit a representative
-            of any religious or cultural group to exercise any religious or
-            cultural practices in connection with the cremation of human remains
-            without any hindrance or disturbance by the crematorium manager or
-            any other person.”
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">BURIAL</h2>
-          <p>
-            For a very long time, burials were the only available, and for many
-            people, viable disposal option when someone died. In some places, it
-            still is. The notion of burial was to return the body to the earth.
-            Over time, different methods have been employed in relation to
-            burial practices. The use of solid and hardwood coffins, vaults and
-            the introduction of embalming for preservation, along with many
-            other innovations have seen the landscape of burial and the thought
-            around it develop into a more modern approach to laying a person to
-            rest.
-          </p>
-          <p>
-            When choosing burial in Tasmania, a person or their family is able
-            to organise the entire process, whether the burial is on private
-            land or in a cemetery. They can choose the site, organise the
-            digging and the following memorialisation they would like as long as
-            it is in line with the guidelines of the cemetery management and/or
-            council regulations.
-          </p>
-          <p>
-            No matter the choice made, there will be considerations to take into
-            account for the final disposal – some legislative, and others
-            procedural and specific to the place you have chosen. For example,
-            if you book a regional cemetery, you may also be required to contact
-            a Grave Digger (if you are not allowed, or do not want to dig the
-            grave yourself) and some cemeteries will require a booking form, or
-            the provision of a burial permit before the actual burial takes
-            place. Communication is key here; making contact with your chosen
-            cemetery and finding out their rules will allow you to negotiate
-            exactly what you would like to do.
-          </p>
-          <p>
-            It is also worth noting that the requirements for burial on private
-            land vary slightly between local councils, but if those requirements
-            can be filled then permission can be obtained. It is advisable to
-            contact your local council well ahead of time to find out what you
-            need to do and start making those preparations.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">
-            COFFINS IN TASMANIA
-          </h2>
-          <p>
-            The issue of coffins is an important one. Often the coffin is quite
-            a considerable portion of the cost of a contemporary funeral. After
-            the Funeral Home’s professional fees, it can be the next most
-            expensive single item and there are many options that can be
-            relatively unknown to the general public. There is not as much
-            regulation around the use of coffins as the general public is often
-            led to believe, for instance:
-          </p>
-          <ul className="list-disc pl-10">
-            <li>
-              There is no regulation suggesting that a coffin or casket must be
-              purchased from a Funeral Director
-            </li>
-            <li>
-              A coffin is not a legal requirement for a burial or cremation
-            </li>
-            <li>
-              Coffins are able to be reused if they can be cleaned in between
-              use
-            </li>
-            <li>
-              A coffin or casket may be purchased from an independent coffin or
-              casket designer/producer or supplier, in which case, it is usually
-              produced to comply with regulation requirements
-            </li>
-            <li>
-              However, a funeral director or crematorium management may refuse
-              to allow a coffin supplied by family. Ask the question ahead of
-              time to avoid difficult circumstances.
-            </li>
-          </ul>
-          <p>
-            A person is able to make their own coffin, or a family can make one
-            for their loved one. To this end, there are two coffin clubs in
-            Tasmania – one in the north and one in the south – both of which
-            support people through the process of making a coffin. Again, it
-            needs to comply with regulatory requirements. The manager of a
-            crematorium has the right to refuse a coffin supplied by a family if
-            they feel it may damage their equipment or be injurious to public
-            health and safety. In relation to the construction of a coffin, the
-            requirements are relatively simple. The coffin must have an
-            impervious lining and be of sufficiently robust construction to
-            enable the remains to be disposed of in accordance with the Act.
-          </p>
-          <p>
-            Another thing to note is that a nameplate is required to be on a
-            coffin at all times, stating the family name and at least one given
-            name of the deceased. This should correspond with the name on the
-            identification tag on the body of the deceased.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">
-            TRANSPORTING THE DEAD IN TASMANIA
-          </h2>
-          <p>
-            When someone dies in Tasmania, there is often a requirement for that
-            person to be transported from the place of death to somewhere else.
-            Generally, this will be to the family home or a funeral home. The
-            family of that person is able to carry out that transport in a
-            private vehicle if they wish. While logistically challenging, it is
-            perfectly legal. The standard of transport should be such that it
-            maintains the dignity of those remains i.e., they are not able to be
-            seen while being transported.
-          </p>
-          <p>
-            It is common though that hospitals and nursing homes have procedures
-            that will only allow them to release a body to a funeral director.
-            You will need to check with the facility.
-          </p>
-          <p>
-            To transport the body of a deceased, there is a requirement that
-            either a Medical Cause of Death Certificate or a Life Extinct
-            Certificate has already been completed, and that the paperwork
-            travel with the deceased. The deceased should also have the
-            appropriate identification.
-          </p>
-          <p>According to the Burial and Cremation Regulations 2015 –</p>
-          <p className="italic">
-            “A person who is transporting human remains to any place or premises
-            must place the human remains in a coffin, container, or tray, that
-            is capable of preventing the escape of any bodily discharges,
-            contaminants or infectious materials.”
-          </p>
-          <p>
-            If it is a regulated business who is called to do the transport,
-            there are further restrictions in relation to the vehicle that do
-            not apply to a family.
-          </p>
-          <p>
-            A family is also able to transport their person to the place of
-            ceremony or to a cemetery. When it comes to transportation to a
-            crematorium, however, this should be done in conjunction and with
-            the permission of the crematorium management as the Burial and
-            Cremation Regulations 2015 does stipulate in section 53 of the
-            legislation that as part of the identification process:
-          </p>
-          <p className="italic">
-            “(b). the coffin containing the deceased person has come from the
-            premises of a prescribed business.”
-          </p>
-          <p>
-            This means that you can work with a Home Funeral friendly funeral
-            director who will transport your person to their premises, or you
-            need their agreement to be able to transport your person to them
-            yourself.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">SHROUDS</h2>
-          <p>
-            Shrouding is the process of cocooning a person’s body in cloth. In
-            Tasmania, there is a requirement to use four layers of material.
-            Shrouding can be used regardless of a person’s choice of burial or
-            cremation. It eliminates the cost of expensive coffins, and avoids
-            the burying or burning of veneered particleboard or solid wood
-            coffins, thereby reducing the environmental impact as well.
-          </p>
-          <p>
-            The idea and practice of Shrouded Cremation are old, but it is
-            relatively new to Tasmania. Shrouded cremation is perfectly legal,
-            and any crematorium in Tasmania is able to make their own policy
-            decisions about whether or not they will offer this as a service.
-          </p>
-          <p>
-            With a Shroud Burial or Cremation, it is possible to transport the
-            body wrapped in a Shroud and placed on a Shroud Bearer, which is a
-            tray designed for that purpose – as long as it meets the legislative
-            requirements already discussed. A Shroud Bearer constructed of
-            natural materials can be placed in the ground as part of a Natural
-            Burial. If a cremation is the choice, then the shroud bearer will be
-            cremated along with the body.
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">
-            RELEVANT LEGISLATION
-          </h2>
-          <p>
-            <Link
-              href="https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-050"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              Burial and Cremation Act 2019
-            </Link>
-          </p>
-          <p>
-            <Link
-              href="https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2015-033"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              Burial and Cremation Regulations 2015
-            </Link>
-          </p>
-          <h2 className="text-lg md:text-xl pt-3 font-semibold">
-            FLOWCHART OF REQUIRED PAPERWORK - TASMANIA
-          </h2>
-          <p>
-            <Link
-              href="/Flowchart of Paperwork Tasmania.pdf"
-              target="_blank"
-              className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-            >
-              Click here to view
-            </Link>
-          </p>
+          <section className="bg-emerald-700 text-white rounded-2xl p-6 md:p-8 mb-8">
+            <h2 className="text-2xl md:text-3xl font-semibold">
+              Learn more about home funerals in Tasmania.
+            </h2>
+
+            <p className="mt-4 text-emerald-50 leading-relaxed max-w-3xl">
+              The Australian Home Funeral Alliance has detailed information
+              about having home funerals in Tasmania, including practical and
+              legislative considerations.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link
+                href="https://www.ahfa.org.au/tasmania"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex px-6 py-3 bg-white text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+              >
+                AHFA Tasmania Information
+              </Link>
+
+              <Link
+                href="/contact"
+                className="inline-flex px-6 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition-colors font-medium"
+              >
+                Contact Solace
+              </Link>
+            </div>
+          </section>
         </div>
-      </div>
+      </main>
+
       <Footer />
     </div>
   );
 }
-
-export default HomeFuneralsInTas;

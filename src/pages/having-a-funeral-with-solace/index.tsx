@@ -8,16 +8,18 @@ import { motion } from "framer-motion";
 
 const funeralPages = [
   {
-    title: "Planning a Funeral",
-    href: "/planning-a-funeral",
+    title: "Planning",
+    href: "/having-a-funeral-with-solace/planning-a-funeral",
+    eyebrow: "Plan ahead",
     description:
-      "Practical funeral planning guidance, checklists, wishes resources, and information to help you make informed choices.",
+      "Explore funeral wishes, advance care planning, key documents, family-led options, and practical resources to help you make informed decisions.",
   },
   {
     title: "Home Funerals in Tasmania",
-    href: "/home-funerals-in-tasmania",
+    href: "/having-a-funeral-with-solace/home-funerals-in-tasmania",
+    eyebrow: "Family-led care",
     description:
-      "Learn about family-led home funerals in Tasmania, including practical guidance, options, and legal considerations.",
+      "Learn how family-led home funerals can offer more time, choice and involvement, and how Solace can support you through the process.",
   },
 ];
 
@@ -30,7 +32,7 @@ function HavingAFuneralWithSolace() {
         </title>
         <meta
           name="description"
-          content="Explore funeral planning support from Solace, including planning a funeral and family-led home funerals in Tasmania."
+          content="Explore funeral planning and family-led home funeral support with Solace, including wishes, advance care planning, practical resources and home funerals in Tasmania."
         />
       </Head>
 
@@ -44,7 +46,7 @@ function HavingAFuneralWithSolace() {
           height={300}
           className="w-full h-48 md:h-80 object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex justify-center items-center text-white px-4">
           <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
             Having a Funeral with Solace
@@ -52,20 +54,35 @@ function HavingAFuneralWithSolace() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <Breadcrumb items={[{ label: "Having a Funeral with Solace" }]} />
 
-        <div className="px-4 md:px-10 py-8">
-          <p className="text-lg text-gray-700 mb-10 max-w-3xl">
-            Whether you are planning ahead or navigating a death right now, we
-            want to help you understand your options clearly. Explore practical
-            guidance on funeral planning and learn more about family-led home
-            funerals in Tasmania.
-          </p>
+        <div className="px-4 md:px-10 py-8 md:py-12">
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mb-12"
+          >
+            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+              Funeral support
+            </p>
+
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+              Practical guidance for planning, choice and family-led care.
+            </h2>
+
+            <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+              Whether you are planning ahead or navigating a death now, Solace
+              can help you understand your options, make informed choices and
+              create arrangements that feel authentic to the person who has
+              died.
+            </p>
+          </motion.section>
 
           <div className="grid md:grid-cols-2 gap-6">
             {funeralPages.map((page, index) => (
-              <motion.div
+              <motion.article
                 key={page.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -73,18 +90,29 @@ function HavingAFuneralWithSolace() {
               >
                 <Link
                   href={page.href}
-                  className="block p-6 bg-gray-50 rounded-lg border border-gray-200 hover:border-emerald-500 hover:shadow-lg transition-all group h-full"
+                  className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
                 >
-                  <h2 className="text-xl font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors mb-3">
+                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                    {page.eyebrow}
+                  </p>
+
+                  <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
                     {page.title}
                   </h2>
-                  <p className="text-gray-600">{page.description}</p>
+
+                  <p className="mt-4 text-gray-700 leading-relaxed">
+                    {page.description}
+                  </p>
+
+                  <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
+                    Learn more →
+                  </span>
                 </Link>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

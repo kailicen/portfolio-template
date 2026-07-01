@@ -73,7 +73,7 @@ const fallbackResources = [
     trainer: null,
     location: "Tasmania",
     link: "https://www.legislation.tas.gov.au/",
-    category: "tasmanian-legislation" as const,
+    category: "tasmania" as const,
   },
   {
     id: "9",
@@ -81,47 +81,7 @@ const fallbackResources = [
     trainer: null,
     location: "Tasmania",
     link: "https://www.health.tas.gov.au/",
-    category: "tasmanian-legislation" as const,
-  },
-  {
-    id: "10",
-    name: "End of Life Education Centre",
-    trainer: "Belinda Brooks",
-    location: "Australia",
-    link: "https://www.endoflifetraining.com/",
-    category: "end-of-life-training" as const,
-  },
-  {
-    id: "11",
-    name: "Preparing The Way",
-    trainer: "Helen Callanan",
-    location: "Australia/NZ – in person & online",
-    link: "https://preparingtheway.com.au",
-    category: "end-of-life-training" as const,
-  },
-  {
-    id: "12",
-    name: "Advance Care Planning Australia",
-    trainer: null,
-    location: "Australia",
-    link: "https://www.advancecareplanning.org.au/",
-    category: "end-of-life-tools" as const,
-  },
-  {
-    id: "13",
-    name: "The Groundswell Project",
-    trainer: null,
-    location: "Australia",
-    link: "https://www.thegroundswellproject.com/",
-    category: "end-of-life-tools" as const,
-  },
-  {
-    id: "14",
-    name: "Dying to Know Day",
-    trainer: null,
-    location: "Australia",
-    link: "https://www.dyingtoknowday.org/",
-    category: "end-of-life-tools" as const,
+    category: "tasmania" as const,
   },
 ];
 
@@ -156,20 +116,41 @@ export default function Resources({ resources, isUsingContentful }: Props) {
   const [activeCategory, setActiveCategory] = useState("tasmania");
 
   const categories = Object.keys(categoryLabels);
+
   const activeResources = resources.filter(
-    (r) => r.category === activeCategory,
+    (resource) => resource.category === activeCategory,
   );
+
+  const getResourceLinkLabel = (resource: Resource) => {
+    if (resource.link) return "Visit Resource";
+
+    if (resource.file?.contentType === "application/pdf") {
+      return resource.file.fileName
+        ? `Open PDF - ${resource.file.fileName}`
+        : "Open PDF";
+    }
+
+    return resource.file?.title || resource.file?.fileName || "Open File";
+  };
+
+  const getResourceUrl = (resource: Resource) => {
+    if (resource.link) return resource.link;
+    if (resource.file?.url) return resource.file.url;
+    return null;
+  };
 
   return (
     <>
       <Head>
-        <title>Resources - Solace</title>
+        <title>Resources | Solace</title>
         <meta
           name="description"
           content="Explore trusted end-of-life resources from Tasmania, Australia, and overseas, including organisations, education, services, and practical information."
         />
       </Head>
+
       <Header />
+
       <div className="relative">
         <Image
           src="/img/about-b.jpg"
@@ -185,7 +166,8 @@ export default function Resources({ resources, isUsingContentful }: Props) {
           </h1>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
@@ -198,118 +180,136 @@ export default function Resources({ resources, isUsingContentful }: Props) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="px-5"
           >
-            <div className="px-4 md:px-10 py-8">
-              <p className="text-lg text-gray-600 max-w-3xl mb-12">
-                A curated collection of trusted end-of-life resources from
-                Tasmania, Australia, and overseas.
+            <section className="px-4 md:px-10 py-8">
+              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
+                Community Education
               </p>
 
-              <div className="flex flex-col md:flex-row gap-8">
-                {/* Category Sidebar */}
-                <nav className="md:w-64 flex-shrink-0">
-                  <ul className="space-y-1">
-                    {categories.map((category) => (
-                      <li key={category}>
-                        <button
-                          onClick={() => setActiveCategory(category)}
-                          className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                            activeCategory === category
-                              ? "bg-emerald-600 text-white font-medium"
-                              : "text-gray-700 hover:bg-gray-100"
-                          }`}
-                        >
-                          {categoryLabels[category]}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
+              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
+                Trusted resources for planning, learning, and end-of-life care.
+              </h2>
 
-                {/* Resources List */}
-                <div className="flex-1">
-                  <div className="bg-gray-50 rounded-lg shadow-sm divide-y divide-gray-300 border border-gray-200">
-                    {activeResources.length > 0 ? (
-                      activeResources.map((resource, index) => (
-                        <motion.div
-                          key={resource.id}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.05 }}
-                          className="p-6"
-                        >
-                          <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                            {resource.name}
-                          </h3>
-                          {resource.trainer && (
-                            <p className="text-gray-600 mb-1">
-                              <span className="font-medium">Trainer:</span>{" "}
-                              {resource.trainer}
-                            </p>
-                          )}
-                          {resource.location && (
-                            <p className="text-gray-600 mb-3">
-                              <span className="font-medium">Location:</span>{" "}
-                              <em>{resource.location}</em>
-                            </p>
-                          )}
-                          {resource.link ? (
-                            <a
-                              href={resource.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-emerald-600 hover:underline break-all"
-                            >
-                              {resource.link}
-                            </a>
-                          ) : resource.file?.url ? (
-                            <a
-                              href={resource.file.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-emerald-600 hover:underline"
-                            >
-                              {resource.file.contentType === "application/pdf"
-                                ? `Open PDF${resource.file.fileName ? ` - ${resource.file.fileName}` : ""}`
-                                : resource.file.title ||
-                                  resource.file.fileName ||
-                                  "Open file"}
-                            </a>
-                          ) : (
-                            <p className="text-gray-400 italic">
-                              No link or file provided
-                            </p>
-                          )}
-                          {resource.description && (
-                            <RichContent
-                              content={resource.description}
-                              variant="compact"
-                            />
-                          )}
-                        </motion.div>
-                      ))
-                    ) : (
-                      <div className="p-6 text-center text-gray-500">
-                        No resources found in this category.
-                      </div>
-                    )}
-                  </div>
+              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
+                A curated collection of trusted end-of-life resources from
+                Tasmania, Australia, and overseas, including practical tools,
+                education providers, organisations, and useful information.
+              </p>
+
+              <div className="grid gap-8 md:grid-cols-[240px_1fr]">
+                <aside>
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-[3px] mb-4">
+                    Browse By Region
+                  </h3>
+
+                  <nav className="space-y-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        type="button"
+                        onClick={() => setActiveCategory(category)}
+                        className={`w-full rounded-lg px-4 py-3 text-left transition-colors ${
+                          activeCategory === category
+                            ? "bg-emerald-600 text-white font-medium"
+                            : "bg-gray-50 text-gray-700 border border-gray-200 hover:border-emerald-200 hover:text-emerald-600"
+                        }`}
+                      >
+                        {categoryLabels[category]}
+                      </button>
+                    ))}
+                  </nav>
+                </aside>
+
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+                    {categoryLabels[activeCategory]}
+                  </h3>
+
+                  {activeResources.length > 0 ? (
+                    <div className="space-y-6">
+                      {activeResources.map((resource, index) => {
+                        const resourceUrl = getResourceUrl(resource);
+
+                        return (
+                          <motion.article
+                            key={resource.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.08 }}
+                            className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                          >
+                            <h4 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+                              {resource.name}
+                            </h4>
+
+                            <div className="space-y-2 text-gray-600 leading-relaxed">
+                              {resource.trainer && (
+                                <p>
+                                  <span className="font-medium text-gray-700">
+                                    Trainer:
+                                  </span>{" "}
+                                  {resource.trainer}
+                                </p>
+                              )}
+
+                              {resource.location && (
+                                <p>
+                                  <span className="font-medium text-gray-700">
+                                    Location:
+                                  </span>{" "}
+                                  {resource.location}
+                                </p>
+                              )}
+                            </div>
+
+                            {resource.description && (
+                              <div className="mt-4 text-gray-600 leading-relaxed">
+                                <RichContent
+                                  content={resource.description}
+                                  variant="compact"
+                                />
+                              </div>
+                            )}
+
+                            {resourceUrl ? (
+                              <a
+                                href={resourceUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-5 inline-block text-emerald-600 font-medium hover:underline break-all"
+                              >
+                                {getResourceLinkLabel(resource)} &rarr;
+                              </a>
+                            ) : (
+                              <p className="mt-5 text-gray-400 italic">
+                                No link or file provided
+                              </p>
+                            )}
+                          </motion.article>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 text-gray-500">
+                      No resources found in this category.
+                    </div>
+                  )}
                 </div>
               </div>
 
               {!isUsingContentful && (
-                <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
+                <div className="mt-12 bg-emerald-50 rounded-lg p-6 md:p-8 border border-emerald-100">
                   <p className="text-gray-600">
                     Showing sample content. Connect Contentful to manage
                     resources dynamically.
                   </p>
                 </div>
               )}
-            </div>
+            </section>
           </motion.div>
         </div>
-      </div>
+      </main>
+
       <Footer />
     </>
   );
@@ -321,6 +321,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   if (isConfigured) {
     try {
       const contentfulResources = await getResources();
+
       if (contentfulResources.length > 0) {
         return {
           props: {
@@ -351,7 +352,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     }
   }
 
-  // Fallback to static data
   return {
     props: {
       resources: fallbackResources,

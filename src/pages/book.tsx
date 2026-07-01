@@ -1,12 +1,11 @@
 import Header from "@/components/Header";
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import { motion } from "framer-motion";
 import Head from "next/head";
-
-type Props = {};
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
 
 type Review = {
   id: string;
@@ -15,7 +14,7 @@ type Review = {
   content: string;
 };
 
-const reviews = [
+const reviews: Review[] = [
   {
     id: "review-1",
     name: "Amy",
@@ -39,49 +38,56 @@ const reviews = [
   },
 ];
 
-const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
+const ReviewCard: React.FC<{ review: Review; index: number }> = ({
+  review,
+  index,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const maxLength = 300; // Max characters to show before "Show More"
+  const maxLength = 300;
 
-  const toggleIsExpanded = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const shouldTruncate = review.content.length > maxLength;
 
-  const renderStars = () => {
-    return (
-      <div className="text-yellow-500 text-sm md:text-lg ml-2">{"★★★★★"}</div>
-    );
-  };
+  const displayContent =
+    isExpanded || !shouldTruncate
+      ? review.content
+      : `${review.content.substring(0, maxLength)}...`;
 
   return (
-    <div className="bg-gray-100 p-5 rounded-lg shadow-md my-5">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center">
-          <h3 className="font-bold text-base md:text-lg">{review.name}</h3>
-          {renderStars()}
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+    >
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <h3 className="text-lg font-semibold text-gray-800">{review.name}</h3>
+          <span className="text-yellow-500 text-sm tracking-wide">★★★★★</span>
         </div>
-        <span className="text-sm text-gray-500">{review.date}</span>
+
+        <time className="text-sm text-gray-500">{review.date}</time>
       </div>
-      <p className="text-gray-700 whitespace-pre-line">
-        {isExpanded || review.content.length <= maxLength
-          ? review.content
-          : `${review.content.substring(0, maxLength)}...`}
+
+      <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+        {displayContent}
       </p>
-      {review.content.length > maxLength && (
+
+      {shouldTruncate && (
         <button
-          onClick={toggleIsExpanded}
-          className="text-green-600 hover:text-green-800 text-sm mt-2"
+          type="button"
+          onClick={() => setIsExpanded((current) => !current)}
+          className="mt-4 text-emerald-600 font-medium hover:underline"
         >
           {isExpanded ? "Show Less" : "Show More"}
         </button>
       )}
-    </div>
+    </motion.article>
   );
 };
 
-function Book({}: Props) {
+export default function Book() {
   return (
-    <div className="bg-white text-black">
+    <>
       <Head>
         <title>A Heartfelt Undertaking | Solace</title>
         <meta
@@ -89,11 +95,13 @@ function Book({}: Props) {
           content="Discover A Heartfelt Undertaking by Bec Lyons, a book exploring alternative approaches to death care, ceremony, and end-of-life practices in Australia and around the world."
         />
       </Head>
+
       <Header />
+
       <div className="relative">
         <Image
           src="/img/book-b.jpg"
-          alt="book-b"
+          alt="A Heartfelt Undertaking"
           width={2300}
           height={300}
           className="w-full h-48 md:h-80 object-cover"
@@ -101,128 +109,163 @@ function Book({}: Props) {
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Book: A Heartfelt Undertaking
+            Book
           </h1>
         </div>
       </div>
-      <div
-        className="max-w-6xl mx-auto
-      2xl:max-w-7xl 2xl:text-lg md:text-base"
-      >
-        <Breadcrumb items={[{ label: "Book" }]} />
-        <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:py-10 px-2 md:px-10
-        items-center justify-center"
-        >
-          <div className="flex flex-col space-y-3 md:space-y-5 items-start">
-            <h2
-              className="text-xl md:text-2xl
-            2xl:text-3xl"
-            >
-              <span className="decoration-green-400 underline">
-                A HEARTFELT UNDERTAKING
-              </span>
-            </h2>
-            <p>
-              In 2019 Bec Lyons travelled to six countries on a Churchill
-              Fellowship. She was researching the human relationship to death
-              and ceremony through alternative approaches and technologies. It
-              was a huge effort and this book is the result.
-            </p>
-            <p>
-              Through an extensive process of interviews and site visits, Bec
-              met with and learned from people who are doing death differently –
-              from funeral directors to doulas to health professionals, and
-              everyone in between. This book aims to document what is happening
-              around the world, what is under development, and what is new to
-              the end of life space. – and how it all might work in Australia.
-            </p>
-            <p>
-              Rich with personal reflections, this book will give you a detailed
-              insight into what is possible at end of life, what options are
-              emerging and how they fit into an Australian context.
-            </p>
-            <p>
-              Awarded a Silver Medal in the 2023 Independent Publisher Book
-              Awards in the Australia/New Zealand – Best Regional Non-Fiction
-              Category.
-            </p>
-          </div>
-          <Image
-            className="w-auto h-auto md:w-[400px] md:h-auto rounded-lg
-            2xl:h-[400px] 2xl:w-auto"
-            src="/img/book-award.png"
-            alt="book-1"
-            width={400}
-            height={400}
-          />
-        </div>
-        <div
-          className="flex flex-col space-y-5 md:flex-row md:space-x-5 py-5 md:pb-10 px-2 md:px-10
-        items-center md:items-start justify-start"
-        >
-          <Image
-            className="w-auto h-auto md:w-[200px] md:h-auto rounded-lg
-          2xl:h-[200px] 2xl:w-auto"
-            src="/img/book-2.jpg"
-            alt="book-2"
-            width={200}
-            height={200}
-          />
-          <div
-            className="flex flex-col space-y-3 md:space-y-5 items-start
-        px-2 md:px-10"
+
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
+          <Breadcrumb items={[{ label: "Book" }]} />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <p>
-              Link for reviews -{" "}
-              <Link
-                href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
-                target="_blank"
-                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-              >
-                Goodreads
-              </Link>
-            </p>
-            <p>
-              Buy on Booktopia -{" "}
-              <Link
-                href="https://www.booktopia.com.au/a-heartfelt-undertaking-rebecca-j-lyons/book/9780645408508.html"
-                target="_blank"
-                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-              >
-                Booktopia
-              </Link>
-            </p>
-            <p>
-              Buy on Amazon -{" "}
-              <Link
-                href="https://www.amazon.com.au/Heartfelt-Undertaking-Rebecca-J-Lyons/dp/0645408506/ref=sr_1_5?keywords=rebecca+lyons&sr=8-5"
-                target="_blank"
-                className="bg-green-100 hover:text-green-500 rounded-lg px-1 pb-1"
-              >
-                Amazon
-              </Link>
-            </p>
-          </div>
+            <section className="px-4 md:px-10 py-8">
+              <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+                <div>
+                  <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
+                    A Heartfelt Undertaking
+                  </p>
+
+                  <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6">
+                    Exploring death care, ceremony, and what is possible at end
+                    of life.
+                  </h2>
+
+                  <div className="space-y-5 text-gray-600 leading-relaxed">
+                    <p>
+                      In 2019 Bec Lyons travelled to six countries on a
+                      Churchill Fellowship. She was researching the human
+                      relationship to death and ceremony through alternative
+                      approaches and technologies. It was a huge effort and this
+                      book is the result.
+                    </p>
+
+                    <p>
+                      Through an extensive process of interviews and site
+                      visits, Bec met with and learned from people who are doing
+                      death differently – from funeral directors to doulas to
+                      health professionals, and everyone in between. This book
+                      aims to document what is happening around the world, what
+                      is under development, and what is new to the end of life
+                      space. – and how it all might work in Australia.
+                    </p>
+
+                    <p>
+                      Rich with personal reflections, this book will give you a
+                      detailed insight into what is possible at end of life,
+                      what options are emerging and how they fit into an
+                      Australian context.
+                    </p>
+
+                    <p>
+                      Awarded a Silver Medal in the 2023 Independent Publisher
+                      Book Awards in the Australia/New Zealand – Best Regional
+                      Non-Fiction Category.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex justify-center md:justify-end">
+                  <Image
+                    src="/img/book-award.png"
+                    alt="A Heartfelt Undertaking book award"
+                    width={400}
+                    height={400}
+                    className="w-full max-w-sm rounded-lg shadow-sm border border-gray-200"
+                  />
+                </div>
+              </div>
+            </section>
+
+            <section className="px-4 md:px-10 py-8">
+              <div className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+                <div className="grid gap-8 md:grid-cols-[200px_1fr] md:items-start">
+                  <Image
+                    src="/img/book-2.jpg"
+                    alt="A Heartfelt Undertaking book cover"
+                    width={200}
+                    height={200}
+                    className="rounded-lg shadow-sm border border-gray-200 mx-auto md:mx-0"
+                  />
+
+                  <div>
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                      Find the book
+                    </h2>
+
+                    <p className="text-gray-600 mb-6 max-w-2xl">
+                      Read reviews or purchase a copy through the links below.
+                    </p>
+
+                    <div className="flex flex-wrap gap-3">
+                      <Link
+                        href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-600 hover:text-white transition"
+                      >
+                        Goodreads
+                      </Link>
+
+                      <Link
+                        href="https://www.booktopia.com.au/a-heartfelt-undertaking-rebecca-j-lyons/book/9780645408508.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-600 hover:text-white transition"
+                      >
+                        Booktopia
+                      </Link>
+
+                      <Link
+                        href="https://www.amazon.com.au/Heartfelt-Undertaking-Rebecca-J-Lyons/dp/0645408506/ref=sr_1_5?keywords=rebecca+lyons&sr=8-5"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-600 hover:text-white transition"
+                      >
+                        Amazon
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="px-4 md:px-10 py-8">
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                Reader Reviews
+              </h2>
+
+              <p className="text-lg text-gray-600 max-w-3xl mb-10">
+                Reflections from readers interested in death care, ceremony,
+                grief, and alternative approaches to end-of-life practice.
+              </p>
+
+              <div className="space-y-8">
+                {reviews.map((review, index) => (
+                  <ReviewCard key={review.id} review={review} index={index} />
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <Link
+                  href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-600 font-medium hover:underline"
+                >
+                  Read all reviews on Goodreads
+                </Link>
+              </div>
+            </section>
+          </motion.div>
         </div>
-      </div>
-      <div className="max-w-6xl mx-auto px-2 md:px-10 py-5">
-        <h2 className="text-2xl font-semibold my-5">Reader Reviews</h2>
-        {reviews.map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
-        <a
-          href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
-          target="_blank"
-          className="text-green-600 hover:text-green-800 font-semibold"
-          rel="noopener noreferrer"
-        >
-          Read all reviews on Goodreads
-        </a>
-      </div>
+      </main>
+
       <Footer />
-    </div>
+    </>
   );
 }
-
-export default Book;

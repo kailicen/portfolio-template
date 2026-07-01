@@ -16,6 +16,7 @@ type ApiResponse = {
 
 type ContactFormProps = {
   compact?: boolean;
+  className?: string;
 };
 
 async function sendContactForm(data: ContactInputs): Promise<ApiResponse> {
@@ -37,7 +38,10 @@ async function sendContactForm(data: ContactInputs): Promise<ApiResponse> {
   return result;
 }
 
-export default function ContactForm({ compact = false }: ContactFormProps) {
+export default function ContactForm({
+  compact = false,
+  className = "",
+}: ContactFormProps) {
   const {
     register,
     handleSubmit,
@@ -89,7 +93,9 @@ export default function ContactForm({ compact = false }: ContactFormProps) {
   }, [status]);
 
   return (
-    <div className={`w-full ${compact ? "max-w-2xl" : "max-w-3xl"}`}>
+    <div
+      className={`w-full ${className || (compact ? "max-w-2xl" : "max-w-3xl")}`}
+    >
       <div className="mb-8 flex items-center justify-center gap-3 rounded-lg border border-emerald-100 bg-emerald-50 px-5 py-4">
         <PhoneIcon className="h-6 w-6 shrink-0 text-emerald-600" />
 

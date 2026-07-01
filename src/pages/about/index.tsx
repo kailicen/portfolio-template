@@ -10,20 +10,23 @@ const aboutPages = [
   {
     title: "Who Are We?",
     href: "/about/who-we-are",
+    eyebrow: "Our people",
     description:
-      "Meet Edwin and Bec, the founders of Solace End of Life Services.",
+      "Meet Edwin and Bec, the people behind Solace End of Life Services, and learn about the experience and values they bring to this work.",
   },
   {
-    title: "Where Have We Come From?",
-    href: "/about/where-we-come-from",
+    title: "How Did We Begin?",
+    href: "/about/how-did-we-begin",
+    eyebrow: "Our story",
     description:
-      "Our journey from compassion and frustration to advocacy and change.",
+      "Learn how Solace began, and why community-led death care, education, advocacy and informed choice sit at the heart of what we do.",
   },
   {
     title: "Why Death and Dying?",
     href: "/about/why-death-and-dying",
+    eyebrow: "Our purpose",
     description:
-      "Making the conversation about death and dying just another part of life.",
+      "Explore why we believe conversations about dying, death and grief should be honest, accessible and part of everyday life.",
   },
 ];
 
@@ -31,10 +34,10 @@ function AboutIndex() {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
       <Head>
-        <title>About - Solace End of Life Services</title>
+        <title>About | Solace End of Life Services</title>
         <meta
           name="description"
-          content="Learn about Solace End of Life Services, our founders Edwin and Bec, and our mission to change how we approach death and dying."
+          content="Learn about Solace End of Life Services, our founders Edwin and Bec, our story, and our commitment to changing how we approach dying, death and grief."
         />
       </Head>
 
@@ -43,12 +46,12 @@ function AboutIndex() {
       <div className="relative">
         <Image
           src="/img/about-b.jpg"
-          alt="About Solace"
+          alt="About Solace End of Life Services"
           width={2300}
           height={300}
           className="w-full h-48 md:h-80 object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex justify-center items-center text-white">
           <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
             About
@@ -56,19 +59,35 @@ function AboutIndex() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <Breadcrumb items={[{ label: "About" }]} />
 
-        <div className="px-4 md:px-10 py-8">
-          <p className="text-lg text-gray-700 mb-10 max-w-3xl">
-            We come from a place of compassion, honesty, and transparency. Learn
-            more about who we are, our journey, and why we are passionate about
-            changing the conversation around death and dying.
-          </p>
+        <div className="px-4 md:px-10 py-8 md:py-12">
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mb-12"
+          >
+            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+              About Solace
+            </p>
+
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+              Compassionate, honest and community-centred end-of-life care.
+            </h2>
+
+            <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+              Solace comes from a place of compassion, honesty and transparency.
+              Learn more about who we are, how we began, and why we are
+              passionate about changing the conversation around dying, death and
+              grief.
+            </p>
+          </motion.section>
 
           <div className="grid md:grid-cols-3 gap-6">
             {aboutPages.map((page, index) => (
-              <motion.div
+              <motion.article
                 key={page.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -76,18 +95,29 @@ function AboutIndex() {
               >
                 <Link
                   href={page.href}
-                  className="block p-6 bg-gray-50 rounded-lg border border-gray-200 hover:border-emerald-500 hover:shadow-lg transition-all group h-full"
+                  className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
                 >
-                  <h2 className="text-xl font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors mb-3">
+                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                    {page.eyebrow}
+                  </p>
+
+                  <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
                     {page.title}
                   </h2>
-                  <p className="text-gray-600">{page.description}</p>
+
+                  <p className="mt-4 text-gray-700 leading-relaxed">
+                    {page.description}
+                  </p>
+
+                  <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
+                    Learn more →
+                  </span>
                 </Link>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

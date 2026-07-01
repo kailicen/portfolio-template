@@ -1,30 +1,37 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-type Props = {};
-
-function BackgroundCircles({}: Props) {
+function BackgroundCircles() {
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        scale: [1, 2, 2, 3, 1],
-        opacity: [0.1, 0.2, 0.4, 0.8, 0.5],
-        borderRadius: ["20%", "20%", "50%", "80%", "20%"],
-      }}
-      transition={{
-        duration: 10,
-      }}
-      className="relative flex justify-center items-center"
-    >
-      <div className="absolute border border-[#00FF6A] rounded-full h-[200px] w-[200px] mt-64 animate-ping" />
-      <div className="absolute border border-[#00FF6A] rounded-full h-[300px] w-[300px] mt-64 animate-ping" />
-      <div className="absolute border border-[#00FF6A] rounded-full h-[500px] w-[500px] mt-64 animate-ping" />
-      {/* <div className="absolute border-4 border-[#00FF6A] opacity-20 rounded-full h-[500px] md:h-[700px] w-[500px] md:w-[700px] mt-64 animate-pulse" /> */}
-      <div className="absolute border border-[#00FF6A] rounded-full h-[800px] w-[800px] mt-64 animate-ping" />
-    </motion.div>
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative flex items-center justify-center"
+      >
+        {[220, 380, 560, 760].map((size, index) => (
+          <motion.div
+            key={size}
+            className="absolute rounded-full border border-emerald-400/35"
+            style={{
+              width: size,
+              height: size,
+            }}
+            animate={{
+              scale: [1, 1.04, 1],
+              opacity: [0.18, 0.34, 0.18],
+            }}
+            transition={{
+              duration: 6 + index * 1.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: index * 0.4,
+            }}
+          />
+        ))}
+      </motion.div>
+    </div>
   );
 }
 

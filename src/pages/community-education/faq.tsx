@@ -50,14 +50,18 @@ function FAQItemComponent({
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-gray-200 last:border-b-0">
+    <article className="bg-gray-50 rounded-lg shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors overflow-hidden">
       <button
+        type="button"
         onClick={onToggle}
-        className="w-full py-5 flex items-center justify-between text-left hover:text-emerald-600 transition-colors"
+        className="w-full px-6 md:px-8 py-5 flex items-center justify-between text-left"
       >
-        <span className="font-medium text-gray-800 pr-4">{question}</span>
+        <span className="text-lg font-semibold text-gray-800 pr-4">
+          {question}
+        </span>
+
         <ChevronDownIcon
-          className={`w-5 h-5 flex-shrink-0 transition-transform ${
+          className={`w-5 h-5 flex-shrink-0 text-emerald-600 transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -72,13 +76,13 @@ function FAQItemComponent({
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <div className="pb-5">
+            <div className="px-6 md:px-8 pb-6 text-gray-600 leading-relaxed">
               <RichContent content={answer} variant="compact" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </article>
   );
 }
 
@@ -88,7 +92,7 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
   return (
     <>
       <Head>
-        <title>FAQ - Solace</title>
+        <title>FAQ | Solace</title>
         <meta
           name="description"
           content="Frequently asked questions about death, dying, funerals, and your rights in Tasmania."
@@ -113,7 +117,7 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
         <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb
             items={[
@@ -127,14 +131,23 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="px-4 md:px-10 py-8">
-              <p className="text-lg text-gray-600 max-w-3xl mb-12">
+            <section className="px-4 md:px-10 py-8">
+              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
+                Community Education
+              </p>
+
+              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
+                Honest answers to common questions about death, dying, and
+                funerals.
+              </h2>
+
+              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
                 We believe in open, honest conversations about death and dying.
                 Here are answers to some common questions. If you can&apos;t
                 find what you&apos;re looking for, please contact us.
               </p>
 
-              <div className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+              <div className="space-y-4">
                 {faqs.map((item, index) => (
                   <FAQItemComponent
                     key={item.id}
@@ -148,30 +161,39 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
                 ))}
               </div>
 
-              <div className="mt-12 p-8 bg-emerald-50 rounded-lg text-center">
-                <p className="text-gray-700 mb-4">
+              <section className="mt-12 bg-emerald-700 text-white rounded-2xl p-6 md:p-8">
+                <h2 className="text-2xl md:text-3xl font-semibold">
                   Can&apos;t find the answer you&apos;re looking for?
+                </h2>
+
+                <p className="mt-4 text-emerald-50 leading-relaxed max-w-3xl">
+                  Every situation is different. If you need guidance, have a
+                  specific question, or are unsure where to start, please reach
+                  out and we will help where we can.
                 </p>
-                <Link
-                  href="/contact"
-                  className="inline-block px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </div>
+
+                <div className="mt-6 flex flex-wrap gap-4">
+                  <Link
+                    href="/contact"
+                    className="inline-block px-6 py-3 bg-white text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                  >
+                    Contact Solace
+                  </Link>
+                </div>
+              </section>
 
               {!isUsingContentful && (
-                <div className="mt-6 p-4 bg-gray-100 rounded-lg text-center">
-                  <p className="text-sm text-gray-500">
+                <div className="mt-6 bg-emerald-50 rounded-lg p-6 border border-emerald-100">
+                  <p className="text-sm text-gray-600">
                     Showing sample content. Connect Contentful to manage FAQs
                     dynamically.
                   </p>
                 </div>
               )}
-            </div>
+            </section>
           </motion.div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </>

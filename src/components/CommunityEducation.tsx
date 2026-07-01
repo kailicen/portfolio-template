@@ -1,51 +1,51 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const aboutPages = [
+const educationSubPages = [
   {
-    title: "Who Are We?",
-    href: "/about/who-we-are",
-    eyebrow: "Our people",
+    title: "Education & Advocacy",
+    href: "/community-education/education-advocacy",
+    eyebrow: "Ask away",
     description:
-      "Meet Edwin and Bec, the people behind Solace End of Life Services.",
+      "Q&A sessions, workshops and honest conversations about dying, death and care.",
   },
   {
-    title: "How Did We Begin?",
-    href: "/about/how-did-we-begin",
-    eyebrow: "Our story",
+    title: "Resources",
+    href: "/community-education/resources",
+    eyebrow: "Helpful links",
     description:
-      "Learn how Solace began and why informed, community-led death care matters.",
+      "Useful organisations, planning tools, legislation and information to support informed choices.",
   },
   {
-    title: "Why Death and Dying?",
-    href: "/about/why-death-and-dying",
-    eyebrow: "Our purpose",
+    title: "FAQ",
+    href: "/community-education/faq",
+    eyebrow: "Common questions",
     description:
-      "Explore why honest conversations about dying and death are part of life.",
+      "Straightforward answers about dying, death, funerals, rights and options.",
   },
 ];
 
-function About() {
+function CommunityEducation() {
   return (
     <section
       className="min-h-screen flex overflow-hidden flex-col text-left
       px-4 md:px-24 justify-center mx-auto items-center scroll-smooth py-16"
     >
       <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4 text-center">
-        About
+        Community Education
       </p>
 
       <h3 className="text-3xl md:text-5xl font-semibold text-gray-900 text-center max-w-4xl leading-tight">
-        Honest, compassionate support for dying, death and grief.
+        Honest conversations make better end-of-life choices possible.
       </h3>
 
       <p className="mt-6 text-gray-600 text-center max-w-3xl text-lg leading-relaxed">
-        Learn more about the people, story and purpose behind Solace End of Life
-        Services.
+        Explore education, advocacy and resources designed to help people feel
+        more informed, prepared and at ease when talking about dying and death.
       </p>
 
       <div className="grid md:grid-cols-3 gap-6 w-full max-w-6xl mt-10">
-        {aboutPages.map((page, index) => (
+        {educationSubPages.map((page, index) => (
           <motion.div
             key={page.href}
             initial={{ opacity: 0, y: 20 }}
@@ -76,8 +76,17 @@ function About() {
           </motion.div>
         ))}
       </div>
+
+      <div className="mt-8">
+        <Link
+          href="/community-education"
+          className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+        >
+          View All Community Education
+        </Link>
+      </div>
     </section>
   );
 }
 
-export default About;
+export default CommunityEducation;

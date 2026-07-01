@@ -2,12 +2,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import ContactForm from "@/components/ContactForm";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
 
 export default function ContactPage() {
   return (
-    <div className="bg-white text-black">
+    <>
       <Head>
         <title>Contact Us | Solace</title>
         <meta
@@ -18,51 +19,54 @@ export default function ContactPage() {
 
       <Header />
 
-      <main>
-        <div className="relative">
-          <Image
-            src="/img/contact-b.jpg"
-            alt="Contact Solace"
-            width={2300}
-            height={300}
-            className="h-48 w-full object-cover md:h-80"
-          />
-
-          <div className="absolute inset-0 bg-black/50" />
-
-          <div className="absolute inset-0 flex items-center justify-center text-white">
-            <h1 className="px-4 text-center text-2xl font-semibold uppercase tracking-[10px] md:text-5xl 2xl:text-7xl">
-              Contact Us
-            </h1>
-          </div>
+      <div className="relative">
+        <Image
+          src="/img/contact-b.jpg"
+          alt="Contact Solace"
+          width={2300}
+          height={300}
+          className="w-full h-48 md:h-80 object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-50" />
+        <div className="absolute inset-0 flex justify-center items-center text-white">
+          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
+            Contact Us
+          </h1>
         </div>
+      </div>
 
-        <div className="mx-auto max-w-6xl px-4 2xl:max-w-7xl">
+      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
+        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
           <Breadcrumb items={[{ label: "Contact Us" }]} />
 
-          <section className="py-12 md:py-16">
-            <div className="mb-10 text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl">
-                TIME SENSITIVE? DON&apos;T WAIT.{" "}
-                <span className="underline decoration-emerald-600">
-                  LET&apos;S TALK.
-                </span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <section className="px-4 md:px-10 py-8">
+              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
+                Contact
+              </p>
+
+              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
+                Time sensitive? Don&apos;t wait. Let&apos;s talk.
               </h2>
 
-              <p className="mx-auto mt-4 max-w-2xl text-gray-600 md:text-lg">
+              <p className="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
                 Have a question or need support? Send us a message and we will
                 get back to you as soon as possible.
               </p>
-            </div>
 
-            <div className="flex justify-center">
-              <ContactForm />
-            </div>
-          </section>
+              <div className="w-full max-w-3xl">
+                <ContactForm compact />
+              </div>
+            </section>
+          </motion.div>
         </div>
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }

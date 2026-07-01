@@ -5,8 +5,7 @@ import Footer from "@/components/Footer";
 import HavingAFuneral from "@/components/HavingAFuneral";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-// import HomeFuneral from "@/components/HomeFuneral";
-// import Planning from "@/components/Planning";
+import CommunityEducation from "@/components/CommunityEducation";
 import Packages from "@/components/Packages";
 import Head from "next/head";
 
@@ -32,22 +31,17 @@ export default function Home() {
           <About />
         </section>
 
+        <section id="community-education">
+          <CommunityEducation />
+        </section>
+
         <section id="funeral">
           <HavingAFuneral />
         </section>
 
-        {/* Pricing */}
         <section id="packages">
           <Packages />
         </section>
-
-        {/* <section id="planning">
-          <Planning />
-        </section>
-
-        <section id="home">
-          <HomeFuneral />
-        </section> */}
 
         <section id="book">
           <Book />

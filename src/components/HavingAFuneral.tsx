@@ -3,39 +3,42 @@ import { motion } from "framer-motion";
 
 const funeralPages = [
   {
-    title: "Planning a Funeral",
-    href: "/planning-a-funeral",
+    title: "Planning",
+    href: "/having-a-funeral-with-solace/planning-a-funeral",
+    eyebrow: "Plan ahead",
     description:
-      "Practical funeral planning guidance, checklists, wishes resources, and information to help you make informed choices.",
+      "Guidance around wishes, advance care planning, funeral planning and practical choices.",
   },
   {
     title: "Home Funerals in Tasmania",
-    href: "/home-funerals-in-tasmania",
+    href: "/having-a-funeral-with-solace/home-funerals-in-tasmania",
+    eyebrow: "Family-led care",
     description:
-      "Learn about family-led home funerals in Tasmania, including practical guidance, options, and legal considerations.",
+      "Explore home funerals, home vigils, family-led care and how Solace can support you.",
   },
 ];
 
 function HavingAFuneral() {
   return (
-    <div
+    <section
       className="min-h-screen flex overflow-hidden flex-col text-left
-      px-2 md:px-24 justify-evenly mx-auto items-center scroll-smooth"
+      px-4 md:px-24 justify-center mx-auto items-center scroll-smooth py-16"
     >
-      <h3
-        className="mb-5 uppercase tracking-[10px] md:tracking-[10px] text-gray-500 text-2xl text-center
-        2xl:text-4xl"
-      >
+      <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4 text-center">
         Having a Funeral with Solace
-      </h3>
-
-      <p className="text-gray-600 text-center max-w-3xl">
-        Whether you are planning ahead or navigating a death right now, explore
-        practical guidance and family-led funeral options to help you understand
-        what is possible and make informed choices.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-6 w-full max-w-5xl">
+      <h3 className="text-3xl md:text-5xl font-semibold text-gray-900 text-center max-w-4xl leading-tight">
+        Support for planning, choice and family-led funerals.
+      </h3>
+
+      <p className="mt-6 text-gray-600 text-center max-w-3xl text-lg leading-relaxed">
+        Whether you are planning ahead or need support now, explore practical
+        guidance and family-led funeral options to help you understand what is
+        possible.
+      </p>
+
+      <div className="grid md:grid-cols-2 gap-6 w-full max-w-5xl mt-10">
         {funeralPages.map((page, index) => (
           <motion.div
             key={page.href}
@@ -46,17 +49,28 @@ function HavingAFuneral() {
           >
             <Link
               href={page.href}
-              className="block p-6 bg-gray-50 rounded-lg border border-gray-200 hover:border-emerald-500 hover:shadow-lg transition-all group h-full"
+              className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
             >
-              <h2 className="text-xl font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors mb-3">
+              <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                {page.eyebrow}
+              </p>
+
+              <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
                 {page.title}
               </h2>
-              <p className="text-gray-600">{page.description}</p>
+
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {page.description}
+              </p>
+
+              <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
+                Learn more →
+              </span>
             </Link>
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
