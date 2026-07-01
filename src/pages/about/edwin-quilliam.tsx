@@ -69,6 +69,18 @@ function EdwinQuilliam() {
                   <h2 className="mt-3 text-2xl font-semibold text-gray-900">
                     Edwin Quilliam
                   </h2>
+
+                  <div className="mt-6 space-y-3 text-sm text-gray-700">
+                    <p>
+                      <span className="font-medium">Email:</span>{" "}
+                      <a
+                        href="mailto:edwin@solaceendoflife.com.au"
+                        className="text-emerald-700 hover:text-emerald-800 underline"
+                      >
+                        edwin@solaceendoflife.com.au
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.aside>

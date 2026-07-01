@@ -86,10 +86,10 @@ function RebeccaLyons() {
                     <p>
                       <span className="font-medium">Email:</span>{" "}
                       <a
-                        href="mailto:bec@solaceendoflife.com"
+                        href="mailto:bec@solaceendoflife.com.au"
                         className="text-emerald-700 hover:text-emerald-800 underline"
                       >
-                        bec@solaceendoflife.com
+                        bec@solaceendoflife.com.au
                       </a>
                     </p>
                   </div>
