@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import Container from "@/components/Container";
 
 const funeralPages = [
   {
@@ -61,64 +62,66 @@ function HavingAFuneralWithSolace() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <Breadcrumb items={[{ label: "Having a Funeral with Solace" }]} />
+      <main className="flex-1">
+        <Container>
+          <Breadcrumb items={[{ label: "Having a Funeral with Solace" }]} />
 
-        <div className="px-4 md:px-10 py-8 md:py-12">
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mb-12"
-          >
-            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
-              Funeral support
-            </p>
+          <div className="py-8 md:py-12">
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-12"
+            >
+              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+                Funeral support
+              </p>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-              Practical guidance for planning, choice and family-led care.
-            </h2>
+              <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+                Practical guidance for planning, choice and family-led care.
+              </h2>
 
-            <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-              Whether you are planning ahead or navigating a death now, Solace
-              can help you understand your options, make informed choices and
-              create arrangements that feel authentic to the person who has
-              died.
-            </p>
-          </motion.section>
+              <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+                Whether you are planning ahead or navigating a death now, Solace
+                can help you understand your options, make informed choices and
+                create arrangements that feel authentic to the person who has
+                died.
+              </p>
+            </motion.section>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {funeralPages.map((page, index) => (
-              <motion.article
-                key={page.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link
-                  href={page.href}
-                  className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
+            <div className="grid md:grid-cols-2 gap-6">
+              {funeralPages.map((page, index) => (
+                <motion.article
+                  key={page.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                    {page.eyebrow}
-                  </p>
+                  <Link
+                    href={page.href}
+                    className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
+                  >
+                    <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                      {page.eyebrow}
+                    </p>
 
-                  <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
-                    {page.title}
-                  </h2>
+                    <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
+                      {page.title}
+                    </h2>
 
-                  <p className="mt-4 text-gray-700 leading-relaxed">
-                    {page.description}
-                  </p>
+                    <p className="mt-4 text-gray-700 leading-relaxed">
+                      {page.description}
+                    </p>
 
-                  <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
-                    Learn more →
-                  </span>
-                </Link>
-              </motion.article>
-            ))}
+                    <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
+                      Learn more →
+                    </span>
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </main>
 
       <Footer />

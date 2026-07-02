@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import Container from "@/components/Container";
 
 function WhoWeAre() {
   return (
@@ -35,109 +36,114 @@ function WhoWeAre() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl 2xl:text-lg md:text-base flex-1">
-        <Breadcrumb
-          items={[{ label: "About", href: "/about" }, { label: "Who Are We?" }]}
-        />
+      <main className="flex-1">
+        <Container>
+          <Breadcrumb
+            items={[
+              { label: "About", href: "/about" },
+              { label: "Who Are We?" },
+            ]}
+          />
 
-        <div className="px-4 md:px-10 py-8 md:py-12">
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 max-w-4xl"
-          >
-            <p className="text-xl md:text-2xl text-gray-800 leading-relaxed font-light">
-              Solace End of Life Services is a family-owned, community-based
-              funeral home founded by Edwin Quilliam and Rebecca Lyons.
-            </p>
-
-            <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-              Together, Edwin and Bec bring experience, compassion and a deep
-              belief that families deserve honest information, meaningful
-              choices and genuine support at the end of life.
-            </p>
-          </motion.section>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            <motion.article
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+          <div className="py-8 md:py-12">
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+              className="mb-14 max-w-4xl"
             >
-              <Image
-                src="/img/edwin.jpg"
-                alt="Edwin Quilliam"
-                width={700}
-                height={700}
-                className="w-full h-80 object-cover"
-              />
+              <p className="text-xl md:text-2xl text-gray-800 leading-relaxed font-light">
+                Solace End of Life Services is a family-owned, community-based
+                funeral home founded by Edwin Quilliam and Rebecca Lyons.
+              </p>
 
-              <div className="p-7 md:p-8">
-                <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                  Co-founder • Funeral Celebrant
-                </p>
+              <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+                Together, Edwin and Bec bring experience, compassion and a deep
+                belief that families deserve honest information, meaningful
+                choices and genuine support at the end of life.
+              </p>
+            </motion.section>
 
-                <h2 className="mt-3 text-3xl font-semibold text-gray-900">
-                  Edwin Quilliam
-                </h2>
+            <div className="grid lg:grid-cols-2 gap-8">
+              <motion.article
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <Image
+                  src="/img/edwin.jpg"
+                  alt="Edwin Quilliam"
+                  width={700}
+                  height={700}
+                  className="w-full h-80 object-cover"
+                />
 
-                <p className="mt-5 text-gray-700 leading-relaxed">
-                  Raised on Tasmania’s North-West Coast, Edwin brings warmth,
-                  openness and a grounded community spirit to his work in
-                  end-of-life care.
-                </p>
+                <div className="p-7 md:p-8">
+                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                    Co-founder • Funeral Celebrant
+                  </p>
 
-                <Link
-                  href="/about/edwin-quilliam"
-                  className="inline-flex mt-6 text-emerald-700 font-medium hover:text-emerald-800"
-                >
-                  Read Edwin&apos;s story →
-                </Link>
-              </div>
-            </motion.article>
+                  <h2 className="mt-3 text-3xl font-semibold text-gray-900">
+                    Edwin Quilliam
+                  </h2>
 
-            <motion.article
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <Image
-                src="/img/bec.jpg"
-                alt="Rebecca Lyons"
-                width={700}
-                height={700}
-                className="w-full h-80 object-cover"
-              />
+                  <p className="mt-5 text-gray-700 leading-relaxed">
+                    Raised on Tasmania’s North-West Coast, Edwin brings warmth,
+                    openness and a grounded community spirit to his work in
+                    end-of-life care.
+                  </p>
 
-              <div className="p-7 md:p-8">
-                <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                  Co-founder • Funeral Director • End of Life Doula
-                </p>
+                  <Link
+                    href="/about/edwin-quilliam"
+                    className="inline-flex mt-6 text-emerald-700 font-medium hover:text-emerald-800"
+                  >
+                    Read Edwin&apos;s story →
+                  </Link>
+                </div>
+              </motion.article>
 
-                <h2 className="mt-3 text-3xl font-semibold text-gray-900">
-                  Rebecca Lyons
-                </h2>
+              <motion.article
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <Image
+                  src="/img/bec.jpg"
+                  alt="Rebecca Lyons"
+                  width={700}
+                  height={700}
+                  className="w-full h-80 object-cover"
+                />
 
-                <p className="mt-5 text-gray-700 leading-relaxed">
-                  Bec is a funeral director, End of Life Doula, educator and
-                  advocate for family-led funerals, natural burial and
-                  meaningful end-of-life choices.
-                </p>
+                <div className="p-7 md:p-8">
+                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                    Co-founder • Funeral Director • End of Life Doula
+                  </p>
 
-                <Link
-                  href="/about/rebecca-lyons"
-                  className="inline-flex mt-6 text-emerald-700 font-medium hover:text-emerald-800"
-                >
-                  Read Bec&apos;s story →
-                </Link>
-              </div>
-            </motion.article>
+                  <h2 className="mt-3 text-3xl font-semibold text-gray-900">
+                    Rebecca Lyons
+                  </h2>
+
+                  <p className="mt-5 text-gray-700 leading-relaxed">
+                    Bec is a funeral director, End of Life Doula, educator and
+                    advocate for family-led funerals, natural burial and
+                    meaningful end-of-life choices.
+                  </p>
+
+                  <Link
+                    href="/about/rebecca-lyons"
+                    className="inline-flex mt-6 text-emerald-700 font-medium hover:text-emerald-800"
+                  >
+                    Read Bec&apos;s story →
+                  </Link>
+                </div>
+              </motion.article>
+            </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </main>
 
       <Footer />
     </div>

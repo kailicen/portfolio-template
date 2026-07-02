@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import Container from "@/components/Container";
 import RichContent from "@/components/RichContent";
 import { motion } from "framer-motion";
 import {
@@ -63,8 +64,8 @@ export default function Pricing({
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
+      <main className="flex-1">
+        <Container>
           <Breadcrumb items={[{ label: "Pricing" }]} />
 
           <motion.div
@@ -72,7 +73,7 @@ export default function Pricing({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <section className="px-4 md:px-10 py-8">
+            <section className="py-8">
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
                 <div>
                   <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
@@ -129,7 +130,7 @@ export default function Pricing({
               </div>
             </section>
 
-            <section className="px-4 md:px-10 py-8">
+            <section className="py-8">
               <div className="mb-8">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
                   Individual Components
@@ -187,7 +188,7 @@ export default function Pricing({
               )}
             </section>
 
-            <section className="px-4 md:px-10 py-8">
+            <section className="py-8">
               <div className="mb-8">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
                   Packages
@@ -237,7 +238,7 @@ export default function Pricing({
               )}
             </section>
 
-            <section className="px-4 md:px-10 py-8">
+            <section className="py-8">
               <div className="bg-emerald-700 text-white rounded-2xl p-6 md:p-8 mb-8">
                 <h2 className="text-2xl md:text-3xl font-semibold">
                   Need a tailored service?
@@ -268,12 +269,12 @@ export default function Pricing({
             </section>
 
             {!isUsingContentful && (
-              <div className="mx-4 md:mx-10 mb-12 rounded-lg bg-amber-50 p-4 text-center text-sm text-amber-800">
+              <div className="mb-12 rounded-lg bg-amber-50 p-4 text-center text-sm text-amber-800">
                 Pricing content could not be loaded from Contentful.
               </div>
             )}
           </motion.div>
-        </div>
+        </Container>
       </main>
 
       <Footer />

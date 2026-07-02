@@ -1,14 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import MailingList from "@/components/MailingList";
+import Container from "@/components/Container";
 
 function Footer() {
   return (
     <>
       <MailingList />
 
-      <footer className="flex w-full items-center justify-center bg-gray-100 px-3 py-5">
-        <div className="flex w-full max-w-6xl flex-col divide-y">
+      <footer className="w-full bg-gray-100 py-5">
+        <Container className="flex flex-col divide-y">
           <div className="grid grid-cols-2 items-center gap-4 pb-5 md:grid-cols-5">
             <Image
               src="/img/footer-2.jpe"
@@ -54,7 +55,7 @@ function Footer() {
           <div className="py-5 text-sm text-gray-700">
             © {new Date().getFullYear()} SOLACE. ALL RIGHTS RESERVED.
           </div>
-        </div>
+        </Container>
       </footer>
     </>
   );

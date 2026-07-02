@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import Container from "@/components/Container";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { useState } from "react";
@@ -167,8 +168,8 @@ export default function Resources({ resources, isUsingContentful }: Props) {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
+      <main className="flex-1">
+        <Container>
           <Breadcrumb
             items={[
               { label: "Community Education", href: "/community-education" },
@@ -181,7 +182,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <section className="px-4 md:px-10 py-8">
+            <section className="py-8">
               <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
                 Community Education
               </p>
@@ -307,7 +308,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
               )}
             </section>
           </motion.div>
-        </div>
+        </Container>
       </main>
 
       <Footer />

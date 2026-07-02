@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import Container from "@/components/Container";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
@@ -93,8 +94,8 @@ export default function BlogPost({ post, slug }: Props) {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-          <div className="max-w-4xl mx-auto px-4 md:px-5 py-20 text-center">
+        <Container className="flex-1">
+          <div className="max-w-4xl mx-auto py-20 text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">
               Post not found
             </h1>
@@ -105,7 +106,7 @@ export default function BlogPost({ post, slug }: Props) {
               Return to Blog
             </Link>
           </div>
-        </div>
+        </Container>
         <Footer />
       </>
     );
@@ -142,187 +143,184 @@ export default function BlogPost({ post, slug }: Props) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
-          <Breadcrumb
-            items={[
-              { label: "Community Education", href: "/community-education" },
-              { label: "Blog", href: "/community-education/blog" },
-              { label: post.title },
-            ]}
-          />
+      <Container className="flex-1">
+        <Breadcrumb
+          items={[
+            { label: "Community Education", href: "/community-education" },
+            { label: "Blog", href: "/community-education/blog" },
+            { label: post.title },
+          ]}
+        />
 
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="px-4 md:px-10 py-8">
-              <div className="mb-5 inline-flex flex-wrap items-center gap-2">
-                {/* <span className="text-sm font-medium text-gray-500 mr-1">
+        <motion.article
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="py-8">
+            <div className="mb-5 inline-flex flex-wrap items-center gap-2">
+              {/* <span className="text-sm font-medium text-gray-500 mr-1">
                   Share
                 </span> */}
 
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on Facebook"
-                  title="Share on Facebook"
-                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-[#1877F2] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <FaFacebookF className="text-lg" />
-                </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on Facebook"
+                title="Share on Facebook"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-[#1877F2] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <FaFacebookF className="text-lg" />
+              </a>
 
-                <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on LinkedIn"
-                  title="Share on LinkedIn"
-                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-[#0A66C2] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <FaLinkedinIn className="text-lg" />
-                </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on LinkedIn"
+                title="Share on LinkedIn"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-[#0A66C2] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <FaLinkedinIn className="text-lg" />
+              </a>
 
-                <a
-                  href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on X"
-                  title="Share on X"
-                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <FaXTwitter className="text-lg" />
-                </a>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on X"
+                title="Share on X"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <FaXTwitter className="text-lg" />
+              </a>
 
-                <a
-                  href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on WhatsApp"
-                  title="Share on WhatsApp"
-                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-[#25D366] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <FaWhatsapp className="text-lg" />
-                </a>
+              <a
+                href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on WhatsApp"
+                title="Share on WhatsApp"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-[#25D366] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <FaWhatsapp className="text-lg" />
+              </a>
 
-                <a
-                  href={`mailto:?subject=${encodedTitle}&body=${encodedExcerpt}%0A%0A${encodedUrl}`}
-                  aria-label="Share by Email"
-                  title="Share by Email"
-                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <FaEnvelope className="text-lg" />
-                </a>
+              <a
+                href={`mailto:?subject=${encodedTitle}&body=${encodedExcerpt}%0A%0A${encodedUrl}`}
+                aria-label="Share by Email"
+                title="Share by Email"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <FaEnvelope className="text-lg" />
+              </a>
 
-                <button
-                  type="button"
-                  onClick={async () => {
-                    await navigator.clipboard.writeText(postUrl);
-                    setCopied(true);
-                    setTimeout(() => setCopied(false), 2000);
-                  }}
-                  aria-label="Copy link"
-                  title="Copy link"
-                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-emerald-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <FaLink className="text-lg" />
-                </button>
-                {copied && (
-                  <span className="text-sm text-emerald-600 font-medium">
-                    Link copied
-                  </span>
-                )}
-              </div>
+              <button
+                type="button"
+                onClick={async () => {
+                  await navigator.clipboard.writeText(postUrl);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                aria-label="Copy link"
+                title="Copy link"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-emerald-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <FaLink className="text-lg" />
+              </button>
+              {copied && (
+                <span className="text-sm text-emerald-600 font-medium">
+                  Link copied
+                </span>
+              )}
+            </div>
 
-              <div>
-                <time className="text-sm text-emerald-600 font-medium">
-                  {formatDateOnly(post.publishedDate)}
-                </time>
-              </div>
+            <div>
+              <time className="text-sm text-emerald-600 font-medium">
+                {formatDateOnly(post.publishedDate)}
+              </time>
+            </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-8">
-                {post.title}
-              </h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-8">
+              {post.title}
+            </h1>
 
-              <RichContent content={post.content} variant="article" />
+            <RichContent content={post.content} variant="article" />
 
-              {post.featuredImages && (
-                <div className="mb-8 space-y-6">
-                  {post.featuredImages.map((asset, index) => {
-                    const file = asset?.fields?.file;
-                    const title =
-                      asset?.fields?.title ||
-                      `${post.title} media ${index + 1}`;
-                    const url = file?.url ? `https:${file.url}` : null;
-                    const contentType = file?.contentType || "";
+            {post.featuredImages && (
+              <div className="mb-8 space-y-6">
+                {post.featuredImages.map((asset, index) => {
+                  const file = asset?.fields?.file;
+                  const title =
+                    asset?.fields?.title || `${post.title} media ${index + 1}`;
+                  const url = file?.url ? `https:${file.url}` : null;
+                  const contentType = file?.contentType || "";
 
-                    if (!url) return null;
+                  if (!url) return null;
 
-                    if (contentType.startsWith("image/")) {
-                      return (
-                        <div key={index}>
-                          <Image
-                            src={url}
-                            alt={title}
-                            width={file?.details?.image?.width || 1200}
-                            height={file?.details?.image?.height || 700}
-                            className="w-full h-auto rounded-lg object-cover"
-                          />
-                        </div>
-                      );
-                    }
+                  if (contentType.startsWith("image/")) {
+                    return (
+                      <div key={index}>
+                        <Image
+                          src={url}
+                          alt={title}
+                          width={file?.details?.image?.width || 1200}
+                          height={file?.details?.image?.height || 700}
+                          className="w-full h-auto rounded-lg object-cover"
+                        />
+                      </div>
+                    );
+                  }
 
-                    if (contentType.startsWith("audio/")) {
-                      return (
-                        <div
-                          key={index}
-                          className="rounded-lg border border-gray-200 bg-gray-50 p-4"
-                        >
-                          <p className="text-sm text-gray-500 mb-2">{title}</p>
-                          <audio controls className="w-full">
-                            <source src={url} type={contentType} />
-                            Your browser does not support the audio element.
-                          </audio>
-                        </div>
-                      );
-                    }
-
+                  if (contentType.startsWith("audio/")) {
                     return (
                       <div
                         key={index}
                         className="rounded-lg border border-gray-200 bg-gray-50 p-4"
                       >
-                        <p className="text-gray-700 mb-2">
-                          Featured media: {title}
-                        </p>
-                        <a
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-emerald-600 hover:underline"
-                        >
-                          Open file
-                        </a>
+                        <p className="text-sm text-gray-500 mb-2">{title}</p>
+                        <audio controls className="w-full">
+                          <source src={url} type={contentType} />
+                          Your browser does not support the audio element.
+                        </audio>
                       </div>
                     );
-                  })}
-                </div>
-              )}
+                  }
 
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <Link
-                  href="/community-education/blog"
-                  className="text-emerald-600 hover:underline"
-                >
-                  &larr; Back to Blog
-                </Link>
+                  return (
+                    <div
+                      key={index}
+                      className="rounded-lg border border-gray-200 bg-gray-50 p-4"
+                    >
+                      <p className="text-gray-700 mb-2">
+                        Featured media: {title}
+                      </p>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-600 hover:underline"
+                      >
+                        Open file
+                      </a>
+                    </div>
+                  );
+                })}
               </div>
+            )}
+
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <Link
+                href="/community-education/blog"
+                className="text-emerald-600 hover:underline"
+              >
+                &larr; Back to Blog
+              </Link>
             </div>
-          </motion.article>
-        </div>
-      </div>
+          </div>
+        </motion.article>
+      </Container>
 
       <Footer />
     </>

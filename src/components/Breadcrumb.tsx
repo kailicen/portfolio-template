@@ -12,7 +12,7 @@ type Props = {
 
 function Breadcrumb({ items }: Props) {
   return (
-    <nav aria-label="Breadcrumb" className="py-4 px-4 md:px-10">
+    <nav aria-label="Breadcrumb" className="py-4">
       <ol className="flex items-center space-x-2 text-sm text-gray-600">
         <li>
           <Link

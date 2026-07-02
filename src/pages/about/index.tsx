@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
@@ -59,64 +60,66 @@ function AboutIndex() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <Breadcrumb items={[{ label: "About" }]} />
+      <main className="flex-1">
+        <Container>
+          <Breadcrumb items={[{ label: "About" }]} />
 
-        <div className="px-4 md:px-10 py-8 md:py-12">
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mb-12"
-          >
-            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
-              About Solace
-            </p>
+          <div className="py-8 md:py-12">
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mb-12"
+            >
+              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+                About Solace
+              </p>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-              Compassionate, honest and community-centred end-of-life care.
-            </h2>
+              <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+                Compassionate, honest and community-centred end-of-life care.
+              </h2>
 
-            <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-              Solace comes from a place of compassion, honesty and transparency.
-              Learn more about who we are, how we began, and why we are
-              passionate about changing the conversation around dying, death and
-              grief.
-            </p>
-          </motion.section>
+              <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+                Solace comes from a place of compassion, honesty and
+                transparency. Learn more about who we are, how we began, and why
+                we are passionate about changing the conversation around dying,
+                death and grief.
+              </p>
+            </motion.section>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {aboutPages.map((page, index) => (
-              <motion.article
-                key={page.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link
-                  href={page.href}
-                  className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
+            <div className="grid md:grid-cols-3 gap-6">
+              {aboutPages.map((page, index) => (
+                <motion.article
+                  key={page.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                    {page.eyebrow}
-                  </p>
+                  <Link
+                    href={page.href}
+                    className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
+                  >
+                    <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                      {page.eyebrow}
+                    </p>
 
-                  <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
-                    {page.title}
-                  </h2>
+                    <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
+                      {page.title}
+                    </h2>
 
-                  <p className="mt-4 text-gray-700 leading-relaxed">
-                    {page.description}
-                  </p>
+                    <p className="mt-4 text-gray-700 leading-relaxed">
+                      {page.description}
+                    </p>
 
-                  <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
-                    Learn more →
-                  </span>
-                </Link>
-              </motion.article>
-            ))}
+                    <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
+                      Learn more →
+                    </span>
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </main>
 
       <Footer />

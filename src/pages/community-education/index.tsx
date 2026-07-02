@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import Container from "@/components/Container";
 
 const educationSubPages = [
   {
@@ -73,64 +74,66 @@ export default function CommunityEducationIndex() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <Breadcrumb items={[{ label: "Community Education" }]} />
+      <main className="flex-1">
+        <Container>
+          <Breadcrumb items={[{ label: "Community Education" }]} />
 
-        <div className="px-4 md:px-10 py-8 md:py-12">
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mb-12"
-          >
-            <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
-              Community education
-            </p>
+          <div className="py-8 md:py-12">
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mb-12"
+            >
+              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+                Community education
+              </p>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-              Helping people ask better questions about dying, death and care.
-            </h2>
+              <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+                Helping people ask better questions about dying, death and care.
+              </h2>
 
-            <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-              We believe demystifying dying and death through community
-              engagement is vital. Through education, advocacy, resources and
-              honest conversation, we help people understand their rights,
-              options and choices.
-            </p>
-          </motion.section>
+              <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+                We believe demystifying dying and death through community
+                engagement is vital. Through education, advocacy, resources and
+                honest conversation, we help people understand their rights,
+                options and choices.
+              </p>
+            </motion.section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {educationSubPages.map((page, index) => (
-              <motion.article
-                key={page.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-              >
-                <Link
-                  href={page.href}
-                  className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {educationSubPages.map((page, index) => (
+                <motion.article
+                  key={page.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
                 >
-                  <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                    {page.eyebrow}
-                  </p>
+                  <Link
+                    href={page.href}
+                    className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
+                  >
+                    <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                      {page.eyebrow}
+                    </p>
 
-                  <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
-                    {page.title}
-                  </h2>
+                    <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
+                      {page.title}
+                    </h2>
 
-                  <p className="mt-4 text-gray-700 leading-relaxed">
-                    {page.description}
-                  </p>
+                    <p className="mt-4 text-gray-700 leading-relaxed">
+                      {page.description}
+                    </p>
 
-                  <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
-                    Learn more →
-                  </span>
-                </Link>
-              </motion.article>
-            ))}
+                    <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
+                      Learn more →
+                    </span>
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </main>
 
       <Footer />
