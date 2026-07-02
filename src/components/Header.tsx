@@ -12,7 +12,6 @@ import Container from "@/components/Container";
 const aboutSubPages = [
   { title: "Who Are We?", href: "/about/who-we-are" },
   { title: "How Did We Begin?", href: "/about/how-did-we-begin" },
-  { title: "Why Death and Dying?", href: "/about/why-death-and-dying" },
 ];
 
 const educationSubPages = [
@@ -212,7 +211,7 @@ export default function Header() {
             href="/pricing"
             className="font-medium text-gray-800 hover:text-emerald-600 transition-colors"
           >
-            Pricing
+            Funeral Pricing
           </Link>
 
           <Link
@@ -287,7 +286,7 @@ export default function Header() {
                 onClick={closeMobileMenu}
                 className="block px-4 py-3 font-medium text-gray-800 hover:text-emerald-600 transition-colors"
               >
-                Pricing
+                Funeral Pricing
               </Link>
 
               <Link

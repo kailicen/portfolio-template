@@ -89,6 +89,7 @@ export interface PricingComponentFields {
   price: number;
   order: number;
   active: boolean;
+  category: string;
 }
 
 export interface PricingPackageFields {

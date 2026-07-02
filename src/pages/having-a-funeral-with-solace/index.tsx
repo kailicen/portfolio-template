@@ -16,7 +16,7 @@ const funeralPages = [
       "Explore funeral wishes, advance care planning, key documents, family-led options, and practical resources to help you make informed decisions.",
   },
   {
-    title: "Pricing",
+    title: "Funeral Pricing",
     href: "/pricing",
     eyebrow: "Costs and services",
     description:

@@ -3,7 +3,11 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import Container from "@/components/Container";
 import RichContent from "@/components/RichContent";
+import Image from "next/image";
+import Link from "next/link";
+import Head from "next/head";
 import { motion } from "framer-motion";
+import type { GetStaticProps } from "next";
 import {
   getPricingComponents,
   getPricingPackages,
@@ -11,10 +15,6 @@ import {
   PricingComponentEntry,
   PricingPackageEntry,
 } from "@/lib/contentful";
-import Image from "next/image";
-import Head from "next/head";
-import Link from "next/link";
-import type { GetStaticProps } from "next";
 
 interface PricingProps {
   components: PricingComponentEntry[];
@@ -30,18 +30,38 @@ function formatCurrency(price: number): string {
   }).format(price);
 }
 
+const categoryOrder = [
+  "Professional and ceremony services",
+  "Care and preparation",
+  "Transfers, permits and cremation",
+];
+
+function groupPricingComponents(components: PricingComponentEntry[]) {
+  return categoryOrder
+    .map((category) => ({
+      category,
+      components: components.filter(
+        (component) => component.category === category,
+      ),
+    }))
+    .filter((group) => group.components.length > 0);
+}
+
 export default function Pricing({
   components,
   packages,
   isUsingContentful,
 }: PricingProps) {
+  const groupedComponents = groupPricingComponents(components);
+
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-white text-black">
       <Head>
-        <title>Pricing | Solace Family Led Funerals</title>
+        <title>Funeral Pricing | Solace End of Life Services</title>
+
         <meta
           name="description"
-          content="View pricing for family led funerals in Hobart, including individual service components, cremation packages, burial packages and home vigil options."
+          content="View Solace funeral pricing in Hobart, including individual service costs, cremation-only pricing and tailored funeral support."
         />
       </Head>
 
@@ -54,56 +74,44 @@ export default function Pricing({
           width={2300}
           height={300}
           priority
-          className="w-full h-48 md:h-80 object-cover"
+          className="h-48 w-full object-cover md:h-80"
         />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Pricing
+
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="absolute inset-0 flex items-center justify-center px-4 text-white">
+          <h1 className="text-center text-2xl font-semibold uppercase tracking-[10px] md:text-5xl 2xl:text-7xl">
+            Funeral Pricing
           </h1>
         </div>
       </div>
 
       <main className="flex-1">
         <Container>
-          <Breadcrumb items={[{ label: "Pricing" }]} />
+          <Breadcrumb items={[{ label: "Funeral Pricing" }]} />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <section className="py-8">
+            <section className="py-8 md:py-12">
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
                 <div>
-                  <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
-                    Family Led Funeral Pricing
+                  <p className="mb-4 text-sm font-medium uppercase tracking-[4px] text-emerald-600">
+                    Funeral Pricing
                   </p>
 
-                  <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6">
-                    How much do family-led home funerals cost?
+                  <h2 className="mb-6 text-3xl font-semibold leading-tight text-gray-800 md:text-4xl 2xl:text-5xl">
+                    How much does a funeral cost?
                   </h2>
 
-                  <div className="space-y-5 text-gray-600 leading-relaxed">
-                    <p>
-                      Our prices in their individual components and together as
-                      packages of services are listed below. All prices are plus
-                      GST.
-                    </p>
+                  <div className="space-y-5 leading-relaxed text-gray-600">
+                    <p>Below is our list of prices, exclusive of GST.</p>
 
                     <p>
-                      We approach our work with the hope that we can empower and
-                      skill families to care for their person. We encourage
-                      families, friends and communities to be as involved in the
-                      care of their person, the planning and all decision making
-                      as much as they are able and content to do.
-                    </p>
-
-                    <p>
-                      All Packages outlined below include our Professional Fee
-                      component, giving you 24 hour support, the initial
-                      consultation, and up to three home visits (these visits
-                      are not included in the cremation only option).
+                      We are happy to meet with you for an initial consultation
+                      and create a tailored service or package for you.
                     </p>
 
                     <p>
@@ -112,8 +120,15 @@ export default function Pricing({
                     </p>
 
                     <p>
-                      We are happy to meet with you for an initial consultation
-                      and create a tailored service for you.
+                      We approach our work with the hope that we can empower and
+                      equip families to care for their person.
+                    </p>
+
+                    <p>
+                      We encourage families, friends and communities to be as
+                      involved in the care of their person, the planning and all
+                      decision-making as much as they are able and comfortable
+                      to be.
                     </p>
                   </div>
                 </div>
@@ -121,10 +136,10 @@ export default function Pricing({
                 <div className="flex justify-center md:justify-end">
                   <Image
                     src="/img/pricing-3.jpg"
-                    alt="Solace family-led funeral support"
+                    alt="Solace funeral support"
                     width={400}
                     height={400}
-                    className="w-full max-w-sm rounded-lg shadow-sm border border-gray-200 object-cover"
+                    className="w-full max-w-sm rounded-xl border border-gray-200 object-cover shadow-sm"
                   />
                 </div>
               </div>
@@ -132,56 +147,76 @@ export default function Pricing({
 
             <section className="py-8">
               <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-emerald-700">
+                  Choose the support you need
+                </p>
+
+                <h2 className="mb-4 text-2xl font-semibold text-gray-800 md:text-3xl">
                   Individual Components
                 </h2>
 
-                <p className="text-lg text-gray-600 max-w-3xl">
-                  Select the individual services your family needs.
+                <p className="max-w-3xl text-lg leading-relaxed text-gray-600">
+                  Select the individual services that suit your family&apos;s
+                  needs. We can help you understand which components may be
+                  appropriate for your circumstances.
+                </p>
+
+                <p className="mt-3 text-sm text-gray-500">
+                  All prices shown are exclusive of GST.
                 </p>
               </div>
 
-              {components.length > 0 ? (
-                <div className="overflow-hidden rounded-lg shadow-sm border border-gray-200">
-                  <table className="w-full border-collapse">
-                    <thead className="bg-emerald-600 text-white">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-4 py-4 md:px-6 text-left font-semibold"
-                        >
-                          Service
-                        </th>
+              {groupedComponents.length > 0 ? (
+                <div className="max-w-5xl space-y-8">
+                  {groupedComponents.map((group) => (
+                    <div key={group.category}>
+                      <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                        <div className="bg-emerald-50 px-6 py-4">
+                          <h3 className="text-lg font-semibold text-emerald-900">
+                            {group.category}
+                          </h3>
+                        </div>
 
-                        <th
-                          scope="col"
-                          className="px-4 py-4 md:px-6 text-right font-semibold"
-                        >
-                          Price
-                        </th>
-                      </tr>
-                    </thead>
+                        <div className="overflow-x-auto">
+                          <table className="w-full min-w-[520px] border-collapse">
+                            <thead className="bg-emerald-700 text-white">
+                              <tr>
+                                <th className="px-4 py-3.5 text-left font-semibold md:px-6">
+                                  Service
+                                </th>
 
-                    <tbody className="divide-y divide-gray-200">
-                      {components.map((component) => (
-                        <tr
-                          key={component.id}
-                          className="odd:bg-white even:bg-gray-50 hover:bg-emerald-50/50 transition-colors"
-                        >
-                          <td className="px-4 py-4 md:px-6 text-gray-700">
-                            {component.name}
-                          </td>
+                                <th className="px-4 py-3.5 text-right font-semibold md:px-6">
+                                  Price
+                                </th>
+                              </tr>
+                            </thead>
 
-                          <td className="px-4 py-4 md:px-6 text-right font-semibold text-gray-800 whitespace-nowrap">
-                            {formatCurrency(component.price)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                            <tbody className="divide-y divide-gray-200">
+                              {group.components.map((component, index) => (
+                                <tr
+                                  key={component.id}
+                                  className={`transition-colors hover:bg-emerald-50/60 ${
+                                    index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                                  }`}
+                                >
+                                  <td className="px-4 py-3.5 text-gray-700 md:px-6">
+                                    {component.name}
+                                  </td>
+
+                                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-semibold text-gray-800 md:px-6">
+                                    {formatCurrency(component.price)}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ) : (
-                <div className="bg-gray-50 rounded-lg p-8 shadow-sm border border-gray-200 text-gray-600">
+                <div className="rounded-xl border border-gray-200 bg-gray-50 p-8 text-gray-600 shadow-sm">
                   Individual pricing is currently being updated. Please contact
                   us for current prices.
                 </div>
@@ -190,38 +225,48 @@ export default function Pricing({
 
             <section className="py-8">
               <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
-                  Packages
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-emerald-700">
+                  Simple cremation option
+                </p>
+
+                <h2 className="mb-4 text-2xl font-semibold text-gray-800 md:text-3xl">
+                  Cremation Only
                 </h2>
 
-                <p className="text-lg text-gray-600 max-w-3xl">
-                  Our packages combine commonly requested services. We can also
-                  tailor a service to your family&apos;s needs.
+                <p className="max-w-3xl text-lg leading-relaxed text-gray-600">
+                  Our cremation-only option provides a simple arrangement
+                  without a funeral service. Please review the inclusions below,
+                  or contact us to discuss whether this option is suitable for
+                  your family.
                 </p>
               </div>
 
               {packages.length > 0 ? (
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div className="max-w-2xl">
                   {packages.map((pricingPackage, index) => (
                     <motion.article
                       key={pricingPackage.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="flex h-full flex-col bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                      transition={{
+                        duration: 0.4,
+                        delay: index * 0.1,
+                      }}
+                      className="flex h-full flex-col rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm transition-colors hover:border-emerald-300 md:p-8"
                     >
-                      <h3 className="text-2xl font-semibold text-gray-800 leading-tight">
+                      <h3 className="text-2xl font-semibold leading-tight text-gray-800">
                         {pricingPackage.name}
                       </h3>
 
-                      <p className="mt-4 text-3xl font-semibold text-emerald-600">
+                      <p className="mt-4 text-3xl font-semibold text-emerald-700">
                         {formatCurrency(pricingPackage.price)}
+
                         <span className="ml-2 text-sm font-normal text-gray-500">
                           + GST
                         </span>
                       </p>
 
-                      <div className="mt-6 flex-1 text-gray-600 leading-relaxed">
+                      <div className="mt-6 flex-1 leading-relaxed text-gray-600">
                         <RichContent
                           content={pricingPackage.description}
                           variant="compact"
@@ -231,39 +276,37 @@ export default function Pricing({
                   ))}
                 </div>
               ) : (
-                <div className="bg-gray-50 rounded-lg p-8 shadow-sm border border-gray-200 text-gray-600">
-                  Package pricing is currently being updated. Please contact us
-                  for current options.
+                <div className="max-w-2xl rounded-xl border border-gray-200 bg-gray-50 p-8 text-gray-600 shadow-sm">
+                  Cremation-only pricing is currently being updated. Please
+                  contact us for current pricing.
                 </div>
               )}
             </section>
 
-            <section className="py-8">
-              <div className="bg-emerald-700 text-white rounded-2xl p-6 md:p-8 mb-8">
-                <h2 className="text-2xl md:text-3xl font-semibold">
+            <section className="py-8 md:pb-12">
+              <div className="rounded-2xl bg-emerald-700 p-6 text-white md:p-8">
+                <p className="text-sm font-medium uppercase tracking-[0.2em] text-emerald-100">
+                  Personalised support
+                </p>
+
+                <h2 className="mt-3 text-2xl font-semibold md:text-3xl">
                   Need a tailored service?
                 </h2>
 
-                <p className="mt-4 text-emerald-50 leading-relaxed max-w-3xl">
+                <p className="mt-4 max-w-3xl leading-relaxed text-emerald-50">
                   Every family&apos;s situation is different. We are happy to
-                  meet with you for an initial consultation, talk through the
-                  support you need, and create a service that suits your family.
+                  meet with you for an initial consultation, discuss the support
+                  you need and create a service or package that suits your
+                  family.
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-4">
+                <div className="mt-6">
                   <Link
                     href="/contact"
-                    className="inline-block px-6 py-3 bg-white text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                    className="inline-flex rounded-lg bg-white px-6 py-3 font-medium text-emerald-700 transition-colors hover:bg-emerald-50"
                   >
                     Contact Solace
                   </Link>
-
-                  {/* <Link
-                    href="/contact"
-                    className="inline-block px-6 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition-colors font-medium"
-                  >
-                    Ask About Pricing
-                  </Link> */}
                 </div>
               </div>
             </section>
@@ -278,7 +321,7 @@ export default function Pricing({
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

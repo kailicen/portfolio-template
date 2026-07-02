@@ -54,17 +54,21 @@ function EdwinQuilliam() {
                 transition={{ duration: 0.6 }}
                 className="lg:sticky lg:top-28"
               >
-                <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
-                  <Image
-                    src="/img/edwin.jpg"
-                    alt="Edwin Quilliam"
-                    width={700}
-                    height={700}
-                    className="w-full aspect-square object-cover"
-                  />
+                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
+                  <div className="px-6 pt-6 pb-2">
+                    <div className="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-xl border-4 border-gray-200 bg-gray-100 shadow-sm">
+                      <Image
+                        src="/img/edwin.jpg"
+                        alt="Edwin Quilliam"
+                        fill
+                        sizes="280px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                  </div>
 
-                  <div className="p-6">
-                    <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
+                  <div className="px-7 pb-7 pt-4 md:px-8 md:pb-8">
+                    <p className="text-xs font-medium uppercase leading-relaxed tracking-[0.2em] text-emerald-700">
                       Co-founder • Funeral Celebrant
                     </p>
 
@@ -77,7 +81,7 @@ function EdwinQuilliam() {
                         <span className="font-medium">Email:</span>{" "}
                         <a
                           href="mailto:edwin@solaceendoflife.com.au"
-                          className="text-emerald-700 hover:text-emerald-800 underline"
+                          className="text-emerald-700 underline hover:text-emerald-800"
                         >
                           edwin@solaceendoflife.com.au
                         </a>

@@ -22,13 +22,6 @@ const aboutPages = [
     description:
       "Learn how Solace began, and why community-led death care, education, advocacy and informed choice sit at the heart of what we do.",
   },
-  {
-    title: "Why Death and Dying?",
-    href: "/about/why-death-and-dying",
-    eyebrow: "Our purpose",
-    description:
-      "Explore why we believe conversations about dying, death and grief should be honest, accessible and part of everyday life.",
-  },
 ];
 
 function AboutIndex() {
@@ -87,7 +80,7 @@ function AboutIndex() {
               </p>
             </motion.section>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {aboutPages.map((page, index) => (
                 <motion.article
                   key={page.href}
