@@ -171,46 +171,71 @@ export default function Pricing({
                   {groupedComponents.map((group) => (
                     <div key={group.category}>
                       <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
-                        <div className="bg-emerald-50 px-6 py-4">
+                        <div className="bg-emerald-50 px-5 py-4 md:px-6">
                           <h3 className="text-lg font-semibold text-emerald-900">
                             {group.category}
                           </h3>
                         </div>
 
-                        <div className="overflow-x-auto">
-                          <table className="w-full min-w-[520px] border-collapse">
-                            <thead className="bg-emerald-700 text-white">
-                              <tr>
-                                <th className="px-4 py-3.5 text-left font-semibold md:px-6">
-                                  Service
-                                </th>
+                        {/* Mobile layout */}
+                        <div className="divide-y divide-gray-200 sm:hidden">
+                          {group.components.map((component, index) => (
+                            <div
+                              key={component.id}
+                              className={`px-5 py-4 ${
+                                index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                              }`}
+                            >
+                              <p className="leading-relaxed text-gray-700">
+                                {component.name}
+                              </p>
 
-                                <th className="px-4 py-3.5 text-right font-semibold md:px-6">
-                                  Price
-                                </th>
-                              </tr>
-                            </thead>
-
-                            <tbody className="divide-y divide-gray-200">
-                              {group.components.map((component, index) => (
-                                <tr
-                                  key={component.id}
-                                  className={`transition-colors hover:bg-emerald-50/60 ${
-                                    index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                                  }`}
-                                >
-                                  <td className="px-4 py-3.5 text-gray-700 md:px-6">
-                                    {component.name}
-                                  </td>
-
-                                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-semibold text-gray-800 md:px-6">
-                                    {formatCurrency(component.price)}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                              <p className="mt-2 text-lg font-semibold text-emerald-700">
+                                {formatCurrency(component.price)}
+                              </p>
+                            </div>
+                          ))}
                         </div>
+
+                        {/* Tablet and desktop table */}
+                        <table className="hidden w-full border-collapse sm:table">
+                          <thead className="bg-emerald-700 text-white">
+                            <tr>
+                              <th
+                                scope="col"
+                                className="px-4 py-3.5 text-left font-semibold md:px-6"
+                              >
+                                Service
+                              </th>
+
+                              <th
+                                scope="col"
+                                className="px-4 py-3.5 text-right font-semibold md:px-6"
+                              >
+                                Price
+                              </th>
+                            </tr>
+                          </thead>
+
+                          <tbody className="divide-y divide-gray-200">
+                            {group.components.map((component, index) => (
+                              <tr
+                                key={component.id}
+                                className={`transition-colors hover:bg-emerald-50/60 ${
+                                  index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                                }`}
+                              >
+                                <td className="px-4 py-3.5 text-gray-700 md:px-6">
+                                  {component.name}
+                                </td>
+
+                                <td className="whitespace-nowrap px-4 py-3.5 text-right font-semibold text-gray-800 md:px-6">
+                                  {formatCurrency(component.price)}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   ))}
