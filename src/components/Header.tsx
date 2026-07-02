@@ -7,6 +7,7 @@ import {
   XMarkIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/solid";
+import Container from "@/components/Container";
 
 const aboutSubPages = [
   { title: "Who Are We?", href: "/about/who-we-are" },
@@ -178,7 +179,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
-      <div className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between px-5 md:px-8">
+      <Container className="flex min-h-[76px] items-center justify-between">
         <Link href="/" onClick={closeMobileMenu} className="flex items-center">
           <Image
             src="/img/solace-white.png"
@@ -242,7 +243,7 @@ export default function Header() {
             <Bars3Icon className="h-7 w-7" />
           )}
         </button>
-      </div>
+      </Container>
 
       <AnimatePresence>
         {isMenuOpen && (

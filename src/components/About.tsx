@@ -29,7 +29,7 @@ function About() {
   return (
     <section
       className="min-h-screen flex overflow-hidden flex-col text-left
-      px-4 md:px-24 justify-center mx-auto items-center scroll-smooth py-16"
+      px-4 sm:px-6 lg:px-8 justify-center mx-auto items-center scroll-smooth py-16"
     >
       <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4 text-center">
         About

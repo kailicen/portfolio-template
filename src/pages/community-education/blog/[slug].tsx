@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import Container from "@/components/Container";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
@@ -93,8 +94,8 @@ export default function BlogPost({ post, slug }: Props) {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-          <div className="max-w-4xl mx-auto px-4 md:px-5 py-20 text-center">
+        <Container className="flex-1">
+          <div className="max-w-4xl mx-auto py-20 text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">
               Post not found
             </h1>
@@ -105,7 +106,7 @@ export default function BlogPost({ post, slug }: Props) {
               Return to Blog
             </Link>
           </div>
-        </div>
+        </Container>
         <Footer />
       </>
     );
@@ -142,8 +143,7 @@ export default function BlogPost({ post, slug }: Props) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full 2xl:max-w-7xl flex-1">
-        <div className="max-w-6xl mx-auto 2xl:max-w-7xl px-4 md:px-5">
+      <Container className="flex-1">
           <Breadcrumb
             items={[
               { label: "Community Education", href: "/community-education" },
@@ -157,7 +157,7 @@ export default function BlogPost({ post, slug }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="px-4 md:px-10 py-8">
+            <div className="py-8">
               <div className="mb-5 inline-flex flex-wrap items-center gap-2">
                 {/* <span className="text-sm font-medium text-gray-500 mr-1">
                   Share
@@ -321,8 +321,7 @@ export default function BlogPost({ post, slug }: Props) {
               </div>
             </div>
           </motion.article>
-        </div>
-      </div>
+        </Container>
 
       <Footer />
     </>

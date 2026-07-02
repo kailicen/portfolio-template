@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from "react";
+import Container from "@/components/Container";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -51,8 +52,8 @@ export default function MailingList() {
   }
 
   return (
-    <section className="w-full bg-emerald-50 px-4 py-10 md:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className="w-full bg-emerald-50 py-10">
+      <Container>
         <div className="mb-6">
           <h2 className="text-2xl font-semibold uppercase tracking-[0.14em] text-emerald-700">
             Join our mailing list
@@ -129,7 +130,7 @@ export default function MailingList() {
           By subscribing, you agree to receive email updates from Solace. You
           can unsubscribe at any time.
         </p>
-      </div>
+      </Container>
     </section>
   );
 }
