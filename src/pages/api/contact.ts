@@ -140,7 +140,7 @@ export default async function handler(
 
     return res.status(200).json({
       success: true,
-      message: "Thanks—your message has been sent.",
+      message: "Thanks, your message has been sent.",
     });
   } catch (error) {
     console.error("Unexpected contact-form error:", error);

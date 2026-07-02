@@ -253,7 +253,7 @@ export default function PlanningAFuneral() {
 
             <div className="mt-6 flex flex-wrap gap-4">
               <Link
-                href="https://ndan.com.au/resources/funeral-planning"
+                href="https://ndan.com.au/resources/end-of-life-planning/funeral-planning"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
@@ -526,15 +526,6 @@ export default function PlanningAFuneral() {
                 className="inline-block px-6 py-3 bg-white text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
               >
                 Contact Solace
-              </Link>
-
-              <Link
-                href="https://ndan.com.au/images/Factsheets/INFO_SHEET_2_Funeral_Planning.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition-colors font-medium"
-              >
-                View Planning Factsheet
               </Link>
             </div>
           </section>

@@ -15,6 +15,13 @@ const funeralPages = [
       "Explore funeral wishes, advance care planning, key documents, family-led options, and practical resources to help you make informed decisions.",
   },
   {
+    title: "Pricing",
+    href: "/pricing",
+    eyebrow: "Costs and services",
+    description:
+      "View Solace’s pricing, service options and costs so you can understand what support is available and make informed choices.",
+  },
+  {
     title: "Home Funerals in Tasmania",
     href: "/having-a-funeral-with-solace/home-funerals-in-tasmania",
     eyebrow: "Family-led care",

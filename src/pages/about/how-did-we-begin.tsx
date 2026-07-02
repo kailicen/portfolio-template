@@ -149,14 +149,6 @@ function WhereWeComeFrom() {
               choice that they make from a place of empowerment - not because
               they don&apos;t know any other way.
             </p>
-
-            <p>
-              We, and many others around the globe, are working on addressing
-              the gatekeeping that happens around the idea of death and funeral…
-              examining them, and working to break them down, giving families
-              and communities the tools and resources they need to make choices
-              best fit their circumstances, finances and their values.
-            </p>
           </section>
 
           <div className="my-12">

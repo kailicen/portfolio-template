@@ -284,7 +284,7 @@ export default function HomeFuneralsInTas() {
               </p>
 
               <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
-                A family-led home funeral does&apos;t mean you&apos;re alone!
+                A family-led home funeral doesn&apos;t mean you&apos;re alone!
               </h2>
 
               <div className="mt-6 space-y-5 text-lg text-gray-700 leading-relaxed">
