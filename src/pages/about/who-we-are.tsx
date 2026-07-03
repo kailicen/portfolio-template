@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 const people = [
   {
@@ -133,9 +134,14 @@ function WhoWeAre() {
 
                   <Link
                     href={person.href}
-                    className="mt-6 inline-flex font-medium text-emerald-700 transition-colors hover:text-emerald-800"
+                    className="group mt-6 inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
                   >
-                    {person.linkText} →
+                    <span>{person.linkText}</span>
+
+                    <ArrowRightIcon
+                      aria-hidden="true"
+                      className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+                    />
                   </Link>
                 </motion.article>
               ))}

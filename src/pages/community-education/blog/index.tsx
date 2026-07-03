@@ -13,6 +13,7 @@ import {
 import Image from "next/image";
 import { formatDateOnly } from "@/lib/date";
 import { useRef, useState } from "react";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -178,8 +179,13 @@ export default function BlogIndex({
                         {post.excerpt}
                       </p>
 
-                      <span className="text-emerald-600 font-medium hover:underline">
-                        Read More
+                      <span className="group/read-more inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800">
+                        <span>Read more</span>
+
+                        <ArrowRightIcon
+                          aria-hidden="true"
+                          className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover/read-more:translate-x-1"
+                        />
                       </span>
                     </Link>
                   </motion.article>

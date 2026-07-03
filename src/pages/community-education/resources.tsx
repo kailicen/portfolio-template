@@ -9,6 +9,7 @@ import { GetStaticProps } from "next";
 import { getResources, isContentfulConfigured } from "@/lib/contentful";
 import Image from "next/image";
 import RichContent from "@/components/RichContent";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 // Fallback resources data when Contentful is not configured
 const fallbackResources = [
@@ -277,9 +278,16 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                                 href={resourceUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-5 inline-block text-emerald-600 font-medium hover:underline break-all"
+                                className="group mt-5 inline-flex max-w-full items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
                               >
-                                {getResourceLinkLabel(resource)} &rarr;
+                                <span className="break-words">
+                                  {getResourceLinkLabel(resource)}
+                                </span>
+
+                                <ArrowTopRightOnSquareIcon
+                                  aria-hidden="true"
+                                  className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                />
                               </a>
                             ) : (
                               <p className="mt-5 text-gray-400 italic">

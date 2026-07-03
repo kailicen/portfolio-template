@@ -14,6 +14,7 @@ import {
 import RichContent from "@/components/RichContent";
 import { formatDateOnly } from "@/lib/date";
 import { useRef, useState } from "react";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -241,9 +242,14 @@ export default function MediaAppearances({
                             href={mediaUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-emerald-600 font-medium hover:underline"
+                            className="group inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
                           >
-                            Open Media File &rarr;
+                            <span>Open media file</span>
+
+                            <ArrowTopRightOnSquareIcon
+                              aria-hidden="true"
+                              className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+                            />
                           </a>
                         )}
 
@@ -252,9 +258,16 @@ export default function MediaAppearances({
                             href={item.externalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-emerald-600 font-medium hover:underline"
+                            className="group inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
                           >
-                            {getExternalLinkLabel(item.externalUrl)} &rarr;
+                            <span>
+                              {getExternalLinkLabel(item.externalUrl)}
+                            </span>
+
+                            <ArrowTopRightOnSquareIcon
+                              aria-hidden="true"
+                              className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            />
                           </a>
                         )}
                       </div>

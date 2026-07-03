@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 const aboutPages = [
   {
@@ -104,8 +105,13 @@ function AboutIndex() {
                       {page.description}
                     </p>
 
-                    <span className="inline-flex mt-6 text-emerald-700 font-medium group-hover:text-emerald-800">
-                      Learn more →
+                    <span className="mt-6 inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors group-hover:text-emerald-800">
+                      <span>Learn more</span>
+
+                      <ArrowRightIcon
+                        aria-hidden="true"
+                        className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+                      />
                     </span>
                   </Link>
                 </motion.article>
