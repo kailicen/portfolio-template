@@ -44,7 +44,7 @@ export default function EducationAdvocacy() {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/education-advocacy-b.jpg"
           alt="Community Education"
           width={2300}
           height={300}

@@ -21,7 +21,7 @@ function WhereWeComeFrom() {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/how-did-we-begin-b.jpg"
           alt="About - How Did We Begin?"
           width={2300}
           height={300}

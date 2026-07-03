@@ -22,7 +22,7 @@ function EdwinQuilliam() {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/who-are-we-b.jpg"
           alt="Edwin Quilliam"
           width={2300}
           height={300}

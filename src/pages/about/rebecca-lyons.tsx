@@ -22,7 +22,7 @@ function RebeccaLyons() {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/who-are-we-b.jpg"
           alt="Rebecca Lyons"
           width={2300}
           height={300}

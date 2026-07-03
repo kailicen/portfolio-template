@@ -135,7 +135,7 @@ export default function BlogIndex({
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/blog-b.jpg"
           alt="Community Education"
           width={2300}
           height={300}

@@ -46,7 +46,7 @@ function WhoWeAre() {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/who-are-we-b.jpg"
           alt="About Solace End of Life Services"
           width={2300}
           height={300}

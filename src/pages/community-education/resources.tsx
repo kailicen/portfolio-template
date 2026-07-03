@@ -155,7 +155,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/resources-b.jpg"
           alt="Community Education"
           width={2300}
           height={300}

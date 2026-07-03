@@ -134,7 +134,7 @@ export default function MediaAppearances({
 
       <div className="relative">
         <Image
-          src="/img/about-b.jpg"
+          src="/img/media-b.jpg"
           alt="Community Education"
           width={2300}
           height={300}

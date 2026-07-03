@@ -49,7 +49,7 @@ function HavingAFuneralWithSolace() {
 
       <div className="relative">
         <Image
-          src="/img/planning-b.jpg"
+          src="/img/having-a-funeral-with-solace-b.jpg"
           alt="Having a Funeral with Solace"
           width={2300}
           height={300}
