@@ -89,6 +89,38 @@ export default function BlogIndex({
     }
   };
 
+  const getVisiblePages = (): Array<number | "..."> => {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    if (currentPage <= 4) {
+      return [1, 2, 3, 4, 5, "...", totalPages];
+    }
+
+    if (currentPage >= totalPages - 3) {
+      return [
+        1,
+        "...",
+        totalPages - 4,
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      ];
+    }
+
+    return [
+      1,
+      "...",
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      "...",
+      totalPages,
+    ];
+  };
+
   return (
     <>
       <Head>
@@ -203,13 +235,22 @@ export default function BlogIndex({
                     Previous
                   </button>
 
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                    (page) => (
+                  {getVisiblePages().map((page, index) =>
+                    page === "..." ? (
+                      <span
+                        key={`ellipsis-${index}`}
+                        className="px-2 py-2 text-gray-500"
+                        aria-hidden="true"
+                      >
+                        …
+                      </span>
+                    ) : (
                       <button
                         key={page}
                         type="button"
                         onClick={() => goToPage(page)}
                         disabled={isLoading}
+                        aria-current={currentPage === page ? "page" : undefined}
                         className={`px-4 py-2 rounded-lg border transition ${
                           currentPage === page
                             ? "bg-emerald-600 text-white border-emerald-600"

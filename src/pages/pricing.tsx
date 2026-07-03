@@ -310,11 +310,7 @@ export default function Pricing({
 
             <section className="py-8 md:pb-12">
               <div className="rounded-2xl bg-emerald-700 p-6 text-white md:p-8">
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-emerald-100">
-                  Personalised support
-                </p>
-
-                <h2 className="mt-3 text-2xl font-semibold md:text-3xl">
+                <h2 className="text-2xl font-semibold md:text-3xl">
                   Need a tailored service?
                 </h2>
 

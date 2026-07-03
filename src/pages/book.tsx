@@ -7,6 +7,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 type Review = {
   id: string;
@@ -202,12 +203,12 @@ export default function Book() {
                       Read reviews or purchase a copy through the links below.
                     </p>
 
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-4">
                       <Link
                         href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-600 hover:text-white transition"
+                        className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
                       >
                         Goodreads
                       </Link>
@@ -216,7 +217,7 @@ export default function Book() {
                         href="https://www.booktopia.com.au/a-heartfelt-undertaking-rebecca-j-lyons/book/9780645408508.html"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-600 hover:text-white transition"
+                        className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
                       >
                         Booktopia
                       </Link>
@@ -225,7 +226,7 @@ export default function Book() {
                         href="https://www.amazon.com.au/Heartfelt-Undertaking-Rebecca-J-Lyons/dp/0645408506/ref=sr_1_5?keywords=rebecca+lyons&sr=8-5"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-600 hover:text-white transition"
+                        className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
                       >
                         Amazon
                       </Link>
@@ -256,9 +257,9 @@ export default function Book() {
                   href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-600 font-medium hover:underline"
+                  className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
                 >
-                  Read all reviews on Goodreads
+                  Read All Reviews on Goodreads
                 </Link>
               </div>
             </section>

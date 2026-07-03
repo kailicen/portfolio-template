@@ -313,9 +313,9 @@ export default function BlogPost({ post, slug }: Props) {
             <div className="mt-12 pt-8 border-t border-gray-200">
               <Link
                 href="/community-education/blog"
-                className="text-emerald-600 hover:underline"
+                className="inline-flex px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                &larr; Back to Blog
+                Back to Blog
               </Link>
             </div>
           </div>
