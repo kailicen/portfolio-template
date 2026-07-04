@@ -104,7 +104,7 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
 
       <div className="relative">
         <Image
-          src="/img/faq-b.jpg"
+          src="/img/faqs-b.jpg"
           alt="Community Education"
           width={2300}
           height={300}
