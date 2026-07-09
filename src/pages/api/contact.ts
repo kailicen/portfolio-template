@@ -218,7 +218,18 @@ export default async function handler(
     });
   }
 
-  if (looksLikeRandomBotText(subject)) {
+  if (
+    looksLikeRandomBotText(name) ||
+    looksLikeRandomBotText(subject) ||
+    looksLikeRandomBotText(message)
+  ) {
+    console.log("Blocked random bot text:", {
+      ip,
+      name,
+      subject,
+      message,
+    });
+
     return fakeSuccessResponse(res);
   }
 
