@@ -7,6 +7,10 @@ export type ContactInputs = {
   email: string;
   subject: string;
   message: string;
+
+  // Anti-spam fields
+  company?: string; // honeypot - real users should never fill this
+  formStartedAt: string;
 };
 
 type ApiResponse = {
@@ -38,6 +42,17 @@ async function sendContactForm(data: ContactInputs): Promise<ApiResponse> {
   return result;
 }
 
+function getDefaultValues(): ContactInputs {
+  return {
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    company: "",
+    formStartedAt: Date.now().toString(),
+  };
+}
+
 export default function ContactForm({
   compact = false,
   className = "",
@@ -48,16 +63,10 @@ export default function ContactForm({
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactInputs>({
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
+    defaultValues: getDefaultValues(),
   });
 
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-
   const [statusMessage, setStatusMessage] = useState("");
 
   const onSubmit: SubmitHandler<ContactInputs> = async (formData) => {
@@ -70,7 +79,7 @@ export default function ContactForm({
       setStatus("success");
       setStatusMessage(result.message || "Your message has been sent.");
 
-      reset();
+      reset(getDefaultValues());
     } catch (error) {
       setStatus("error");
       setStatusMessage(
@@ -91,6 +100,8 @@ export default function ContactForm({
 
     return () => window.clearTimeout(timeoutId);
   }, [status]);
+
+  const fieldPrefix = compact ? "home" : "page";
 
   return (
     <div
@@ -115,17 +126,33 @@ export default function ContactForm({
         noValidate
         className="space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:p-8"
       >
+        {/* Anti-spam honeypot field.
+            Real users will not see this.
+            Bots often fill every field they find. */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor={`${fieldPrefix}-contact-company`}>Company</label>
+          <input
+            id={`${fieldPrefix}-contact-company`}
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register("company")}
+          />
+        </div>
+
+        <input type="hidden" {...register("formStartedAt")} />
+
         <div className="grid gap-5 md:grid-cols-2">
           <div>
             <label
-              htmlFor={`${compact ? "home" : "page"}-contact-name`}
+              htmlFor={`${fieldPrefix}-contact-name`}
               className="mb-2 block text-sm font-medium text-gray-700"
             >
               Name
             </label>
 
             <input
-              id={`${compact ? "home" : "page"}-contact-name`}
+              id={`${fieldPrefix}-contact-name`}
               type="text"
               autoComplete="name"
               placeholder="Your name"
@@ -147,14 +174,14 @@ export default function ContactForm({
 
           <div>
             <label
-              htmlFor={`${compact ? "home" : "page"}-contact-email`}
+              htmlFor={`${fieldPrefix}-contact-email`}
               className="mb-2 block text-sm font-medium text-gray-700"
             >
               Email
             </label>
 
             <input
-              id={`${compact ? "home" : "page"}-contact-email`}
+              id={`${fieldPrefix}-contact-email`}
               type="email"
               autoComplete="email"
               placeholder="you@example.com"
@@ -183,19 +210,23 @@ export default function ContactForm({
 
         <div>
           <label
-            htmlFor={`${compact ? "home" : "page"}-contact-subject`}
+            htmlFor={`${fieldPrefix}-contact-subject`}
             className="mb-2 block text-sm font-medium text-gray-700"
           >
             Subject
           </label>
 
           <input
-            id={`${compact ? "home" : "page"}-contact-subject`}
+            id={`${fieldPrefix}-contact-subject`}
             type="text"
             placeholder="How can we help?"
             aria-invalid={Boolean(errors.subject)}
             {...register("subject", {
               required: "Please enter a subject.",
+              minLength: {
+                value: 3,
+                message: "Subject must be at least 3 characters.",
+              },
               maxLength: {
                 value: 150,
                 message: "Subject must be 150 characters or fewer.",
@@ -213,14 +244,14 @@ export default function ContactForm({
 
         <div>
           <label
-            htmlFor={`${compact ? "home" : "page"}-contact-message`}
+            htmlFor={`${fieldPrefix}-contact-message`}
             className="mb-2 block text-sm font-medium text-gray-700"
           >
             Message
           </label>
 
           <textarea
-            id={`${compact ? "home" : "page"}-contact-message`}
+            id={`${fieldPrefix}-contact-message`}
             rows={compact ? 4 : 6}
             placeholder="Write your message here..."
             aria-invalid={Boolean(errors.message)}
