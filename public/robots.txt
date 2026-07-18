@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://solaceendoflife.com.au
+
+# Sitemaps
+Sitemap: https://solaceendoflife.com.au/sitemap.xml
