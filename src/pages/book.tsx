@@ -96,6 +96,7 @@ export default function Book() {
           name="description"
           content="Discover A Heartfelt Undertaking by Bec Lyons, a book exploring alternative approaches to death care, ceremony, and end-of-life practices in Australia and around the world."
         />
+        <link rel="canonical" href="https://solaceendoflife.com.au/book" />
       </Head>
 
       <Header />

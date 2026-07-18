@@ -98,6 +98,10 @@ export default function FAQ({ faqs, isUsingContentful }: Props) {
           name="description"
           content="Frequently asked questions about death, dying, funerals, and your rights in Tasmania."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/community-education/faq"
+        />
       </Head>
 
       <Header />

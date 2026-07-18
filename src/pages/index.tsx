@@ -17,7 +17,16 @@ export default function Home() {
   return (
     <div className="min-h-screen z-0">
       <Head>
-        <title>Solace - End of Life Services</title>
+        <title>
+          Family-Led Funerals & End of Life Services | Solace Tasmania
+        </title>
+
+        <meta
+          name="description"
+          content="Solace provides compassionate funeral support, home funerals, end-of-life guidance and community education for families across Tasmania."
+        />
+
+        <link rel="canonical" href="https://solaceendoflife.com.au/" />
       </Head>
 
       <Header />

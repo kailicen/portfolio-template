@@ -16,6 +16,10 @@ function EdwinQuilliam() {
           name="description"
           content="Learn about Edwin Quilliam, co-founder of Solace End of Life Services, Funeral Celebrant and advocate for honest conversations about dying, death and end-of-life care."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/about/edwin-quilliam"
+        />
       </Head>
 
       <Header />

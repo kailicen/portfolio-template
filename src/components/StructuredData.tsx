@@ -6,11 +6,25 @@ export default function StructuredData() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FuneralHome",
+    "@id": "https://solaceendoflife.com.au",
     name: "Solace End of Life Services",
     url: "https://solaceendoflife.com.au",
-    logo: "https://solaceendoflife.com.au/img/solace-logo.png",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://solaceendoflife.com.au/img/solace-logo.png",
+    },
+    image: {
+      "@type": "ImageObject",
+      url: "https://solaceendoflife.com.au/img/solace-logo.png",
+    },
     description:
       "Family-led funeral services, home funerals and community education in Tasmania.",
+    telephone: "0417 307 658",
+    email: "mailto:funerals@solaceendoflife.com.au",
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Tasmania",
+    },
     address: {
       "@type": "PostalAddress",
       addressRegion: "Tasmania",

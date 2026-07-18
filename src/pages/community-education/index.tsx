@@ -55,6 +55,10 @@ export default function CommunityEducationIndex() {
           name="description"
           content="Community education, advocacy and resources to help people speak more openly about dying, death, funerals, rights and end-of-life choices."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/community-education"
+        />
       </Head>
 
       <Header />

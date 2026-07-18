@@ -123,6 +123,7 @@ export default function BlogPost({ post, slug }: Props) {
       <Head>
         <title>{post.title} - Solace Blog</title>
         <meta name="description" content={post.excerpt} />
+        <link rel="canonical" href={postUrl} />
       </Head>
 
       <Header />

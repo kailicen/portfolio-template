@@ -63,6 +63,7 @@ export default function Pricing({
           name="description"
           content="View Solace funeral pricing in Hobart, including individual service costs, cremation-only pricing and tailored funeral support."
         />
+        <link rel="canonical" href="https://solaceendoflife.com.au/pricing" />
       </Head>
 
       <Header />

@@ -81,6 +81,10 @@ export default function PlanningAFuneral() {
           name="description"
           content="Planning guidance for funerals, advance care planning, wishes, family-led funerals and end-of-life documents."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/having-a-funeral-with-solace/planning-a-funeral"
+        />
       </Head>
 
       <Header />

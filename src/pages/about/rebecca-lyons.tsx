@@ -16,6 +16,10 @@ function RebeccaLyons() {
           name="description"
           content="Learn about Rebecca Lyons, co-founder of Solace End of Life Services, End of Life Doula, Funeral Director, Churchill Fellow, author and advocate for family-led death care."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/about/rebecca-lyons"
+        />
       </Head>
 
       <Header />

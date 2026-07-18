@@ -43,6 +43,10 @@ function HavingAFuneralWithSolace() {
           name="description"
           content="Explore funeral planning and family-led home funeral support with Solace, including wishes, advance care planning, practical resources and home funerals in Tasmania."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/having-a-funeral-with-solace"
+        />
       </Head>
 
       <Header />

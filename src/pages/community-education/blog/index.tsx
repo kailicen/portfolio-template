@@ -129,6 +129,10 @@ export default function BlogIndex({
           name="description"
           content="Insights, stories, and discussions about end of life care in Australia."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/community-education/blog"
+        />
       </Head>
 
       <Header />

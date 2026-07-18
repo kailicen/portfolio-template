@@ -15,6 +15,10 @@ function WhereWeComeFrom() {
           name="description"
           content="Learn how Solace began and why we're passionate about community-led death care, informed choice, education and compassionate end-of-life support."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/about/how-did-we-begin"
+        />
       </Head>
 
       <Header />

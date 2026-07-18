@@ -128,6 +128,10 @@ export default function MediaAppearances({
           name="description"
           content="Featured articles, interviews, and news coverage of Solace's work in end of life services."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/community-education/media"
+        />
       </Head>
 
       <Header />

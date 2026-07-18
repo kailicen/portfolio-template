@@ -40,6 +40,10 @@ function WhoWeAre() {
           name="description"
           content="Meet Edwin Quilliam and Rebecca Lyons, the people behind Solace End of Life Services. Learn about their experience, values and commitment to compassionate, family-led end-of-life care in Tasmania."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/about/who-we-are"
+        />
       </Head>
 
       <Header />

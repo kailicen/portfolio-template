@@ -43,6 +43,10 @@ export default function HomeFuneralsInTas() {
           name="description"
           content="Learn about family-led home funerals in Tasmania, how Solace supports families, and how home-based death care can offer more time, choice and connection."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/having-a-funeral-with-solace/home-funerals-in-tasmania"
+        />
       </Head>
 
       <Header />

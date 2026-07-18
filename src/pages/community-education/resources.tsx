@@ -149,6 +149,10 @@ export default function Resources({ resources, isUsingContentful }: Props) {
           name="description"
           content="Explore trusted end-of-life resources from Tasmania, Australia, and overseas, including organisations, education, services, and practical information."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/community-education/resources"
+        />
       </Head>
 
       <Header />

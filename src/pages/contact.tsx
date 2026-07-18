@@ -16,6 +16,7 @@ export default function ContactPage() {
           name="description"
           content="Contact Solace for immediate support, funeral guidance, end-of-life care assistance, or general enquiries."
         />
+        <link rel="canonical" href="https://solaceendoflife.com.au/contact" />
       </Head>
 
       <Header />

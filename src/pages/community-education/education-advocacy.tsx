@@ -38,6 +38,10 @@ export default function EducationAdvocacy() {
           name="description"
           content="Solace offers education and advocacy around dying, death care, advance care planning, home funerals, natural burial and family-led funeral options."
         />
+        <link
+          rel="canonical"
+          href="https://solaceendoflife.com.au/community-education/education-advocacy"
+        />
       </Head>
 
       <Header />

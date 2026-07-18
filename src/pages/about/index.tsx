@@ -34,6 +34,7 @@ function AboutIndex() {
           name="description"
           content="Learn about Solace End of Life Services, our founders Edwin and Bec, our story, and our commitment to changing how we approach dying, death and grief."
         />
+        <link rel="canonical" href="https://solaceendoflife.com.au/about" />
       </Head>
 
       <Header />
