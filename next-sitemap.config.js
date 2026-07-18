@@ -2,4 +2,5 @@
 module.exports = {
   siteUrl: "https://solaceendoflife.com.au",
   generateRobotsTxt: true,
+  generateIndexSitemap: false,
 };
