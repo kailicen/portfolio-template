@@ -3,72 +3,59 @@ import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import Container from "@/components/Container";
 import ContactForm from "@/components/ContactForm";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Head from "next/head";
 
 export default function ContactPage() {
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
-        <title>Contact Us | Solace</title>
+        <title>Contact Us | Solace End of Life Services</title>
+
         <meta
           name="description"
-          content="Contact Solace for immediate support, funeral guidance, end-of-life care assistance, or general enquiries."
+          content="Contact Solace for immediate support, funeral guidance, end-of-life care assistance or general enquiries."
         />
+
         <link rel="canonical" href="https://solaceendoflife.com.au/contact" />
       </Head>
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/contact-b.jpg"
-          alt="Contact Solace"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Contact Us
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Contact Us"
+        image="/img/contact-b.jpg"
+        alt="Contact Solace End of Life Services"
+      />
 
       <main className="flex-1">
         <Container>
           <Breadcrumb items={[{ label: "Contact Us" }]} />
 
-          <motion.div
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="py-8 md:py-12"
           >
-            <section className="py-8">
-              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
-                Contact
-              </p>
+            <SectionIntro
+              align="left"
+              eyebrow="Contact"
+              title="Time-sensitive? Don’t wait. Let’s talk."
+              description="Have a question or need support? Send us a message and we will get back to you as soon as possible."
+              className="mb-10"
+            />
 
-              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
-                Time sensitive? Don&apos;t wait. Let&apos;s talk.
-              </h2>
-
-              <p className="text-lg text-slate-600 max-w-3xl mb-10 leading-relaxed">
-                Have a question or need support? Send us a message and we will
-                get back to you as soon as possible.
-              </p>
-
-              <div className="w-full max-w-3xl">
-                <ContactForm compact />
-              </div>
-            </section>
-          </motion.div>
+            <div className="w-full max-w-3xl">
+              <ContactForm compact />
+            </div>
+          </motion.section>
         </Container>
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
