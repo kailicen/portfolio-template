@@ -246,8 +246,8 @@ export default function Header() {
         >
           <SolaceLogo
             priority
-            sizes="(max-width: 1280px) 90px, 110px"
-            className="w-[90px] xl:w-[110px]"
+            sizes="(max-width: 1280px) 130px, 150px"
+            className="w-[130px] xl:w-[150px]"
           />
         </Link>
 
