@@ -8,9 +8,9 @@ type SolaceLogoProps = {
 };
 
 const logoSources = {
-  default: "/img/solace-logo.png",
-  dark: "/img/solace-logo-dark.png",
-  light: "/img/solace-logo-light.png",
+  default: "/img/solace-logo.svg",
+  dark: "/img/solace-logo.svg",
+  light: "/img/solace-logo-light.svg",
 };
 
 export default function SolaceLogo({
@@ -28,6 +28,7 @@ export default function SolaceLogo({
         height={500}
         priority={priority}
         sizes={sizes}
+        unoptimized
         className="h-auto w-full"
       />
     </div>
