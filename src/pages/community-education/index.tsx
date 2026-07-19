@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import Container from "@/components/Container";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
+import NavigationCard from "@/components/ui/NavigationCard";
 
 const educationSubPages = [
   {
@@ -48,7 +51,7 @@ const educationSubPages = [
 
 export default function CommunityEducationIndex() {
   return (
-    <div className="bg-white text-black min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Community Education | Solace End of Life Services</title>
         <meta
@@ -63,21 +66,11 @@ export default function CommunityEducationIndex() {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/community-education-b.jpg"
-          alt="Community Education"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Community Education
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Community Education"
+        image="/img/community-education-b.jpg"
+        alt="Community Education"
+      />
 
       <main className="flex-1">
         <Container>
@@ -88,25 +81,19 @@ export default function CommunityEducationIndex() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-4xl mb-12"
             >
-              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
-                Community education
-              </p>
-
-              <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-                Helping people ask better questions about dying, death and care.
-              </h2>
-
-              <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-                We believe demystifying dying and death through community
+              <SectionIntro
+                align="left"
+                eyebrow="Community education"
+                title="Helping people ask better questions about dying, death and care."
+                description="We believe demystifying dying and death through community
                 engagement is vital. Through education, advocacy, resources and
                 honest conversation, we help people understand their rights,
-                options and choices.
-              </p>
+                options and choices."
+              />
             </motion.section>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {educationSubPages.map((page, index) => (
                 <motion.article
                   key={page.href}
@@ -114,31 +101,7 @@ export default function CommunityEducationIndex() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                 >
-                  <Link
-                    href={page.href}
-                    className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
-                  >
-                    <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                      {page.eyebrow}
-                    </p>
-
-                    <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
-                      {page.title}
-                    </h2>
-
-                    <p className="mt-4 text-gray-700 leading-relaxed">
-                      {page.description}
-                    </p>
-
-                    <span className="mt-6 inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors group-hover:text-emerald-800">
-                      <span>Learn more</span>
-
-                      <ArrowRightIcon
-                        aria-hidden="true"
-                        className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
-                      />
-                    </span>
-                  </Link>
+                  <NavigationCard {...page} />
                 </motion.article>
               ))}
             </div>

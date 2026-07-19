@@ -8,6 +8,7 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/24/solid";
 import Container from "@/components/Container";
+import SolaceLogo from "./brand/SolaceLogo";
 
 const aboutSubPages = [
   { title: "Who Are We?", href: "/about/who-we-are" },
@@ -41,6 +42,9 @@ type SubPage = {
   href: string;
 };
 
+const desktopLinkClassName =
+  "font-medium text-solace-ink transition-colors hover:text-solace-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-solace-300 focus-visible:ring-offset-4 focus-visible:ring-offset-solace-surface";
+
 function DesktopDropdown({
   label,
   href,
@@ -62,11 +66,13 @@ function DesktopDropdown({
     >
       <Link
         href={href}
-        className="flex items-center gap-1 font-medium text-gray-800 hover:text-emerald-600 transition-colors"
+        className={`flex items-center gap-1 ${desktopLinkClassName}`}
       >
         {label}
+
         <ChevronDownIcon
-          className={`h-4 w-4 transition-transform ${
+          aria-hidden="true"
+          className={`h-4 w-4 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -75,17 +81,34 @@ function DesktopDropdown({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-            className={`absolute left-0 top-full z-40 mt-3 ${widthClass} rounded-xl border border-gray-200 bg-white py-2 shadow-lg`}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.16 }}
+            className={`
+              absolute left-0 top-full z-40 mt-3
+              ${widthClass}
+              overflow-hidden rounded-xl
+              border border-solace-200
+              bg-solace-surface
+              py-2
+              shadow-[0_16px_40px_rgba(48,64,55,0.14)]
+            `}
           >
             {pages.map((page) => (
               <Link
                 key={page.href}
                 href={page.href}
-                className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+                className="
+                  block px-4 py-2.5
+                  text-sm text-slate-700
+                  transition-colors
+                  hover:bg-solace-50
+                  hover:text-solace-700
+                  focus-visible:bg-solace-50
+                  focus-visible:text-solace-700
+                  focus-visible:outline-none
+                "
               >
                 {page.title}
               </Link>
@@ -113,15 +136,24 @@ function MobileDropdown({
   onClose: () => void;
 }) {
   return (
-    <div className="border-b border-gray-100 pb-2">
+    <div className="border-b border-solace-100 pb-2">
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between px-4 py-3 text-left font-medium text-gray-800 hover:text-emerald-600 transition-colors"
+        className="
+          flex w-full items-center justify-between
+          rounded-lg px-4 py-3
+          text-left font-medium text-solace-ink
+          transition-colors
+          hover:bg-solace-50
+          hover:text-solace-700
+        "
       >
         <span>{label}</span>
+
         <ChevronDownIcon
-          className={`h-4 w-4 transition-transform ${
+          aria-hidden="true"
+          className={`h-4 w-4 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -140,7 +172,13 @@ function MobileDropdown({
               <Link
                 href={overviewHref}
                 onClick={onClose}
-                className="block px-8 py-2 text-sm text-gray-600 hover:text-emerald-600 transition-colors"
+                className="
+                  block rounded-md px-8 py-2
+                  text-sm font-medium text-solace-700
+                  transition-colors
+                  hover:bg-solace-50
+                  hover:text-solace-800
+                "
               >
                 Overview
               </Link>
@@ -150,7 +188,13 @@ function MobileDropdown({
                   key={page.href}
                   href={page.href}
                   onClick={onClose}
-                  className="block px-8 py-2 text-sm text-gray-600 hover:text-emerald-600 transition-colors"
+                  className="
+                    block rounded-md px-8 py-2
+                    text-sm text-slate-600
+                    transition-colors
+                    hover:bg-solace-50
+                    hover:text-solace-700
+                  "
                 >
                   {page.title}
                 </Link>
@@ -177,20 +221,37 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
+    <header
+      className="
+        sticky top-0 z-50 w-full
+        border-b border-solace-100
+        bg-solace-surface/95
+        shadow-[0_4px_18px_rgba(48,64,55,0.06)]
+        backdrop-blur-md
+      "
+    >
       <Container className="flex min-h-[76px] items-center justify-between">
-        <Link href="/" onClick={closeMobileMenu} className="flex items-center">
-          <Image
-            src="/img/solace-white.png"
-            alt="Solace logo"
-            width={100}
-            height={50}
+        <Link
+          href="/"
+          onClick={closeMobileMenu}
+          aria-label="Solace home"
+          className="
+            rounded-md
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-solace-300
+            focus-visible:ring-offset-4
+            focus-visible:ring-offset-solace-surface
+          "
+        >
+          <SolaceLogo
             priority
-            className="h-auto w-[100px]"
+            sizes="(max-width: 1280px) 130px, 150px"
+            className="w-[130px] xl:w-[150px]"
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7 text-base">
+        <nav className="hidden items-center gap-5 text-sm xl:gap-7 xl:text-base lg:flex">
           <DesktopDropdown label="About" href="/about" pages={aboutSubPages} />
 
           <DesktopDropdown
@@ -207,23 +268,24 @@ export default function Header() {
             widthClass="w-72"
           />
 
-          <Link
-            href="/pricing"
-            className="font-medium text-gray-800 hover:text-emerald-600 transition-colors"
-          >
+          <Link href="/pricing" className={desktopLinkClassName}>
             Funeral Pricing
           </Link>
 
-          <Link
-            href="/book"
-            className="font-medium text-gray-800 hover:text-emerald-600 transition-colors"
-          >
+          <Link href="/book" className={desktopLinkClassName}>
             Our Book
           </Link>
 
           <Link
             href="/contact"
-            className="font-medium text-gray-800 hover:text-emerald-600 transition-colors"
+            className="
+              inline-flex min-h-[42px] items-center justify-center
+              rounded-lg bg-solace-500 px-5 py-2
+              text-sm font-semibold text-white
+              shadow-sm transition-all
+              hover:bg-solace-600 hover:shadow-md
+              xl:text-base
+            "
           >
             Contact
           </Link>
@@ -232,7 +294,17 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsMenuOpen((current) => !current)}
-          className="lg:hidden rounded-lg p-2 text-gray-800 hover:bg-gray-100 transition-colors"
+          className="
+            rounded-lg p-2
+            text-solace-ink
+            transition-colors
+            hover:bg-solace-50
+            hover:text-solace-700
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-solace-300
+            lg:hidden
+          "
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
         >
@@ -251,7 +323,14 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-0 top-full z-40 w-full border-t border-gray-100 bg-white p-4 shadow-lg lg:hidden"
+            className="
+              absolute left-0 top-full z-40 w-full
+              border-t border-solace-100
+              bg-solace-surface
+              p-4
+              shadow-[0_16px_35px_rgba(48,64,55,0.14)]
+              lg:hidden
+            "
           >
             <MobileDropdown
               label="About"
@@ -280,11 +359,17 @@ export default function Header() {
               onClose={closeMobileMenu}
             />
 
-            <div className="pt-2">
+            <div className="space-y-1 pt-3">
               <Link
                 href="/pricing"
                 onClick={closeMobileMenu}
-                className="block px-4 py-3 font-medium text-gray-800 hover:text-emerald-600 transition-colors"
+                className="
+                  block rounded-lg px-4 py-3
+                  font-medium text-solace-ink
+                  transition-colors
+                  hover:bg-solace-50
+                  hover:text-solace-700
+                "
               >
                 Funeral Pricing
               </Link>
@@ -292,7 +377,13 @@ export default function Header() {
               <Link
                 href="/book"
                 onClick={closeMobileMenu}
-                className="block px-4 py-3 font-medium text-gray-800 hover:text-emerald-600 transition-colors"
+                className="
+                  block rounded-lg px-4 py-3
+                  font-medium text-solace-ink
+                  transition-colors
+                  hover:bg-solace-50
+                  hover:text-solace-700
+                "
               >
                 Our Book
               </Link>
@@ -300,7 +391,13 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={closeMobileMenu}
-                className="block px-4 py-3 font-medium text-gray-800 hover:text-emerald-600 transition-colors"
+                className="
+                  mt-3 flex min-h-[48px] items-center justify-center
+                  rounded-lg bg-solace-500 px-5 py-3
+                  font-semibold text-white
+                  transition-colors
+                  hover:bg-solace-600
+                "
               >
                 Contact
               </Link>

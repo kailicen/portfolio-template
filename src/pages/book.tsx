@@ -8,6 +8,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 type Review = {
   id: string;
@@ -59,18 +62,25 @@ const ReviewCard: React.FC<{ review: Review; index: number }> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+      className="bg-solace-surface rounded-lg p-6 md:p-8 shadow-sm border border-solace-100 hover:border-solace-200 transition-colors"
     >
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
         <div className="flex items-center gap-3">
-          <h3 className="text-lg font-semibold text-gray-800">{review.name}</h3>
-          <span className="text-yellow-500 text-sm tracking-wide">★★★★★</span>
+          <h3 className="text-lg font-semibold text-solace-ink">
+            {review.name}
+          </h3>
+          <span
+            className="text-sm tracking-wide text-yellow-500"
+            aria-label="5 out of 5 stars"
+          >
+            ★★★★★
+          </span>
         </div>
 
         <time className="text-sm text-gray-500">{review.date}</time>
       </div>
 
-      <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+      <p className="text-slate-600 whitespace-pre-line leading-relaxed">
         {displayContent}
       </p>
 
@@ -78,7 +88,17 @@ const ReviewCard: React.FC<{ review: Review; index: number }> = ({
         <button
           type="button"
           onClick={() => setIsExpanded((current) => !current)}
-          className="mt-4 text-emerald-600 font-medium hover:underline"
+          className="
+            mt-4 font-semibold text-solace-700
+            transition-colors
+            hover:text-solace-800
+            hover:underline
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-solace-300
+            focus-visible:ring-offset-2
+            focus-visible:ring-offset-solace-surface
+          "
         >
           {isExpanded ? "Show Less" : "Show More"}
         </button>
@@ -89,7 +109,7 @@ const ReviewCard: React.FC<{ review: Review; index: number }> = ({
 
 export default function Book() {
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>A Heartfelt Undertaking | Solace</title>
         <meta
@@ -101,21 +121,11 @@ export default function Book() {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/book-b.jpg"
-          alt="A Heartfelt Undertaking"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Book
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Book"
+        image="/img/book-b.jpg"
+        alt="A Heartfelt Undertaking"
+      />
 
       <main className="flex-1">
         <Container>
@@ -126,19 +136,16 @@ export default function Book() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <section className="py-8">
+            <section className="py-8 md:py-12">
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
                 <div>
-                  <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
-                    A Heartfelt Undertaking
-                  </p>
+                  <SectionIntro
+                    align="left"
+                    eyebrow="A Heartfelt Undertaking"
+                    title="Exploring death care, ceremony and what is possible at end of life."
+                  />
 
-                  <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6">
-                    Exploring death care, ceremony, and what is possible at end
-                    of life.
-                  </h2>
-
-                  <div className="space-y-5 text-gray-600 leading-relaxed">
+                  <div className="mt-6 space-y-5 leading-relaxed text-slate-600">
                     <p>
                       In 2019 Bec Lyons travelled to six countries on a
                       Churchill Fellowship. She was researching the human
@@ -178,59 +185,55 @@ export default function Book() {
                     alt="A Heartfelt Undertaking book award"
                     width={400}
                     height={400}
-                    className="w-full max-w-sm rounded-lg shadow-sm border border-gray-200"
+                    className="w-full max-w-sm rounded-lg shadow-sm border border-solace-100"
                   />
                 </div>
               </div>
             </section>
 
             <section className="py-8">
-              <div className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+              <div className="bg-solace-surface rounded-lg p-6 md:p-8 shadow-sm border border-solace-100">
                 <div className="grid gap-8 md:grid-cols-[200px_1fr] md:items-start">
                   <Image
                     src="/img/book-2.jpg"
                     alt="A Heartfelt Undertaking book cover"
                     width={200}
                     height={200}
-                    className="rounded-lg shadow-sm border border-gray-200 mx-auto md:mx-0"
+                    className="rounded-lg shadow-sm border border-solace-100 mx-auto md:mx-0"
                   />
 
                   <div>
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                    <h2 className="text-2xl font-semibold text-solace-ink mb-4">
                       Find the book
                     </h2>
 
-                    <p className="text-gray-600 mb-6 max-w-2xl">
+                    <p className="text-slate-600 mb-6 max-w-2xl">
                       Read reviews or purchase a copy through the links below.
                     </p>
 
                     <div className="flex flex-wrap gap-4">
-                      <Link
+                      <ButtonLink
                         href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                        external
                       >
                         Goodreads
-                      </Link>
+                      </ButtonLink>
 
-                      <Link
+                      <ButtonLink
                         href="https://www.booktopia.com.au/a-heartfelt-undertaking-rebecca-j-lyons/book/9780645408508.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                        variant="outline"
+                        external
                       >
                         Booktopia
-                      </Link>
+                      </ButtonLink>
 
-                      <Link
+                      <ButtonLink
                         href="https://www.amazon.com.au/Heartfelt-Undertaking-Rebecca-J-Lyons/dp/0645408506/ref=sr_1_5?keywords=rebecca+lyons&sr=8-5"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                        variant="outline"
+                        external
                       >
                         Amazon
-                      </Link>
+                      </ButtonLink>
                     </div>
                   </div>
                 </div>
@@ -238,11 +241,11 @@ export default function Book() {
             </section>
 
             <section className="py-8">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+              <h2 className="text-2xl md:text-3xl font-semibold text-solace-ink mb-4">
                 Reader Reviews
               </h2>
 
-              <p className="text-lg text-gray-600 max-w-3xl mb-10">
+              <p className="text-lg text-slate-600 max-w-3xl mb-10">
                 Reflections from readers interested in death care, ceremony,
                 grief, and alternative approaches to end-of-life practice.
               </p>
@@ -254,14 +257,13 @@ export default function Book() {
               </div>
 
               <div className="mt-10">
-                <Link
+                <ButtonLink
                   href="https://www.goodreads.com/book/show/61420148-a-heartfelt-undertaking"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                  variant="outline"
+                  external
                 >
-                  Read All Reviews on Goodreads
-                </Link>
+                  Read all reviews on Goodreads
+                </ButtonLink>
               </div>
             </section>
           </motion.div>
@@ -269,6 +271,6 @@ export default function Book() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

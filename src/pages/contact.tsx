@@ -55,7 +55,7 @@ export default function ContactPage() {
                 Time sensitive? Don&apos;t wait. Let&apos;s talk.
               </h2>
 
-              <p className="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
+              <p className="text-lg text-slate-600 max-w-3xl mb-10 leading-relaxed">
                 Have a question or need support? Send us a message and we will
                 get back to you as soon as possible.
               </p>

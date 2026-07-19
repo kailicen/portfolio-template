@@ -15,6 +15,9 @@ import {
   PricingComponentEntry,
   PricingPackageEntry,
 } from "@/lib/contentful";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 interface PricingProps {
   components: PricingComponentEntry[];
@@ -55,7 +58,7 @@ export default function Pricing({
   const groupedComponents = groupPricingComponents(components);
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-black">
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Funeral Pricing | Solace End of Life Services</title>
 
@@ -68,24 +71,12 @@ export default function Pricing({
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/pricing-b.jpg"
-          alt="Solace funeral services"
-          width={2300}
-          height={300}
-          priority
-          className="h-48 w-full object-cover md:h-80"
-        />
-
-        <div className="absolute inset-0 bg-black/50" />
-
-        <div className="absolute inset-0 flex items-center justify-center px-4 text-white">
-          <h1 className="text-center text-2xl font-semibold uppercase tracking-[10px] md:text-5xl 2xl:text-7xl">
-            Funeral Pricing
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Funeral Pricing"
+        image="/img/pricing-b.jpg"
+        alt="Solace funeral services"
+        priority
+      />
 
       <main className="flex-1">
         <Container>
@@ -99,15 +90,13 @@ export default function Pricing({
             <section className="py-8 md:py-12">
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
                 <div>
-                  <p className="mb-4 text-sm font-medium uppercase tracking-[4px] text-emerald-600">
-                    Funeral Pricing
-                  </p>
+                  <SectionIntro
+                    align="left"
+                    eyebrow="Funeral pricing"
+                    title="How much does a funeral cost?"
+                  />
 
-                  <h2 className="mb-6 text-3xl font-semibold leading-tight text-gray-800 md:text-4xl 2xl:text-5xl">
-                    How much does a funeral cost?
-                  </h2>
-
-                  <div className="space-y-5 leading-relaxed text-gray-600">
+                  <div className="mt-6 space-y-5 leading-relaxed text-slate-600">
                     <p>Below is our list of prices, exclusive of GST.</p>
 
                     <p>
@@ -117,7 +106,7 @@ export default function Pricing({
 
                     <p>
                       The transport costs included below encompass travel within
-                      a 50km radius of Hobart.
+                      a 50 km radius of Hobart.
                     </p>
 
                     <p>
@@ -140,7 +129,7 @@ export default function Pricing({
                     alt="Solace funeral support"
                     width={400}
                     height={400}
-                    className="w-full max-w-sm rounded-xl border border-gray-200 object-cover shadow-sm"
+                    className="w-full max-w-sm rounded-xl border border-solace-100 object-cover shadow-sm"
                   />
                 </div>
               </div>
@@ -148,15 +137,15 @@ export default function Pricing({
 
             <section className="py-8">
               <div className="mb-8">
-                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-emerald-700">
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-solace-700">
                   Choose the support you need
                 </p>
 
-                <h2 className="mb-4 text-2xl font-semibold text-gray-800 md:text-3xl">
+                <h2 className="mb-4 text-2xl font-semibold text-solace-ink md:text-3xl">
                   Individual Components
                 </h2>
 
-                <p className="max-w-3xl text-lg leading-relaxed text-gray-600">
+                <p className="max-w-3xl text-lg leading-relaxed text-slate-600">
                   Select the individual services that suit your family&apos;s
                   needs. We can help you understand which components may be
                   appropriate for your circumstances.
@@ -171,27 +160,29 @@ export default function Pricing({
                 <div className="max-w-5xl space-y-8">
                   {groupedComponents.map((group) => (
                     <div key={group.category}>
-                      <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
-                        <div className="bg-emerald-50 px-5 py-4 md:px-6">
-                          <h3 className="text-lg font-semibold text-emerald-900">
+                      <div className="overflow-hidden rounded-xl border border-solace-100 bg-solace-surface shadow-sm">
+                        <div className="bg-solace-surface px-5 py-4 md:px-6">
+                          <h3 className="text-lg font-semibold text-solace-900">
                             {group.category}
                           </h3>
                         </div>
 
                         {/* Mobile layout */}
-                        <div className="divide-y divide-gray-200 sm:hidden">
+                        <div className="divide-y divide-solace-100 sm:hidden">
                           {group.components.map((component, index) => (
                             <div
                               key={component.id}
                               className={`px-5 py-4 ${
-                                index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                                index % 2 === 0
+                                  ? "bg-solace-surface"
+                                  : "bg-solace-50"
                               }`}
                             >
-                              <p className="leading-relaxed text-gray-700">
+                              <p className="leading-relaxed text-slate-600">
                                 {component.name}
                               </p>
 
-                              <p className="mt-2 text-lg font-semibold text-emerald-700">
+                              <p className="mt-2 text-lg font-semibold text-solace-700">
                                 {formatCurrency(component.price)}
                               </p>
                             </div>
@@ -200,7 +191,7 @@ export default function Pricing({
 
                         {/* Tablet and desktop table */}
                         <table className="hidden w-full border-collapse sm:table">
-                          <thead className="bg-emerald-700 text-white">
+                          <thead className="bg-solace-700 text-white">
                             <tr>
                               <th
                                 scope="col"
@@ -218,19 +209,21 @@ export default function Pricing({
                             </tr>
                           </thead>
 
-                          <tbody className="divide-y divide-gray-200">
+                          <tbody className="divide-y divide-solace-100">
                             {group.components.map((component, index) => (
                               <tr
                                 key={component.id}
-                                className={`transition-colors hover:bg-emerald-50/60 ${
-                                  index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                                className={`transition-colors hover:bg-solace-100/60 ${
+                                  index % 2 === 0
+                                    ? "bg-solace-surface"
+                                    : "bg-solace-50"
                                 }`}
                               >
-                                <td className="px-4 py-3.5 text-gray-700 md:px-6">
+                                <td className="px-4 py-3.5 text-slate-600 md:px-6">
                                   {component.name}
                                 </td>
 
-                                <td className="whitespace-nowrap px-4 py-3.5 text-right font-semibold text-gray-800 md:px-6">
+                                <td className="whitespace-nowrap px-4 py-3.5 text-right font-semibold text-solace-ink md:px-6">
                                   {formatCurrency(component.price)}
                                 </td>
                               </tr>
@@ -242,7 +235,7 @@ export default function Pricing({
                   ))}
                 </div>
               ) : (
-                <div className="rounded-xl border border-gray-200 bg-gray-50 p-8 text-gray-600 shadow-sm">
+                <div className="rounded-xl border border-solace-100 bg-solace-surface p-8 text-slate-600 shadow-sm">
                   Individual pricing is currently being updated. Please contact
                   us for current prices.
                 </div>
@@ -251,15 +244,15 @@ export default function Pricing({
 
             <section className="py-8">
               <div className="mb-8">
-                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-emerald-700">
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-solace-700">
                   Simple cremation option
                 </p>
 
-                <h2 className="mb-4 text-2xl font-semibold text-gray-800 md:text-3xl">
+                <h2 className="mb-4 text-2xl font-semibold text-solace-ink md:text-3xl">
                   Cremation Only
                 </h2>
 
-                <p className="max-w-3xl text-lg leading-relaxed text-gray-600">
+                <p className="max-w-3xl text-lg leading-relaxed text-slate-600">
                   Our cremation-only option provides a simple arrangement
                   without a funeral service. Please review the inclusions below,
                   or contact us to discuss whether this option is suitable for
@@ -278,13 +271,13 @@ export default function Pricing({
                         duration: 0.4,
                         delay: index * 0.1,
                       }}
-                      className="flex h-full flex-col rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm transition-colors hover:border-emerald-300 md:p-8"
+                      className="flex h-full flex-col rounded-2xl border border-solace-100 bg-solace-surface p-6 shadow-sm transition-colors hover:border-solace-300 md:p-8"
                     >
-                      <h3 className="text-2xl font-semibold leading-tight text-gray-800">
+                      <h3 className="text-2xl font-semibold leading-tight text-solace-ink">
                         {pricingPackage.name}
                       </h3>
 
-                      <p className="mt-4 text-3xl font-semibold text-emerald-700">
+                      <p className="mt-4 text-3xl font-semibold text-solace-700">
                         {formatCurrency(pricingPackage.price)}
 
                         <span className="ml-2 text-sm font-normal text-gray-500">
@@ -292,7 +285,7 @@ export default function Pricing({
                         </span>
                       </p>
 
-                      <div className="mt-6 flex-1 leading-relaxed text-gray-600">
+                      <div className="mt-6 flex-1 leading-relaxed text-slate-600">
                         <RichContent
                           content={pricingPackage.description}
                           variant="compact"
@@ -302,7 +295,7 @@ export default function Pricing({
                   ))}
                 </div>
               ) : (
-                <div className="max-w-2xl rounded-xl border border-gray-200 bg-gray-50 p-8 text-gray-600 shadow-sm">
+                <div className="max-w-2xl rounded-xl border border-solace-100 bg-solace-surface p-8 text-slate-600 shadow-sm">
                   Cremation-only pricing is currently being updated. Please
                   contact us for current pricing.
                 </div>
@@ -310,12 +303,12 @@ export default function Pricing({
             </section>
 
             <section className="py-8 md:pb-12">
-              <div className="rounded-2xl bg-emerald-700 p-6 text-white md:p-8">
+              <div className="rounded-2xl bg-solace-700 p-6 text-white md:p-8">
                 <h2 className="text-2xl font-semibold md:text-3xl">
                   Need a tailored service?
                 </h2>
 
-                <p className="mt-4 max-w-3xl leading-relaxed text-emerald-50">
+                <p className="mt-4 max-w-3xl leading-relaxed text-solace-50">
                   Every family&apos;s situation is different. We are happy to
                   meet with you for an initial consultation, discuss the support
                   you need and create a service or package that suits your
@@ -323,12 +316,9 @@ export default function Pricing({
                 </p>
 
                 <div className="mt-6">
-                  <Link
-                    href="/contact"
-                    className="inline-flex rounded-lg bg-white px-6 py-3 font-medium text-emerald-700 transition-colors hover:bg-emerald-50"
-                  >
+                  <ButtonLink href="/contact" variant="outline">
                     Contact Solace
-                  </Link>
+                  </ButtonLink>
                 </div>
               </div>
             </section>

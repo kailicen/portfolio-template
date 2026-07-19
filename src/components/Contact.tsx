@@ -1,36 +1,24 @@
-import React from "react";
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
+import SectionIntro from "@/components/ui/SectionIntro";
 
 export default function Contact() {
   return (
-    <section
-      className="min-h-screen flex overflow-hidden flex-col text-left
-      px-4 sm:px-6 lg:px-8 justify-center mx-auto items-center scroll-smooth py-16"
-    >
-      <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4 text-center">
-        Contact
-      </p>
-
-      <h3 className="text-3xl md:text-5xl font-semibold text-gray-900 text-center max-w-4xl leading-tight">
-        Need support or have a question?
-      </h3>
-
-      <p className="mt-6 text-gray-600 text-center max-w-3xl text-lg leading-relaxed">
-        If something is time sensitive, please don&apos;t wait. Send us a
-        message and we will get back to you as soon as possible.
-      </p>
+    <section className="flex flex-col items-center justify-center overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8">
+      <SectionIntro
+        eyebrow="Contact"
+        title="Need support or have a question?"
+        description="If something is time sensitive, please don’t wait. Send us a message and we will get back to you as soon as possible."
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mt-8 flex w-full justify-center"
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="mt-12 flex w-full justify-center"
       >
-        <div className="w-full max-w-2xl">
-          <ContactForm compact />
-        </div>
+        <ContactForm compact />
       </motion.div>
     </section>
   );

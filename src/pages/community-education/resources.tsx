@@ -7,9 +7,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getResources, isContentfulConfigured } from "@/lib/contentful";
-import Image from "next/image";
 import RichContent from "@/components/RichContent";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
 
 // Fallback resources data when Contentful is not configured
 const fallbackResources = [
@@ -142,7 +143,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
   };
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Resources | Solace</title>
         <meta
@@ -157,21 +158,11 @@ export default function Resources({ resources, isUsingContentful }: Props) {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/resources-b.jpg"
-          alt="Community Education"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Resources
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Resources"
+        image="/img/resources-b.jpg"
+        alt="Trusted end-of-life resources"
+      />
 
       <main className="flex-1">
         <Container>
@@ -188,23 +179,19 @@ export default function Resources({ resources, isUsingContentful }: Props) {
             transition={{ duration: 0.6 }}
           >
             <section className="py-8">
-              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
-                Community Education
-              </p>
-
-              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
-                Trusted resources for planning, learning, and end-of-life care.
-              </h2>
-
-              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
-                A curated collection of trusted end-of-life resources from
+              <SectionIntro
+                align="left"
+                eyebrow="Community Education"
+                title="Trusted resources for planning, learning, and end-of-life care."
+                description="A curated collection of trusted end-of-life resources from
                 Tasmania, Australia, and overseas, including practical tools,
-                education providers, organisations, and useful information.
-              </p>
+                education providers, organisations, and useful information."
+                className="mb-12"
+              />
 
               <div className="grid gap-8 md:grid-cols-[240px_1fr]">
                 <aside>
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-[3px] mb-4">
+                  <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-solace-600">
                     Browse By Region
                   </h3>
 
@@ -214,11 +201,20 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                         key={category}
                         type="button"
                         onClick={() => setActiveCategory(category)}
-                        className={`w-full rounded-lg px-4 py-3 text-left transition-colors ${
-                          activeCategory === category
-                            ? "bg-emerald-600 text-white font-medium"
-                            : "bg-gray-50 text-gray-700 border border-gray-200 hover:border-emerald-200 hover:text-emerald-600"
-                        }`}
+                        className={`
+                          w-full rounded-lg border px-4 py-3 text-left
+                          font-medium transition-colors
+                          focus-visible:outline-none
+                          focus-visible:ring-2
+                          focus-visible:ring-solace-300
+                          focus-visible:ring-offset-2
+                          focus-visible:ring-offset-solace-canvas
+                          ${
+                            activeCategory === category
+                              ? "border-solace-600 bg-solace-600 text-white"
+                              : "border-solace-100 bg-solace-surface text-solace-700 hover:border-solace-300 hover:bg-solace-50"
+                          }
+                        `}
                       >
                         {categoryLabels[category]}
                       </button>
@@ -227,7 +223,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                 </aside>
 
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+                  <h3 className="mb-6 text-2xl font-semibold text-solace-ink">
                     {categoryLabels[activeCategory]}
                   </h3>
 
@@ -242,16 +238,27 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.08 }}
-                            className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                            className="
+                              rounded-2xl
+                              border border-solace-100
+                              bg-solace-surface
+                              p-6
+                              shadow-sm
+                              transition-all duration-300
+                              hover:-translate-y-0.5
+                              hover:border-solace-300
+                              hover:shadow-md
+                              md:p-8
+                            "
                           >
-                            <h4 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+                            <h4 className="mb-4 text-xl font-semibold text-solace-ink md:text-2xl">
                               {resource.name}
                             </h4>
 
-                            <div className="space-y-2 text-gray-600 leading-relaxed">
+                            <div className="space-y-2 text-slate-600 leading-relaxed">
                               {resource.trainer && (
                                 <p>
-                                  <span className="font-medium text-gray-700">
+                                  <span className="font-semibold text-solace-ink">
                                     Trainer:
                                   </span>{" "}
                                   {resource.trainer}
@@ -260,7 +267,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
 
                               {resource.location && (
                                 <p>
-                                  <span className="font-medium text-gray-700">
+                                  <span className="font-semibold text-solace-ink">
                                     Location:
                                   </span>{" "}
                                   {resource.location}
@@ -269,7 +276,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                             </div>
 
                             {resource.description && (
-                              <div className="mt-4 text-gray-600 leading-relaxed">
+                              <div className="mt-4 text-slate-600 leading-relaxed">
                                 <RichContent
                                   content={resource.description}
                                   variant="compact"
@@ -282,7 +289,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                                 href={resourceUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group mt-5 inline-flex max-w-full items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
+                                className="group mt-5 inline-flex max-w-full items-center gap-2 font-medium text-solace-700 transition-colors hover:text-solace-800"
                               >
                                 <span className="break-words">
                                   {getResourceLinkLabel(resource)}
@@ -294,7 +301,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                                 />
                               </a>
                             ) : (
-                              <p className="mt-5 text-gray-400 italic">
+                              <p className="mt-5 italic text-slate-400">
                                 No link or file provided
                               </p>
                             )}
@@ -303,7 +310,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
                       })}
                     </div>
                   ) : (
-                    <div className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 text-gray-500">
+                    <div className="rounded-xl border border-solace-100 bg-solace-surface p-6 text-slate-500 shadow-sm md:p-8">
                       No resources found in this category.
                     </div>
                   )}
@@ -311,8 +318,8 @@ export default function Resources({ resources, isUsingContentful }: Props) {
               </div>
 
               {!isUsingContentful && (
-                <div className="mt-12 bg-emerald-50 rounded-lg p-6 md:p-8 border border-emerald-100">
-                  <p className="text-gray-600">
+                <div className="mt-12 bg-solace-50 rounded-lg p-6 md:p-8 border border-solace-100">
+                  <p className="text-slate-600">
                     Showing sample content. Connect Contentful to manage
                     resources dynamically.
                   </p>
@@ -324,7 +331,7 @@ export default function Resources({ resources, isUsingContentful }: Props) {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

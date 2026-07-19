@@ -2,14 +2,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import Container from "@/components/Container";
-import Image from "next/image";
 import Head from "next/head";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import ButtonLink from "@/components/ui/ButtonLink";
+import ProfileSidebar from "@/components/ui/ProfileSidebar";
+import PageHero from "@/components/ui/PageHero";
 
 function EdwinQuilliam() {
   return (
-    <div className="bg-white text-black min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Edwin Quilliam | About | Solace End of Life Services</title>
         <meta
@@ -24,21 +25,11 @@ function EdwinQuilliam() {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/who-are-we-b.jpg"
-          alt="Edwin Quilliam"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl 2xl:text-7xl font-semibold tracking-[8px] px-4 uppercase text-center">
-            Edwin Quilliam
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Edwin Quilliam"
+        image="/img/who-are-we-b.jpg"
+        alt="Edwin Quilliam"
+      />
 
       <main className="flex-1">
         <Container>
@@ -52,48 +43,21 @@ function EdwinQuilliam() {
 
           <div className="py-8 md:py-12">
             <div className="grid lg:grid-cols-[340px_1fr] gap-10 lg:gap-16 items-start">
-              <motion.aside
-                initial={{ opacity: 0, x: -24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="lg:sticky lg:top-28"
+              <ProfileSidebar
+                name="Edwin Quilliam"
+                role="Co-founder • Funeral Celebrant"
+                image="/img/edwin.jpg"
               >
-                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
-                  <div className="px-6 pt-6 pb-2">
-                    <div className="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-xl border-4 border-gray-200 bg-gray-100 shadow-sm">
-                      <Image
-                        src="/img/edwin.jpg"
-                        alt="Edwin Quilliam"
-                        fill
-                        sizes="280px"
-                        className="object-cover object-center"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="px-7 pb-7 pt-4 md:px-8 md:pb-8">
-                    <p className="text-xs font-medium uppercase leading-relaxed tracking-[0.2em] text-emerald-700">
-                      Co-founder • Funeral Celebrant
-                    </p>
-
-                    <h2 className="mt-3 text-2xl font-semibold text-gray-900">
-                      Edwin Quilliam
-                    </h2>
-
-                    <div className="mt-6 space-y-3 text-sm text-gray-700">
-                      <p>
-                        <span className="font-medium">Email:</span>{" "}
-                        <a
-                          href="mailto:edwin@solaceendoflife.com.au"
-                          className="text-emerald-700 underline hover:text-emerald-800"
-                        >
-                          edwin@solaceendoflife.com.au
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.aside>
+                <p>
+                  <span className="font-semibold text-solace-ink">Email:</span>{" "}
+                  <a
+                    href="mailto:edwin@solaceendoflife.com.au"
+                    className="text-solace-700 underline decoration-solace-300 underline-offset-4 hover:text-solace-800"
+                  >
+                    edwin@solaceendoflife.com.au
+                  </a>
+                </p>
+              </ProfileSidebar>
 
               <motion.section
                 initial={{ opacity: 0, y: 24 }}
@@ -144,12 +108,9 @@ function EdwinQuilliam() {
                 </div>
 
                 <div className="mt-10">
-                  <Link
-                    href="/about/who-we-are"
-                    className="inline-flex px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
+                  <ButtonLink href="/about/who-we-are" variant="outline">
                     Back to Who Are We?
-                  </Link>
+                  </ButtonLink>
                 </div>
               </motion.section>
             </div>

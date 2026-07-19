@@ -2,11 +2,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import Container from "@/components/Container";
-import Image from "next/image";
-import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import PersonCard from "@/components/ui/PersonCard";
+import PageHero from "@/components/ui/PageHero";
 
 const people = [
   {
@@ -33,7 +32,7 @@ const people = [
 
 function WhoWeAre() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-black">
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Who Are We? | About | Solace End of Life Services</title>
         <meta
@@ -48,24 +47,11 @@ function WhoWeAre() {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/who-are-we-b.jpg"
-          alt="About Solace End of Life Services"
-          width={2300}
-          height={300}
-          priority
-          className="h-48 w-full object-cover md:h-80"
-        />
-
-        <div className="absolute inset-0 bg-black/50" />
-
-        <div className="absolute inset-0 flex items-center justify-center px-4 text-white">
-          <h1 className="text-center text-2xl font-semibold uppercase tracking-[10px] md:text-5xl 2xl:text-7xl">
-            Who Are We?
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Who Are We?"
+        image="/img/who-are-we-b.jpg"
+        alt="About Solace End of Life Services"
+      />
 
       <main className="flex-1">
         <Container>
@@ -97,7 +83,7 @@ function WhoWeAre() {
 
             <div className="grid gap-8 lg:grid-cols-2">
               {people.map((person, index) => (
-                <motion.article
+                <motion.div
                   key={person.href}
                   initial={{
                     opacity: 0,
@@ -108,46 +94,9 @@ function WhoWeAre() {
                     duration: 0.6,
                     delay: index * 0.1,
                   }}
-                  className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md md:p-9"
                 >
-                  <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left">
-                    <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full border-4 border-gray-100 bg-gray-100 shadow-sm md:h-44 md:w-44">
-                      <Image
-                        src={person.image}
-                        alt={person.name}
-                        fill
-                        sizes="176px"
-                        className={`object-cover ${person.imagePosition}`}
-                      />
-                    </div>
-
-                    <div className="mt-6 sm:ml-7 sm:mt-2">
-                      <p className="text-xs font-medium uppercase leading-relaxed tracking-[0.18em] text-emerald-700">
-                        {person.role}
-                      </p>
-
-                      <h2 className="mt-3 text-3xl font-semibold text-gray-900">
-                        {person.name}
-                      </h2>
-                    </div>
-                  </div>
-
-                  <p className="mt-7 leading-relaxed text-gray-700">
-                    {person.description}
-                  </p>
-
-                  <Link
-                    href={person.href}
-                    className="group mt-6 inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
-                  >
-                    <span>{person.linkText}</span>
-
-                    <ArrowRightIcon
-                      aria-hidden="true"
-                      className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
-                    />
-                  </Link>
-                </motion.article>
+                  <PersonCard {...person} />
+                </motion.div>
               ))}
             </div>
           </div>

@@ -24,6 +24,8 @@ import {
   FaLink,
 } from "react-icons/fa6";
 import { useState } from "react";
+import PageHero from "@/components/ui/PageHero";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 // Fallback blog data when Contentful is not configured
 const fallbackBlogPosts: Record<
@@ -76,7 +78,7 @@ export default function BlogPost({ post, slug }: Props) {
 
   if (!post) {
     return (
-      <>
+      <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
         <Header />
         <div className="relative">
           <Image
@@ -101,14 +103,14 @@ export default function BlogPost({ post, slug }: Props) {
             </h1>
             <Link
               href="/community-education/blog"
-              className="text-emerald-600 hover:underline"
+              className="text-solace-600 hover:underline"
             >
               Return to Blog
             </Link>
           </div>
         </Container>
         <Footer />
-      </>
+      </div>
     );
   }
 
@@ -119,7 +121,7 @@ export default function BlogPost({ post, slug }: Props) {
   const encodedExcerpt = encodeURIComponent(post?.excerpt || "");
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>{post.title} - Solace Blog</title>
         <meta name="description" content={post.excerpt} />
@@ -128,21 +130,7 @@ export default function BlogPost({ post, slug }: Props) {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/about-b.jpg"
-          alt="Community Education"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            {post.title}
-          </h1>
-        </div>
-      </div>
+      <PageHero title="Blog" image="/img/blog-b.jpg" alt="Solace blog" />
 
       <Container className="flex-1">
         <Breadcrumb
@@ -212,7 +200,7 @@ export default function BlogPost({ post, slug }: Props) {
                 href={`mailto:?subject=${encodedTitle}&body=${encodedExcerpt}%0A%0A${encodedUrl}`}
                 aria-label="Share by Email"
                 title="Share by Email"
-                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-slate-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <FaEnvelope className="text-lg" />
               </a>
@@ -226,24 +214,24 @@ export default function BlogPost({ post, slug }: Props) {
                 }}
                 aria-label="Copy link"
                 title="Copy link"
-                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-emerald-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-solace-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <FaLink className="text-lg" />
               </button>
               {copied && (
-                <span className="text-sm text-emerald-600 font-medium">
+                <span className="text-sm text-solace-600 font-medium">
                   Link copied
                 </span>
               )}
             </div>
 
             <div>
-              <time className="text-sm text-emerald-600 font-medium">
+              <time className="text-sm text-solace-600 font-medium">
                 {formatDateOnly(post.publishedDate)}
               </time>
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-8">
+            <h1 className="mt-3 mb-8 max-w-4xl text-3xl font-semibold leading-tight text-solace-ink md:text-5xl">
               {post.title}
             </h1>
 
@@ -301,7 +289,7 @@ export default function BlogPost({ post, slug }: Props) {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-600 hover:underline"
+                        className="text-solace-600 hover:underline"
                       >
                         Open file
                       </a>
@@ -312,19 +300,16 @@ export default function BlogPost({ post, slug }: Props) {
             )}
 
             <div className="mt-12 pt-8 border-t border-gray-200">
-              <Link
-                href="/community-education/blog"
-                className="inline-flex px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-              >
+              <ButtonLink href="/community-education/blog" variant="outline">
                 Back to Blog
-              </Link>
+              </ButtonLink>
             </div>
           </div>
         </motion.article>
       </Container>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

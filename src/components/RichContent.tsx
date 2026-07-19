@@ -15,13 +15,13 @@ type RichContentProps = {
 const getRichTextOptions = (variant: "article" | "compact"): Options => {
   const paragraphClass =
     variant === "compact"
-      ? "text-gray-600 leading-relaxed mb-4"
-      : "text-gray-600 leading-relaxed mb-5";
+      ? "text-slate-600 leading-relaxed mb-4"
+      : "text-slate-600 leading-relaxed mb-5";
 
   const listClass =
     variant === "compact"
-      ? "pl-6 space-y-2 mb-4 text-gray-600"
-      : "pl-6 space-y-2 mb-6 text-gray-600";
+      ? "pl-6 space-y-2 mb-4 text-slate-600"
+      : "pl-6 space-y-2 mb-6 text-slate-600";
 
   return {
     renderNode: {
@@ -46,7 +46,7 @@ const getRichTextOptions = (variant: "article" | "compact"): Options => {
       ),
       [BLOCKS.LIST_ITEM]: (_node, children: ReactNode) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (_node, children: ReactNode) => (
-        <blockquote className="border-l-4 border-emerald-600 pl-6 py-2 my-6 italic text-gray-700 bg-gray-50 rounded-r-lg">
+        <blockquote className="border-l-4 border-solace-600 pl-6 py-2 my-6 italic text-gray-700 bg-gray-50 rounded-r-lg">
           {children}
         </blockquote>
       ),
@@ -55,7 +55,7 @@ const getRichTextOptions = (variant: "article" | "compact"): Options => {
           href={node.data.uri}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-emerald-600 hover:underline"
+          className="text-solace-600 hover:underline"
         >
           {children}
         </a>
@@ -92,7 +92,7 @@ export default function RichContent({
   if (typeof content === "string") {
     return (
       <div
-        className={`prose prose-lg max-w-none prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-emerald-600 ${className}`.trim()}
+        className={`prose prose-lg max-w-none prose-headings:text-gray-800 prose-p:text-slate-600 prose-a:text-solace-600 ${className}`.trim()}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     );

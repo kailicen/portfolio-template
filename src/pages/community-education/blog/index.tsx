@@ -10,10 +10,11 @@ import {
   getPaginatedBlogPosts,
   isContentfulConfigured,
 } from "@/lib/contentful";
-import Image from "next/image";
 import { formatDateOnly } from "@/lib/date";
 import { useRef, useState } from "react";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -122,7 +123,7 @@ export default function BlogIndex({
   };
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Blog | Solace</title>
         <meta
@@ -137,21 +138,11 @@ export default function BlogIndex({
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/blog-b.jpg"
-          alt="Community Education"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Blog
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Blog"
+        image="/img/blog-b.jpg"
+        alt="Community Education blog"
+      />
 
       <main className="flex-1">
         <Container>
@@ -170,23 +161,17 @@ export default function BlogIndex({
             <section className="py-8">
               <div ref={listTopRef} />
 
-              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
-                Community Education
-              </p>
-
-              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
-                Stories, reflections, and conversations about end-of-life care.
-              </h2>
-
-              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
-                Insights, stories, and discussions about end-of-life care,
-                advocacy, and the movement to bring death and dying back into
-                community hands.
-              </p>
+              <SectionIntro
+                align="left"
+                eyebrow="Community Education"
+                title="Stories, reflections and conversations about end-of-life care."
+                description="Insights, stories and discussions about end-of-life care, advocacy and the movement to bring death and dying back into community hands."
+                className="mb-12"
+              />
 
               <div className="space-y-8">
                 {isLoading && (
-                  <div className="rounded-lg bg-gray-50 p-6 text-gray-500 border border-gray-200">
+                  <div className="rounded-xl border border-solace-100 bg-solace-surface p-6 text-slate-500">
                     Loading posts...
                   </div>
                 )}
@@ -197,25 +182,35 @@ export default function BlogIndex({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                    className="
+                      rounded-2xl
+                      border border-solace-100
+                      bg-solace-surface
+                      p-6 shadow-sm
+                      transition-all duration-300
+                      hover:-translate-y-0.5
+                      hover:border-solace-300
+                      hover:shadow-md
+                      md:p-8
+                    "
                   >
                     <Link
                       href={`/community-education/blog/${post.slug}`}
-                      className="block"
+                      className="group block"
                     >
-                      <time className="text-sm text-emerald-600 font-medium">
+                      <time className="text-sm text-solace-600 font-medium">
                         {formatDateOnly(post.publishedDate)}
                       </time>
 
-                      <h3 className="text-2xl font-semibold text-gray-800 mt-2 mb-4 hover:text-emerald-600 transition-colors">
+                      <h3 className="mt-2 mb-4 text-2xl font-semibold text-solace-ink transition-colors group-hover:text-solace-700">
                         {post.title}
                       </h3>
 
-                      <p className="text-gray-600 mb-5 leading-relaxed">
+                      <p className="mb-5 leading-relaxed text-slate-600">
                         {post.excerpt}
                       </p>
 
-                      <span className="group/read-more inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800">
+                      <span className="group/read-more inline-flex items-center gap-2 font-medium text-solace-700 transition-colors hover:text-solace-800">
                         <span>Read more</span>
 
                         <ArrowRightIcon
@@ -234,7 +229,7 @@ export default function BlogIndex({
                     type="button"
                     onClick={() => goToPage(currentPage - 1)}
                     disabled={isLoading || currentPage === 1}
-                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-emerald-500 hover:text-emerald-600 transition"
+                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-solace-500 hover:text-solace-600 transition"
                   >
                     Previous
                   </button>
@@ -257,8 +252,8 @@ export default function BlogIndex({
                         aria-current={currentPage === page ? "page" : undefined}
                         className={`px-4 py-2 rounded-lg border transition ${
                           currentPage === page
-                            ? "bg-emerald-600 text-white border-emerald-600"
-                            : "bg-white text-gray-700 border-gray-300 hover:border-emerald-500 hover:text-emerald-600"
+                            ? "bg-solace-600 text-white border-solace-600"
+                            : "bg-white text-gray-700 border-gray-300 hover:border-solace-500 hover:text-solace-600"
                         }`}
                       >
                         {page}
@@ -270,7 +265,7 @@ export default function BlogIndex({
                     type="button"
                     onClick={() => goToPage(currentPage + 1)}
                     disabled={isLoading || currentPage === totalPages}
-                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-emerald-500 hover:text-emerald-600 transition"
+                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-solace-500 hover:text-solace-600 transition"
                   >
                     Next
                   </button>
@@ -278,8 +273,8 @@ export default function BlogIndex({
               )}
 
               {!isUsingContentful && (
-                <div className="mt-12 bg-emerald-50 rounded-lg p-6 md:p-8 border border-emerald-100">
-                  <p className="text-gray-600">
+                <div className="mt-12 bg-solace-50 rounded-lg p-6 md:p-8 border border-solace-100">
+                  <p className="text-slate-600">
                     Showing sample content. Connect Contentful to manage blog
                     posts dynamically.
                   </p>
@@ -291,7 +286,7 @@ export default function BlogIndex({
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

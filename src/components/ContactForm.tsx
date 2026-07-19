@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { inputClassName } from "./ui/formStyles";
 
 export type ContactInputs = {
   name: string;
@@ -107,14 +108,16 @@ export default function ContactForm({
     <div
       className={`w-full ${className || (compact ? "max-w-2xl" : "max-w-3xl")}`}
     >
-      <div className="mb-8 flex items-center justify-center gap-3 rounded-lg border border-emerald-100 bg-emerald-50 px-5 py-4">
-        <PhoneIcon className="h-6 w-6 shrink-0 text-emerald-600" />
+      <div className="mb-8 flex items-center justify-center gap-3 rounded-xl border border-solace-200 bg-solace-50 px-5 py-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-solace-200">
+          <PhoneIcon className="h-5 w-5 text-solace-700" />
+        </div>
 
-        <p className="text-sm text-gray-700 md:text-base">
+        <p className="text-sm text-slate-700 md:text-base">
           For immediate support, call Bec on{" "}
           <a
             href="tel:0417307658"
-            className="font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 hover:text-emerald-800"
+            className="font-semibold text-solace-700 underline decoration-solace-300 underline-offset-4 transition-colors hover:text-solace-600"
           >
             0417 307 658
           </a>
@@ -124,11 +127,8 @@ export default function ContactForm({
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:p-8"
+        className="space-y-5 rounded-2xl border border-solace-200 bg-solace-surface p-6 shadow-[0_18px_45px_rgba(48,64,55,0.08)] md:p-8"
       >
-        {/* Anti-spam honeypot field.
-            Real users will not see this.
-            Bots often fill every field they find. */}
         <div className="hidden" aria-hidden="true">
           <label htmlFor={`${fieldPrefix}-contact-company`}>Company</label>
           <input
@@ -146,7 +146,7 @@ export default function ContactForm({
           <div>
             <label
               htmlFor={`${fieldPrefix}-contact-name`}
-              className="mb-2 block text-sm font-medium text-gray-700"
+              className="mb-2 block text-sm font-medium text-slate-700"
             >
               Name
             </label>
@@ -164,7 +164,7 @@ export default function ContactForm({
                   message: "Name must be 100 characters or fewer.",
                 },
               })}
-              className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 outline-none transition-colors placeholder:text-gray-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              className={inputClassName}
             />
 
             {errors.name && (
@@ -175,7 +175,7 @@ export default function ContactForm({
           <div>
             <label
               htmlFor={`${fieldPrefix}-contact-email`}
-              className="mb-2 block text-sm font-medium text-gray-700"
+              className="mb-2 block text-sm font-medium text-slate-700"
             >
               Email
             </label>
@@ -197,7 +197,7 @@ export default function ContactForm({
                   message: "Email address is too long.",
                 },
               })}
-              className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 outline-none transition-colors placeholder:text-gray-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              className={inputClassName}
             />
 
             {errors.email && (
@@ -211,7 +211,7 @@ export default function ContactForm({
         <div>
           <label
             htmlFor={`${fieldPrefix}-contact-subject`}
-            className="mb-2 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-slate-700"
           >
             Subject
           </label>
@@ -232,7 +232,7 @@ export default function ContactForm({
                 message: "Subject must be 150 characters or fewer.",
               },
             })}
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 outline-none transition-colors placeholder:text-gray-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className={inputClassName}
           />
 
           {errors.subject && (
@@ -245,7 +245,7 @@ export default function ContactForm({
         <div>
           <label
             htmlFor={`${fieldPrefix}-contact-message`}
-            className="mb-2 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-slate-700"
           >
             Message
           </label>
@@ -266,7 +266,7 @@ export default function ContactForm({
                 message: "Message must be 5,000 characters or fewer.",
               },
             })}
-            className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 outline-none transition-colors placeholder:text-gray-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className={`${inputClassName} resize-y`}
           />
 
           {errors.message && (
@@ -279,7 +279,23 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex min-h-[52px] w-full items-center justify-center rounded-lg bg-emerald-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="
+          flex min-h-[52px] w-full items-center justify-center
+          rounded-lg
+          bg-solace-600
+          px-6 py-3
+          font-semibold text-white
+          shadow-sm
+          transition-all
+          hover:bg-solace-700
+          hover:shadow-md
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-solace-300
+          focus-visible:ring-offset-2
+          disabled:cursor-not-allowed
+          disabled:opacity-60
+        "
         >
           {isSubmitting ? (
             <>
@@ -297,7 +313,7 @@ export default function ContactForm({
             aria-live="polite"
             className={`rounded-lg px-4 py-3 text-sm ${
               status === "success"
-                ? "border border-emerald-200 bg-emerald-50 text-emerald-800"
+                ? "border border-solace-200 bg-solace-50 text-solace-800"
                 : "border border-red-200 bg-red-50 text-red-700"
             }`}
           >

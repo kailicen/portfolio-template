@@ -4,7 +4,6 @@ import Breadcrumb from "@/components/Breadcrumb";
 import Container from "@/components/Container";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import Image from "next/image";
 import { GetStaticProps } from "next";
 import {
   ContentfulAsset,
@@ -15,6 +14,8 @@ import RichContent from "@/components/RichContent";
 import { formatDateOnly } from "@/lib/date";
 import { useRef, useState } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -121,7 +122,7 @@ export default function MediaAppearances({
   };
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Media Appearances | Solace</title>
         <meta
@@ -136,21 +137,11 @@ export default function MediaAppearances({
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/media-b.jpg"
-          alt="Community Education"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black opacity-50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Media
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Media Appearances"
+        image="/img/media-b.jpg"
+        alt="Media Appearances"
+      />
 
       <main className="flex-1">
         <Container>
@@ -169,23 +160,19 @@ export default function MediaAppearances({
             <section className="py-8">
               <div ref={listTopRef} />
 
-              <p className="text-sm font-medium text-emerald-600 uppercase tracking-[4px] mb-4">
-                Community Education
-              </p>
-
-              <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-6 max-w-4xl">
-                Articles, interviews, and conversations featuring Solace.
-              </h2>
-
-              <p className="text-lg text-gray-600 max-w-3xl mb-12 leading-relaxed">
-                Featured articles, interviews, and news coverage highlighting
-                our work in end-of-life services, family-led funerals, and death
-                positive advocacy.
-              </p>
+              <SectionIntro
+                align="left"
+                eyebrow="Community Education"
+                title="Articles, interviews and conversations featuring Solace."
+                description="Featured articles, interviews and news coverage highlighting
+                our work in end-of-life services, family-led funerals and death
+                positive advocacy."
+                className="mb-12"
+              />
 
               <div className="space-y-8">
                 {isLoading && (
-                  <div className="rounded-lg bg-gray-50 p-6 text-gray-500 border border-gray-200">
+                  <div className="rounded-xl border border-solace-100 bg-solace-surface p-6 text-slate-500">
                     Loading media appearances...
                   </div>
                 )}
@@ -203,23 +190,34 @@ export default function MediaAppearances({
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="bg-gray-50 rounded-lg p-6 md:p-8 shadow-sm border border-gray-200 hover:border-emerald-200 transition-colors"
+                      className="
+                        rounded-2xl
+                        border border-solace-100
+                        bg-solace-surface
+                        p-6
+                        shadow-sm
+                        transition-all duration-300
+                        hover:-translate-y-0.5
+                        hover:border-solace-300
+                        hover:shadow-md
+                        md:p-8
+                      "
                     >
                       <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full">
+                        <span className="px-3 py-1 bg-solace-100 text-solace-700 text-sm font-medium rounded-full">
                           {item.source}
                         </span>
 
-                        <time className="text-sm text-gray-500">
+                        <time className="text-sm text-slate-500">
                           {formatDateOnly(item.publishedDate)}
                         </time>
                       </div>
 
-                      <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                      <h3 className="mb-4 text-2xl font-semibold text-solace-ink">
                         {item.title}
                       </h3>
 
-                      <div className="text-gray-600 leading-relaxed">
+                      <div className="leading-relaxed text-slate-600">
                         <RichContent
                           content={item.content}
                           className="mb-5"
@@ -228,8 +226,8 @@ export default function MediaAppearances({
                       </div>
 
                       {mediaUrl && contentType.startsWith("audio/") && (
-                        <div className="mt-6 rounded-lg border border-gray-200 bg-white p-4">
-                          <p className="text-sm text-gray-500 mb-3">
+                        <div className="mt-6 rounded-xl border border-solace-100 bg-solace-50 p-4">
+                          <p className="mb-3 text-sm text-slate-500">
                             {mediaTitle}
                           </p>
 
@@ -246,7 +244,7 @@ export default function MediaAppearances({
                             href={mediaUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
+                            className="group inline-flex items-center gap-2 font-medium text-solace-700 transition-colors hover:text-solace-800"
                           >
                             <span>Open media file</span>
 
@@ -262,7 +260,17 @@ export default function MediaAppearances({
                             href={item.externalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors hover:text-emerald-800"
+                            className="
+                              group inline-flex items-center gap-2
+                              font-semibold text-solace-700
+                              transition-colors
+                              hover:text-solace-800
+                              focus-visible:outline-none
+                              focus-visible:ring-2
+                              focus-visible:ring-solace-300
+                              focus-visible:ring-offset-2
+                              focus-visible:ring-offset-solace-surface
+                            "
                           >
                             <span>
                               {getExternalLinkLabel(item.externalUrl)}
@@ -286,7 +294,7 @@ export default function MediaAppearances({
                     type="button"
                     onClick={() => goToPage(currentPage - 1)}
                     disabled={isLoading || currentPage === 1}
-                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-emerald-500 hover:text-emerald-600 transition"
+                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-solace-500 hover:text-solace-600 transition"
                   >
                     Previous
                   </button>
@@ -300,8 +308,8 @@ export default function MediaAppearances({
                         disabled={isLoading}
                         className={`px-4 py-2 rounded-lg border transition ${
                           currentPage === page
-                            ? "bg-emerald-600 text-white border-emerald-600"
-                            : "bg-white text-gray-700 border-gray-300 hover:border-emerald-500 hover:text-emerald-600"
+                            ? "bg-solace-600 text-white border-solace-600"
+                            : "bg-white text-gray-700 border-gray-300 hover:border-solace-500 hover:text-solace-600"
                         }`}
                       >
                         {page}
@@ -313,7 +321,7 @@ export default function MediaAppearances({
                     type="button"
                     onClick={() => goToPage(currentPage + 1)}
                     disabled={isLoading || currentPage === totalPages}
-                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-emerald-500 hover:text-emerald-600 transition"
+                    className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:border-solace-500 hover:text-solace-600 transition"
                   >
                     Next
                   </button>
@@ -321,8 +329,8 @@ export default function MediaAppearances({
               )}
 
               {!isUsingContentful && (
-                <div className="mt-12 bg-emerald-50 rounded-lg p-6 md:p-8 border border-emerald-100">
-                  <p className="text-gray-600">
+                <div className="mt-12 bg-solace-50 rounded-lg p-6 md:p-8 border border-solace-100">
+                  <p className="text-slate-600">
                     Showing sample content. Connect Contentful to manage media
                     appearances dynamically.
                   </p>
@@ -334,7 +342,7 @@ export default function MediaAppearances({
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

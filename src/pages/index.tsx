@@ -8,6 +8,7 @@ import Hero from "@/components/Hero";
 import CommunityEducation from "@/components/CommunityEducation";
 import Packages from "@/components/Packages";
 import Head from "next/head";
+import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   const scrollToTop = () => {
@@ -15,7 +16,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen z-0">
+    <div className="bg-solace-canvas">
       <Head>
         <title>
           Family-Led Funerals & End of Life Services | Solace Tasmania
@@ -31,7 +32,7 @@ export default function Home() {
 
       <Header />
 
-      <div className="flex flex-col space-y-20">
+      <main>
         <section id="hero">
           <Hero />
         </section>
@@ -59,20 +60,35 @@ export default function Home() {
         <section id="contact">
           <Contact />
         </section>
-      </div>
+      </main>
 
-      <div className="sticky bottom-5 mb-5 w-full cursor-pointer flex items-center justify-center">
-        <div
-          className="flex items-center justify-center w-16 h-16 rounded-full bg-gray-300/50 p-2 text-black font-bold"
-          onClick={scrollToTop}
-        >
-          Solace
-        </div>
-      </div>
+      <button
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Scroll to the top"
+        className="
+          fixed bottom-5 right-5 z-40
+          flex h-12 w-12 items-center justify-center
+          rounded-full
+          border border-solace-300
+          bg-solace-surface/90
+          text-solace-700
+          shadow-md backdrop-blur-sm
+          transition-all
+          hover:-translate-y-0.5
+          hover:bg-white
+          hover:text-solace-800
+          hover:shadow-lg
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-solace-400
+          focus-visible:ring-offset-2
+        "
+      >
+        <ArrowUpIcon className="h-5 w-5" />
+      </button>
 
-      <section>
-        <Footer />
-      </section>
+      <Footer />
     </div>
   );
 }

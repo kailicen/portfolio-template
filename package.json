@@ -17,6 +17,7 @@
     "@contentful/rich-text-react-renderer": "^16.1.6",
     "@contentful/rich-text-types": "^17.2.5",
     "@heroicons/react": "^2.0.17",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/react-google-recaptcha": "^2.1.5",
     "contentful": "^10.6.21",
     "framer-motion": "^10.10.0",

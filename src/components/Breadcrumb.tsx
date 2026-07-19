@@ -13,28 +13,58 @@ type Props = {
 function Breadcrumb({ items }: Props) {
   return (
     <nav aria-label="Breadcrumb" className="py-4">
-      <ol className="flex items-center space-x-2 text-sm text-gray-600">
+      <ol className="flex items-center space-x-2 text-sm text-solace-600">
         <li>
           <Link
             href="/"
-            className="flex items-center hover:text-emerald-600 transition-colors"
+            className="
+              flex items-center
+              transition-colors
+              hover:text-solace-800
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-solace-300
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-solace-canvas
+            "
             aria-label="Home"
           >
-            <HomeIcon className="w-4 h-4" />
+            <HomeIcon className="h-4 w-4" />
           </Link>
         </li>
+
         {items.map((item, index) => (
-          <li key={index} className="flex items-center space-x-2">
-            <ChevronRightIcon className="w-4 h-4 text-gray-400" />
+          <li
+            key={`${item.label}-${index}`}
+            className="flex items-center space-x-2"
+          >
+            <ChevronRightIcon
+              aria-hidden="true"
+              className="h-4 w-4 text-solace-300"
+            />
+
             {item.href ? (
               <Link
                 href={item.href}
-                className="hover:text-emerald-600 transition-colors"
+                className="
+                  transition-colors
+                  hover:text-solace-800
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-solace-300
+                  focus-visible:ring-offset-2
+                  focus-visible:ring-offset-solace-canvas
+                "
               >
                 {item.label}
               </Link>
             ) : (
-              <span className="text-gray-900 font-medium">{item.label}</span>
+              <span
+                aria-current="page"
+                className="font-semibold text-solace-ink"
+              >
+                {item.label}
+              </span>
             )}
           </li>
         ))}

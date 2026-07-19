@@ -8,6 +8,9 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Container from "@/components/Container";
+import PageHero from "@/components/ui/PageHero";
+import SectionIntro from "@/components/ui/SectionIntro";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 const planningDocuments = [
   "Will",
@@ -74,7 +77,7 @@ const ceremonyChoices = [
 
 export default function PlanningAFuneral() {
   return (
-    <div className="bg-white text-black min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-solace-canvas text-solace-ink">
       <Head>
         <title>Planning | Solace End of Life Services</title>
         <meta
@@ -89,21 +92,11 @@ export default function PlanningAFuneral() {
 
       <Header />
 
-      <div className="relative">
-        <Image
-          src="/img/planning-b.jpg"
-          alt="Planning"
-          width={2300}
-          height={300}
-          className="w-full h-48 md:h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex justify-center items-center text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold tracking-[10px] 2xl:text-7xl px-4 uppercase text-center">
-            Planning
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title="Planning"
+        image="/img/planning-b.jpg"
+        alt="Planning a funeral"
+      />
 
       <main className="flex-1">
         <Container>
@@ -118,43 +111,34 @@ export default function PlanningAFuneral() {
           />
 
           <div className="py-8 md:py-12">
-            <motion.section
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-4xl mb-12"
             >
-              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
-                Planning ahead
-              </p>
-
-              <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-                Making end-of-life choices clearer, calmer and more informed.
-              </h2>
-
-              <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-                At Solace, we can help with any kind of planning you would like
-                to do. If you need a funeral plan, we can help. Stuck for how to
-                put together an Advance Care Plan? We can help with that as
-                well. It can be hard to get your head around all the end of life
-                documents and how they fit together.
-              </p>
-            </motion.section>
+              <SectionIntro
+                align="left"
+                eyebrow="Planning ahead"
+                title="Making end-of-life choices clearer, calmer and more informed."
+                description="At Solace, we can help with any kind of planning you would like to do. If you need a funeral plan, we can help. Stuck for how to put together an Advance Care Plan? We can help with that as well. It can be hard to get your head around all the end-of-life documents and how they fit together."
+                className="mb-12"
+              />
+            </motion.div>
 
             <section className="grid lg:grid-cols-[1fr_360px] gap-10 mb-12 items-start">
-              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-8">
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-5">
-                  Depending on your circumstances, you could consider a-
+              <div className="rounded-2xl border border-solace-100 bg-solace-surface p-6 md:p-8">
+                <h2 className="mb-5 text-2xl font-semibold text-solace-ink md:text-3xl">
+                  Depending on your circumstances, you could consider:
                 </h2>
 
-                <div className="grid sm:grid-cols-2 gap-3">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {planningDocuments.map((item, index) => (
                     <motion.div
                       key={item}
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.35, delay: index * 0.04 }}
-                      className="rounded-xl bg-white border border-gray-200 p-4 text-gray-700 shadow-sm"
+                      className="rounded-xl border border-solace-100 bg-solace-50 p-4 text-slate-600 shadow-sm"
                     >
                       {item}
                     </motion.div>
@@ -163,7 +147,7 @@ export default function PlanningAFuneral() {
               </div>
 
               <Image
-                className="w-full rounded-2xl object-cover shadow-sm border border-gray-200"
+                className="w-full rounded-2xl object-cover shadow-sm border border-solace-100"
                 src="/img/planning-3.jpg"
                 alt="Planning resources"
                 width={500}
@@ -172,12 +156,12 @@ export default function PlanningAFuneral() {
             </section>
 
             <section className="mb-12">
-              <div className="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6 md:p-8">
-                <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+              <div className="rounded-2xl border border-solace-100 bg-solace-surface p-6 md:p-8">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-solace-600">
                   Wishes
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+                <h2 className="mb-5 text-2xl font-semibold text-solace-ink md:text-3xl">
                   Write down what matters to you.
                 </h2>
 
@@ -209,29 +193,26 @@ export default function PlanningAFuneral() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-4">
-                  <Link
+                  <ButtonLink
                     href="https://www.ahfa.org.au/recording-your-wishes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                    external
                   >
                     View Wishes Booklet
-                  </Link>
+                  </ButtonLink>
 
-                  <Link
+                  <ButtonLink
                     href="https://www.ahfa.org.au/questions-to-ask-a-funeral-director"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                    variant="outline"
+                    external
                   >
                     Questions to Ask a Funeral Director
-                  </Link>
+                  </ButtonLink>
                 </div>
               </div>
             </section>
 
             <section className="mb-12">
-              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-solace-600">
                 Funeral planning
               </p>
 
@@ -263,7 +244,7 @@ export default function PlanningAFuneral() {
                   href="https://ndan.com.au/resources/end-of-life-planning/funeral-planning"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                  className="inline-flex px-6 py-3 bg-solace-600 text-white rounded-lg hover:bg-solace-700 transition-colors font-medium"
                 >
                   View NDAN Funeral Planning Resource
                 </Link>
@@ -272,7 +253,7 @@ export default function PlanningAFuneral() {
                   href="https://www.ahfa.org.au/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                  className="inline-flex px-6 py-3 border border-solace-600 text-solace-700 rounded-lg hover:bg-solace-50 transition-colors font-medium"
                 >
                   Learn About Family-Led Funerals
                 </Link>
@@ -280,8 +261,8 @@ export default function PlanningAFuneral() {
             </section>
 
             <section className="grid lg:grid-cols-2 gap-8 mb-12">
-              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-8">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-5">
+              <div className="rounded-2xl border border-solace-100 bg-solace-surface p-6 md:p-8">
+                <h2 className="text-2xl font-semibold mb-5">
                   Family-led funeral decisions
                 </h2>
 
@@ -297,10 +278,10 @@ export default function PlanningAFuneral() {
                       initial={{ opacity: 0, x: -16 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.35, delay: index * 0.05 }}
-                      className="rounded-xl bg-white border border-gray-200 px-4 py-3 md:px-5"
+                      className="rounded-xl bg-solace-50 border-solace-100 px-4 py-3 md:px-5"
                     >
                       <div className="flex items-start gap-3">
-                        <span className="text-emerald-600 mt-1 shrink-0">
+                        <span className="text-solace-600 mt-1 shrink-0">
                           <svg
                             className="w-5 h-5"
                             fill="currentColor"
@@ -317,18 +298,18 @@ export default function PlanningAFuneral() {
                         <div className="flex-1">
                           {item.detail ? (
                             <details className="group">
-                              <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden text-gray-800 font-medium leading-relaxed flex items-center justify-between gap-4">
+                              <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden text-solace-ink font-medium leading-relaxed flex items-center justify-between gap-4">
                                 <span>{item.title}</span>
 
-                                <ChevronDownIcon className="w-5 h-5 text-emerald-700 shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                                <ChevronDownIcon className="w-5 h-5 text-solace-700 shrink-0 transition-transform duration-200 group-open:rotate-180" />
                               </summary>
 
-                              <p className="mt-3 text-gray-600 leading-relaxed">
+                              <p className="mt-3 text-slate-600 leading-relaxed">
                                 {item.detail}
                               </p>
                             </details>
                           ) : (
-                            <p className="text-gray-800 font-medium leading-relaxed">
+                            <p className="text-solace-ink font-medium leading-relaxed">
                               {item.title}
                             </p>
                           )}
@@ -339,12 +320,12 @@ export default function PlanningAFuneral() {
                 </ul>
               </div>
 
-              <div className="bg-emerald-700 text-white rounded-2xl p-6 md:p-8">
+              <div className="bg-solace-700 text-white rounded-2xl p-6 md:p-8">
                 <h2 className="text-2xl font-semibold mb-5">
                   A note on ceremony
                 </h2>
 
-                <div className="space-y-4 text-emerald-50 leading-relaxed">
+                <div className="space-y-4 text-solace-50 leading-relaxed">
                   <p>
                     Funerals can be expensive and funeral poverty is a very real
                     problem in Australia.
@@ -376,7 +357,7 @@ export default function PlanningAFuneral() {
             </section>
 
             <section className="mb-12">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
+              <h2 className="mb-5 text-2xl font-semibold text-solace-ink md:text-3xl">
                 Other ceremony choices to consider
               </h2>
 
@@ -393,7 +374,7 @@ export default function PlanningAFuneral() {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: index * 0.025 }}
-                    className="rounded-xl border border-gray-200 bg-white p-3 text-gray-700 shadow-sm"
+                    className="rounded-xl border border-solace-100 bg-solace-surface p-3 text-slate-600 shadow-sm"
                   >
                     {item}
                   </motion.div>
@@ -401,12 +382,12 @@ export default function PlanningAFuneral() {
               </div>
             </section>
 
-            <section className="mb-12 bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6 md:p-8">
-              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+            <section className="mb-12 rounded-2xl border border-solace-100 bg-solace-surface p-6 md:p-8">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-solace-600">
                 Your choices
               </p>
 
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+              <h2 className="text-2xl font-semibold text-solace-ink md:text-3xl">
                 Planning on your own terms.
               </h2>
 
@@ -439,32 +420,29 @@ export default function PlanningAFuneral() {
               </div>
 
               <div className="mt-6 flex flex-wrap gap-4">
-                <Link
+                <ButtonLink
                   href="https://ndan.com.au/images/Factsheets/INFO_SHEET_2_Funeral_Planning.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                  external
                 >
                   View NDAN Funeral Planning Factsheet
-                </Link>
+                </ButtonLink>
 
-                <Link
+                <ButtonLink
                   href="https://www.ahfa.org.au/home-funeral-requirements"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                  variant="outline"
+                  external
                 >
                   View AHFA Home Funeral Requirements
-                </Link>
+                </ButtonLink>
               </div>
             </section>
 
-            <section className="mb-12 bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-8">
-              <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4">
+            <section className="mb-12">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-solace-600">
                 Advance care planning
               </p>
 
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+              <h2 className="mb-5 text-2xl font-semibold text-solace-ink md:text-3xl">
                 Planning for the care you want.
               </h2>
 
@@ -495,32 +473,29 @@ export default function PlanningAFuneral() {
               </div>
 
               <div className="mt-6 flex flex-wrap gap-4">
-                <Link
+                <ButtonLink
                   href="https://www.advancecareplanning.org.au/start-planning/record-your-choices/tas"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                  external
                 >
                   Tasmania Advance Care Planning Forms
-                </Link>
+                </ButtonLink>
 
-                <Link
+                <ButtonLink
                   href="https://ndan.com.au/resources/end-of-life-planning/advance-care-planning"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex px-6 py-3 border border-emerald-600 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                  variant="outline"
+                  external
                 >
                   NDAN Advance Care Planning
-                </Link>
+                </ButtonLink>
               </div>
             </section>
 
-            <section className="bg-emerald-700 text-white rounded-2xl p-6 md:p-8 mb-8">
+            <section className="bg-solace-700 text-white rounded-2xl p-6 md:p-8 mb-8">
               <h2 className="text-2xl md:text-3xl font-semibold">
                 Want to do it yourself?
               </h2>
 
-              <p className="mt-4 text-emerald-50 leading-relaxed max-w-3xl">
+              <p className="mt-4 text-solace-50 leading-relaxed max-w-3xl">
                 If you want to do it yourself, we are always happy to pass on
                 our contacts for the people we use when planning funerals. So if
                 you&apos;d like options for things like florists, recording and
@@ -529,12 +504,9 @@ export default function PlanningAFuneral() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-block px-6 py-3 bg-white text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
-                >
+                <ButtonLink href="/contact" variant="outline">
                   Contact Solace
-                </Link>
+                </ButtonLink>
               </div>
             </section>
           </div>

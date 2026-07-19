@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import SectionIntro from "./ui/SectionIntro";
+import NavigationCard from "./ui/NavigationCard";
+import ButtonLink from "./ui/ButtonLink";
 
 const educationSubPages = [
   {
@@ -26,73 +27,38 @@ const educationSubPages = [
   },
 ];
 
-function CommunityEducation() {
+export default function CommunityEducation() {
   return (
-    <section
-      className="min-h-screen flex overflow-hidden flex-col text-left
-      px-4 sm:px-6 lg:px-8 justify-center mx-auto items-center scroll-smooth py-16"
-    >
-      <p className="uppercase tracking-[0.25em] text-sm text-emerald-700 font-medium mb-4 text-center">
-        Community Education
-      </p>
+    <section className="flex flex-col items-center justify-center overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8">
+      <SectionIntro
+        eyebrow="Community Education"
+        title="Honest conversations make better end-of-life choices possible."
+        description="Explore education, advocacy and resources designed to help people feel more informed, prepared and at ease when talking about dying and death."
+      />
 
-      <h3 className="text-3xl md:text-5xl font-semibold text-gray-900 text-center max-w-4xl leading-tight">
-        Honest conversations make better end-of-life choices possible.
-      </h3>
-
-      <p className="mt-6 text-gray-600 text-center max-w-3xl text-lg leading-relaxed">
-        Explore education, advocacy and resources designed to help people feel
-        more informed, prepared and at ease when talking about dying and death.
-      </p>
-
-      <div className="grid md:grid-cols-3 gap-6 w-full max-w-6xl mt-10">
+      <div className="mt-12 grid w-full max-w-6xl gap-6 md:grid-cols-3">
         {educationSubPages.map((page, index) => (
           <motion.div
             key={page.href}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: 0.45,
+              delay: index * 0.08,
+              ease: "easeOut",
+            }}
           >
-            <Link
-              href={page.href}
-              className="group block h-full rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 hover:border-emerald-500 hover:shadow-md transition-all"
-            >
-              <p className="uppercase tracking-[0.2em] text-xs text-emerald-700 font-medium">
-                {page.eyebrow}
-              </p>
-
-              <h2 className="mt-3 text-2xl font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
-                {page.title}
-              </h2>
-
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                {page.description}
-              </p>
-
-              <span className="mt-6 inline-flex items-center gap-2 font-medium text-emerald-700 transition-colors group-hover:text-emerald-800">
-                <span>Learn more</span>
-
-                <ArrowRightIcon
-                  aria-hidden="true"
-                  className="relative top-px h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </span>
-            </Link>
+            <NavigationCard {...page} />
           </motion.div>
         ))}
       </div>
 
-      <div className="mt-8">
-        <Link
-          href="/community-education"
-          className="inline-flex px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
-        >
+      <div className="mt-10">
+        <ButtonLink href="/community-education">
           View All Community Education
-        </Link>
+        </ButtonLink>
       </div>
     </section>
   );
 }
-
-export default CommunityEducation;
