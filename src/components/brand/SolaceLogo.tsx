@@ -20,7 +20,7 @@ export default function SolaceLogo({
   sizes = "160px",
 }: SolaceLogoProps) {
   return (
-    <div className={className}>
+    <div className={`box-border overflow-visible ${className}`}>
       <Image
         src={logoSources[variant]}
         alt="Solace End of Life Services"
@@ -29,7 +29,7 @@ export default function SolaceLogo({
         priority={priority}
         sizes={sizes}
         unoptimized
-        className="h-auto w-full"
+        className="block h-auto w-full object-contain"
       />
     </div>
   );

@@ -236,6 +236,7 @@ export default function Header() {
           onClick={closeMobileMenu}
           aria-label="Solace home"
           className="
+            flex shrink-0 items-center
             rounded-md
             focus-visible:outline-none
             focus-visible:ring-2
@@ -246,8 +247,13 @@ export default function Header() {
         >
           <SolaceLogo
             priority
-            sizes="(max-width: 1280px) 130px, 150px"
-            className="w-[130px] xl:w-[150px]"
+            sizes="(max-width: 640px) 110px, (max-width: 1280px) 120px, 130px"
+            className="
+              w-[110px] shrink-0
+              px-1.5 py-1
+              sm:w-[120px]
+              xl:w-[130px]
+            "
           />
         </Link>
 
