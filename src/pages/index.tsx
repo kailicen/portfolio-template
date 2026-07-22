@@ -28,6 +28,38 @@ export default function Home() {
         />
 
         <link rel="canonical" href="https://solaceendoflife.com.au/" />
+
+        <meta
+          property="og:title"
+          content="Family-Led Funerals & End of Life Services | Solace Tasmania"
+        />
+        <meta
+          property="og:description"
+          content="Compassionate funeral support, home funerals, end-of-life guidance and community education across Tasmania."
+        />
+        <meta property="og:url" content="https://solaceendoflife.com.au/" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content="https://solaceendoflife.com.au/img/solace-social-share.jpg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Solace End of Life Services" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Family-Led Funerals & End of Life Services | Solace Tasmania"
+        />
+        <meta
+          name="twitter:description"
+          content="Compassionate funeral support, home funerals and end-of-life guidance across Tasmania."
+        />
+        <meta
+          name="twitter:image"
+          content="https://solaceendoflife.com.au/img/solace-social-share.jpg"
+        />
       </Head>
 
       <Header />
